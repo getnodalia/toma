@@ -86,6 +86,9 @@ pub struct AppearancePrefs {
     /// "Animate zoom, scrolling and menus" (#2325): off, the Timeline zooms and scrolls in one
     /// step and menus, collapsing sections and tooltips appear without a fade.
     pub animations: bool,
+    /// "Window Controls" (Linux): `nodalia` (default: Nodalia's round controls in Toma's own
+    /// title bar) | `system` (the desktop's title bar and buttons). Applies on the next start.
+    pub window_controls: String,
 }
 
 impl Default for AppearancePrefs {
@@ -100,6 +103,7 @@ impl Default for AppearancePrefs {
             highlight_color: DEFAULT_HIGHLIGHT.into(),
             ui_scale: "auto".into(),
             animations: true,
+            window_controls: "nodalia".into(),
         }
     }
 }
@@ -152,7 +156,12 @@ impl AppearancePrefs {
     }
 }
 
-pub const DEFAULT_HIGHLIGHT: &str = "#2f6bdf";
+/// The default highlight: Toma's accent in the Nodalia palette. The interface keeps each theme's own
+/// shade of it until another colour is chosen.
+pub const DEFAULT_HIGHLIGHT: &str = "#d81ca0";
+/// The default highlight before Toma took Nodalia's accent: settings files that still carry it get
+/// the theme's own accent too.
+pub const LEGACY_HIGHLIGHT: &str = "#2f6bdf";
 
 /// Settings ▸ Audio Hardware (the cpal output on desktop).
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]

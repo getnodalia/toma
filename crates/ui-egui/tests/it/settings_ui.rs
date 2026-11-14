@@ -386,11 +386,11 @@ fn appearance_labels_and_tooltips_take_effect() {
     d.frames(2);
     assert_eq!(d.inspect()["ui"]["dark"], false, "Light theme applied");
     assert_eq!((d.pref("appearance.appearanceMode"), d.pref("appearance.darkTheme")), (json!("light"), json!("dark")));
-    // the header button cycles Auto, Light, Dark
-    d.click("header.appearance");
+    // View ▸ Appearance Mode cycles Auto, Light, Dark
+    d.menu("view.appearanceMode.next");
     assert_eq!(d.pref("appearance.appearanceMode"), "dark");
     assert_eq!(d.harness.state().tokens.kind, toma_ui_egui::theme::ThemeKind::Medium, "the saved dark theme");
-    d.click("header.appearance");
+    d.menu("view.appearanceMode.next");
     assert_eq!(d.pref("appearance.appearanceMode"), "auto");
     d.menu("view.appearanceMode.next");
     assert_eq!(d.pref("appearance.appearanceMode"), "light");

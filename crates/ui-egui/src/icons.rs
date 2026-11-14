@@ -238,9 +238,88 @@ impl Pen16<'_> {
     }
 }
 
+/// The NDL icon that draws `icon`, where NDL has one: Toma shares Nodalia's bold icon set and
+/// draws only the editing-specific ones itself (trim tools, three-point editing, marks).
+fn ndl_name(icon: Icon) -> Option<&'static str> {
+    use Icon::*;
+    Some(match icon {
+        Selection => "select",
+        Pen => "pen",
+        Rectangle => "rectangle",
+        Ellipse => "ellipse",
+        Hand => "pan",
+        Zoom => "zoom",
+        Type => "text",
+        Play => "play",
+        Pause => "pause",
+        Camera => "camera",
+        Loop => "repeat",
+        Wrench | Gear => "settings",
+        Plus => "plus",
+        Eye => "view",
+        EyeOff => "eye-off",
+        Speaker => "volume",
+        Mute => "mute",
+        Lock => "lock",
+        Unlock => "unlock",
+        Mic => "microphone",
+        Folder => "folder",
+        Film => "film",
+        Sequence => "timeline",
+        Audio => "waveform",
+        Image => "image",
+        Search => "search",
+        ListView => "list-view",
+        IconView => "grid-view",
+        NewItem => "new-item",
+        Trash => "delete",
+        Home => "home",
+        Workspaces => "workspace",
+        ChevronDown => "chevron-down",
+        ChevronRight => "chevron-right",
+        ChevronLeft => "chevron-left",
+        Magnet => "magnet",
+        Link => "link",
+        Keyframe => "keyframe",
+        Fx => "effects",
+        Reset => "rotate-ccw",
+        Close => "close",
+        Fullscreen => "fullscreen",
+        Export => "export",
+        Import => "import",
+        Info => "info",
+        Captions => "subtitles",
+        Undo => "undo",
+        Redo => "redo",
+        Bell => "bell",
+        Chat => "comment",
+        Globe => "globe",
+        Code => "code",
+        Sparkle => "sparkle",
+        Grid => "grid",
+        Offline => "offline",
+        Star => "star",
+        ArrowUp => "arrow-up",
+        Clock | Stopwatch => "clock",
+        Monitor => "monitor",
+        Sun => "sun",
+        Moon => "moon",
+        Eyedropper => "eyedropper",
+        Razor => "knife",
+        Automate => "timeline",
+        _ => return None,
+    })
+}
+
 /// Paint `icon` centred in `rect`.
 pub fn paint(painter: &Painter, rect: Rect, icon: Icon, color: Color32) {
-    let pen = Pen16 { painter, rect, color, width: 1.25 };
+    if let Some(glyph) = ndl_name(icon).and_then(nodalia_theme::icons::get) {
+        // NDL draws on a 24 grid with a 2 px margin; Toma's own icons fill a 16 grid edge to edge
+        nodalia_theme::icons::paint(painter, rect.expand(rect.width() / 12.0), glyph, nodalia_theme::icons::Style::bold(color));
+        return;
+    }
+    // the bold stroke of NDL's icons at this size (2.25 on 24 is 1.5 on 16)
+    let pen = Pen16 { painter, rect, color, width: 1.5 };
     use Icon::*;
     match icon {
         Selection => pen.fill(&[(4.0, 2.0), (4.0, 13.0), (6.8, 10.4), (8.8, 14.6), (10.4, 13.9), (8.5, 9.8), (12.2, 9.6)]),
@@ -825,6 +904,15 @@ mod tests {
     use Icon::*;
     use egui::epaint::{ColorMode, Shape};
 
+    #[test]
+    fn every_ndl_icon_toma_names_exists() {
+        for &icon in ALL {
+            if let Some(name) = ndl_name(icon) {
+                assert!(nodalia_theme::icons::get(name).is_some(), "{icon:?} → {name}");
+            }
+        }
+    }
+
     const ALL: &[Icon] = &[
         Monitor,
         Sun,
@@ -965,7 +1053,7 @@ mod tests {
     fn straight_lines_land_on_whole_pixels() {
         for &ppp in &[1.0, 2.0] {
             for &size in &[16.0, 13.0, 9.6, 20.0] {
-                for &icon in ALL {
+                for &icon in ALL.iter().filter(|&&i| ndl_name(i).is_none()) {
                     for shape in drawn(icon, ppp, size) {
                         if let Shape::Path(p) = shape {
                             if p.stroke.width == 0.0 || matches!(p.stroke.color, ColorMode::Solid(c) if c == Color32::TRANSPARENT) {

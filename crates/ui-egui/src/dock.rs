@@ -754,7 +754,10 @@ pub fn sequence_tabs(ui: &mut egui::Ui, strip: Rect, seqs: &SeqTabs, t: &Tokens,
             actions.push(SeqAction::Close(*id));
         }
         if resp.secondary_clicked() {
-            actions.push(SeqAction::Menu(*id, resp.interact_pointer_pos().unwrap_or(tab_rect.left_bottom())));
+            // below the tab, so the menu never covers the tab strip (a right-click on another tab
+            // moves it there)
+            let x = resp.interact_pointer_pos().map_or(tab_rect.left(), |p| p.x);
+            actions.push(SeqAction::Menu(*id, pos2(x, tab_rect.bottom() + 2.0)));
         }
         x += w + 8.0;
     }

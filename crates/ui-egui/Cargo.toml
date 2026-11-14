@@ -28,6 +28,7 @@ toma-export = { workspace = true }
 toma-gpu = { workspace = true }
 toma-scopes = { workspace = true }
 egui = { workspace = true }
+nodalia-theme = { workspace = true, features = ["creator"] }
 egui_extras = { workspace = true }
 eframe = { workspace = true, features = ["default_fonts", "wgpu", "accesskit", "clipboard"] }
 serde = { workspace = true }
