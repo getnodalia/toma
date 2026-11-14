@@ -59,6 +59,9 @@ pub struct HostHooks {
     /// The menu tree changed (labels, shortcuts, enablement, checkmarks): update the native menu
     /// bar. Called from the frame loop only when something differs from the last call.
     pub menu_changed: Option<Box<dyn FnMut(&[menus::MenuItem])>>,
+    /// Whether the desktop shows the menus in its top bar (Linux global menu): the in-window menu
+    /// bar is hidden while it does.
+    pub global_menu_shown: Option<Box<dyn Fn() -> bool>>,
     /// The user's preferred languages (locale tags, most preferred first) for Interface Language ▸
     /// System Language. Without it, System Language is English.
     pub system_languages: Option<Box<dyn Fn() -> Vec<String>>>,
