@@ -113,7 +113,7 @@ is traced or derived from Adobe artwork.
 
 | Asset | Where |
 |---|---|
-| UI icons (tools, transport, panels, header) | `crates/ui-egui/src/icons.rs`: vector paths on a 16×16 grid |
+| UI icons (tools, transport, panels, header) | Nodalia Design's bold icon set (getnodalia/nodalia-design `packages/icons`, original work, MIT), painted through `nodalia_theme::icons` from `crates/ui-egui/src/icons.rs`; the panel menu mark is a vector path there on a 16×16 grid |
 | Source and Program range braces and trim hover cues | `crates/ui-egui/src/panels/monitor.rs` and `source_range.rs`: original generic vector shapes by FilmCraft contributors, MIT OR Apache-2.0; no third-party artwork |
 | Align / distribute / paragraph-alignment glyphs in the graphics panel | `crates/ui-egui/src/panels/graphics.rs` (`align_glyph`): bars and lines drawn with the egui painter |
 | Demo footage (ocean sunset, aurora, city night, dunes, forest, plasma), bars and tone, counting leader, colour matte | `crates/media/src/generators.rs` |
@@ -140,24 +140,6 @@ carry each font's licence as `OFL-<family>.txt`.
 | Noto Sans Arabic Regular (Google) | Arabic UI text; Arabic fallback for titles (native builds) | OFL-1.1 |
 | Noto Sans Thai Regular (Google) | Thai fallback for titles (native builds) | OFL-1.1 |
 | Noto Sans Georgian Regular (Google) | Georgian fallback for titles (native builds) | OFL-1.1 |
-
-## First-party brand marks
-
-The Nodalia name, wordmark and logos are trademarks of the ArtCraft Team. They are not open source and
-are not covered by the project licence; they may be used only unmodified and only in the context of
-Toma, under [`docs/brand/LICENSE-brand.txt`](docs/brand/LICENSE-brand.txt). Forks and modified versions must
-remove them (AGENTS.md §1.8).
-
-| File | Author | Source | Licence |
-|---|---|---|---|
-| `docs/brand/artcraft-logo-white.png` | ArtCraft Team | Original work: first-party Nodalia brand mark (Nodalia wordmark, light ink for dark backgrounds) | Nodalia trademark, not open source; `docs/brand/LICENSE-brand.txt` (not MIT/Apache) |
-| `docs/brand/artcraft-logo-white.svg` | ArtCraft Team | Original work: first-party Nodalia brand mark (Nodalia wordmark, light ink for dark backgrounds) | Nodalia trademark, not open source; `docs/brand/LICENSE-brand.txt` (not MIT/Apache) |
-| `docs/brand/artcraft-logo.png` | ArtCraft Team | Original work: first-party Nodalia brand mark (Nodalia wordmark (symbol + "ARTCRAFT"), dark ink for light backgrounds) | Nodalia trademark, not open source; `docs/brand/LICENSE-brand.txt` (not MIT/Apache) |
-| `docs/brand/artcraft-logo.svg` | ArtCraft Team | Original work: first-party Nodalia brand mark (Nodalia wordmark (symbol + "ARTCRAFT"), dark ink for light backgrounds) | Nodalia trademark, not open source; `docs/brand/LICENSE-brand.txt` (not MIT/Apache) |
-| `docs/brand/artcraft-mark-black.png` | ArtCraft Team | Original work: first-party Nodalia brand mark (Nodalia symbol ("A" mark), black) | Nodalia trademark, not open source; `docs/brand/LICENSE-brand.txt` (not MIT/Apache) |
-| `docs/brand/artcraft-mark-black.svg` | ArtCraft Team | Original work: first-party Nodalia brand mark (Nodalia symbol ("A" mark), black) | Nodalia trademark, not open source; `docs/brand/LICENSE-brand.txt` (not MIT/Apache) |
-| `docs/brand/artcraft-mark.png` | ArtCraft Team | Original work: first-party Nodalia brand mark (Nodalia symbol ("A" mark), blue) | Nodalia trademark, not open source; `docs/brand/LICENSE-brand.txt` (not MIT/Apache) |
-| `docs/brand/artcraft-mark.svg` | ArtCraft Team | Original work: first-party Nodalia brand mark (Nodalia symbol ("A" mark), blue) | Nodalia trademark, not open source; `docs/brand/LICENSE-brand.txt` (not MIT/Apache) |
 
 ## Third-party source code
 

@@ -128,6 +128,8 @@ const PROJECT_OPEN: &[(&str, &str)] = &[("openNewTab", "Open new tab"), ("openNe
 
 const THEMES: &[(&str, &str)] = &[("darkest", "Darkest"), ("dark", "Dark"), ("light", "Light")];
 
+pub const WINDOW_CONTROLS: &[(&str, &str)] = &[("nodalia", "Nodalia"), ("system", "Desktop's own")];
+
 pub const APPEARANCE_MODES: &[(&str, &str)] = &[("auto", "Sync with system"), ("dark", "Dark"), ("light", "Light")];
 
 pub const UI_SCALES: &[(&str, &str)] = &[
@@ -285,6 +287,7 @@ pub(super) static CATEGORIES: &[Category] = &[
             f("appearance.highlightColor", "Highlight Color", Kind::Color, true),
             f("appearance.uiScale", "UI Scale", Kind::Choice(UI_SCALES), true),
             b("appearance.animations", "Animate zoom, scrolling and menus", true),
+            f("appearance.windowControls", "Window Controls", Kind::Choice(WINDOW_CONTROLS), true),
         ],
     },
     Category {

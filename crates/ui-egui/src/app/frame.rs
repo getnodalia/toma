@@ -64,8 +64,12 @@ impl TomaApp {
         if self.ui.show_header {
             header::show(self, ui, header);
         }
-        let status_h = if self.ui.show_status_bar { 20.0 } else { 0.0 };
-        let body = egui::Rect::from_min_max(egui::pos2(full.min.x + 1.0, header.max.y + 1.0), egui::pos2(full.max.x - 1.0, full.max.y - status_h - 2.0));
+        let status_h = if self.ui.show_status_bar { 22.0 } else { 0.0 };
+        // Nodalia: the modes sit in the window colour as islands, a gap from every edge.
+        let gap = crate::theme::ISLAND_GAP;
+        let top = if self.ui.show_header { header.max.y } else { full.min.y + gap };
+        let bottom = full.max.y - if self.ui.show_status_bar { status_h } else { gap };
+        let body = egui::Rect::from_min_max(egui::pos2(full.min.x + gap, top), egui::pos2(full.max.x - gap, bottom));
         match self.ui.mode {
             state::Mode::Edit => self.dock_area(ui, body),
             state::Mode::Import => panels::import_mode::show(self, ui, body),
@@ -73,6 +77,9 @@ impl TomaApp {
         }
         // the Timeline has had its chance to place a file drop this frame; anything left stays a bin import
         self.pending_timeline_drop = None;
+        if self.custom_titlebar {
+            crate::titlebar::resize_zones(ui);
+        }
         panels::dialogs::show(self, &ctx);
         panels::file_dialogs::show_overwrite(self, &ctx);
         updates_ui::show(self, &ctx);
@@ -81,7 +88,7 @@ impl TomaApp {
         }
         // Status / hint bar
         let sb = egui::Rect::from_min_max(egui::pos2(full.min.x, full.max.y - status_h), full.max);
-        ui.painter().rect_filled(sb, 0.0, t.header_bg);
+        ui.painter().rect_filled(sb, 0.0, t.app_bg);
         let now = ui.input(|i| i.time);
         if self.ui.status != self.status_seen.0 {
             self.status_seen = (self.ui.status.clone(), now);

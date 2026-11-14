@@ -147,7 +147,6 @@ pub const UI_COMMANDS: &[UiCommand] = &[
     uic!("mode.import", "Import", [], None),
     uic!("mode.edit", "Edit", [], None),
     uic!("mode.export", "Export", ["File", "Export"], Some("Cmd+M")),
-    uic!("help.discord", "Join the Nodalia Discord…", ["Help"], None),
     uic!("help.website", "Nodalia Website", ["Help"], None),
     uic!("help.appPage", "Toma on getnodalia.com", ["Help"], None),
     uic!("help.github", "Toma on GitHub", ["Help"], None),

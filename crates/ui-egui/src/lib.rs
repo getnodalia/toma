@@ -68,6 +68,7 @@ pub mod source_playback;
 pub mod state;
 pub mod theme;
 mod theme_favorites;
+pub mod titlebar;
 pub mod updates_ui;
 pub mod widgets;
 
@@ -335,6 +336,9 @@ pub struct TomaApp {
     pub quit_confirmed: bool,
     fonts_ready: bool,
     pub integrated_titlebar: bool,
+    /// Linux with Nodalia's window controls: the window has no OS decorations, the app bar is its
+    /// title bar ([`titlebar`]) and invisible zones along its edges resize it.
+    pub custom_titlebar: bool,
     pub last_timeline_width: f32,
     /// The sequence whose view `ui.timeline` holds, and that view as it was last exchanged with
     /// `session.state.timeline_views` (see `sync_timeline_view`).

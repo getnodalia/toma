@@ -357,6 +357,9 @@ pub fn panel_menu_popup(app: &mut TomaApp, ui: &mut egui::Ui) {
     panel_menu_area(app, ui);
 }
 
+/// The panel menu's widest: its longest entry with room to spare.
+const MENU_MAX_WIDTH: f32 = 280.0;
+
 /// The panel "≡" menu, drawn in the viewport that owns the click that opened it: a panel in its
 /// own OS window opens its menu in that window, at that window's coordinates (#3633).
 pub fn panel_menu_area(app: &mut TomaApp, ui: &mut egui::Ui) {
@@ -380,7 +383,8 @@ pub fn panel_menu_area(app: &mut TomaApp, ui: &mut egui::Ui) {
                     // a small window (a floated panel can be narrower than the menu) takes the menu at its width
                     let width = ui.ctx().content_rect().width() - 16.0;
                     ui.set_min_width(190.0_f32.min(width.max(0.0)));
-                    ui.set_max_width(width.max(0.0));
+                    // bounded, or its separators stretch it across the window
+                    ui.set_max_width(width.clamp(0.0, MENU_MAX_WIDTH));
                     // the Timeline's tabs are its open sequences: Close Panel closes the active one and
                     // keeps the panel (Premiere's wording and behaviour)
                     if p == PanelKind::Timeline && app.session.state.active_sequence.is_some() {

@@ -287,7 +287,7 @@ fn save_rename_and_delete_through_the_dialogs() {
     let _ = std::fs::remove_dir_all(&data);
 }
 
-/// The workspace menu in the header (the workspace's name at the top of the window) offers the
+/// The workspace selector in the app bar offers the
 /// actions of Window ▸ Workspaces under the list: Reset to Saved Layout, Save Changes to this
 /// Workspace, Save as New Workspace… and Edit Workspaces….
 #[test]
@@ -298,7 +298,7 @@ fn the_header_workspace_menu_saves_resets_and_opens_the_dialogs() {
     let ws = d.workspace();
     d.ok("ui.panel.close", json!({"panel": "Metadata"}));
 
-    d.click("header.workspaceName");
+    d.click("header.workspaces");
     d.snapshot("header-menu");
     d.click("header.workspaces.saveChanges");
     assert!(!d.has("header.workspaces.saveChanges"), "the menu closes");
@@ -307,18 +307,18 @@ fn the_header_workspace_menu_saves_resets_and_opens_the_dialogs() {
     d.ok("ui.panel.show", json!({"panel": "Metadata"}));
     d.frames(2);
     assert!(d.shows(PanelKind::Metadata));
-    d.click("header.workspaceName");
+    d.click("header.workspaces");
     d.click("header.workspaces.reset");
     assert!(!d.shows(PanelKind::Metadata), "Reset to Saved Layout brings back the saved layout");
     assert_eq!(d.workspace(), ws);
 
-    d.click("header.workspaceName");
+    d.click("header.workspaces");
     d.click("header.workspaces.saveAs");
     assert!(matches!(d.app().ui.workspace_dialog, Some(WorkspaceDialog::SaveAs { .. })), "Save as New Workspace… asks for a name");
     d.click("workspaces.save.cancel");
     assert!(d.app().ui.workspace_dialog.is_none());
 
-    d.click("header.workspaceName");
+    d.click("header.workspaces");
     d.click("header.workspaces.edit");
     assert!(matches!(d.app().ui.workspace_dialog, Some(WorkspaceDialog::Edit { .. })), "Edit Workspaces… opens its dialog");
     let _ = std::fs::remove_dir_all(&data);

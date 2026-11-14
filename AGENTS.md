@@ -97,12 +97,9 @@ reproduce an image (for example, point lists traced from someone else's icon).
    `crates/media`, procedural looks in `crates/render`) are original work under the project licence
    and are listed in `ATTRIBUTION.md`.
 7. **When in doubt, leave it out** and draw or generate it yourself.
-8. **The one exception: first-party Nodalia brand marks.** The Nodalia name and logos in `docs/brand/`
-   are trademarks of the ArtCraft Team, not open source, usable only unmodified and only in the context of
-   Toma under `docs/brand/LICENSE-brand.txt`; forks and modified versions must remove them. They still
-   need a sidecar and an `ATTRIBUTION.md` row (licence `LicenseRef-Nodalia-Trademark`). No other
-   non-open asset is allowed, and this exception never covers third-party marks (Adobe, Discord, GitHub
-   and other logos stay out; draw a generic icon instead).
+8. **No brand marks.** Toma ships no trademark logos: no third-party marks (Adobe, Discord, GitHub
+   and other logos stay out; draw a generic icon instead). The app shows its own icon
+   (`assets/app-icon/`).
 9. **Fonts live in [getnodalia/foundation's `vendor/craft-fonts/main` branch](https://github.com/getnodalia/foundation/tree/vendor/craft-fonts/main), never in this
    repo.** Don't commit new font files (the small Latin UI fonts already in `assets/fonts/` stay). A
    font Toma needs is added to craft-fonts, which the app reads through the optional build input

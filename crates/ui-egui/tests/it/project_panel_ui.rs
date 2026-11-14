@@ -546,7 +546,13 @@ fn metadata_display_dialog_and_view_presets() {
     assert_eq!(cols[1], "Label", "{cols:?}");
     assert!(cols.contains(&"Video Usage".to_string()) && !cols.contains(&"Tape Name".to_string()));
     d.frames(2);
-    assert!(d.has("project.list.header.Label") && d.has("project.list.header.Video Usage"));
+    assert!(d.has("project.list.header.Label"));
+    // the last column may be past the panel's right edge: scroll the list sideways to it
+    if !d.has("project.list.header.Video Usage") {
+        d.ok("ui.scroll", json!({"id": "project.empty", "dx": -2000.0}));
+        d.frames(3);
+    }
+    assert!(d.has("project.list.header.Video Usage"));
 
     // Save As New View Preset (named), change the view, restore it from Manage
     d.click("panel.menu.Project");

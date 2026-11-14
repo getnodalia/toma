@@ -139,7 +139,7 @@ impl TomaApp {
     /// title-bar strip, where a press on a floating window would move the whole app window.
     pub(crate) fn float_bounds(&self, ctx: &egui::Context) -> Rect {
         let mut bounds = ctx.content_rect();
-        if self.integrated_titlebar {
+        if self.integrated_titlebar || self.custom_titlebar {
             bounds.min.y += crate::header::HEIGHT;
         }
         bounds
@@ -276,6 +276,14 @@ impl TomaApp {
         };
         let output = area.show_content(&mut child, &layout, &style, &mut content);
         let FilmContent { seq_actions, mut menu, seq_menu_viewport, bodies, restore_workspace, .. } = content;
+        // Nodalia's islands: each docked group, its tab strip included, with rounded corners
+        // cut into the window colour around it. Floating windows keep their own frames.
+        for (_, r, layer) in &bodies {
+            let group = Rect::from_min_max(egui::pos2(r.min.x, r.min.y - t.tab_h), r.max);
+            if body.expand(1.0).contains_rect(group) && layer.order == child.layer_id().order {
+                crate::theme::round_island_corners(&ctx.layer_painter(*layer).with_clip_rect(body), &t, group);
+            }
+        }
         ctx.data_mut(|data| data.insert_temp(bodies_id(), bodies));
         if let Some(panel) = output.focused {
             self.ui.focused = panel;

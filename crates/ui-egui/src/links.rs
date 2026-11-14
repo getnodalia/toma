@@ -1,13 +1,11 @@
-//! Community and project links (Help menu, About dialog, header Discord button, Home screen).
+//! Project links (Help menu, About dialog, Home screen).
 //!
-//! Toma is part of the Nodalia family: the community lives on the Nodalia Discord, every
-//! app has a page on the Nodalia website and a public GitHub repository.
+//! Toma is part of the Nodalia family: every app has a page on the Nodalia website and a public
+//! GitHub repository, where issues are reported.
 
 /// The app's short name, used in the website and repository URLs.
 pub const APP: &str = "toma";
 
-/// The Nodalia community Discord.
-pub const DISCORD: &str = "https://github.com/getnodalia/toma/issues";
 /// The Nodalia website.
 pub const WEBSITE: &str = "https://getnodalia.com";
 /// Toma's page on the Nodalia website.
@@ -18,8 +16,7 @@ pub const GITHUB: &str = "https://github.com/getnodalia/toma";
 pub const ISSUES: &str = "https://github.com/getnodalia/toma/issues";
 
 /// (command id, label, url) for every link, in menu order.
-pub const ALL: [(&str, &str, &str); 5] = [
-    ("help.discord", "Join the Nodalia Discord…", DISCORD),
+pub const ALL: [(&str, &str, &str); 4] = [
     ("help.website", "Nodalia Website", WEBSITE),
     ("help.appPage", "Toma on getnodalia.com", APP_PAGE),
     ("help.github", "Toma on GitHub", GITHUB),
@@ -130,13 +127,13 @@ mod tests {
         assert_eq!(APP_PAGE, format!("{WEBSITE}/{APP}"));
         assert_eq!(GITHUB, format!("https://github.com/getnodalia/{APP}"));
         assert!(ALL.iter().all(|(id, _, u)| id.starts_with("help.") && u.starts_with("https://")));
-        assert_eq!(url_for("help.discord"), Some(DISCORD));
+        assert_eq!(url_for("help.github"), Some(GITHUB));
         assert_eq!(url_for("help.nope"), None);
     }
 
     #[test]
     fn links_open_through_the_host_hook() {
-        // #642: on the desktop every link (Help menu, About, Discord button, Import screen) must
+        // #642: on the desktop every link (Help menu, About, Home screen) must
         // reach the host's browser opener; `ctx.open_url` alone is a no-op natively.
         use std::cell::RefCell;
         use std::rc::Rc;
@@ -153,8 +150,8 @@ mod tests {
             assert_eq!(r["url"], url, "{id}");
             assert_eq!(opened.borrow().last().map(String::as_str), Some(url), "{id}");
         }
-        open(&mut app, &ctx, DISCORD);
-        assert_eq!(opened.borrow().last().map(String::as_str), Some(DISCORD));
+        open(&mut app, &ctx, ISSUES);
+        assert_eq!(opened.borrow().last().map(String::as_str), Some(ISSUES));
         assert_eq!(opened.borrow().len(), ALL.len() + 1);
 
         // A failing opener falls back to `ctx.open_url` instead of losing the click.

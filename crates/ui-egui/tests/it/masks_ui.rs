@@ -177,13 +177,17 @@ fn create_and_edit_masks_on_the_monitor() {
     assert!(c1.0 > c0.0 + 20.0, "{c0:?} → {c1:?}");
     d.shot("mask-edited");
 
-    // Inverted checkbox (fold Opacity so the row is on screen)
+    // Inverted checkbox (fold Opacity and scroll the panel so the row is on screen)
     d.ok("ui.click", json!({"id": "effectControls.effect.opacity.twirl"}));
     d.frames(2);
+    d.ok("ui.scroll", json!({"id": "effectControls.effect.opacity.twirl", "dy": -400.0}));
+    d.frames(3);
     d.ok("ui.click", json!({"id": "effectControls.gaussian_blur.mask0.inverted"}));
     d.frames(2);
     assert_eq!(d.masks()[0]["inverted"], true);
     d.shot("mask-inverted");
+    d.ok("ui.scroll", json!({"id": "effectControls.gaussian_blur.mask0.inverted", "dy": 2000.0}));
+    d.frames(3);
     d.ok("ui.click", json!({"id": "effectControls.effect.opacity.twirl"}));
     d.frames(2);
 

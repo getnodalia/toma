@@ -84,7 +84,7 @@ fn main() -> eframe::Result {
     // `--test-graphics-start <mode>`. It creates the device the window would, then exits.
     let args: Vec<std::ffi::OsString> = std::env::args_os().skip(1).collect();
     let test_setup = |mode| {
-        let mut options = native_options(false);
+        let mut options = native_options(false, false);
         graphics::apply(&mut options, mode, eframe::wgpu::Backends::from_env());
         options.wgpu_options.wgpu_setup
     };
@@ -161,7 +161,7 @@ fn main() -> eframe::Result {
     // A panic in a Toma started again for it saved the next mode for the next launch.
     let mut next_saved = false;
     let started = loop {
-        let mut options = native_options(launch.control_port.is_some());
+        let mut options = native_options(launch.control_port.is_some(), nodalia_title_bar(launch.data_dir.as_deref()));
         // Before eframe creates the wgpu instance (e.g. no OpenGL on Windows, see graphics.rs).
         graphics::apply(&mut options, graphics.mode(), backend_override);
         let app_created = Arc::new(AtomicBool::new(false));
@@ -276,8 +276,20 @@ fn panic_text(panic: &(dyn std::any::Any + Send)) -> &str {
     panic.downcast_ref::<String>().map(String::as_str).or_else(|| panic.downcast_ref::<&str>().copied()).unwrap_or("no message")
 }
 
-/// The main window's options; built for each start attempt (they hold a one-shot hook).
-fn native_options(agent: bool) -> eframe::NativeOptions {
+/// Whether the window draws Nodalia's own title bar and round window controls: on Linux, unless
+/// Preferences ▸ Appearance ▸ Window Controls asks for the desktop's. macOS and Windows keep the
+/// system's controls. Read once at start, as the window is created with or without decorations.
+fn nodalia_title_bar(data_dir: Option<&std::path::Path>) -> bool {
+    if !cfg!(target_os = "linux") {
+        return false;
+    }
+    let dir = data_dir.map(std::path::Path::to_path_buf).or_else(default_data_dir);
+    dir.is_none_or(|d| toma_engine::autosave::Preferences::load(&d.join("preferences.json")).appearance.window_controls != "system")
+}
+
+/// The main window's options; built for each start attempt (they hold a one-shot hook). With
+/// `nodalia_frame` the window has no decorations: the app bar is its title bar.
+fn native_options(agent: bool, nodalia_frame: bool) -> eframe::NativeOptions {
     eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
             .with_title("Toma")
@@ -287,6 +299,7 @@ fn native_options(agent: bool) -> eframe::NativeOptions {
             .with_fullsize_content_view(true)
             .with_titlebar_shown(false)
             .with_title_shown(false)
+            .with_decorations(!nodalia_frame)
             // Started for an agent (`--control`): open without taking the user's keyboard focus.
             .with_active(!agent)
             .with_icon(app_icon())
@@ -374,6 +387,7 @@ fn app_creator(launch: Launch, graphics: graphics::GraphicsStart, created: Arc<A
             app.dialog = None;
         }
         app.integrated_titlebar = cfg!(target_os = "macos");
+        app.custom_titlebar = nodalia_title_bar(data_dir.as_deref());
         if let Some(rs) = cc.wgpu_render_state.clone()
             && std::env::var_os("TOMA_CPU_COMPOSITE").is_none()
         {
@@ -427,7 +441,7 @@ fn app_creator(launch: Launch, graphics: graphics::GraphicsStart, created: Arc<A
             app.hooks.run_dialog = Some(Box::new(run_dialog_off_thread));
         }
         app.hooks.open_path = Some(Box::new(open_path));
-        // Help menu, About and Discord links (#642): eframe is built without its `links`
+        // Help menu, About and Home links (#642): eframe is built without its `links`
         // feature, so `ctx.open_url` does nothing on the desktop. Detached, so a launcher
         // that waits for the browser never freezes the UI.
         app.hooks.open_url = Some(Box::new(|url: &str| open::that_detached(url).map_err(|e| e.to_string())));

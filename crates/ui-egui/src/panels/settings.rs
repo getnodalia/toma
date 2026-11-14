@@ -27,7 +27,6 @@ use crate::{AudioDevices, Dialog, TomaApp};
 const W: f32 = 900.0;
 const BODY_H: f32 = 600.0;
 const LIST_W: f32 = 216.0;
-const ROW_H: f32 = 24.6;
 const LABEL_W: f32 = 250.0;
 
 /// The open dialog: current page and the preferences being edited (the whole preferences
@@ -365,18 +364,23 @@ fn diff(prefix: &str, old: &Value, new: &Value, out: &mut Map<String, Value>) {
 }
 
 fn modal_frame(t: &Tokens) -> Frame {
-    Frame::new().fill(t.panel_bg).stroke(Stroke::new(1.0, t.separator)).corner_radius(CornerRadius::same(10)).inner_margin(Margin::same(0))
+    Frame::new()
+        .fill(t.panel_bg)
+        .stroke(Stroke::new(1.0, t.separator))
+        .corner_radius(CornerRadius::same(crate::theme::ISLAND_RADIUS as u8))
+        .inner_margin(Margin::same(0))
 }
 
+/// A dialog button in the creator suite's look (`nodalia_theme::creator`): the accent pill for the
+/// primary action, an outlined pill otherwise.
 fn button(app: &mut TomaApp, ui: &mut Ui, id: &str, label: &str, primary: bool) -> bool {
-    let t = app.tokens;
-    let text = RichText::new(label).size(13.0).color(if primary { Color32::WHITE } else { t.text });
-    let b = egui::Button::new(text)
-        .min_size(vec2(82.0, 30.0))
-        .corner_radius(CornerRadius::same(15))
-        .fill(if primary { t.accent } else { Color32::TRANSPARENT })
-        .stroke(if primary { Stroke::NONE } else { Stroke::new(1.5, t.text_faint) });
-    let r = ui.add(b).on_hover_cursor(egui::CursorIcon::PointingHand);
+    let look = app.tokens.creator();
+    let r = if primary {
+        nodalia_theme::creator::primary_button_min(ui, &look, label, true, 82.0)
+    } else {
+        nodalia_theme::creator::secondary_button_min(ui, &look, label, true, 82.0)
+    };
+    let r = r.on_hover_cursor(egui::CursorIcon::PointingHand);
     app.auto.add(id, r.rect, label);
     r.clicked()
 }
@@ -870,36 +874,28 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) -> bool {
     let mut apply = false;
     let resp = egui::Modal::new(egui::Id::unique("settings-modal")).frame(modal_frame(&t)).show(ctx, |ui| {
         ui.set_width(W);
-        // title bar (Premiere keeps "Preferences" as the window title)
-        let (bar, _) = ui.allocate_exact_size(vec2(W, 30.0), Sense::hover());
-        ui.painter().rect_filled(bar, CornerRadius { nw: 10, ne: 10, sw: 0, se: 0 }, t.header_bg);
-        ui.painter().text(bar.center(), Align2::CENTER_CENTER, tl!("Preferences"), Tokens::semibold(13.0), t.text_dim);
+        // The heading with Nodalia's close disc at its end (closes like Cancel).
+        let look = t.creator();
+        let (bar, _) = ui.allocate_exact_size(vec2(W, 52.0), Sense::hover());
+        ui.painter().text(bar.left_center() + vec2(20.0, 0.0), Align2::LEFT_CENTER, tl!("Preferences"), Tokens::semibold(15.0), t.text);
         app.auto.add("settings.window", bar, "Preferences");
-        ui.add_space(14.0);
+        let disc = Rect::from_center_size(egui::pos2(bar.right() - 30.0, bar.center().y), vec2(24.0, 24.0));
+        app.auto.add("settings.close", disc, "Close");
+        if nodalia_theme::creator::close_button(ui, &look, disc, egui::Id::unique("settings-close")) {
+            close = true;
+        }
+        ui.add_space(4.0);
         ui.horizontal_top(|ui| {
-            ui.add_space(20.0);
-            // category list
+            ui.add_space(16.0);
+            // category list, as the suite's navigation rows
             let (list, _) = ui.allocate_exact_size(vec2(LIST_W, BODY_H), Sense::hover());
-            ui.painter().rect(list, 2.0, t.field_bg, Stroke::new(1.0, t.separator), egui::StrokeKind::Inside);
-            for (i, c) in settings::categories().iter().enumerate() {
-                let row = Rect::from_min_size(list.min + vec2(1.0, 1.0 + i as f32 * ROW_H), vec2(LIST_W - 2.0, ROW_H));
-                let r = ui.interact(row, egui::Id::unique(("settings-cat", c.id)), Sense::click());
+            let mut nav = ui.new_child(egui::UiBuilder::new().max_rect(list).layout(Layout::top_down(Align::Min)));
+            nav.spacing_mut().item_spacing.y = 2.0;
+            for c in settings::categories() {
                 let sel = d.page == c.id;
-                if sel {
-                    ui.painter().rect_filled(row, 0.0, t.row_alt);
-                } else if r.hovered() {
-                    ui.painter().rect_filled(row, 0.0, t.hover.gamma_multiply(0.6));
-                }
-                // a name too long for the list ends in "…" and shows whole in a tooltip
                 let title = crate::i18n::t(c.title);
-                let color = if sel { t.text } else { t.text_dim };
-                let mut job = egui::text::LayoutJob::simple_singleline(title.to_string(), Tokens::ui(12.5), color);
-                job.wrap = egui::text::TextWrapping::truncate_at_width(row.width() - 16.0);
-                let galley = ui.painter().layout_job(job);
-                let elided = galley.elided;
-                ui.painter().galley(row.left_center() + vec2(8.0, -galley.size().y / 2.0), galley, color);
-                let r = if elided { r.on_hover_text(title) } else { r };
-                app.auto.add(&format!("settings.category.{}", c.id), row, c.title);
+                let r = nodalia_theme::creator::nav_row(&mut nav, &look, title, sel, false);
+                app.auto.add(&format!("settings.category.{}", c.id), r.rect, c.title);
                 if r.clicked() {
                     d.page = c.id.into();
                     d.message.clear();
