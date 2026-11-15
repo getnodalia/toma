@@ -33,6 +33,8 @@ mod control_server;
 mod dev_icon;
 mod file_filters;
 mod graphics;
+#[cfg(target_os = "linux")]
+mod linux_menu;
 mod logging;
 #[cfg(target_os = "macos")]
 mod native_color;
@@ -477,6 +479,14 @@ fn app_creator(launch: Launch, graphics: graphics::GraphicsStart, created: Arc<A
             app.command_inbox = Some(rx);
             app.hooks.menu_changed = Some(update);
             app.ui.show_menu_bar = false;
+        }
+        // Linux: the menus go to the top bar when the desktop has a global menu (Nodalix), and
+        // the in-window bar shows only while it doesn't.
+        #[cfg(target_os = "linux")]
+        if let Some(menu) = linux_menu::install(&cc.egui_ctx, &app) {
+            app.command_inbox = Some(menu.commands);
+            app.hooks.menu_changed = Some(menu.update);
+            app.hooks.global_menu_shown = Some(menu.shown);
         }
         if let Some((rx, ready, disabled)) = control {
             app = if control_input_only { app.with_control_input_only(rx) } else { app.with_control(rx) };

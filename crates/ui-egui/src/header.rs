@@ -106,7 +106,7 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
     }
     let mut left_end = tu.min_rect().max.x;
     // In-window menus when there is no menu bar of the desktop's or the system's.
-    if app.ui.show_menu_bar {
+    if app.ui.show_menu_bar && !app.hooks.global_menu_shown.as_ref().is_some_and(|shown| shown()) {
         let x = left_end + 10.0;
         let menu_rect = Rect::from_min_max(pos2(x, rect.min.y + 8.0), pos2(x + 520.0, rect.max.y - 8.0));
         let mut mu = ui.new_child(egui::UiBuilder::new().max_rect(menu_rect).layout(egui::Layout::left_to_right(egui::Align::Center)));
