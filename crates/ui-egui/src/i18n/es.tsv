@@ -3755,3 +3755,34 @@
 	Toggle Color Grading Section	Alternar sección de gradación de color
 	Color Grading Section	Sección de gradación de color
 	Read Video Scopes	Leer medidores de vídeo
+
+# Nodalia interface: Home, app bar, window controls and About.
+	New project	Proyecto nuevo
+	Open project…	Abrir proyecto…
+	Recent projects	Proyectos recientes
+	Import media	Importar medios
+	Main Menu	Menú principal
+	Minimize	Minimizar
+	Maximize	Maximizar
+	Open-source video editing in pure Rust.	Edición de video de código abierto, escrita íntegramente en Rust.
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Parte de Nodalia. MIT OR Apache-2.0. Tipografías: Inter, Noto Serif y JetBrains Mono (SIL OFL 1.1). Iconos: Nodalia Design (MIT).
+	Looks for a newer Toma release and offers to update.	Busca una versión más reciente de Toma y ofrece actualizarla.
+	This preference is not available yet.	Esta preferencia aún no está disponible.
+	Project saved to {path}	Proyecto guardado en {path}
+	Copy of the project saved to {path}	Copia del proyecto guardada en {path}
+	Add Track	Añadir pista
+	Delete Track	Eliminar pista
+	Set as Default Transition	Establecer como transición predeterminada
+	Caption Export Settings	Ajustes de exportación de subtítulos
+	Caption Track	Pista de subtítulos
+	Exported {path} as {format}, from its file extension	Exportado: {path} como {format}, según su extensión
+	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} ya existe, así que no se ha exportado nada. Para sustituirlo, elígelo en el diálogo de guardar.
+	Cube LUT	LUT .cube
+	Export .cube…	Exportar .cube…
+	Exported {path}; not in the LUT: {effects}	Exportado: {path}; no incluido en la LUT: {effects}
+	Responsive Design – Time remaps the graphic's layer keyframes; clip effects like Opacity and Motion keep media time	Diseño adaptable – Tiempo reasigna los fotogramas clave de las capas del gráfico; los efectos del clip, como Opacidad y Movimiento, mantienen el tiempo del medio
+	Ticked attributes are removed from the selected clips.	Los atributos marcados se quitan de los clips seleccionados.
+	When enabled, GIF transparency is on/off: alpha below 128 is transparent; 128 and above is opaque.	Si está activado, la transparencia del GIF es todo o nada: un alfa por debajo de 128 es transparente; de 128 en adelante, opaco.
+	1 frame ({seconds} s)	1 fotograma ({seconds} s)
+	{frames} frames ({seconds} s)	{frames} fotogramas ({seconds} s)
+	Source In/Out is only 1 frame. Choose Entire Source to export the whole sequence.	La entrada/salida del origen ocupa solo 1 fotograma. Elige Todo el origen para exportar la secuencia completa.
