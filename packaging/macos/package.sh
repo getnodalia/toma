@@ -152,6 +152,15 @@ ln -s /Applications "$STAGE/Applications"
 # Finder window layout: background, icon size and positions (packaging/macos/dmg/README.md).
 mkdir -p "$STAGE/.background"
 cp "$HERE/dmg/background.tiff" "$STAGE/.background/background.tiff"
+# The layout names the volume (the background's alias) and the app (its icon position). A layout
+# left over from an older name opens a plain window with no background, so stop the build instead.
+python3 - "$HERE/dmg/dmg-layout.DS_Store" "Toma" "Toma.app" <<'PY'
+import sys
+path, volume, app = sys.argv[1:4]
+data = open(path, "rb").read()
+if f"/Volumes/{volume}".encode() not in data or app.encode("utf-16-be") not in data:
+    sys.exit(f"error: {path} is laid out for another volume or app; run packaging/macos/dmg/generate.py")
+PY
 cp "$HERE/dmg/dmg-layout.DS_Store" "$STAGE/.DS_Store"
 rm -f "$DMG" "$WORK/raw.dmg"
 # makehybrid + convert builds the image without attaching a device, unlike `create -srcfolder`,
