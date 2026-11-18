@@ -3707,3 +3707,93 @@
 	Toggle Color Grading Section	색 보정 섹션 전환
 	Color Grading Section	색 보정 섹션
 	Read Video Scopes	비디오 스코프 읽기
+	1 frame ({seconds} s)	1프레임({seconds}초)
+	AV1 needs a hardware encoder; none was found on this machine, and Toma has no software AV1 encoder yet.	AV1에는 하드웨어 인코더가 필요합니다. 이 컴퓨터에서 찾지 못했으며, Toma에는 아직 소프트웨어 AV1 인코더가 없습니다.
+	Add Track	트랙 추가
+	Caption Export Settings	캡션 내보내기 설정
+	Caption Track	캡션 트랙
+	Change Sequence Settings	시퀀스 설정 변경
+	Change the sequence to match the clip's settings?	클립 설정에 맞게 시퀀스를 변경하시겠습니까?
+	Check for Updates…	업데이트 확인…
+	Clear History	작업 내역 지우기
+	Clip Mismatch Warning	클립 불일치 경고
+	Clip: {settings}	클립: {settings}
+	Copy of the project saved to {path}	프로젝트 사본을 {path}에 저장했습니다
+	Cube LUT	Cube LUT
+	Delete Clips	클립 삭제
+	Delete Redoable Actions	다시 실행 가능한 작업 삭제
+	Delete Track	트랙 삭제
+	Delete the dimmed actions after the current state? They cannot be redone.	현재 상태 이후의 흐리게 표시된 작업을 삭제하시겠습니까? 다시 실행할 수 없습니다.
+	Desktop's own	데스크톱 기본값
+	Duration: {tc}	지속 시간: {tc}
+	End: {tc}	끝: {tc}
+	Export .cube…	.cube 내보내기…
+	Exported {path} as {format}, from its file extension	파일 확장자에 따라 {path}을(를) {format}(으)로 내보냈습니다
+	Exported {path}; not in the LUT: {effects}	{path}을(를) 내보냈습니다. LUT에 포함되지 않음: {effects}
+	From preset file:	사전 설정 파일에서:
+	Full Screen Program Monitor	프로그램 모니터 전체 화면
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 10 Mbps, loudness normalized to −14 LUFS	H.264 세로 9:16, 채우도록 크기 조정, VBR 1패스, 10Mbps, 라우드니스 −14 LUFS로 정규화
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 12 Mbps, loudness normalized to −14 LUFS	H.264 세로 9:16, 채우도록 크기 조정, VBR 1패스, 12Mbps, 라우드니스 −14 LUFS로 정규화
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 8 Mbps, loudness normalized to −14 LUFS	H.264 세로 9:16, 채우도록 크기 조정, VBR 1패스, 8Mbps, 라우드니스 −14 LUFS로 정규화
+	Hide Others	기타 가리기
+	Hide Toma	Toma 가리기
+	Highlight Balance	밝은 영역 밸런스
+	Highlight Hue	밝은 영역 색조
+	Highlight Level	밝은 영역 레벨
+	Highlight Softness	밝은 영역 부드러움
+	Import media	미디어 가져오기
+	Imported {n} preset(s)	사전 설정 {n}개를 가져왔습니다
+	Imported {n} preset(s); not imported: {error}	사전 설정 {n}개를 가져왔습니다. 가져오지 못함: {error}
+	Imported {n} preset(s); {skipped} skipped	사전 설정 {n}개를 가져왔습니다. {skipped}개 건너뜀
+	Imported {n} preset(s); {warnings} with unsupported parameters	사전 설정 {n}개를 가져왔습니다. {warnings}개는 지원되지 않는 매개변수 포함
+	Instagram Reels 1080×1920	Instagram Reels 1080×1920
+	Keep Existing Settings	기존 설정 유지
+	Key Out Brights	밝은 영역 키 아웃
+	Looks for a newer Toma release and offers to update.	더 새로운 Toma 릴리스를 찾아 업데이트를 제안합니다.
+	MP3	MP3
+	MP3 48 kHz 320 kbps	MP3 48kHz 320kbps
+	MPEG audio (.mp3), joint stereo 48 kHz at 320 kbps	MPEG 오디오(.mp3), 조인트 스테레오 48kHz, 320kbps
+	Main Menu	주 메뉴
+	Maximize	최대화
+	Midtone Balance	중간 톤 밸런스
+	Midtone Hue	중간 톤 색조
+	Midtone Level	중간 톤 레벨
+	Minimize	최소화
+	New project	새 프로젝트
+	No presets folder: the app has no data directory	사전 설정 폴더 없음: 앱에 데이터 디렉터리가 없습니다
+	Nodalia	Nodalia
+	Open Presets Folder	사전 설정 폴더 열기
+	Open project…	프로젝트 열기…
+	Open-source video editing in pure Rust.	순수 Rust로 만든 오픈 소스 비디오 편집기.
+	Preset library is up to date	사전 설정 라이브러리가 최신 상태입니다
+	Preset library updated	사전 설정 라이브러리를 업데이트했습니다
+	Preset library updated: {imported} loaded, {removed} removed	사전 설정 라이브러리 업데이트: {imported}개 불러옴, {removed}개 제거됨
+	Project saved to {path}	프로젝트를 {path}에 저장했습니다
+	Recent projects	최근 프로젝트
+	Responsive Design – Time remaps the graphic's layer keyframes; clip effects like Opacity and Motion keep media time	반응형 디자인 – 시간은 그래픽의 레이어 키프레임을 다시 매핑합니다. 불투명도와 모션 같은 클립 효과는 미디어 시간을 유지합니다
+	Scan Presets Folder	사전 설정 폴더 검색
+	Sequence: {settings}	시퀀스: {settings}
+	Set Work Area Bar In Point	작업 영역 막대 시작 지점 설정
+	Set Work Area Bar Out Point	작업 영역 막대 끝 지점 설정
+	Set as Default Transition	기본 전환으로 설정
+	Shadow Balance	어두운 영역 밸런스
+	Shadow Hue	어두운 영역 색조
+	Shadow Level	어두운 영역 레벨
+	Shadow Softness	어두운 영역 부드러움
+	Shadow Threshold	어두운 영역 임계값
+	Source In/Out is only 1 frame. Choose Entire Source to export the whole sequence.	소스 시작/끝이 1프레임뿐입니다. 시퀀스 전체를 내보내려면 전체 소스를 선택하세요.
+	Start: {tc}	시작: {tc}
+	This clip does not match the sequence settings.	이 클립은 시퀀스 설정과 일치하지 않습니다.
+	This preference is not available yet.	이 환경 설정은 아직 사용할 수 없습니다.
+	Three-Way Color Corrector	3방향 색상 교정기
+	Ticked attributes are removed from the selected clips.	선택한 속성이 선택한 클립에서 제거됩니다.
+	TikTok 1080×1920	TikTok 1080×1920
+	Time Format	시간 형식
+	Tonal Range	톤 범위
+	Transparency Grid	투명 격자
+	When enabled, GIF transparency is on/off: alpha below 128 is transparent; 128 and above is opaque.	켜면 GIF 투명도는 켜짐/꺼짐만 있습니다. 알파가 128 미만이면 투명하고 128 이상이면 불투명합니다.
+	Window Controls	창 컨트롤
+	Work Area Bar	작업 영역 막대
+	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	{frames} frames ({seconds} s)	{frames}프레임({seconds}초)
+	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name}이(가) 이미 있어 아무것도 내보내지 않았습니다. 바꾸려면 저장 대화 상자에서 선택하세요.

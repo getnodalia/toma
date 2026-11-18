@@ -3773,3 +3773,46 @@
 	Toggle Color Grading Section	切换色彩分级分区
 	Color Grading Section	色彩分级分区
 	Read Video Scopes	读取视频示波器
+	Caption Track	字幕轨道
+	Copy of the project saved to {path}	项目副本已保存到 {path}
+	Cube LUT	Cube LUT
+	Delete Clips	删除剪辑
+	Desktop's own	桌面自带
+	Export .cube…	导出 .cube…
+	Exported {path}; not in the LUT: {effects}	已导出 {path}；未包含在 LUT 中：{effects}
+	Full Screen Program Monitor	全屏节目监视器
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 10 Mbps, loudness normalized to −14 LUFS	H.264 竖屏 9:16，缩放填充，VBR 1 次，10 Mbps，响度标准化为 −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 12 Mbps, loudness normalized to −14 LUFS	H.264 竖屏 9:16，缩放填充，VBR 1 次，12 Mbps，响度标准化为 −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 8 Mbps, loudness normalized to −14 LUFS	H.264 竖屏 9:16，缩放填充，VBR 1 次，8 Mbps，响度标准化为 −14 LUFS
+	Highlight Balance	高光平衡
+	Highlight Hue	高光色相
+	Highlight Level	高光级别
+	Highlight Softness	高光柔和度
+	Import media	导入媒体
+	Instagram Reels 1080×1920	Instagram Reels 1080×1920
+	Key Out Brights	抠出亮部
+	Main Menu	主菜单
+	Maximize	最大化
+	Midtone Balance	中间调平衡
+	Midtone Hue	中间调色相
+	Midtone Level	中间调级别
+	Minimize	最小化
+	New project	新建项目
+	Nodalia	Nodalia
+	Open project…	打开项目…
+	Open-source video editing in pure Rust.	纯 Rust 编写的开源视频编辑软件。
+	Project saved to {path}	项目已保存到 {path}
+	Recent projects	最近的项目
+	Shadow Balance	阴影平衡
+	Shadow Hue	阴影色相
+	Shadow Level	阴影级别
+	Shadow Softness	阴影柔和度
+	Shadow Threshold	阴影阈值
+	This preference is not available yet.	此首选项暂不可用。
+	Three-Way Color Corrector	三向颜色校正器
+	Ticked attributes are removed from the selected clips.	勾选的属性将从所选剪辑中移除。
+	TikTok 1080×1920	TikTok 1080×1920
+	Time Format	时间格式
+	Tonal Range	色调范围
+	Window Controls	窗口控件
+	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920

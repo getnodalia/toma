@@ -3763,3 +3763,59 @@
 	Toggle Color Grading Section	カラーグレーディングのセクションを切り替え
 	Color Grading Section	カラーグレーディングのセクション
 	Read Video Scopes	ビデオスコープを読み取る
+	1 frame ({seconds} s)	1 フレーム（{seconds} 秒）
+	Add Track	トラックを追加
+	Caption Export Settings	キャプションの書き出し設定
+	Caption Track	キャプショントラック
+	Copy of the project saved to {path}	プロジェクトのコピーを {path} に保存しました
+	Cube LUT	Cube LUT
+	Delete Clips	クリップを削除
+	Delete Track	トラックを削除
+	Desktop's own	デスクトップ標準
+	Export .cube…	.cube を書き出し…
+	Exported {path} as {format}, from its file extension	{path} を拡張子に従って {format} として書き出しました
+	Exported {path}; not in the LUT: {effects}	{path} を書き出しました。LUT に含まれないもの：{effects}
+	Full Screen Program Monitor	プログラムモニターをフルスクリーン表示
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 10 Mbps, loudness normalized to −14 LUFS	H.264 縦 9:16、拡大して全体を埋める、VBR 1 パス、10 Mbps、ラウドネスを −14 LUFS に正規化
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 12 Mbps, loudness normalized to −14 LUFS	H.264 縦 9:16、拡大して全体を埋める、VBR 1 パス、12 Mbps、ラウドネスを −14 LUFS に正規化
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 8 Mbps, loudness normalized to −14 LUFS	H.264 縦 9:16、拡大して全体を埋める、VBR 1 パス、8 Mbps、ラウドネスを −14 LUFS に正規化
+	Highlight Balance	ハイライトのバランス
+	Highlight Hue	ハイライトの色相
+	Highlight Level	ハイライトのレベル
+	Highlight Softness	ハイライトの柔らかさ
+	Import media	メディアを読み込み
+	Instagram Reels 1080×1920	Instagram Reels 1080×1920
+	Key Out Brights	明るい部分をキーアウト
+	Main Menu	メインメニュー
+	Maximize	最大化
+	Midtone Balance	中間調のバランス
+	Midtone Hue	中間調の色相
+	Midtone Level	中間調のレベル
+	Minimize	最小化
+	New project	新規プロジェクト
+	Nodalia	Nodalia
+	Open project…	プロジェクトを開く…
+	Open-source video editing in pure Rust.	純粋な Rust で作られたオープンソースのビデオ編集ソフト。
+	Project saved to {path}	プロジェクトを {path} に保存しました
+	Recent projects	最近使用したプロジェクト
+	Responsive Design – Time remaps the graphic's layer keyframes; clip effects like Opacity and Motion keep media time	レスポンシブデザイン - 時間はグラフィックのレイヤーキーフレームをリマップします。不透明度やモーションなどのクリップエフェクトはメディアの時間のままです
+	Set Work Area Bar In Point	ワークエリアバーのイン点を設定
+	Set Work Area Bar Out Point	ワークエリアバーのアウト点を設定
+	Set as Default Transition	デフォルトのトランジションに設定
+	Shadow Balance	シャドウのバランス
+	Shadow Hue	シャドウの色相
+	Shadow Level	シャドウのレベル
+	Shadow Softness	シャドウの柔らかさ
+	Shadow Threshold	シャドウのしきい値
+	Source In/Out is only 1 frame. Choose Entire Source to export the whole sequence.	ソースのイン/アウトは 1 フレームしかありません。シーケンス全体を書き出すには「ソース全体」を選んでください。
+	This preference is not available yet.	この設定はまだ利用できません。
+	Three-Way Color Corrector	3 ウェイカラー補正
+	Ticked attributes are removed from the selected clips.	チェックした属性は選択したクリップから削除されます。
+	TikTok 1080×1920	TikTok 1080×1920
+	Time Format	時間の表示形式
+	Tonal Range	トーン範囲
+	When enabled, GIF transparency is on/off: alpha below 128 is transparent; 128 and above is opaque.	オンにすると、GIF の透明度はオン/オフになります。アルファが 128 未満は透明、128 以上は不透明です。
+	Window Controls	ウィンドウコントロール
+	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	{frames} frames ({seconds} s)	{frames} フレーム（{seconds} 秒）
+	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} はすでに存在するため、何も書き出しませんでした。置き換えるには、保存ダイアログでそのファイルを選んでください。

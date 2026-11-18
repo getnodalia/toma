@@ -5888,7 +5888,7 @@ dependencies = [
 
 [[package]]
 name = "toma"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "arboard",
  "chrono",
@@ -5924,7 +5924,7 @@ dependencies = [
 
 [[package]]
 name = "toma-aac"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "rayon",
  "thiserror 2.0.21",
@@ -5934,7 +5934,7 @@ dependencies = [
 
 [[package]]
 name = "toma-ac3"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "thiserror 2.0.21",
  "toma-bitstream",
@@ -5943,7 +5943,7 @@ dependencies = [
 
 [[package]]
 name = "toma-apv"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "rayon",
  "thiserror 2.0.21",
@@ -5953,14 +5953,14 @@ dependencies = [
 
 [[package]]
 name = "toma-audio-dsp"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "toma-testkit",
 ]
 
 [[package]]
 name = "toma-automation"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "base64",
  "image",
@@ -5977,7 +5977,7 @@ dependencies = [
 
 [[package]]
 name = "toma-av1"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "rayon",
  "rustix 1.1.5",
@@ -5987,21 +5987,21 @@ dependencies = [
 
 [[package]]
 name = "toma-avi"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "toma-testkit",
 ]
 
 [[package]]
 name = "toma-bitstream"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "craft-media",
 ]
 
 [[package]]
 name = "toma-captions"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "proptest",
  "roxmltree",
@@ -6014,11 +6014,11 @@ dependencies = [
 
 [[package]]
 name = "toma-cfb"
-version = "0.1.1"
+version = "0.1.2"
 
 [[package]]
 name = "toma-cli"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "serde_json",
  "tokio",
@@ -6040,7 +6040,7 @@ dependencies = [
 
 [[package]]
 name = "toma-codecs"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "image",
  "log",
@@ -6078,7 +6078,7 @@ dependencies = [
 
 [[package]]
 name = "toma-color"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "proptest",
  "serde",
@@ -6086,7 +6086,7 @@ dependencies = [
 
 [[package]]
 name = "toma-dng"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "image",
  "rayon",
@@ -6098,7 +6098,7 @@ dependencies = [
 
 [[package]]
 name = "toma-dnx"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "rayon",
  "thiserror 2.0.21",
@@ -6108,7 +6108,7 @@ dependencies = [
 
 [[package]]
 name = "toma-edit"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "proptest",
  "serde_json",
@@ -6121,7 +6121,7 @@ dependencies = [
 
 [[package]]
 name = "toma-engine"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "chrono",
  "craft-docpath",
@@ -6158,7 +6158,7 @@ dependencies = [
 
 [[package]]
 name = "toma-export"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "image",
  "rayon",
@@ -6190,7 +6190,7 @@ dependencies = [
 
 [[package]]
 name = "toma-flac"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "thiserror 2.0.21",
  "toma-bitstream",
@@ -6199,7 +6199,7 @@ dependencies = [
 
 [[package]]
 name = "toma-format"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "chrono",
  "log",
@@ -6214,7 +6214,7 @@ dependencies = [
 
 [[package]]
 name = "toma-frame"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "rayon",
  "serde",
@@ -6224,7 +6224,7 @@ dependencies = [
 
 [[package]]
 name = "toma-geom"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "proptest",
  "serde",
@@ -6232,7 +6232,7 @@ dependencies = [
 
 [[package]]
 name = "toma-golden"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "pollster 1.0.1",
  "toma-color",
@@ -6249,7 +6249,7 @@ dependencies = [
 
 [[package]]
 name = "toma-gpu"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "image",
  "log",
@@ -6268,7 +6268,7 @@ dependencies = [
 
 [[package]]
 name = "toma-h264"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "rayon",
  "thiserror 2.0.21",
@@ -6278,7 +6278,7 @@ dependencies = [
 
 [[package]]
 name = "toma-h264enc"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "rayon",
  "thiserror 2.0.21",
@@ -6288,7 +6288,7 @@ dependencies = [
 
 [[package]]
 name = "toma-hevc"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "rayon",
  "thiserror 2.0.21",
@@ -6298,7 +6298,7 @@ dependencies = [
 
 [[package]]
 name = "toma-interchange"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "proptest",
  "roxmltree",
@@ -6315,7 +6315,7 @@ dependencies = [
 
 [[package]]
 name = "toma-isobmff"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "craft-media",
  "proptest",
@@ -6325,7 +6325,7 @@ dependencies = [
 
 [[package]]
 name = "toma-matroska"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "craft-media",
  "serde_json",
@@ -6334,7 +6334,7 @@ dependencies = [
 
 [[package]]
 name = "toma-media"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "image",
  "png",
@@ -6350,7 +6350,7 @@ dependencies = [
 
 [[package]]
 name = "toma-mp3enc"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "thiserror 2.0.21",
  "toma-bitstream",
@@ -6359,7 +6359,7 @@ dependencies = [
 
 [[package]]
 name = "toma-mpa"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "thiserror 2.0.21",
  "toma-bitstream",
@@ -6368,7 +6368,7 @@ dependencies = [
 
 [[package]]
 name = "toma-mpeg2v"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "rayon",
  "thiserror 2.0.21",
@@ -6377,7 +6377,7 @@ dependencies = [
 
 [[package]]
 name = "toma-mpegts"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "thiserror 2.0.21",
  "toma-testkit",
@@ -6385,7 +6385,7 @@ dependencies = [
 
 [[package]]
 name = "toma-mxf"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "chrono",
  "toma-testkit",
@@ -6393,21 +6393,21 @@ dependencies = [
 
 [[package]]
 name = "toma-ogg"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "toma-testkit",
 ]
 
 [[package]]
 name = "toma-opus"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "toma-testkit",
 ]
 
 [[package]]
 name = "toma-platform"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "libloading",
  "log",
@@ -6433,7 +6433,7 @@ dependencies = [
 
 [[package]]
 name = "toma-project"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "proptest",
  "serde",
@@ -6448,7 +6448,7 @@ dependencies = [
 
 [[package]]
 name = "toma-prores"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "rayon",
  "thiserror 2.0.21",
@@ -6458,7 +6458,7 @@ dependencies = [
 
 [[package]]
 name = "toma-render"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "image",
  "rayon",
@@ -6478,7 +6478,7 @@ dependencies = [
 
 [[package]]
 name = "toma-scopes"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "serde",
  "serde_json",
@@ -6487,7 +6487,7 @@ dependencies = [
 
 [[package]]
 name = "toma-speech"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "candle-core",
  "candle-nn",
@@ -6506,7 +6506,7 @@ dependencies = [
 
 [[package]]
 name = "toma-testkit"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "chrono",
  "png",
@@ -6515,7 +6515,7 @@ dependencies = [
 
 [[package]]
 name = "toma-text"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "harfrust",
  "skrifa",
@@ -6528,7 +6528,7 @@ dependencies = [
 
 [[package]]
 name = "toma-time"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "proptest",
  "serde",
@@ -6536,7 +6536,7 @@ dependencies = [
 
 [[package]]
 name = "toma-tts"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "candle-core",
  "candle-nn",
@@ -6551,7 +6551,7 @@ dependencies = [
 
 [[package]]
 name = "toma-tts-text"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "serde",
  "thiserror 2.0.21",
@@ -6559,7 +6559,7 @@ dependencies = [
 
 [[package]]
 name = "toma-ui-egui"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "cpu-time",
  "craft-ui",
@@ -6603,7 +6603,7 @@ dependencies = [
 
 [[package]]
 name = "toma-vp8"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "thiserror 2.0.21",
  "toma-testkit",
@@ -6611,7 +6611,7 @@ dependencies = [
 
 [[package]]
 name = "toma-vp9"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "rayon",
  "thiserror 2.0.21",
@@ -6621,7 +6621,7 @@ dependencies = [
 
 [[package]]
 name = "toma-web"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "craft-web-api",
  "craft-web-host",
@@ -7984,7 +7984,7 @@ checksum = "e450f9b2ed1dff33c94c12589a87338689467b9c4f5d8a5710bd09a847d2c8a7"
 
 [[package]]
 name = "xtask"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "serde_json",
  "toma-testkit",

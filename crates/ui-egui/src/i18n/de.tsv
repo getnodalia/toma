@@ -3700,3 +3700,105 @@
 	Toggle Color Grading Section	Farbgrading-Abschnitt umschalten
 	Color Grading Section	Farbgrading-Abschnitt
 	Read Video Scopes	Videoskope auslesen
+	1 frame ({seconds} s)	1 Frame ({seconds} s)
+	AV1 needs a hardware encoder; none was found on this machine, and Toma has no software AV1 encoder yet.	AV1 benötigt einen Hardware-Encoder; auf diesem Rechner wurde keiner gefunden, und Toma hat noch keinen Software-Encoder für AV1.
+	Add Track	Spur hinzufügen
+	Animate zoom, scrolling and menus	Zoom, Scrollen und Menüs animieren
+	Audio Names	Audionamen
+	Caption Export Settings	Exporteinstellungen für Untertitel
+	Caption Track	Untertitelspur
+	Change Sequence Settings	Sequenzeinstellungen ändern
+	Change the sequence to match the clip's settings?	Die Sequenz an die Einstellungen des Clips anpassen?
+	Check for Updates…	Nach Updates suchen…
+	Clear History	Verlauf löschen
+	Clip Mismatch Warning	Warnung: Clip passt nicht
+	Clip: {settings}	Clip: {settings}
+	Copy of the project saved to {path}	Kopie des Projekts in {path} gespeichert
+	Cube LUT	Cube-LUT
+	Delete Clips	Clips löschen
+	Delete Redoable Actions	Wiederholbare Aktionen löschen
+	Delete Track	Spur löschen
+	Delete the dimmed actions after the current state? They cannot be redone.	Die abgeblendeten Aktionen nach dem aktuellen Zustand löschen? Sie können nicht wiederholt werden.
+	Desktop's own	Die des Desktops
+	Duration: {tc}	Dauer: {tc}
+	End: {tc}	Ende: {tc}
+	Enter a positive duration within the supported speed range.	Geben Sie eine positive Dauer im unterstützten Geschwindigkeitsbereich ein.
+	Export .cube…	.cube exportieren…
+	Exported {path} as {format}, from its file extension	{path} anhand der Dateiendung als {format} exportiert
+	Exported {path}; not in the LUT: {effects}	{path} exportiert; nicht in der LUT: {effects}
+	From preset file:	Aus Vorgabendatei:
+	Full Screen Program Monitor	Programmmonitor im Vollbild
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 10 Mbps, loudness normalized to −14 LUFS	H.264 hochkant 9:16, skaliert zum Füllen, VBR 1 Durchgang, 10 Mbit/s, Lautheit auf −14 LUFS normalisiert
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 12 Mbps, loudness normalized to −14 LUFS	H.264 hochkant 9:16, skaliert zum Füllen, VBR 1 Durchgang, 12 Mbit/s, Lautheit auf −14 LUFS normalisiert
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 8 Mbps, loudness normalized to −14 LUFS	H.264 hochkant 9:16, skaliert zum Füllen, VBR 1 Durchgang, 8 Mbit/s, Lautheit auf −14 LUFS normalisiert
+	Highlight Balance	Lichter-Balance
+	Highlight Hue	Lichter-Farbton
+	Highlight Level	Lichter-Pegel
+	Highlight Softness	Lichter-Weichheit
+	Import media	Medien importieren
+	Imported {n} preset(s)	{n} Vorgabe(n) importiert
+	Imported {n} preset(s); not imported: {error}	{n} Vorgabe(n) importiert; nicht importiert: {error}
+	Imported {n} preset(s); {skipped} skipped	{n} Vorgabe(n) importiert; {skipped} übersprungen
+	Imported {n} preset(s); {warnings} with unsupported parameters	{n} Vorgabe(n) importiert; {warnings} mit nicht unterstützten Parametern
+	Instagram Reels 1080×1920	Instagram Reels 1080×1920
+	Keep Existing Settings	Vorhandene Einstellungen beibehalten
+	Key Out Brights	Helle Bereiche ausstanzen
+	Looks for a newer Toma release and offers to update.	Sucht nach einer neueren Toma-Version und bietet das Update an.
+	MP3	MP3
+	MP3 48 kHz 320 kbps	MP3 48 kHz 320 kbit/s
+	MPEG audio (.mp3), joint stereo 48 kHz at 320 kbps	MPEG-Audio (.mp3), Joint Stereo 48 kHz mit 320 kbit/s
+	Main Menu	Hauptmenü
+	Maximize	Maximieren
+	Midtone Balance	Mitteltöne-Balance
+	Midtone Hue	Mitteltöne-Farbton
+	Midtone Level	Mitteltöne-Pegel
+	Minimize	Minimieren
+	New project	Neues Projekt
+	No matching text.	Kein passender Text.
+	No presets folder: the app has no data directory	Kein Vorgabenordner: Die App hat kein Datenverzeichnis
+	No text graphics in this sequence. Add text with the Type tool.	Diese Sequenz enthält keine Textgrafiken. Fügen Sie mit dem Textwerkzeug Text hinzu.
+	Nodalia	Nodalia
+	Open Presets Folder	Vorgabenordner öffnen
+	Open a sequence to search its graphics	Öffnen Sie eine Sequenz, um ihre Grafiken zu durchsuchen
+	Open project…	Projekt öffnen…
+	Open-source video editing in pure Rust.	Open-Source-Videoschnitt in reinem Rust.
+	Preset library is up to date	Die Vorgabenbibliothek ist aktuell
+	Preset library updated	Vorgabenbibliothek aktualisiert
+	Preset library updated: {imported} loaded, {removed} removed	Vorgabenbibliothek aktualisiert: {imported} geladen, {removed} entfernt
+	Project saved to {path}	Projekt in {path} gespeichert
+	Recent projects	Zuletzt verwendete Projekte
+	Replace	Ersetzen
+	Replace File	Datei ersetzen
+	Reset Interface Zoom	Oberflächenzoom zurücksetzen
+	Responsive Design – Time remaps the graphic's layer keyframes; clip effects like Opacity and Motion keep media time	Responsive Design – Zeit ordnet die Ebenen-Keyframes der Grafik neu zu; Clipeffekte wie Deckkraft und Bewegung behalten die Medienzeit
+	Scan Presets Folder	Vorgabenordner durchsuchen
+	Sequence: {settings}	Sequenz: {settings}
+	Set Work Area Bar In Point	In-Punkt der Arbeitsbereichsleiste setzen
+	Set Work Area Bar Out Point	Out-Punkt der Arbeitsbereichsleiste setzen
+	Set as Default Transition	Als Standardübergang festlegen
+	Shadow Balance	Tiefen-Balance
+	Shadow Hue	Tiefen-Farbton
+	Shadow Level	Tiefen-Pegel
+	Shadow Softness	Tiefen-Weichheit
+	Shadow Threshold	Tiefen-Schwellenwert
+	Show Audio Names	Audionamen anzeigen
+	Show Video Names	Videonamen anzeigen
+	Source In/Out is only 1 frame. Choose Entire Source to export the whole sequence.	In/Out der Quelle umfasst nur 1 Frame. Wählen Sie „Gesamte Quelle“, um die ganze Sequenz zu exportieren.
+	Start: {tc}	Anfang: {tc}
+	This clip does not match the sequence settings.	Dieser Clip passt nicht zu den Sequenzeinstellungen.
+	This preference is not available yet.	Diese Einstellung ist noch nicht verfügbar.
+	Three-Way Color Corrector	Drei-Wege-Farbkorrektur
+	Ticked attributes are removed from the selected clips.	Die angehakten Attribute werden aus den ausgewählten Clips entfernt.
+	TikTok 1080×1920	TikTok 1080×1920
+	Time Format	Zeitformat
+	Tonal Range	Tonwertbereich
+	Track Color	Spurfarbe
+	Transparency Grid	Transparenzraster
+	Video Names	Videonamen
+	When enabled, GIF transparency is on/off: alpha below 128 is transparent; 128 and above is opaque.	Wenn aktiviert, ist die GIF-Transparenz an oder aus: Alpha unter 128 ist transparent, ab 128 deckend.
+	Window Controls	Fenstersteuerelemente
+	Work Area Bar	Arbeitsbereichsleiste
+	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	{frames} frames ({seconds} s)	{frames} Frames ({seconds} s)
+	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} ist bereits vorhanden, daher wurde nichts exportiert. Wählen Sie die Datei im Speichern-Dialog, um sie zu ersetzen.
+	“{file}” already exists in “{folder}”. Do you want to replace it?	„{file}“ ist in „{folder}“ bereits vorhanden. Möchten Sie die Datei ersetzen?
