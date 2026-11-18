@@ -8,7 +8,7 @@ version = "0.1.1"
 edition = "2024"
 license = "MIT OR Apache-2.0"
 rust-version = "1.95"
-repository = "https://github.com/getnodalia/foundation"
+repository = "https://github.com/getnodalia/toma"
 
 [workspace.dependencies]
 craft-psd = { version = "0.1.0", git = "https://github.com/getnodalia/foundation", rev = "06496f5bf20988123d319f83f9a51523218c2173" }
