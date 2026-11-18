@@ -150,9 +150,11 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) -> bool {
     let mut close: Option<bool> = None; // Some(true) = OK, Some(false) = Cancel
     let mut open = true;
     egui::Window::new(tl!("Keyboard Shortcuts"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
+        .open(&mut { open })
         .id(egui::Id::unique("Keyboard Shortcuts"))
         .id(egui::Id::unique("keyboard-shortcuts"))
-        .open(&mut open)
         .collapsible(false)
         .resizable(false)
         .fixed_size(size)
@@ -160,6 +162,9 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) -> bool {
         .default_pos(crate::widgets::dialog_center(ctx))
         .frame(egui::Frame::window(&ctx.global_style()).fill(t.panel_bg).inner_margin(14.0))
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Keyboard Shortcuts")) {
+                open = false;
+            }
             ui.set_width(size.x);
             header(app, ui, &t);
             ui.add_space(8.0);

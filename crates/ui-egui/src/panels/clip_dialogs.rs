@@ -391,7 +391,10 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
     let can_save = app.session.path.is_some() || crate::native_dialogs::FileDialog::SaveProject { name: String::new() }.available(&app.hooks);
     // the title is translated; the window keeps one id whatever the interface language
     let id = egui::Id::unique(("clip-dialog", pre));
-    egui::Window::new(title).id(id).collapsible(false).resizable(false).default_width(360.0).centered(ctx).show(ctx, |ui| {
+    egui::Window::new(title).title_bar(false).id(id).collapsible(false).resizable(false).default_width(360.0).centered(ctx).show(ctx, |ui| {
+        if crate::widgets::dialog_header(ui, &app.tokens, &*title) {
+            action = Some("cancel");
+        }
         let p = &mut d.params;
         let mut valid = true;
         match d.command.as_str() {

@@ -176,6 +176,8 @@ pub fn dialogs(app: &mut TomaApp, ctx: &egui::Context) {
         WorkspaceDialog::Edit { .. } => ("Edit Workspaces", tl!("Edit Workspaces")),
     };
     egui::Window::new(shown)
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique(title))
         .collapsible(false)
         .resizable(false)
@@ -184,6 +186,9 @@ pub fn dialogs(app: &mut TomaApp, ctx: &egui::Context) {
         .show(ctx, |ui| match &mut d {
             WorkspaceDialog::SaveAs { name } => {
                 ui.horizontal(|ui| {
+                    if crate::widgets::dialog_header(ui, &app.tokens, &*shown) {
+                        close = true;
+                    }
                     ui.label(tl!("Name:"));
                     let r = ui.text_edit_singleline(name);
                     push("workspaces.save.name", &r, "Name");

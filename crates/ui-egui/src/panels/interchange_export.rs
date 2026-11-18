@@ -71,7 +71,10 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
     let mut elems: Vec<(String, egui::Rect, String)> = Vec::new();
     let title = if d.omf { "OMF Export Settings" } else { "AAF Export Settings" };
     let shown = if d.omf { tl!("OMF Export Settings") } else { tl!("AAF Export Settings") };
-    egui::Window::new(shown).id(egui::Id::unique(title)).collapsible(false).resizable(false).centered(ctx).show(ctx, |ui| {
+    egui::Window::new(shown).title_bar(false).id(egui::Id::unique(title)).collapsible(false).resizable(false).centered(ctx).show(ctx, |ui| {
+        if crate::widgets::dialog_header(ui, &app.tokens, &*shown) {
+            close = true;
+        }
         ui.set_min_width(380.0);
         egui::Grid::new("interchange-export-grid").num_columns(2).spacing([12.0, 8.0]).show(ui, |ui| {
             if d.omf {

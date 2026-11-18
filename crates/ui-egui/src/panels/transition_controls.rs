@@ -578,12 +578,17 @@ pub fn duration_dialog(app: &mut TomaApp, ctx: &egui::Context) -> bool {
     let (mut keep, mut apply) = (true, false);
     let mut elems: Elems = Vec::new();
     egui::Window::new(tl!("Set Transition Duration"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .collapsible(false)
         .resizable(false)
         .default_width(260.0)
         .pivot(egui::Align2::CENTER_CENTER)
         .default_pos(crate::widgets::dialog_center(ctx))
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Set Transition Duration")) {
+                keep = false;
+            }
             ui.horizontal(|ui| {
                 ui.label(tl!("Duration:"));
                 let r = duration_field(ui, &mut d.frames, max_frames, rate, drop_frame);

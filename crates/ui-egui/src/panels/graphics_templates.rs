@@ -654,12 +654,17 @@ fn export_dialog(app: &mut TomaApp, ctx: &egui::Context) {
     let mut elems: Elems = Vec::new();
     let mut action: Option<bool> = None;
     egui::Window::new(tl!("Export As Motion Graphics Template"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique("Export As Motion Graphics Template"))
         .collapsible(false)
         .resizable(false)
         .default_width(420.0)
         .centered(ctx)
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Export As Motion Graphics Template")) {
+                action = Some(false);
+            }
             egui::Grid::new("gfx-export-grid").num_columns(2).show(ui, |ui| {
                 ui.label(tl!("Name:"));
                 let r = crate::widgets::accessible_name(ui.add(egui::TextEdit::singleline(&mut d.name).desired_width(260.0)), "Name");
@@ -736,12 +741,17 @@ fn replace_dialog(app: &mut TomaApp, ctx: &egui::Context) {
     let mut elems: Elems = Vec::new();
     let mut action: Option<bool> = None;
     egui::Window::new(tl!("Replace Fonts in Projects"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique("Replace Fonts in Projects"))
         .collapsible(false)
         .resizable(false)
         .default_width(440.0)
         .centered(ctx)
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Replace Fonts in Projects")) {
+                action = Some(false);
+            }
             ui.label(tl!("Fonts used in the project:"));
             egui::Grid::new("gfx-fonts-used").striped(true).num_columns(3).show(ui, |ui| {
                 for (f, st, n) in &used {

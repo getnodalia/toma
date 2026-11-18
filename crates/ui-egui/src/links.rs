@@ -82,12 +82,17 @@ pub fn show_failed(app: &mut crate::TomaApp, ctx: &egui::Context) {
     let mut close = false;
     let mut elems: Vec<(&str, egui::Rect, String)> = Vec::new();
     egui::Window::new(tl!("Couldn't open your web browser"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique("failed-link"))
         .collapsible(false)
         .resizable(false)
         .pivot(egui::Align2::CENTER_CENTER)
         .default_pos(ctx.content_rect().center())
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Couldn't open your web browser")) {
+                close = true;
+            }
             ui.set_max_width(460.0);
             if !link.error.is_empty() {
                 ui.label(egui::RichText::new(&link.error).small());

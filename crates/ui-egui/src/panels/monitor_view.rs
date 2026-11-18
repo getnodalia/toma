@@ -877,6 +877,8 @@ pub fn dialogs(app: &mut TomaApp, ctx: &egui::Context) {
         GuideDialog::Manage { .. } => ("Manage Guides", tl!("Manage Guides")),
     };
     egui::Window::new(shown)
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique(title))
         .collapsible(false)
         .resizable(false)
@@ -886,6 +888,9 @@ pub fn dialogs(app: &mut TomaApp, ctx: &egui::Context) {
             GuideDialog::Add { vertical, position, source } => {
                 let m = if *source { "source" } else { "program" };
                 ui.horizontal(|ui| {
+                    if crate::widgets::dialog_header(ui, &app.tokens, &*shown) {
+                        close = true;
+                    }
                     ui.label(tl!("Orientation:"));
                     let r = ui.radio(*vertical, tl!("Vertical"));
                     push(&mut elems, "guides.add.vertical", &r, "Vertical");

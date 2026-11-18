@@ -247,7 +247,10 @@ fn settings_dialog(app: &mut TomaApp, ctx: &egui::Context) {
     let accent = app.tokens.accent;
     // the title is translated; the window keeps one id whatever the interface language
     let id = egui::Id::unique("voiceover-settings");
-    egui::Window::new(tl!("Voice-Over Record Settings")).id(id).collapsible(false).resizable(false).centered(ctx).show(ctx, |ui| {
+    egui::Window::new(tl!("Voice-Over Record Settings")).title_bar(false).id(id).collapsible(false).resizable(false).centered(ctx).show(ctx, |ui| {
+        if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Voice-Over Record Settings")) {
+            close = true;
+        }
         egui::Grid::new("voiceover-grid").num_columns(2).spacing([12.0, 8.0]).show(ui, |ui| {
             ui.label(tl!("Name:"));
             let r = crate::widgets::accessible_name(ui.add(egui::TextEdit::singleline(&mut d.prefs.name).desired_width(220.0)), "Name");

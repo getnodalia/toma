@@ -71,12 +71,17 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
                 .unwrap_or_else(|| "—".into());
             let n = items.len();
             egui::Window::new(tl!("Interpret Footage"))
+                // NDL: its own header (the title and the round close button) instead of egui's title bar.
+                .title_bar(false)
+                .open(&mut { open })
                 .id(egui::Id::unique("Interpret Footage"))
-                .open(&mut open)
                 .collapsible(false)
                 .resizable(false)
                 .default_width(380.0)
                 .show(ctx, |ui| {
+                    if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Interpret Footage")) {
+                        open = false;
+                    }
                     ui.label(
                         egui::RichText::new(if n == 1 { tlf!("Color Management · {n} item", n) } else { tlf!("Color Management · {n} items", n) }).strong(),
                     );
@@ -102,12 +107,17 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
         }
         ColorDialog::Sequence { working_space, wide_gamut, auto_tone_map } => {
             egui::Window::new(tl!("Sequence Color Management"))
+                // NDL: its own header (the title and the round close button) instead of egui's title bar.
+                .title_bar(false)
+                .open(&mut { open })
                 .id(egui::Id::unique("Sequence Color Management"))
-                .open(&mut open)
                 .collapsible(false)
                 .resizable(false)
                 .default_width(340.0)
                 .show(ctx, |ui| {
+                    if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Sequence Color Management")) {
+                        open = false;
+                    }
                     ui.label(egui::RichText::new(tl!("Working Color Space")).strong());
                     for w in WorkingSpace::ALL {
                         if radio(app, ui, &format!("colorDialog.working.{}", w.id()), working_space == w.id(), w.label()) {

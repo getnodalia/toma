@@ -358,12 +358,21 @@ pub fn floating(app: &mut TomaApp, ctx: &egui::Context) {
         let mut open = true;
         let root = app.ui.project_panel.tabs[k].bin == app.session.project.root.id.0;
         egui::Window::new(if root { tlf!("Project: {name}", name = app.session.project.name) } else { tlf!("Bin: {name}", name) })
+            // NDL: its own header (the title and the round close button) instead of egui's title bar.
+            .title_bar(false)
+            .open(&mut { open })
             .id(egui::Id::unique(("bin-window", k)))
-            .open(&mut open)
             .default_size(vec2(520.0, 360.0))
             .min_size(vec2(320.0, 220.0))
             .collapsible(false)
             .show(ctx, |ui| {
+                if crate::widgets::dialog_header(
+                    ui,
+                    &app.tokens,
+                    &if root { tlf!("Project: {name}", name = app.session.project.name) } else { tlf!("Bin: {name}", name) },
+                ) {
+                    open = false;
+                }
                 let r = ui.available_rect_before_wrap();
                 let r = Rect::from_min_size(r.min, vec2(r.width().max(320.0), r.height().max(220.0)));
                 ui.allocate_rect(r, Sense::hover());
