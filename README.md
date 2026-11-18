@@ -29,6 +29,15 @@
 **Toma** is the video editor of [Nodalia](https://getnodalia.com): a native app written in Rust,
 with no account and no cloud. It runs on Linux, macOS and Windows.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/getnodalia/nodalia-web/main/assets/screens/toma/toma-dark.jpg" width="900" alt="A sample project open in Toma in the dark theme, with the program monitor and the timeline">
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/getnodalia/nodalia-web/main/assets/screens/toma/toma-light.jpg" width="440" alt="The same project in the light theme">
+  <img src="https://raw.githubusercontent.com/getnodalia/nodalia-web/main/assets/screens/toma/toma-home-light.jpg" width="440" alt="Toma's start screen, with the import sources">
+</p>
+
 > [!IMPORTANT]
 > **Toma is at an early stage.** There are no published builds yet, and the Nodalia interface is
 > not wired in.
