@@ -884,96 +884,98 @@ pub fn dialogs(app: &mut TomaApp, ctx: &egui::Context) {
         .resizable(false)
         .pivot(Align2::CENTER_CENTER)
         .default_pos(crate::widgets::dialog_center(ctx))
-        .show(ctx, |ui| match &mut d {
-            GuideDialog::Add { vertical, position, source } => {
-                let m = if *source { "source" } else { "program" };
-                ui.horizontal(|ui| {
-                    if crate::widgets::dialog_header(ui, &app.tokens, &*shown) {
-                        close = true;
-                    }
-                    ui.label(tl!("Orientation:"));
-                    let r = ui.radio(*vertical, tl!("Vertical"));
-                    push(&mut elems, "guides.add.vertical", &r, "Vertical");
-                    if r.clicked() {
-                        *vertical = true;
-                    }
-                    let r = ui.radio(!*vertical, tl!("Horizontal"));
-                    push(&mut elems, "guides.add.horizontal", &r, "Horizontal");
-                    if r.clicked() {
-                        *vertical = false;
-                    }
-                });
-                ui.horizontal(|ui| {
-                    ui.label(tl!("Position:"));
-                    let r = ui.add(crate::widgets::number_drag(position).speed(1.0).suffix(" px"));
-                    push(&mut elems, "guides.add.position", &r, "Position");
-                });
-                ui.horizontal(|ui| {
-                    let r = ui.button(tl!("Cancel"));
-                    push(&mut elems, "guides.add.cancel", &r, "Cancel");
-                    close |= r.clicked();
-                    let r = ui.button(tl!("OK"));
-                    push(&mut elems, "guides.add.ok", &r, "OK");
-                    if r.clicked() {
-                        act = Some((
-                            "view.addGuide".into(),
-                            json!({"monitor": m, "orientation": if *vertical { "vertical" } else { "horizontal" }, "position": *position}),
-                        ));
-                    }
-                });
+        .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*shown) {
+                close = true;
             }
-            GuideDialog::SaveTemplate { name, source } => {
-                let m = if *source { "source" } else { "program" };
-                ui.horizontal(|ui| {
-                    ui.label(tl!("Name:"));
-                    let r = ui.text_edit_singleline(name);
-                    push(&mut elems, "guides.save.name", &r, "Name");
-                });
-                ui.horizontal(|ui| {
-                    let r = ui.button(tl!("Cancel"));
-                    push(&mut elems, "guides.save.cancel", &r, "Cancel");
-                    close |= r.clicked();
-                    let r = ui.button(tl!("OK"));
-                    push(&mut elems, "guides.save.ok", &r, "OK");
-                    if r.clicked() {
-                        act = Some(("view.guideTemplates.save".into(), json!({"monitor": m, "name": name.clone()})));
-                    }
-                });
-            }
-            GuideDialog::Manage { selected, source } => {
-                let m = if *source { "source" } else { "program" };
-                if templates.is_empty() {
-                    ui.label(tl!("No saved guide templates."));
+            match &mut d {
+                GuideDialog::Add { vertical, position, source } => {
+                    let m = if *source { "source" } else { "program" };
+                    ui.horizontal(|ui| {
+                        ui.label(tl!("Orientation:"));
+                        let r = ui.radio(*vertical, tl!("Vertical"));
+                        push(&mut elems, "guides.add.vertical", &r, "Vertical");
+                        if r.clicked() {
+                            *vertical = true;
+                        }
+                        let r = ui.radio(!*vertical, tl!("Horizontal"));
+                        push(&mut elems, "guides.add.horizontal", &r, "Horizontal");
+                        if r.clicked() {
+                            *vertical = false;
+                        }
+                    });
+                    ui.horizontal(|ui| {
+                        ui.label(tl!("Position:"));
+                        let r = ui.add(crate::widgets::number_drag(position).speed(1.0).suffix(" px"));
+                        push(&mut elems, "guides.add.position", &r, "Position");
+                    });
+                    ui.horizontal(|ui| {
+                        let r = ui.button(tl!("Cancel"));
+                        push(&mut elems, "guides.add.cancel", &r, "Cancel");
+                        close |= r.clicked();
+                        let r = ui.button(tl!("OK"));
+                        push(&mut elems, "guides.add.ok", &r, "OK");
+                        if r.clicked() {
+                            act = Some((
+                                "view.addGuide".into(),
+                                json!({"monitor": m, "orientation": if *vertical { "vertical" } else { "horizontal" }, "position": *position}),
+                            ));
+                        }
+                    });
                 }
-                for (i, n) in templates.iter().enumerate() {
-                    let r = ui.selectable_label(*selected == Some(i), n);
-                    push(&mut elems, &format!("guides.manage.row.{i}"), &r, n);
-                    if r.clicked() {
-                        *selected = Some(i);
-                    }
+                GuideDialog::SaveTemplate { name, source } => {
+                    let m = if *source { "source" } else { "program" };
+                    ui.horizontal(|ui| {
+                        ui.label(tl!("Name:"));
+                        let r = ui.text_edit_singleline(name);
+                        push(&mut elems, "guides.save.name", &r, "Name");
+                    });
+                    ui.horizontal(|ui| {
+                        let r = ui.button(tl!("Cancel"));
+                        push(&mut elems, "guides.save.cancel", &r, "Cancel");
+                        close |= r.clicked();
+                        let r = ui.button(tl!("OK"));
+                        push(&mut elems, "guides.save.ok", &r, "OK");
+                        if r.clicked() {
+                            act = Some(("view.guideTemplates.save".into(), json!({"monitor": m, "name": name.clone()})));
+                        }
+                    });
                 }
-                ui.separator();
-                ui.horizontal(|ui| {
-                    let sel = selected.and_then(|i| templates.get(i)).cloned();
-                    let r = ui.add_enabled(sel.is_some(), egui::Button::new(tl!("Apply")));
-                    push(&mut elems, "guides.manage.apply", &r, "Apply");
-                    if r.clicked()
-                        && let Some(n) = &sel
-                    {
-                        act = Some(("view.guideTemplates.apply".into(), json!({"monitor": m, "name": n})));
+                GuideDialog::Manage { selected, source } => {
+                    let m = if *source { "source" } else { "program" };
+                    if templates.is_empty() {
+                        ui.label(tl!("No saved guide templates."));
                     }
-                    let r = ui.add_enabled(sel.is_some(), egui::Button::new(tl!("Delete")));
-                    push(&mut elems, "guides.manage.delete", &r, "Delete");
-                    if r.clicked()
-                        && let Some(n) = &sel
-                    {
-                        act = Some(("view.guideTemplates.delete".into(), json!({"name": n})));
-                        *selected = None;
+                    for (i, n) in templates.iter().enumerate() {
+                        let r = ui.selectable_label(*selected == Some(i), n);
+                        push(&mut elems, &format!("guides.manage.row.{i}"), &r, n);
+                        if r.clicked() {
+                            *selected = Some(i);
+                        }
                     }
-                    let r = ui.button(tl!("Close"));
-                    push(&mut elems, "guides.manage.close", &r, "Close");
-                    close |= r.clicked();
-                });
+                    ui.separator();
+                    ui.horizontal(|ui| {
+                        let sel = selected.and_then(|i| templates.get(i)).cloned();
+                        let r = ui.add_enabled(sel.is_some(), egui::Button::new(tl!("Apply")));
+                        push(&mut elems, "guides.manage.apply", &r, "Apply");
+                        if r.clicked()
+                            && let Some(n) = &sel
+                        {
+                            act = Some(("view.guideTemplates.apply".into(), json!({"monitor": m, "name": n})));
+                        }
+                        let r = ui.add_enabled(sel.is_some(), egui::Button::new(tl!("Delete")));
+                        push(&mut elems, "guides.manage.delete", &r, "Delete");
+                        if r.clicked()
+                            && let Some(n) = &sel
+                        {
+                            act = Some(("view.guideTemplates.delete".into(), json!({"name": n})));
+                            *selected = None;
+                        }
+                        let r = ui.button(tl!("Close"));
+                        push(&mut elems, "guides.manage.close", &r, "Close");
+                        close |= r.clicked();
+                    });
+                }
             }
         });
     for (id, r, l) in elems {
