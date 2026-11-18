@@ -465,7 +465,7 @@
 	 (removed from {list})	 (вилучено з {list})
 	 (unavailable)	 (недоступно)
 	 ({ch} output channels)	 ({ch} вихідних каналів)
-	 and 	 і 
+	 and 	 і 
 	 frames	 кадрів
 	 seconds	 секунд
 	 · {time} left	 · залишилося {time}
@@ -3680,7 +3680,7 @@
 	no Korean font is installed on this system; the interface stays in English	у системі не встановлено корейського шрифту; інтерфейс залишається англійською
 	not available in this session	недоступно в цьому сеансі
 	out	вихід
-	pre 	перед 
+	pre 	перед 
 	second(s)	с
 	seconds	секунд
 	tracks	доріжок
