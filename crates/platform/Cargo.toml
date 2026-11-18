@@ -24,12 +24,11 @@ undocumented_unsafe_blocks = "deny"
 
 [dependencies]
 toma-bitstream = { workspace = true }
+craft-video = { workspace = true }
 toma-codecs = { workspace = true }
 toma-color = { workspace = true }
 toma-export = { workspace = true }
 toma-frame = { workspace = true }
-toma-h264 = { workspace = true }
-toma-hevc = { workspace = true }
 toma-isobmff = { workspace = true }
 toma-time = { workspace = true }
 log = { workspace = true }
@@ -62,6 +61,7 @@ libloading = "0.8"
 
 [dev-dependencies]
 toma-testkit = { workspace = true }
+tempfile = "3"
 toma-media = { workspace = true }
 toma-frame = { workspace = true }
 toma-project = { workspace = true }

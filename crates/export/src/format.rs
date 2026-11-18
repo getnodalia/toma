@@ -254,7 +254,7 @@ pub enum H264Pass {
     #[default]
     Single,
     First,
-    Second(toma_h264enc::PassStats),
+    Second(craft_video::h264::PassStats),
 }
 
 /// Every Export-mode setting. Serialized in camelCase; every field is optional on input.

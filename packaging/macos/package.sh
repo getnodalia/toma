@@ -58,7 +58,8 @@ echo "==> Toma $VERSION for macOS ($ARCH), identity: $IDENTITY, notarize: $NOTAR
 if [[ "$SKIP_BUILD" = 0 ]]; then
   args=()
   for t in "${TARGETS[@]}"; do args+=(--target "$t"); done
-  (cd "$ROOT" && cargo build --release --locked -p toma -p toma-cli "${args[@]}")
+  # Official packages include Kokoro natural voices (downloaded on first use). #2318 #3773
+  (cd "$ROOT" && cargo build --release --locked -p toma -p toma-cli --features toma/neural-voices "${args[@]}")
 fi
 
 rm -rf "$WORK"

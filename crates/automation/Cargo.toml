@@ -10,6 +10,8 @@ rust-version.workspace = true
 workspace = true
 
 [dependencies]
+craft-jsonrpc = { workspace = true }
+craft-control-protocol = { workspace = true }
 toma-engine = { workspace = true }
 toma-time = { workspace = true }
 serde = { workspace = true }

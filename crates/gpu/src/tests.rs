@@ -1,13 +1,8 @@
+use super::blend_tests::device;
 use super::*;
 use toma_geom::{Affine, Vec2};
 use toma_render::Blend;
 use toma_render::plan::execute_cpu;
-
-fn device() -> Option<(wgpu::Device, wgpu::Queue)> {
-    let instance = crate::adapter::native_instance();
-    let adapter = pollster::block_on(instance.request_adapter(&wgpu::RequestAdapterOptions::default())).ok()?;
-    pollster::block_on(adapter.request_device(&wgpu::DeviceDescriptor::default())).ok()
-}
 
 #[test]
 fn yuv_code_range_uniforms() {
@@ -581,6 +576,7 @@ fn gpu_adjustment_step_matches_cpu_between_layers() {
     let cx = toma_render::effects::FxCtx {
         t: toma_time::Tick::ZERO,
         px_scale: 1.0,
+        mask_scale: 1.0,
         seconds: 0.0,
         timecode: "",
         clip_name: "",

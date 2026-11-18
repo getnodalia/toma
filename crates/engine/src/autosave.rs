@@ -602,7 +602,8 @@ pub fn scan_candidates(data_dir: &Path, skip: Option<&Path>) -> Vec<RecoveryCand
 
 /// Load a candidate's snapshot.
 pub fn load_candidate(c: &RecoveryCandidate) -> Result<toma_format::Loaded, String> {
-    let b = fs::read(c.dir.join(SNAPSHOT)).map_err(|e| format!("{}: {e}", c.dir.display()))?;
+    let b = toma_media::reader::read_regular_file_bounded(&c.dir.join(SNAPSHOT), toma_format::MAX_PROJECT_BYTES)
+        .map_err(|e| format!("{}: {e}", c.dir.display()))?;
     toma_format::decode(&b).map_err(|e| e.to_string())
 }
 
