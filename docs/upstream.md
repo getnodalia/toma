@@ -5,7 +5,7 @@
 | Upstream | `storytold/filmcraft` |
 | Last observed | `2d536e6af1c886887e8299edfb34b5d565e30a69` |
 | Last evaluated | `2d536e6af1c886887e8299edfb34b5d565e30a69` |
-| Last integrated | `2d536e6af1c886887e8299edfb34b5d565e30a69` merged on 2026-11-10 |
+| Last integrated | `0b3f30edaa89934797c43dd7a1123d2790cde219` (409 commits since the last sync) on 2026-11-18 |
 | Skipped | none in the baseline import |
 | Adapted | desktop binary name `toma` |
 | Conflicting | `README.md` (kept ours), `AGENTS.md` (upstream plus our quality contract) |

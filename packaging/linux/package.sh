@@ -48,9 +48,13 @@ echo "==> Toma $VERSION for Linux $ARCH ($FORMATS)"
 
 if [[ "$SKIP_BUILD" = 0 ]]; then
   if [[ -n "${CROSS_TARGET:-}" ]]; then
+    # The riscv64 cross job is not assumed to build candle/Kokoro. Official native packages
+    # include natural voices (downloaded on first use); the UI hides the download when this
+    # feature is off (#2318, #3773).
     (cd "$ROOT" && cargo build --release --locked -p toma -p toma-cli --target "$CROSS_TARGET")
   else
-    (cd "$ROOT" && cargo build --release --locked -p toma -p toma-cli)
+    # Official packages include Kokoro natural voices (downloaded on first use). #2318 #3773
+    (cd "$ROOT" && cargo build --release --locked -p toma -p toma-cli --features toma/neural-voices)
   fi
 fi
 BIN="$CARGO_TARGET_DIR/${CROSS_TARGET:+$CROSS_TARGET/}release"
