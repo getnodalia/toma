@@ -15,4 +15,3 @@ toma-color = { workspace = true }
 toma-project = { workspace = true }
 toma-text = { workspace = true }
 craft-captions = { workspace = true }
-
