@@ -28,6 +28,8 @@ keep = [
     "(?<=\\{\")filmcraft(?=\":)",
     "(?<=\\[\")filmcraft(?=\"\\])",
     "(?<=get\\(\")filmcraft(?=\"\\))",
+    "(?<=get_mut\\(\")filmcraft(?=\"\\))",
+    "(?<=namespace: \")filmcraft(?=\")",
     "(?<=uid=\\\\\")filmcraft(?=\\.)",
     "(?<=strip_prefix\\(\")filmcraft(?=:)",
     "(?<=format!\\(\")filmcraft(?=:\\{)",

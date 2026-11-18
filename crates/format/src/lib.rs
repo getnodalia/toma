@@ -53,7 +53,58 @@ use toma_project::{Project, ProjectView};
 
 pub use atomic::{atomic_write, atomic_write_new};
 
-pub use craft_fcproj_format::{FORMAT_ID, FormatError, MIGRATIONS, Migration, OLDEST_SCHEMA, SCHEMA_VERSION, detect_version, migrate_with};
+pub use craft_fcproj_format::{FORMAT_ID, MIGRATIONS, Migration, OLDEST_SCHEMA, SCHEMA_VERSION};
+
+/// Why a project file could not be read. The shared envelope crate names the app it came from;
+/// a person opening a file sees Toma.
+#[derive(Debug)]
+pub enum FormatError {
+    NotAProject(String),
+    TooNew { found: u32, supported: u32 },
+    TooOld { found: u32, oldest: u32 },
+    Migration { from: u32, msg: String },
+    Corrupt(String),
+}
+
+impl std::fmt::Display for FormatError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::NotAProject(why) => write!(f, "not a Toma project: {why}"),
+            Self::TooNew { found, supported } => write!(
+                f,
+                "this project was saved by a newer version of Toma (project schema v{found}); this build reads up to v{supported}. Update Toma to open it."
+            ),
+            Self::TooOld { found, oldest } => write!(f, "project schema v{found} is too old for this build (oldest supported: v{oldest})"),
+            Self::Migration { from, msg } => write!(f, "upgrading project from schema v{from} to v{}: {msg}", from.saturating_add(1)),
+            Self::Corrupt(why) => write!(f, "project file is damaged: {why}"),
+        }
+    }
+}
+
+impl std::error::Error for FormatError {}
+
+impl From<craft_fcproj_format::FormatError> for FormatError {
+    fn from(e: craft_fcproj_format::FormatError) -> Self {
+        use craft_fcproj_format::FormatError as Shared;
+        match e {
+            Shared::NotAProject(why) => Self::NotAProject(why),
+            Shared::TooNew { found, supported } => Self::TooNew { found, supported },
+            Shared::TooOld { found, oldest } => Self::TooOld { found, oldest },
+            Shared::Migration { from, msg } => Self::Migration { from, msg },
+            Shared::Corrupt(why) => Self::Corrupt(why),
+        }
+    }
+}
+
+/// The schema version a project document declares.
+pub fn detect_version(doc: &serde_json::Value) -> Result<u32, FormatError> {
+    Ok(craft_fcproj_format::detect_version(doc)?)
+}
+
+/// Upgrade `doc` from schema `from` through `table`.
+pub fn migrate_with(table: &[Migration], doc: serde_json::Value, from: u32) -> Result<serde_json::Value, FormatError> {
+    Ok(craft_fcproj_format::migrate_with(table, doc, from)?)
+}
 
 /// Largest project file this build will read (256 MiB). Project JSON is read whole, so
 /// larger files would commit several times their size in memory before validation.

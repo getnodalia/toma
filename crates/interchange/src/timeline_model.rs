@@ -636,7 +636,7 @@ impl shared::Catalog for FilmCatalog {
 fn preserve_legacy_metadata(value: &mut serde_json::Value) {
     match value {
         serde_json::Value::Object(map) => {
-            if let Some(meta) = map.get_mut("metadata").and_then(|v| v.get_mut("toma")).and_then(serde_json::Value::as_object_mut) {
+            if let Some(meta) = map.get_mut("metadata").and_then(|v| v.get_mut("filmcraft")).and_then(serde_json::Value::as_object_mut) {
                 // Keep the old application's object before the shared reader consumes known keys.
                 let mut original = meta.clone();
                 original.remove("toma_legacy_metadata");
@@ -659,7 +659,7 @@ fn preserve_legacy_metadata(value: &mut serde_json::Value) {
 fn restore_legacy_output(value: &mut serde_json::Value) {
     match value {
         serde_json::Value::Object(map) => {
-            if let Some(meta) = map.get_mut("metadata").and_then(|v| v.get_mut("toma")).and_then(serde_json::Value::as_object_mut) {
+            if let Some(meta) = map.get_mut("metadata").and_then(|v| v.get_mut("filmcraft")).and_then(serde_json::Value::as_object_mut) {
                 if let Some(settings) = meta.remove("toma_settings") {
                     meta.insert("settings".into(), settings);
                 }
@@ -738,7 +738,8 @@ pub(crate) fn import_otio(text: &str, opts: &crate::ImportOptions, report: &mut 
     let normalized = serde_json::to_string(&value).map_err(|e| crate::Error::Other(e.to_string()))?;
     drop(value);
     let catalog = FilmCatalog;
-    let shared_opts = craft_timeline::ImportOptions { base_dir: opts.base_dir.as_deref(), name: opts.name.as_deref(), catalog: &catalog, namespace: "toma" };
+    let shared_opts =
+        craft_timeline::ImportOptions { base_dir: opts.base_dir.as_deref(), name: opts.name.as_deref(), catalog: &catalog, namespace: "filmcraft" };
     let mut shared_report = craft_timeline::Report::default();
     let result = craft_timeline::otio::import_with_report_limit(&normalized, &shared_opts, &mut shared_report, Some(crate::MAX_REPORT_ENTRIES));
     merge_report(report, shared_report);
@@ -756,7 +757,7 @@ pub(crate) fn export_otio(project: &film::Project, seq: film::ItemId, opts: &cra
         relative_to: opts.relative_to.as_deref(),
         name: opts.name.as_deref(),
         catalog: &catalog,
-        namespace: "toma",
+        namespace: "filmcraft",
         xmeml_version: opts.xmeml_version,
         fcpxml_version: Default::default(),
     };
@@ -779,7 +780,8 @@ type SharedExport =
 /// Read `text` with a shared timeline reader, keeping its report notes, into Toma's model.
 fn import_shared(text: &str, opts: &crate::ImportOptions, report: &mut crate::Report, import: SharedImport) -> crate::Result<crate::Imported> {
     let catalog = FilmCatalog;
-    let shared_opts = craft_timeline::ImportOptions { base_dir: opts.base_dir.as_deref(), name: opts.name.as_deref(), catalog: &catalog, namespace: "toma" };
+    let shared_opts =
+        craft_timeline::ImportOptions { base_dir: opts.base_dir.as_deref(), name: opts.name.as_deref(), catalog: &catalog, namespace: "filmcraft" };
     let mut shared_report = craft_timeline::Report::default();
     let result = import(text, &shared_opts, &mut shared_report, Some(crate::MAX_REPORT_ENTRIES));
     merge_report(report, shared_report);
@@ -804,7 +806,7 @@ fn export_shared(
         relative_to: opts.relative_to.as_deref(),
         name: opts.name.as_deref(),
         catalog: &catalog,
-        namespace: "toma",
+        namespace: "filmcraft",
         xmeml_version: opts.xmeml_version,
         fcpxml_version,
     };
