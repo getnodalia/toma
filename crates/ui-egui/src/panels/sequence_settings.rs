@@ -506,6 +506,8 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) -> bool {
         &[("general", "General"), ("color", "Color Management"), ("vr", "VR Properties")]
     };
     egui::Window::new(title)
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique("Sequence Settings"))
         .collapsible(false)
         .resizable(false)
@@ -513,6 +515,9 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) -> bool {
         .pivot(egui::Align2::CENTER_CENTER)
         .default_pos(crate::widgets::dialog_center(ctx))
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*title) {
+                keep = false;
+            }
             ui.set_width(620.0);
             ui.horizontal(|ui| {
                 for &(id, label) in tabs {

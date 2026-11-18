@@ -49,12 +49,17 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
     let mut apply = false;
     let mut elems: Vec<(String, egui::Rect, String)> = Vec::new();
     egui::Window::new(tl!("Remix Properties"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique("Remix Properties"))
         .collapsible(false)
         .resizable(false)
         .pivot(egui::Align2::CENTER_CENTER)
         .default_pos(crate::widgets::dialog_center(ctx))
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Remix Properties")) {
+                close = true;
+            }
             ui.set_min_width(320.0);
             egui::Grid::new("remix-props").num_columns(2).spacing([12.0, 10.0]).show(ui, |ui| {
                 ui.label(tl!("Target Duration:"));

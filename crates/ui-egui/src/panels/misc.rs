@@ -190,12 +190,17 @@ pub fn history_dialogs(app: &mut TomaApp, ctx: &egui::Context) {
     }
     let mut close = !app.session.history.can_redo();
     egui::Window::new(tl!("Delete Redoable Actions"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(key.with("window"))
         .collapsible(false)
         .resizable(false)
         .pivot(Align2::CENTER_CENTER)
         .default_pos(crate::widgets::dialog_center(ctx))
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Delete Redoable Actions")) {
+                close = true;
+            }
             ui.label(tl!("Delete the dimmed actions after the current state? They cannot be redone."));
             ui.horizontal(|ui| {
                 let r = ui.button(tl!("Cancel"));

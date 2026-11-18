@@ -852,12 +852,17 @@ pub fn dialogs(app: &mut TomaApp, ctx: &egui::Context) {
     let mut close = false;
     let mut ok = false;
     egui::Window::new(tl!("Edit Columns"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique("mb-edit-columns"))
         .collapsible(false)
         .resizable(false)
         .pivot(Align2::CENTER_CENTER)
         .default_pos(crate::widgets::dialog_center(ctx))
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Edit Columns")) {
+                close = true;
+            }
             let mut mv: Option<(usize, isize)> = None;
             for c in mb::ALL_COLUMNS {
                 ui.horizontal(|ui| {

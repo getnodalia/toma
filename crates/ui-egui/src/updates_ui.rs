@@ -123,12 +123,17 @@ pub(crate) fn show(app: &mut TomaApp, ctx: &egui::Context) {
     if app.updates_rt.manual_window_open {
         let mut open = true;
         egui::Window::new(crate::i18n::t("Toma Updates"))
-            .open(&mut open)
+            // NDL: its own header (the title and the round close button) instead of egui's title bar.
+            .title_bar(false)
+            .open(&mut { open })
             .collapsible(false)
             .resizable(false)
             .pivot(egui::Align2::CENTER_CENTER)
             .default_pos(ctx.content_rect().center())
             .show(ctx, |ui| {
+                if crate::widgets::dialog_header(ui, &app.tokens, &*crate::i18n::t("Toma Updates")) {
+                    open = false;
+                }
                 ui.label(crate::i18n::t("Update check is not supported in the web browser."));
                 ui.add_space(8.0);
                 if ui.button(crate::i18n::t("OK")).clicked() {

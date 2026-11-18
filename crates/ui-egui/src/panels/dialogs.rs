@@ -139,12 +139,17 @@ fn audio_gain(app: &mut TomaApp, ctx: &egui::Context) -> bool {
     let mut apply = false;
     let mut elems: Vec<(String, egui::Rect, String)> = Vec::new();
     egui::Window::new(tl!("Audio Gain"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique("Audio Gain"))
         .collapsible(false)
         .resizable(false)
         .pivot(egui::Align2::CENTER_CENTER)
         .default_pos(crate::widgets::dialog_center(ctx))
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Audio Gain")) {
+                keep = false;
+            }
             ui.add_space(6.0);
             egui::Grid::new("audio-gain").num_columns(2).spacing([12.0, 10.0]).show(ui, |ui| {
                 let rows: [(&str, &str, &mut f64); 4] = [
@@ -227,6 +232,8 @@ fn add_tracks(app: &mut TomaApp, ctx: &egui::Context) -> bool {
     let audio_types: [(&str, &str); 4] = [("standard", tl!("Standard")), ("5.1", "5.1"), ("adaptive", tl!("Adaptive")), ("mono", tl!("Mono"))];
     let submix_types: [(&str, &str); 4] = [("stereo", tl!("Stereo")), ("5.1", "5.1"), ("adaptive", tl!("Adaptive")), ("mono", tl!("Mono"))];
     egui::Window::new(tl!("Add Tracks"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique("Add Tracks"))
         .collapsible(false)
         .resizable(false)
@@ -234,6 +241,9 @@ fn add_tracks(app: &mut TomaApp, ctx: &egui::Context) -> bool {
         .pivot(egui::Align2::CENTER_CENTER)
         .default_pos(crate::widgets::dialog_center(ctx))
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Add Tracks")) {
+                keep = false;
+            }
             // everything spans the width the window has: no empty band beside the fields
             ui.set_width(ui.available_width());
             // the label column is as wide as its widest label; the lists take the rest of the row,
@@ -358,12 +368,17 @@ fn delete_tracks(app: &mut TomaApp, ctx: &egui::Context) -> bool {
     let mut apply = false;
     let mut elems: Vec<(String, egui::Rect, String)> = Vec::new();
     egui::Window::new(tl!("Delete Tracks"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique("Delete Tracks"))
         .collapsible(false)
         .resizable(false)
         .pivot(egui::Align2::CENTER_CENTER)
         .default_pos(crate::widgets::dialog_center(ctx))
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Delete Tracks")) {
+                keep = false;
+            }
             ui.set_min_width(300.0);
             for (kind, title, delete, on, target, list) in [
                 ("video", tl!("Video Tracks"), tl!("Delete Video Tracks"), &mut draft.video, &mut draft.video_target, &vnames),

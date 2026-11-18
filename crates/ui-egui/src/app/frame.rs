@@ -238,12 +238,17 @@ impl TomaApp {
         let Some(msg) = self.ui_error.clone() else { return };
         let mut close = false;
         egui::Window::new(tl!("Toma hit an error"))
+            // NDL: its own header (the title and the round close button) instead of egui's title bar.
+            .title_bar(false)
             .id(egui::Id::unique("Toma hit an error"))
             .collapsible(false)
             .resizable(false)
             .pivot(egui::Align2::CENTER_CENTER)
             .default_pos(crate::widgets::dialog_center(ctx))
             .show(ctx, |ui| {
+                if crate::widgets::dialog_header(ui, &self.tokens, &*tl!("Toma hit an error")) {
+                    close = true;
+                }
                 ui.set_max_width(460.0);
                 ui.label(tl!("Something went wrong while drawing the window. Your project is still open; save it to be safe."));
                 ui.add_space(6.0);
