@@ -3819,3 +3819,54 @@
 	Role Color	Kolor stanowiska
 	Role Slab Color	Kolor paska stanowiska
 	Tagline	Hasło
+	Center at Cut	Wyśrodkuj na cięciu
+	Start at Cut	Zacznij na cięciu
+	End at Cut	Zakończ na cięciu
+	Custom Start	Własny początek
+	In:	Wejście:
+	Marker Color:	Kolor znacznika:
+	Options:	Opcje:
+	Invalid duration: {error}	Nieprawidłowy czas trwania: {error}
+	Remove Custom Color	Usuń kolor niestandardowy
+	Edit Markers	Edytuj znaczniki
+	Delete Markers	Usuń znaczniki
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	Zaimportowano ustawień wstępnych: {n}; pominięto: {skipped}, z nieobsługiwanymi parametrami: {warnings}
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Część Nodalia. MIT OR Apache-2.0. Czcionki: Inter, Noto Serif i JetBrains Mono (SIL OFL 1.1). Ikony: Nodalia Design (MIT).
+	Add pause	Dodaj pauzę
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Dodaj pauzę wstawia [pause 1s]. Zmień liczbę, aby pauza była dłuższa lub krótsza, np. [pause 500ms] lub [pause 2s].
+	Add to timeline	Dodaj do osi czasu
+	Basic voices (built in)	Głosy podstawowe (wbudowane)
+	Cannot check export destination: {e}	Nie można sprawdzić miejsca docelowego eksportu: {e}
+	Depth:	Głębokość:
+	Download	Pobierz
+	Download natural voices ({mb} MB)…	Pobierz naturalne głosy ({mb} MB)…
+	Download of the natural voices failed: {e}	Nie udało się pobrać naturalnych głosów: {e}
+	Download the natural voices? {mb} MB, once.	Pobrać naturalne głosy? {mb} MB, jednorazowo.
+	Editing the selected narration	Edycja wybranej narracji
+	Exported frame to {path}	Wyeksportowano klatkę do {path}
+	Extra high	Bardzo wysoki
+	Extra low	Bardzo niski
+	Format:	Format:
+	Frame time: {time}	Czas klatki: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Z {source} i github.com/cmusphinx/cmudict (wymowa). Licencja: {licence}. Każdy plik jest sprawdzany względem przypiętego SHA-256.
+	Hear this voice	Posłuchaj tego głosu
+	Import into project	Importuj do projektu
+	Keep existing file	Zachowaj istniejący plik
+	Narration added on an audio track	Dodano narrację na ścieżce audio
+	Narration added on {track}	Dodano narrację na ścieżce {track}
+	Narration updated	Zaktualizowano narrację
+	Natural voices	Naturalne głosy
+	Natural voices installed	Zainstalowano naturalne głosy
+	Natural voices need a one-time download.	Naturalne głosy wymagają jednorazowego pobrania.
+	New narration	Nowa narracja
+	Pace	Tempo
+	Path:	Ścieżka:
+	Synthesizing narration…	Synteza narracji…
+	Synthesizing…	Synteza…
+	Text to Speech: {e}	Zamiana tekstu na mowę: {e}
+	This file already exists: {path}	Ten plik już istnieje: {path}
+	Type what you want the voice to say	Wpisz, co ma powiedzieć głos
+	Vocal pitch	Wysokość głosu
+	{bits} Bit	{bits} bitów
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (pobieranie)

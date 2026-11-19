@@ -3829,3 +3829,43 @@
 	Role Color	Цвет должности
 	Role Slab Color	Цвет плашки должности
 	Tagline	Слоган
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	Импортировано пресетов: {n}; пропущено: {skipped}, с неподдерживаемыми параметрами: {warnings}
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Часть Nodalia. MIT OR Apache-2.0. Шрифты: Inter, Noto Serif и JetBrains Mono (SIL OFL 1.1). Значки: Nodalia Design (MIT).
+	Add pause	Добавить паузу
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	«Добавить паузу» вставляет [pause 1s]. Измените число для более длинной или короткой паузы, например [pause 500ms] или [pause 2s].
+	Add to timeline	Добавить на монтажный стол
+	Basic voices (built in)	Базовые голоса (встроенные)
+	Cannot check export destination: {e}	Не удаётся проверить место экспорта: {e}
+	Depth:	Глубина:
+	Download	Скачать
+	Download natural voices ({mb} MB)…	Скачать естественные голоса ({mb} МБ)…
+	Download of the natural voices failed: {e}	Не удалось скачать естественные голоса: {e}
+	Download the natural voices? {mb} MB, once.	Скачать естественные голоса? {mb} МБ, один раз.
+	Editing the selected narration	Редактирование выбранной озвучки
+	Exported frame to {path}	Кадр экспортирован в {path}
+	Extra high	Очень высокий
+	Extra low	Очень низкий
+	Format:	Формат:
+	Frame time: {time}	Время кадра: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Из {source} и github.com/cmusphinx/cmudict (произношения). Лицензия: {licence}. Каждый файл проверяется по зафиксированному SHA-256.
+	Hear this voice	Прослушать этот голос
+	Import into project	Импортировать в проект
+	Keep existing file	Оставить существующий файл
+	Narration added on an audio track	Озвучка добавлена на звуковую дорожку
+	Narration added on {track}	Озвучка добавлена на {track}
+	Narration updated	Озвучка обновлена
+	Natural voices	Естественные голоса
+	Natural voices installed	Естественные голоса установлены
+	Natural voices need a one-time download.	Естественным голосам нужна однократная загрузка.
+	New narration	Новая озвучка
+	Pace	Темп
+	Path:	Путь:
+	Synthesizing narration…	Синтез озвучки…
+	Synthesizing…	Синтез…
+	Text to Speech: {e}	Синтез речи: {e}
+	This file already exists: {path}	Этот файл уже существует: {path}
+	Type what you want the voice to say	Введите текст, который должен произнести голос
+	Vocal pitch	Высота голоса
+	{bits} Bit	{bits} бит
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (загрузка)

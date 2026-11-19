@@ -3829,3 +3829,44 @@
 	Role Color	직함 색상
 	Role Slab Color	직함 막대 색상
 	Tagline	슬로건
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	프리셋 {n}개를 가져왔습니다. {skipped}개는 건너뛰었고 {warnings}개는 지원되지 않는 매개변수가 있습니다
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Nodalia의 일부입니다. MIT OR Apache-2.0. 글꼴: Inter, Noto Serif, JetBrains Mono(SIL OFL 1.1). 아이콘: Nodalia Design(MIT).
+	Add pause	일시 정지 추가
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	일시 정지 추가는 [pause 1s]를 삽입합니다. 숫자를 바꾸면 일시 정지가 길어지거나 짧아집니다. 예: [pause 500ms] 또는 [pause 2s].
+	Add to timeline	타임라인에 추가
+	Basic voices (built in)	기본 음성(내장)
+	Cannot check export destination: {e}	내보내기 위치를 확인할 수 없습니다: {e}
+	Depth:	깊이:
+	Download	다운로드
+	Download natural voices ({mb} MB)…	자연스러운 음성 다운로드({mb}MB)…
+	Download of the natural voices failed: {e}	자연스러운 음성을 다운로드하지 못했습니다: {e}
+	Download the natural voices? {mb} MB, once.	자연스러운 음성을 다운로드할까요? {mb}MB, 한 번만 받습니다.
+	Editing the selected narration	선택한 내레이션 편집 중
+	Exported frame to {path}	프레임을 {path}(으)로 내보냈습니다
+	Extra high	매우 높게
+	Extra low	매우 낮게
+	Format:	형식:
+	Frame time: {time}	프레임 시간: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	출처: {source} 및 github.com/cmusphinx/cmudict(발음). 라이선스: {licence}. 모든 파일은 고정된 SHA-256으로 검사합니다.
+	Hear this voice	이 음성 들어보기
+	Import into project	프로젝트로 가져오기
+	Keep existing file	기존 파일 유지
+	Narration added on an audio track	오디오 트랙에 내레이션을 추가했습니다
+	Narration added on {track}	{track}에 내레이션을 추가했습니다
+	Narration updated	내레이션을 업데이트했습니다
+	Natural voices	자연스러운 음성
+	Natural voices installed	자연스러운 음성을 설치했습니다
+	Natural voices need a one-time download.	자연스러운 음성은 한 번 다운로드해야 합니다.
+	New narration	새 내레이션
+	Pace	속도
+	Path:	경로:
+	Synthesizing narration…	내레이션 합성 중…
+	Synthesizing…	합성 중…
+	Text to Speech: {e}	텍스트 음성 변환: {e}
+	This file already exists: {path}	이 파일이 이미 있습니다: {path}
+	Type what you want the voice to say	음성이 말할 내용을 입력하세요
+	Vocal pitch	음높이
+	{bits} Bit	{bits}비트
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name}(다운로드)
+	H.265 (HEVC) needs a hardware encoder (NVENC on NVIDIA GPUs, VideoToolbox on macOS); none was found on this machine, and Toma has no software H.265 encoder yet. Choose H.264 or ProRes instead.	H.265(HEVC)에는 하드웨어 인코더(NVIDIA GPU의 NVENC, macOS의 VideoToolbox)가 필요한데 이 컴퓨터에서 찾지 못했고, Toma에는 아직 소프트웨어 H.265 인코더가 없습니다. 대신 H.264 또는 ProRes를 선택하세요.

@@ -3827,3 +3827,54 @@
 	Role Color	Barva funkce
 	Role Slab Color	Barva pruhu funkce
 	Tagline	Slogan
+	Center at Cut	Vystředit na střihu
+	Start at Cut	Začít na střihu
+	End at Cut	Skončit na střihu
+	Custom Start	Vlastní začátek
+	In:	Vstup:
+	Marker Color:	Barva značky:
+	Options:	Možnosti:
+	Invalid duration: {error}	Neplatná doba trvání: {error}
+	Remove Custom Color	Odebrat vlastní barvu
+	Edit Markers	Upravit značky
+	Delete Markers	Odstranit značky
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	Importováno předvoleb: {n}; přeskočeno: {skipped}, s nepodporovanými parametry: {warnings}
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Součást Nodalia. MIT OR Apache-2.0. Písma: Inter, Noto Serif a JetBrains Mono (SIL OFL 1.1). Ikony: Nodalia Design (MIT).
+	Add pause	Přidat pauzu
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Přidat pauzu vloží [pause 1s]. Změňte číslo pro delší nebo kratší pauzu, např. [pause 500ms] nebo [pause 2s].
+	Add to timeline	Přidat na časovou osu
+	Basic voices (built in)	Základní hlasy (vestavěné)
+	Cannot check export destination: {e}	Cíl exportu nelze zkontrolovat: {e}
+	Depth:	Hloubka:
+	Download	Stáhnout
+	Download natural voices ({mb} MB)…	Stáhnout přirozené hlasy ({mb} MB)…
+	Download of the natural voices failed: {e}	Stažení přirozených hlasů se nezdařilo: {e}
+	Download the natural voices? {mb} MB, once.	Stáhnout přirozené hlasy? {mb} MB, jednorázově.
+	Editing the selected narration	Úprava vybraného komentáře
+	Exported frame to {path}	Snímek exportován do {path}
+	Extra high	Velmi vysoký
+	Extra low	Velmi nízký
+	Format:	Formát:
+	Frame time: {time}	Čas snímku: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Z {source} a github.com/cmusphinx/cmudict (výslovnost). Licence: {licence}. Každý soubor se kontroluje proti pevně určenému SHA-256.
+	Hear this voice	Poslechnout tento hlas
+	Import into project	Importovat do projektu
+	Keep existing file	Ponechat stávající soubor
+	Narration added on an audio track	Komentář přidán na zvukovou stopu
+	Narration added on {track}	Komentář přidán na {track}
+	Narration updated	Komentář aktualizován
+	Natural voices	Přirozené hlasy
+	Natural voices installed	Přirozené hlasy nainstalovány
+	Natural voices need a one-time download.	Přirozené hlasy vyžadují jednorázové stažení.
+	New narration	Nový komentář
+	Pace	Tempo
+	Path:	Cesta:
+	Synthesizing narration…	Syntéza komentáře…
+	Synthesizing…	Syntéza…
+	Text to Speech: {e}	Převod textu na řeč: {e}
+	This file already exists: {path}	Tento soubor již existuje: {path}
+	Type what you want the voice to say	Napište, co má hlas říct
+	Vocal pitch	Výška hlasu
+	{bits} Bit	{bits} bitů
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (stažení)

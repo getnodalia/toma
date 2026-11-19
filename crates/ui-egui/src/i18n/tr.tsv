@@ -3822,3 +3822,54 @@
 	Role Color	Unvan Rengi
 	Role Slab Color	Unvan Bandı Rengi
 	Tagline	Slogan
+	Center at Cut	Kesimde Ortala
+	Start at Cut	Kesimde Başla
+	End at Cut	Kesimde Bitir
+	Custom Start	Özel Başlangıç
+	In:	Giriş:
+	Marker Color:	İşaretçi Rengi:
+	Options:	Seçenekler:
+	Invalid duration: {error}	Geçersiz süre: {error}
+	Remove Custom Color	Özel Rengi Kaldır
+	Edit Markers	İşaretçileri Düzenle
+	Delete Markers	İşaretçileri Sil
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	{n} hazır ayar içe aktarıldı; {skipped} atlandı, {warnings} tanesinde desteklenmeyen parametreler var
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Nodalia'nın bir parçasıdır. MIT OR Apache-2.0. Yazı tipleri: Inter, Noto Serif ve JetBrains Mono (SIL OFL 1.1). Simgeler: Nodalia Design (MIT).
+	Add pause	Duraklama ekle
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Duraklama ekle, [pause 1s] ekler. Daha uzun veya kısa bir duraklama için sayıyı değiştirin, örn. [pause 500ms] veya [pause 2s].
+	Add to timeline	Zaman çizelgesine ekle
+	Basic voices (built in)	Temel sesler (yerleşik)
+	Cannot check export destination: {e}	Dışa aktarma hedefi denetlenemiyor: {e}
+	Depth:	Derinlik:
+	Download	İndir
+	Download natural voices ({mb} MB)…	Doğal sesleri indir ({mb} MB)…
+	Download of the natural voices failed: {e}	Doğal seslerin indirilmesi başarısız oldu: {e}
+	Download the natural voices? {mb} MB, once.	Doğal sesler indirilsin mi? {mb} MB, yalnızca bir kez.
+	Editing the selected narration	Seçili seslendirme düzenleniyor
+	Exported frame to {path}	Kare {path} konumuna aktarıldı
+	Extra high	Çok yüksek
+	Extra low	Çok alçak
+	Format:	Biçim:
+	Frame time: {time}	Kare zamanı: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Kaynak: {source} ve github.com/cmusphinx/cmudict (telaffuzlar). Lisans: {licence}. Her dosya sabitlenmiş bir SHA-256'ya karşı denetlenir.
+	Hear this voice	Bu sesi dinle
+	Import into project	Projeye aktar
+	Keep existing file	Mevcut dosyayı koru
+	Narration added on an audio track	Seslendirme bir ses kanalına eklendi
+	Narration added on {track}	Seslendirme {track} üzerine eklendi
+	Narration updated	Seslendirme güncellendi
+	Natural voices	Doğal sesler
+	Natural voices installed	Doğal sesler yüklendi
+	Natural voices need a one-time download.	Doğal sesler tek seferlik bir indirme gerektirir.
+	New narration	Yeni seslendirme
+	Pace	Tempo
+	Path:	Yol:
+	Synthesizing narration…	Seslendirme sentezleniyor…
+	Synthesizing…	Sentezleniyor…
+	Text to Speech: {e}	Metin Okuma: {e}
+	This file already exists: {path}	Bu dosya zaten var: {path}
+	Type what you want the voice to say	Sesin söylemesini istediğiniz metni yazın
+	Vocal pitch	Ses perdesi
+	{bits} Bit	{bits} bit
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (indir)

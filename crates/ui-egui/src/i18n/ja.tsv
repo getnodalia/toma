@@ -3851,3 +3851,42 @@
 	Role Color	肩書きの色
 	Role Slab Color	肩書きバーの色
 	Tagline	キャッチコピー
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Nodalia の一部です。MIT OR Apache-2.0。フォント: Inter、Noto Serif、JetBrains Mono（SIL OFL 1.1）。アイコン: Nodalia Design（MIT）。
+	Add pause	ポーズを追加
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	「ポーズを追加」は [pause 1s] を挿入します。数値を変えるとポーズが長くなったり短くなったりします。例: [pause 500ms]、[pause 2s]。
+	Add to timeline	タイムラインに追加
+	Basic voices (built in)	基本の音声（内蔵）
+	Cannot check export destination: {e}	書き出し先を確認できません: {e}
+	Depth:	深さ:
+	Download	ダウンロード
+	Download natural voices ({mb} MB)…	自然な音声をダウンロード（{mb} MB）…
+	Download of the natural voices failed: {e}	自然な音声のダウンロードに失敗しました: {e}
+	Download the natural voices? {mb} MB, once.	自然な音声をダウンロードしますか？ {mb} MB、1 回のみです。
+	Editing the selected narration	選択したナレーションを編集中
+	Exported frame to {path}	フレームを {path} に書き出しました
+	Extra high	非常に高い
+	Extra low	非常に低い
+	Format:	フォーマット:
+	Frame time: {time}	フレームの時間: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	提供元: {source} および github.com/cmusphinx/cmudict（発音）。ライセンス: {licence}。すべてのファイルは固定された SHA-256 で検証されます。
+	Hear this voice	この音声を聞く
+	Import into project	プロジェクトに読み込む
+	Keep existing file	既存のファイルを保持
+	Narration added on an audio track	ナレーションをオーディオトラックに追加しました
+	Narration added on {track}	ナレーションを {track} に追加しました
+	Narration updated	ナレーションを更新しました
+	Natural voices	自然な音声
+	Natural voices installed	自然な音声をインストールしました
+	Natural voices need a one-time download.	自然な音声には 1 回限りのダウンロードが必要です。
+	New narration	新規ナレーション
+	Pace	ペース
+	Path:	パス:
+	Synthesizing narration…	ナレーションを合成中…
+	Synthesizing…	合成中…
+	Text to Speech: {e}	テキスト読み上げ: {e}
+	This file already exists: {path}	このファイルはすでに存在します: {path}
+	Type what you want the voice to say	音声に読み上げさせたい内容を入力してください
+	Vocal pitch	声の高さ
+	{bits} Bit	{bits} ビット
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name}（ダウンロード）

@@ -3849,3 +3849,45 @@
 	Role Color	Couleur de la fonction
 	Role Slab Color	Couleur du bloc de la fonction
 	Tagline	Accroche
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	{n} préréglage(s) importé(s) ; {skipped} ignoré(s), {warnings} avec des paramètres non pris en charge
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Fait partie de Nodalia. MIT OR Apache-2.0. Polices : Inter, Noto Serif et JetBrains Mono (SIL OFL 1.1). Icônes : Nodalia Design (MIT).
+	Add pause	Ajouter une pause
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Ajouter une pause insère [pause 1s]. Changez le nombre pour une pause plus longue ou plus courte, p. ex. [pause 500ms] ou [pause 2s].
+	Add to timeline	Ajouter à la timeline
+	Basic voices (built in)	Voix de base (intégrées)
+	Cannot check export destination: {e}	Impossible de vérifier la destination d’exportation : {e}
+	Depth:	Profondeur :
+	Download	Télécharger
+	Download natural voices ({mb} MB)…	Télécharger les voix naturelles ({mb} Mo)…
+	Download of the natural voices failed: {e}	Le téléchargement des voix naturelles a échoué : {e}
+	Download the natural voices? {mb} MB, once.	Télécharger les voix naturelles ? {mb} Mo, une seule fois.
+	Editing the selected narration	Modification de la narration sélectionnée
+	Exported frame to {path}	Image exportée vers {path}
+	Extra high	Très aiguë
+	Extra low	Très grave
+	Format:	Format :
+	Frame time: {time}	Durée de l’image : {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Depuis {source} et github.com/cmusphinx/cmudict (prononciations). Licence : {licence}. Chaque fichier est vérifié par rapport à un SHA-256 figé.
+	Hear this voice	Écouter cette voix
+	Import into project	Importer dans le projet
+	Keep existing file	Conserver le fichier existant
+	Narration added on an audio track	Narration ajoutée sur une piste audio
+	Narration added on {track}	Narration ajoutée sur {track}
+	Narration updated	Narration mise à jour
+	Natural voices	Voix naturelles
+	Natural voices installed	Voix naturelles installées
+	Natural voices need a one-time download.	Les voix naturelles nécessitent un téléchargement unique.
+	New narration	Nouvelle narration
+	Pace	Débit
+	Path:	Chemin :
+	Synthesizing narration…	Synthèse de la narration…
+	Synthesizing…	Synthèse en cours…
+	Text to Speech: {e}	Synthèse vocale : {e}
+	This file already exists: {path}	Ce fichier existe déjà : {path}
+	Type what you want the voice to say	Saisissez ce que la voix doit dire
+	Vocal pitch	Hauteur de la voix
+	{bits} Bit	{bits} bits
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (téléchargement)
+	Temporal Interpolation	Interpolation temporelle
+	Select items to clear	Sélectionnez les éléments à effacer

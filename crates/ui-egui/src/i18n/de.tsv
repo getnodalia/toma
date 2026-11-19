@@ -3834,3 +3834,52 @@
 	Role Color	Funktionsfarbe
 	Role Slab Color	Farbe des Funktionsbalkens
 	Tagline	Leitspruch
+	Center at Cut	Am Schnitt zentrieren
+	Start at Cut	Am Schnitt beginnen
+	End at Cut	Am Schnitt enden
+	Custom Start	Benutzerdefinierter Start
+	In:	Ein:
+	Marker Color:	Markerfarbe:
+	Options:	Optionen:
+	Invalid duration: {error}	Ungültige Dauer: {error}
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	{n} Preset(s) importiert; {skipped} übersprungen, {warnings} mit nicht unterstützten Parametern
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Teil von Nodalia. MIT OR Apache-2.0. Schriften: Inter, Noto Serif und JetBrains Mono (SIL OFL 1.1). Symbole: Nodalia Design (MIT).
+	Add pause	Pause hinzufügen
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	„Pause hinzufügen“ fügt [pause 1s] ein. Ändern Sie die Zahl für eine längere oder kürzere Pause, z. B. [pause 500ms] oder [pause 2s].
+	Add to timeline	Zur Timeline hinzufügen
+	Basic voices (built in)	Basisstimmen (integriert)
+	Cannot check export destination: {e}	Exportziel kann nicht geprüft werden: {e}
+	Depth:	Tiefe:
+	Download	Herunterladen
+	Download natural voices ({mb} MB)…	Natürliche Stimmen herunterladen ({mb} MB)…
+	Download of the natural voices failed: {e}	Der Download der natürlichen Stimmen ist fehlgeschlagen: {e}
+	Download the natural voices? {mb} MB, once.	Natürliche Stimmen herunterladen? {mb} MB, einmalig.
+	Editing the selected narration	Die ausgewählte Sprachausgabe wird bearbeitet
+	Exported frame to {path}	Bild nach {path} exportiert
+	Extra high	Sehr hoch
+	Extra low	Sehr tief
+	Format:	Format:
+	Frame time: {time}	Bildzeit: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Von {source} und github.com/cmusphinx/cmudict (Aussprachen). Lizenz: {licence}. Jede Datei wird gegen eine festgelegte SHA-256-Prüfsumme geprüft.
+	Hear this voice	Diese Stimme anhören
+	Import into project	In Projekt importieren
+	Keep existing file	Vorhandene Datei behalten
+	Narration added on an audio track	Sprachausgabe auf einer Audiospur hinzugefügt
+	Narration added on {track}	Sprachausgabe auf {track} hinzugefügt
+	Narration updated	Sprachausgabe aktualisiert
+	Natural voices	Natürliche Stimmen
+	Natural voices installed	Natürliche Stimmen installiert
+	Natural voices need a one-time download.	Natürliche Stimmen erfordern einen einmaligen Download.
+	New narration	Neue Sprachausgabe
+	Pace	Tempo
+	Path:	Pfad:
+	Synthesizing narration…	Sprachausgabe wird erzeugt…
+	Synthesizing…	Wird erzeugt…
+	Text to Speech: {e}	Text-zu-Sprache: {e}
+	This file already exists: {path}	Diese Datei existiert bereits: {path}
+	Type what you want the voice to say	Geben Sie ein, was die Stimme sagen soll
+	Vocal pitch	Stimmlage
+	{bits} Bit	{bits} Bit
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (Download)
+	H.265 (HEVC) needs a hardware encoder (NVENC on NVIDIA GPUs, VideoToolbox on macOS); none was found on this machine, and Toma has no software H.265 encoder yet. Choose H.264 or ProRes instead.	H.265 (HEVC) benötigt einen Hardware-Encoder (NVENC auf NVIDIA-Grafikkarten, VideoToolbox unter macOS); auf diesem Computer wurde keiner gefunden, und Toma hat noch keinen Software-H.265-Encoder. Wählen Sie stattdessen H.264 oder ProRes.
