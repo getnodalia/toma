@@ -3816,3 +3816,41 @@
 	Tonal Range	Rango tonal
 	Window Controls	Controles de ventana
 	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	Add pause	Añadir pausa
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Añadir pausa inserta [pause 1s]. Cambia el número para una pausa más larga o más corta, por ejemplo [pause 500ms] o [pause 2s].
+	Add to timeline	Añadir a la línea de tiempo
+	Basic voices (built in)	Voces básicas (integradas)
+	Cannot check export destination: {e}	No se puede comprobar el destino de la exportación: {e}
+	Depth:	Profundidad:
+	Download	Descargar
+	Download natural voices ({mb} MB)…	Descargar voces naturales ({mb} MB)…
+	Download of the natural voices failed: {e}	Ha fallado la descarga de las voces naturales: {e}
+	Download the natural voices? {mb} MB, once.	¿Descargar las voces naturales? {mb} MB, una sola vez.
+	Editing the selected narration	Editando la narración seleccionada
+	Exported frame to {path}	Fotograma exportado a {path}
+	Extra high	Muy agudo
+	Extra low	Muy grave
+	Format:	Formato:
+	Frame time: {time}	Tiempo del fotograma: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Desde {source} y github.com/cmusphinx/cmudict (pronunciaciones). Licencia: {licence}. Cada archivo se comprueba con un SHA-256 fijado.
+	Hear this voice	Escuchar esta voz
+	Import into project	Importar al proyecto
+	Keep existing file	Conservar el archivo existente
+	Narration added on an audio track	Narración añadida en una pista de audio
+	Narration added on {track}	Narración añadida en {track}
+	Narration updated	Narración actualizada
+	Natural voices	Voces naturales
+	Natural voices installed	Voces naturales instaladas
+	Natural voices need a one-time download.	Las voces naturales necesitan una descarga única.
+	New narration	Narración nueva
+	Pace	Ritmo
+	Path:	Ruta:
+	Synthesizing narration…	Sintetizando la narración…
+	Synthesizing…	Sintetizando…
+	Text to Speech: {e}	Texto a voz: {e}
+	This file already exists: {path}	Este archivo ya existe: {path}
+	Type what you want the voice to say	Escribe lo que quieres que diga la voz
+	Vocal pitch	Tono de voz
+	{bits} Bit	{bits} bits
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (descarga)

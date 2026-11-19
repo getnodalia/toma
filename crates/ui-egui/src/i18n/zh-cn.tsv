@@ -3816,3 +3816,41 @@
 	Tonal Range	色调范围
 	Window Controls	窗口控件
 	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	Add pause	添加停顿
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	“添加停顿”会插入 [pause 1s]。修改数字可延长或缩短停顿，例如 [pause 500ms] 或 [pause 2s]。
+	Add to timeline	添加到时间轴
+	Basic voices (built in)	基础人声（内置）
+	Cannot check export destination: {e}	无法检查导出目标：{e}
+	Depth:	位深：
+	Download	下载
+	Download natural voices ({mb} MB)…	下载自然人声（{mb} MB）…
+	Download of the natural voices failed: {e}	自然人声下载失败：{e}
+	Download the natural voices? {mb} MB, once.	下载自然人声？共 {mb} MB，仅需一次。
+	Editing the selected narration	正在编辑所选旁白
+	Exported frame to {path}	已将帧导出到 {path}
+	Extra high	极高
+	Extra low	极低
+	Format:	格式：
+	Frame time: {time}	帧时间：{time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	来自 {source} 和 github.com/cmusphinx/cmudict（发音）。许可证：{licence}。每个文件都会按固定的 SHA-256 校验。
+	Hear this voice	试听此人声
+	Import into project	导入到项目
+	Keep existing file	保留现有文件
+	Narration added on an audio track	已在音频轨道上添加旁白
+	Narration added on {track}	已在 {track} 上添加旁白
+	Narration updated	旁白已更新
+	Natural voices	自然人声
+	Natural voices installed	自然人声已安装
+	Natural voices need a one-time download.	自然人声需要一次性下载。
+	New narration	新建旁白
+	Pace	语速
+	Path:	路径：
+	Synthesizing narration…	正在合成旁白…
+	Synthesizing…	正在合成…
+	Text to Speech: {e}	文字转语音：{e}
+	This file already exists: {path}	此文件已存在：{path}
+	Type what you want the voice to say	输入希望人声说出的内容
+	Vocal pitch	音高
+	{bits} Bit	{bits} 位
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name}（下载）
