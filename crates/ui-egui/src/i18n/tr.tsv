@@ -3790,6 +3790,38 @@
 	{frames} frames ({seconds} s)	{frames} kare ({seconds} sn)
 	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} zaten var, bu yüzden hiçbir şey dışa aktarılmadı. Değiştirmek için kaydetme iletişim kutusunda onu seçin.
 	“{file}” already exists in “{folder}”. Do you want to replace it?	“{file}”, “{folder}” içinde zaten var. Değiştirmek istiyor musunuz?
+	Lower Third – Minimal	Alt Bant – Minimal
+	Lower Third – Split	Alt Bant – Bölünmüş
+	Title – Opening	Başlık – Açılış
+	Title – Chapter	Başlık – Bölüm
+	Title – Quote	Başlık – Alıntı
+	Callout – Location	Açıklama – Konum
+	Callout – Info Card	Açıklama – Bilgi Kartı
+	End Credits – Thank You	Kapanış Jeneriği – Teşekkür
+	A name and role beside a thin vertical rule, with no background.	İnce bir dikey çizginin yanında ad ve unvan, arka plansız.
+	Name on a dark slab with the role on a light one below; both widen with their text.	Koyu bir bantta ad, altındaki açık bantta unvan; ikisi de metinle birlikte genişler.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	Üstte bir üst başlık, kısa bir çizgi ve bir slogan içeren sola hizalı açılış başlığı.
+	A chapter card: small label, large number, short rule and the chapter name.	Bir bölüm kartı: küçük etiket, büyük numara, kısa çizgi ve bölüm adı.
+	A centred quote in italics with a large opening mark and its author.	Büyük bir açılış tırnağı ve yazarıyla ortalanmış, italik bir alıntı.
+	A place name and a detail line on a rounded card with a marker dot.	Yuvarlak bir kart üzerinde yer adı ve bir ayrıntı satırı, işaret noktasıyla.
+	A heading and a short fact on a rounded card that fits its text.	Metne uyum sağlayan yuvarlak bir kart üzerinde başlık ve kısa bir bilgi.
+	A still closing card: a thank-you, a short rule and a parting line.	Sabit bir kapanış kartı: bir teşekkür, kısa bir çizgi ve veda satırı.
+	Body	Gövde
+	Card Color	Kart Rengi
+	Details	Ayrıntılar
+	Kicker	Üst Başlık
+	Mark Color	Tırnak Rengi
+	Message	Mesaj
+	Message Size	Mesaj Boyutu
+	Name Slab Color	Ad Bandı Rengi
+	Number	Numara
+	Place	Yer
+	Quote	Alıntı
+	Quote Color	Alıntı Rengi
+	Quote Size	Alıntı Boyutu
+	Role Color	Unvan Rengi
+	Role Slab Color	Unvan Bandı Rengi
+	Tagline	Slogan
 	Center at Cut	Kesimde Ortala
 	Start at Cut	Kesimde Başla
 	End at Cut	Kesimde Bitir

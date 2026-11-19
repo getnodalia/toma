@@ -3806,6 +3806,38 @@
 	{frames} frames ({seconds} s)	{frames} bingkai ({seconds} d)
 	{name} (Modified)	{name} (Diubah)
 	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} sudah ada, jadi tidak ada yang diekspor. Untuk menggantinya, pilih file tersebut di dialog simpan.
+	Lower Third – Minimal	Lower Third – Minimal
+	Lower Third – Split	Lower Third – Terbagi
+	Title – Opening	Judul – Pembuka
+	Title – Chapter	Judul – Bab
+	Title – Quote	Judul – Kutipan
+	Callout – Location	Callout – Lokasi
+	Callout – Info Card	Callout – Kartu Info
+	End Credits – Thank You	Kredit Penutup – Terima Kasih
+	A name and role beside a thin vertical rule, with no background.	Nama dan jabatan di samping garis vertikal tipis, tanpa latar.
+	Name on a dark slab with the role on a light one below; both widen with their text.	Nama pada blok gelap dan jabatan pada blok terang di bawahnya; keduanya melebar mengikuti teks.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	Judul pembuka rata kiri dengan teks pengantar di atas, garis pendek, dan slogan.
+	A chapter card: small label, large number, short rule and the chapter name.	Kartu bab: label kecil, nomor besar, garis pendek, dan nama bab.
+	A centred quote in italics with a large opening mark and its author.	Kutipan di tengah dengan huruf miring, tanda kutip pembuka besar, dan penulisnya.
+	A place name and a detail line on a rounded card with a marker dot.	Nama tempat dan satu baris keterangan pada kartu membulat dengan titik penanda.
+	A heading and a short fact on a rounded card that fits its text.	Judul dan satu fakta singkat pada kartu membulat yang menyesuaikan teksnya.
+	A still closing card: a thank-you, a short rule and a parting line.	Kartu penutup diam: ucapan terima kasih, garis pendek, dan kalimat perpisahan.
+	Body	Isi
+	Card Color	Warna Kartu
+	Details	Keterangan
+	Kicker	Teks Pengantar
+	Mark Color	Warna Tanda Kutip
+	Message	Pesan
+	Message Size	Ukuran Pesan
+	Name Slab Color	Warna Blok Nama
+	Number	Nomor
+	Place	Tempat
+	Quote	Kutipan
+	Quote Color	Warna Kutipan
+	Quote Size	Ukuran Kutipan
+	Role Color	Warna Jabatan
+	Role Slab Color	Warna Blok Jabatan
+	Tagline	Slogan
 	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	{n} prasetel diimpor; {skipped} dilewati, {warnings} dengan parameter yang tidak didukung
 	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Bagian dari Nodalia. MIT OR Apache-2.0. Font: Inter, Noto Serif, dan JetBrains Mono (SIL OFL 1.1). Ikon: Nodalia Design (MIT).
 	Add pause	Tambah jeda

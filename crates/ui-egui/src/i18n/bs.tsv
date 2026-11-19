@@ -3779,6 +3779,38 @@
 	{frames} frames ({seconds} s)	{frames} sličica ({seconds} s)
 	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} već postoji, pa ništa nije izvezeno. Da ga zamijenite, odaberite ga u dijalogu za čuvanje.
 	“{file}” already exists in “{folder}”. Do you want to replace it?	„{file}“ već postoji u „{folder}“. Želite li ga zamijeniti?
+	Lower Third – Minimal	Donja trećina – minimalna
+	Lower Third – Split	Donja trećina – podijeljena
+	Title – Opening	Naslov – uvod
+	Title – Chapter	Naslov – poglavlje
+	Title – Quote	Naslov – citat
+	Callout – Location	Oblačić – mjesto
+	Callout – Info Card	Oblačić – informativna kartica
+	End Credits – Thank You	Odjavna špica – zahvala
+	A name and role beside a thin vertical rule, with no background.	Ime i funkcija pored tanke okomite linije, bez pozadine.
+	Name on a dark slab with the role on a light one below; both widen with their text.	Ime na tamnom bloku, a funkcija na svijetlom ispod; oba se šire prema tekstu.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	Uvodni naslov poravnat lijevo s nadnaslovom, kratkom linijom i sloganom.
+	A chapter card: small label, large number, short rule and the chapter name.	Kartica poglavlja: mala oznaka, veliki broj, kratka linija i naziv poglavlja.
+	A centred quote in italics with a large opening mark and its author.	Centriran citat kurzivom s velikim uvodnim navodnikom i autorom.
+	A place name and a detail line on a rounded card with a marker dot.	Naziv mjesta i red s detaljima na zaobljenoj kartici s tačkom oznake.
+	A heading and a short fact on a rounded card that fits its text.	Naslov i kratka činjenica na zaobljenoj kartici prilagođenoj tekstu.
+	A still closing card: a thank-you, a short rule and a parting line.	Mirna završna kartica: zahvala, kratka linija i oproštajni red.
+	Body	Tekst
+	Card Color	Boja kartice
+	Details	Detalji
+	Kicker	Nadnaslov
+	Mark Color	Boja navodnika
+	Message	Poruka
+	Message Size	Veličina poruke
+	Name Slab Color	Boja bloka imena
+	Number	Broj
+	Place	Mjesto
+	Quote	Citat
+	Quote Color	Boja citata
+	Quote Size	Veličina citata
+	Role Color	Boja funkcije
+	Role Slab Color	Boja bloka funkcije
+	Tagline	Slogan
 	Center at Cut	Centriraj na rezu
 	Start at Cut	Počni na rezu
 	End at Cut	Završi na rezu

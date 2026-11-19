@@ -3817,6 +3817,38 @@
 	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
 	{frames} frames ({seconds} s)	{frames} images ({seconds} s)
 	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} existe déjà, rien n'a donc été exporté. Pour le remplacer, choisissez-le dans la boîte de dialogue d'enregistrement.
+	Lower Third – Minimal	Tiers inférieur – Minimal
+	Lower Third – Split	Tiers inférieur – Scindé
+	Title – Opening	Titre – Ouverture
+	Title – Chapter	Titre – Chapitre
+	Title – Quote	Titre – Citation
+	Callout – Location	Légende – Lieu
+	Callout – Info Card	Légende – Carte d'information
+	End Credits – Thank You	Générique de fin – Remerciements
+	A name and role beside a thin vertical rule, with no background.	Un nom et une fonction à côté d'un fin filet vertical, sans fond.
+	Name on a dark slab with the role on a light one below; both widen with their text.	Nom sur un bloc sombre et fonction sur un bloc clair en dessous ; les deux s'élargissent avec leur texte.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	Un titre d'ouverture aligné à gauche, avec un surtitre au-dessus, un filet court et une accroche.
+	A chapter card: small label, large number, short rule and the chapter name.	Une carte de chapitre : petite étiquette, grand numéro, filet court et nom du chapitre.
+	A centred quote in italics with a large opening mark and its author.	Une citation centrée en italique avec un grand guillemet ouvrant et son auteur.
+	A place name and a detail line on a rounded card with a marker dot.	Un nom de lieu et une ligne de détail sur une carte arrondie avec un point repère.
+	A heading and a short fact on a rounded card that fits its text.	Un intitulé et un fait court sur une carte arrondie qui s'adapte au texte.
+	A still closing card: a thank-you, a short rule and a parting line.	Une carte de fin fixe : un remerciement, un filet court et une formule d'adieu.
+	Body	Corps
+	Card Color	Couleur de la carte
+	Details	Détails
+	Kicker	Surtitre
+	Mark Color	Couleur du guillemet
+	Message	Message
+	Message Size	Taille du message
+	Name Slab Color	Couleur du bloc du nom
+	Number	Numéro
+	Place	Lieu
+	Quote	Citation
+	Quote Color	Couleur de la citation
+	Quote Size	Taille de la citation
+	Role Color	Couleur de la fonction
+	Role Slab Color	Couleur du bloc de la fonction
+	Tagline	Accroche
 	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	{n} préréglage(s) importé(s) ; {skipped} ignoré(s), {warnings} avec des paramètres non pris en charge
 	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Fait partie de Nodalia. MIT OR Apache-2.0. Polices : Inter, Noto Serif et JetBrains Mono (SIL OFL 1.1). Icônes : Nodalia Design (MIT).
 	Add pause	Ajouter une pause

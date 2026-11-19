@@ -3797,6 +3797,38 @@
 	Tonal Range	Тональный диапазон
 	Window Controls	Кнопки окна
 	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	Lower Third – Minimal	Нижняя плашка — минимализм
+	Lower Third – Split	Нижняя плашка — раздельная
+	Title – Opening	Титр — открытие
+	Title – Chapter	Титр — глава
+	Title – Quote	Титр — цитата
+	Callout – Location	Выноска — место
+	Callout – Info Card	Выноска — карточка с фактом
+	End Credits – Thank You	Финальные титры — благодарность
+	A name and role beside a thin vertical rule, with no background.	Имя и должность рядом с тонкой вертикальной линией, без фона.
+	Name on a dark slab with the role on a light one below; both widen with their text.	Имя на тёмной плашке, а должность на светлой под ней; обе растягиваются по тексту.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	Вступительный титр по левому краю с надстрочником, короткой линией и слоганом.
+	A chapter card: small label, large number, short rule and the chapter name.	Карточка главы: маленькая метка, крупный номер, короткая линия и название главы.
+	A centred quote in italics with a large opening mark and its author.	Цитата по центру курсивом с крупной открывающей кавычкой и именем автора.
+	A place name and a detail line on a rounded card with a marker dot.	Название места и строка с подробностями на скруглённой карточке с маркером.
+	A heading and a short fact on a rounded card that fits its text.	Заголовок и короткий факт на скруглённой карточке по размеру текста.
+	A still closing card: a thank-you, a short rule and a parting line.	Неподвижная заключительная карточка: благодарность, короткая линия и прощальная строка.
+	Body	Основной текст
+	Card Color	Цвет карточки
+	Details	Подробности
+	Kicker	Надстрочник
+	Mark Color	Цвет кавычки
+	Message	Сообщение
+	Message Size	Размер сообщения
+	Name Slab Color	Цвет плашки имени
+	Number	Номер
+	Place	Место
+	Quote	Цитата
+	Quote Color	Цвет цитаты
+	Quote Size	Размер цитаты
+	Role Color	Цвет должности
+	Role Slab Color	Цвет плашки должности
+	Tagline	Слоган
 	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	Импортировано пресетов: {n}; пропущено: {skipped}, с неподдерживаемыми параметрами: {warnings}
 	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Часть Nodalia. MIT OR Apache-2.0. Шрифты: Inter, Noto Serif и JetBrains Mono (SIL OFL 1.1). Значки: Nodalia Design (MIT).
 	Add pause	Добавить паузу
