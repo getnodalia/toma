@@ -3734,3 +3734,101 @@
 	✔ matches	✓ збігається
 	✔ same file	✓ той самий файл
 	✖ different file	× інший файл
+	Center at Cut	Центрувати на розрізі
+	Start at Cut	Почати на розрізі
+	End at Cut	Закінчити на розрізі
+	Custom Start	Власний початок
+	In:	Вхід:
+	Marker Color:	Колір маркера:
+	Options:	Параметри:
+	Invalid duration: {error}	Недійсна тривалість: {error}
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	Імпортовано пресетів: {n}; пропущено: {skipped}, з непідтримуваними параметрами: {warnings}
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Частина Nodalia. MIT OR Apache-2.0. Шрифти: Inter, Noto Serif і JetBrains Mono (SIL OFL 1.1). Значки: Nodalia Design (MIT).
+	Add pause	Додати паузу
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	«Додати паузу» вставляє [pause 1s]. Змініть число для довшої або коротшої паузи, наприклад [pause 500ms] або [pause 2s].
+	Add to timeline	Додати на монтажний стіл
+	Basic voices (built in)	Базові голоси (вбудовані)
+	Cannot check export destination: {e}	Не вдається перевірити місце експорту: {e}
+	Depth:	Глибина:
+	Download	Завантажити
+	Download natural voices ({mb} MB)…	Завантажити природні голоси ({mb} МБ)…
+	Download of the natural voices failed: {e}	Не вдалося завантажити природні голоси: {e}
+	Download the natural voices? {mb} MB, once.	Завантажити природні голоси? {mb} МБ, один раз.
+	Editing the selected narration	Редагування вибраного озвучення
+	Exported frame to {path}	Кадр експортовано до {path}
+	Extra high	Дуже високий
+	Extra low	Дуже низький
+	Format:	Формат:
+	Frame time: {time}	Час кадру: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	З {source} і github.com/cmusphinx/cmudict (вимова). Ліцензія: {licence}. Кожен файл перевіряється за зафіксованим SHA-256.
+	Hear this voice	Прослухати цей голос
+	Import into project	Імпортувати в проєкт
+	Keep existing file	Залишити наявний файл
+	Narration added on an audio track	Озвучення додано на звукову доріжку
+	Narration added on {track}	Озвучення додано на {track}
+	Narration updated	Озвучення оновлено
+	Natural voices	Природні голоси
+	Natural voices installed	Природні голоси встановлено
+	Natural voices need a one-time download.	Природним голосам потрібне одноразове завантаження.
+	New narration	Нове озвучення
+	Pace	Темп
+	Path:	Шлях:
+	Synthesizing narration…	Синтез озвучення…
+	Synthesizing…	Синтез…
+	Text to Speech: {e}	Синтез мовлення: {e}
+	This file already exists: {path}	Цей файл уже існує: {path}
+	Type what you want the voice to say	Введіть текст, який має вимовити голос
+	Vocal pitch	Висота голосу
+	{bits} Bit	{bits} біт
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (завантаження)
+	H.265 (HEVC) needs a hardware encoder (NVENC on NVIDIA GPUs, VideoToolbox on macOS); none was found on this machine, and Toma has no software H.265 encoder yet. Choose H.264 or ProRes instead.	H.265 (HEVC) потребує апаратного кодувальника (NVENC на відеокартах NVIDIA, VideoToolbox у macOS); на цьому комп’ютері його не знайдено, а в Toma ще немає програмного кодувальника H.265. Натомість виберіть H.264 або ProRes.
+	Temporal Interpolation	Часова інтерполяція
+	Select items to clear	Виберіть елементи для очищення
+	Resize floating panel	Змінити розмір плаваючої панелі
+	DirectX 12 only	Лише DirectX 12
+	software rendering	програмний рендеринг
+	integrated GPU	вбудований GPU
+	Opens in your web browser: {url}	Відкривається у вашому браузері: {url}
+	Recent	Нещодавні
+	Full screen	На весь екран
+	Master volume: use the Audio Track Mixer	Головна гучність: скористайтеся мікшером звукових доріжок
+	Join the Nodalia Discord (discord.gg/artcraft)	Приєднатися до Discord Nodalia (discord.gg/artcraft)
+	A clean-room, pure-Rust non-linear video editor. Part of the Nodalia family.	Нелінійний відеоредактор, створений з нуля на чистому Rust. Частина родини Nodalia.
+	Join the Nodalia Discord	Приєднатися до Discord Nodalia
+	MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1).	MIT OR Apache-2.0. Шрифти: Inter, Noto Serif і JetBrains Mono (SIL OFL 1.1).
+	Community	Спільнота
+	Join us on Discord	Приєднуйтеся до нас у Discord
+	Show or hide {color} markers	Показати або сховати маркери кольору {color}
+	{tc}  Chapter	{tc}  Розділ
+	No markers. Press M to add one.	Немає маркерів. Натисніть M, щоб додати.
+	All markers are hidden by the colour filter.	Усі маркери приховано фільтром кольору.
+	Graphics text search arrives with M10.1–M10.2	Пошук тексту в графіці з’явиться в M10.1–M10.2
+	Export Frame (Shift+E)	Експортувати кадр (Shift+E)
+	Export Frame: use Export mode (M6)	Експорт кадру: скористайтеся режимом експорту (M6)
+	Programme left → device output {l}, right → device output {r}{dev}. Outputs beyond the device's channels fall back to 1 and 2.	Програма ліворуч → вихід пристрою {l}, праворуч → вихід пристрою {r}{dev}. Виходи за межами каналів пристрою переходять на 1 і 2.
+	Add/Remove Keyframe	Додати/видалити ключовий кадр
+	Sequence, {w}x{h}, {fps} fps, {rate} Hz	Послідовність, {w}x{h}, {fps} к/с, {rate} Гц
+	Go to previous keyframe	Перейти до попереднього ключового кадру
+	Go to next keyframe	Перейти до наступного ключового кадру
+	Add keyframe	Додати ключовий кадр
+	Remove keyframe	Видалити ключовий кадр
+	Turn on animation and add keyframe	Увімкнути анімацію й додати ключовий кадр
+	Color Management	Керування кольором
+	VR Properties	Властивості VR
+	Editing Mode:	Режим редагування:
+	Timebase:	Часова основа:
+	Frame Size:	Розмір кадру:
+	Pixel Aspect Ratio:	Співвідношення сторін пікселя:
+	Fields:	Поля:
+	Channel Format:	Формат каналів:
+	Preview File Format:	Формат файлу попереднього перегляду:
+	Projection:	Проєкція:
+	Layout:	Розташування:
+	Video Previews	Попередній перегляд відео
+	No Fields (Progressive Scan)	Без полів (прогресивна розгортка)
+	Not supported in Toma yet	Поки не підтримується в Toma
+	Toma always composites in linear light	Toma завжди компонує в лінійному світлі
+	Tracks	Доріжки
+	Get Project Notes	Отримати нотатки проєкту
+	Edit Project Notes	Редагувати нотатки проєкту

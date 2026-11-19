@@ -3808,3 +3808,43 @@
 	Tonal Range	Tonomfång
 	Window Controls	Fönsterknappar
 	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	Importerade {n} förinställning(ar); {skipped} hoppades över, {warnings} med parametrar som inte stöds
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	En del av Nodalia. MIT OR Apache-2.0. Typsnitt: Inter, Noto Serif och JetBrains Mono (SIL OFL 1.1). Ikoner: Nodalia Design (MIT).
+	Add pause	Lägg till paus
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Lägg till paus infogar [pause 1s]. Ändra siffran för en längre eller kortare paus, t.ex. [pause 500ms] eller [pause 2s].
+	Add to timeline	Lägg till på tidslinjen
+	Basic voices (built in)	Grundröster (inbyggda)
+	Cannot check export destination: {e}	Kan inte kontrollera exportmålet: {e}
+	Depth:	Djup:
+	Download	Ladda ner
+	Download natural voices ({mb} MB)…	Ladda ner naturliga röster ({mb} MB)…
+	Download of the natural voices failed: {e}	Nedladdningen av de naturliga rösterna misslyckades: {e}
+	Download the natural voices? {mb} MB, once.	Ladda ner de naturliga rösterna? {mb} MB, en gång.
+	Editing the selected narration	Redigerar den valda berättarrösten
+	Exported frame to {path}	Bildruta exporterad till {path}
+	Extra high	Extra hög
+	Extra low	Extra låg
+	Format:	Format:
+	Frame time: {time}	Bildrutetid: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Från {source} och github.com/cmusphinx/cmudict (uttal). Licens: {licence}. Varje fil kontrolleras mot en fastlåst SHA-256.
+	Hear this voice	Lyssna på den här rösten
+	Import into project	Importera till projekt
+	Keep existing file	Behåll befintlig fil
+	Narration added on an audio track	Berättarröst tillagd på ett ljudspår
+	Narration added on {track}	Berättarröst tillagd på {track}
+	Narration updated	Berättarrösten uppdaterad
+	Natural voices	Naturliga röster
+	Natural voices installed	Naturliga röster installerade
+	Natural voices need a one-time download.	Naturliga röster kräver en engångsnedladdning.
+	New narration	Ny berättarröst
+	Pace	Tempo
+	Path:	Sökväg:
+	Synthesizing narration…	Syntetiserar berättarröst…
+	Synthesizing…	Syntetiserar…
+	Text to Speech: {e}	Text till tal: {e}
+	This file already exists: {path}	Filen finns redan: {path}
+	Type what you want the voice to say	Skriv vad rösten ska säga
+	Vocal pitch	Röstläge
+	{bits} Bit	{bits} bitar
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (nedladdning)
