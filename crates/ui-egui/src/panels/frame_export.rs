@@ -100,7 +100,7 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
         ui.painter().text(
             bar.left_center() + egui::vec2(10.0, 0.0),
             egui::Align2::LEFT_CENTER,
-            "Export Frame",
+            tl!("Export Frame"),
             egui::FontId::proportional(13.0),
             egui::Color32::from_gray(90),
         );
@@ -112,17 +112,17 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
             ui.ctx().set_cursor_icon(egui::CursorIcon::Grabbing);
         }
         elems.push(("exportFrame.header".into(), header, "Move Export Frame".into()));
-        let response = ui.interact(x, egui::Id::unique("export-frame-close"), egui::Sense::click()).on_hover_text("Close");
+        let response = ui.interact(x, egui::Id::unique("export-frame-close"), egui::Sense::click()).on_hover_text(tl!("Close"));
         icons::paint(ui.painter(), x.shrink(7.0), Icon::Close, egui::Color32::from_gray(90));
         elems.push(("exportFrame.close".to_string(), x, "Close".to_string()));
         close = response.clicked();
         egui::Frame::NONE.inner_margin(14).show(ui, |ui| {
             egui::Grid::new("frame-export-settings").num_columns(2).spacing([12.0, 10.0]).show(ui, |ui| {
-                ui.label("Name:");
+                ui.label(tl!("Name:"));
                 let r = crate::widgets::accessible_name(ui.add(egui::TextEdit::singleline(&mut d.name).desired_width(300.0)), "Name");
                 elems.push(("exportFrame.name".into(), r.rect, d.name.clone()));
                 ui.end_row();
-                ui.label("Format:");
+                ui.label(tl!("Format:"));
                 let combo = craft_ui::ComboBox::from_id_salt("frame-export-format").width(292.0).selected_text(d.format.label()).show_ui(ui, |ui| {
                     for format in StillFormat::ALL {
                         let r = ui.selectable_value(&mut d.format, format, format.label());
@@ -138,33 +138,34 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
                 if !d.format.supports_16() {
                     d.depth = 8;
                 }
-                ui.label("Depth:");
-                let combo = craft_ui::ComboBox::from_id_salt("frame-export-depth").width(292.0).selected_text(format!("{} Bit", d.depth)).show_ui(ui, |ui| {
-                    for bits in [8, 16] {
-                        let r = ui.add_enabled(bits == 8 || d.format.supports_16(), egui::Button::selectable(d.depth == bits, format!("{bits} Bit")));
-                        if r.clicked() {
-                            d.depth = bits;
+                ui.label(tl!("Depth:"));
+                let combo =
+                    craft_ui::ComboBox::from_id_salt("frame-export-depth").width(292.0).selected_text(tlf!("{bits} Bit", bits = d.depth)).show_ui(ui, |ui| {
+                        for bits in [8, 16] {
+                            let r = ui.add_enabled(bits == 8 || d.format.supports_16(), egui::Button::selectable(d.depth == bits, tlf!("{bits} Bit", bits)));
+                            if r.clicked() {
+                                d.depth = bits;
+                            }
+                            elems.push((format!("exportFrame.depth.{bits}"), r.rect, format!("{bits} Bit")));
                         }
-                        elems.push((format!("exportFrame.depth.{bits}"), r.rect, format!("{bits} Bit")));
-                    }
-                    ui.min_rect()
-                });
+                        ui.min_rect()
+                    });
                 if let Some(rect) = combo.inner {
                     popup_rects.push(rect);
                 }
                 elems.push(("exportFrame.depth".into(), combo.response.rect, format!("{} Bit", d.depth)));
                 ui.end_row();
-                ui.label("Path:");
+                ui.label(tl!("Path:"));
                 let r = crate::widgets::accessible_name(ui.add(egui::TextEdit::singleline(&mut d.folder).desired_width(300.0)), "Path");
                 elems.push(("exportFrame.path".into(), r.rect, d.folder.clone()));
                 ui.end_row();
             });
             ui.add_space(12.0);
             ui.horizontal(|ui| {
-                let r = ui.checkbox(&mut d.import, "Import into project");
+                let r = ui.checkbox(&mut d.import, tl!("Import into project"));
                 elems.push(("exportFrame.import".into(), r.rect, d.import.to_string()));
                 ui.allocate_ui_with_layout(egui::vec2(ui.available_width(), 26.0), egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                    let r = ui.add_enabled(FileDialog::Folder { at: Some(String::new()) }.available(&app.hooks), egui::Button::new("Browse…"));
+                    let r = ui.add_enabled(FileDialog::Folder { at: Some(String::new()) }.available(&app.hooks), egui::Button::new(tl!("Browse…")));
                     browse = r.clicked();
                     elems.push(("exportFrame.browse".into(), r.rect, "Browse".into()));
                 });
@@ -175,12 +176,12 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
                 elems.push(("exportFrame.error".into(), r.rect, e.clone()));
             }
             if let Some(path) = d.replace.clone() {
-                ui.label(format!("This file already exists: {path}"));
+                ui.label(tlf!("This file already exists: {path}", path));
                 ui.horizontal(|ui| {
-                    let r = ui.button("Replace");
+                    let r = ui.button(tl!("Replace"));
                     replace = r.clicked();
                     elems.push(("exportFrame.replace".into(), r.rect, "Replace".into()));
-                    let r = ui.button("Keep existing file");
+                    let r = ui.button(tl!("Keep existing file"));
                     if r.clicked() {
                         d.replace = None;
                     }
@@ -188,12 +189,12 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
                 });
             } else {
                 ui.allocate_ui_with_layout(egui::vec2(ui.available_width(), 26.0), egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                    let r = ui.button("Cancel");
+                    let r = ui.button(tl!("Cancel"));
                     close |= r.clicked();
                     elems.push(("exportFrame.cancel".into(), r.rect, "Cancel".into()));
                     let r = ui.add_enabled(
                         !d.name.trim().is_empty() && !d.folder.trim().is_empty(),
-                        egui::Button::new(egui::RichText::new("OK").color(egui::Color32::WHITE)).fill(app.tokens.accent),
+                        egui::Button::new(egui::RichText::new(tl!("OK")).color(egui::Color32::WHITE)).fill(app.tokens.accent),
                     );
                     apply = r.clicked();
                     elems.push(("exportFrame.export".into(), r.rect, "OK".into()));
@@ -201,9 +202,14 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
             }
             ui.add_space(12.0);
             ui.separator();
-            ui.label(format!("{} — {} × {}", if d.target.source { "Source" } else { "Program" }, d.target.width, d.target.height));
+            ui.label(tlf!(
+                "{kind} — {width} × {height}",
+                kind = if d.target.source { tl!("Source") } else { tl!("Program") },
+                width = d.target.width,
+                height = d.target.height
+            ));
             ui.label(&d.target.name);
-            let r = ui.label(format!("Frame time: {}", d.timecode));
+            let r = ui.label(tlf!("Frame time: {time}", time = d.timecode));
             elems.push(("exportFrame.timecode".into(), r.rect, d.timecode.clone()));
         });
     });
@@ -257,7 +263,7 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
             Ok(_) => replace && d.replace.as_deref() == Some(path.as_str()),
             Err(e) if e.kind() == std::io::ErrorKind::NotFound => true,
             Err(e) => {
-                app.ui.status = format!("Cannot check export destination: {e}");
+                app.ui.status = tlf!("Cannot check export destination: {e}", e);
                 d.error = Some(app.ui.status.clone());
                 false
             }
@@ -271,7 +277,7 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
             params[if d.target.source { "item" } else { "sequence" }] = json!(d.target.item.0);
             match app.session.execute("file.exportFrame", params) {
                 Ok(result) => {
-                    app.ui.status = format!("Exported frame to {}", result["path"].as_str().unwrap_or_default());
+                    app.ui.status = tlf!("Exported frame to {path}", path = result["path"].as_str().unwrap_or_default());
                     ctx.data_mut(|m| m.insert_temp(egui::Id::unique("frame-export-folder"), d.folder.clone()));
                     close = true;
                 }
