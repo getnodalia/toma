@@ -3806,3 +3806,49 @@
 	{frames} frames ({seconds} s)	{frames} bingkai ({seconds} d)
 	{name} (Modified)	{name} (Diubah)
 	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} sudah ada, jadi tidak ada yang diekspor. Untuk menggantinya, pilih file tersebut di dialog simpan.
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	{n} prasetel diimpor; {skipped} dilewati, {warnings} dengan parameter yang tidak didukung
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Bagian dari Nodalia. MIT OR Apache-2.0. Font: Inter, Noto Serif, dan JetBrains Mono (SIL OFL 1.1). Ikon: Nodalia Design (MIT).
+	Add pause	Tambah jeda
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Tambah jeda menyisipkan [pause 1s]. Ubah angkanya untuk jeda yang lebih panjang atau pendek, mis. [pause 500ms] atau [pause 2s].
+	Add to timeline	Tambahkan ke lini masa
+	Basic voices (built in)	Suara dasar (bawaan)
+	Cannot check export destination: {e}	Tidak dapat memeriksa tujuan ekspor: {e}
+	Depth:	Kedalaman:
+	Download	Unduh
+	Download natural voices ({mb} MB)…	Unduh suara alami ({mb} MB)…
+	Download of the natural voices failed: {e}	Pengunduhan suara alami gagal: {e}
+	Download the natural voices? {mb} MB, once.	Unduh suara alami? {mb} MB, sekali saja.
+	Editing the selected narration	Mengedit narasi yang dipilih
+	Exported frame to {path}	Bingkai diekspor ke {path}
+	Extra high	Sangat tinggi
+	Extra low	Sangat rendah
+	Format:	Format:
+	Frame time: {time}	Waktu bingkai: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Dari {source} dan github.com/cmusphinx/cmudict (pelafalan). Lisensi: {licence}. Setiap berkas diperiksa terhadap SHA-256 yang disematkan.
+	Hear this voice	Dengarkan suara ini
+	Import into project	Impor ke proyek
+	Keep existing file	Pertahankan berkas yang ada
+	Narration added on an audio track	Narasi ditambahkan pada trek audio
+	Narration added on {track}	Narasi ditambahkan pada {track}
+	Narration updated	Narasi diperbarui
+	Natural voices	Suara alami
+	Natural voices installed	Suara alami terpasang
+	Natural voices need a one-time download.	Suara alami memerlukan unduhan satu kali.
+	New narration	Narasi baru
+	Pace	Kecepatan
+	Path:	Jalur:
+	Synthesizing narration…	Mensintesis narasi…
+	Synthesizing…	Mensintesis…
+	Text to Speech: {e}	Teks ke Ucapan: {e}
+	This file already exists: {path}	Berkas ini sudah ada: {path}
+	Type what you want the voice to say	Ketik apa yang ingin diucapkan oleh suara
+	Vocal pitch	Nada suara
+	{bits} Bit	{bits} bit
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (unduh)
+	H.265 (HEVC) needs a hardware encoder (NVENC on NVIDIA GPUs, VideoToolbox on macOS); none was found on this machine, and Toma has no software H.265 encoder yet. Choose H.264 or ProRes instead.	H.265 (HEVC) memerlukan encoder perangkat keras (NVENC pada GPU NVIDIA, VideoToolbox pada macOS); tidak ada yang ditemukan di komputer ini, dan Toma belum memiliki encoder H.265 perangkat lunak. Pilih H.264 atau ProRes.
+	Resize floating panel	Ubah ukuran panel mengambang
+	DirectX 12 only	Hanya DirectX 12
+	software rendering	perenderan perangkat lunak
+	integrated GPU	GPU terintegrasi
+	Opens in your web browser: {url}	Terbuka di peramban web Anda: {url}

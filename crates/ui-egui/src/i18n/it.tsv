@@ -3803,3 +3803,44 @@
 	no Korean font is installed on this system; the interface stays in English	nessun font coreano è installato su questo sistema; l'interfaccia resta in inglese
 	{frames} frames ({seconds} s)	{frames} fotogrammi ({seconds} s)
 	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} esiste già, quindi non è stato esportato nulla. Per sostituirlo, sceglilo nella finestra di salvataggio.
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	Importati {n} preset; {skipped} saltati, {warnings} con parametri non supportati
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Parte di Nodalia. MIT OR Apache-2.0. Caratteri: Inter, Noto Serif e JetBrains Mono (SIL OFL 1.1). Icone: Nodalia Design (MIT).
+	Add pause	Aggiungi pausa
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Aggiungi pausa inserisce [pause 1s]. Cambia il numero per una pausa più lunga o più breve, ad es. [pause 500ms] o [pause 2s].
+	Add to timeline	Aggiungi alla timeline
+	Basic voices (built in)	Voci di base (integrate)
+	Cannot check export destination: {e}	Impossibile controllare la destinazione dell’esportazione: {e}
+	Depth:	Profondità:
+	Download	Scarica
+	Download natural voices ({mb} MB)…	Scarica le voci naturali ({mb} MB)…
+	Download of the natural voices failed: {e}	Download delle voci naturali non riuscito: {e}
+	Download the natural voices? {mb} MB, once.	Scaricare le voci naturali? {mb} MB, una sola volta.
+	Editing the selected narration	Modifica della narrazione selezionata
+	Exported frame to {path}	Fotogramma esportato in {path}
+	Extra high	Altissimo
+	Extra low	Bassissimo
+	Format:	Formato:
+	Frame time: {time}	Tempo del fotogramma: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Da {source} e github.com/cmusphinx/cmudict (pronunce). Licenza: {licence}. Ogni file viene controllato rispetto a uno SHA-256 fissato.
+	Hear this voice	Ascolta questa voce
+	Import into project	Importa nel progetto
+	Keep existing file	Mantieni il file esistente
+	Narration added on an audio track	Narrazione aggiunta su una traccia audio
+	Narration added on {track}	Narrazione aggiunta su {track}
+	Narration updated	Narrazione aggiornata
+	Natural voices	Voci naturali
+	Natural voices installed	Voci naturali installate
+	Natural voices need a one-time download.	Le voci naturali richiedono un download una tantum.
+	New narration	Nuova narrazione
+	Pace	Ritmo
+	Path:	Percorso:
+	Synthesizing narration…	Sintesi della narrazione…
+	Synthesizing…	Sintesi in corso…
+	Text to Speech: {e}	Sintesi vocale: {e}
+	This file already exists: {path}	Questo file esiste già: {path}
+	Type what you want the voice to say	Scrivi ciò che la voce deve dire
+	Vocal pitch	Tono della voce
+	{bits} Bit	{bits} bit
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (download)
+	H.265 (HEVC) needs a hardware encoder (NVENC on NVIDIA GPUs, VideoToolbox on macOS); none was found on this machine, and Toma has no software H.265 encoder yet. Choose H.264 or ProRes instead.	H.265 (HEVC) richiede un encoder hardware (NVENC sulle GPU NVIDIA, VideoToolbox su macOS); non ne è stato trovato nessuno su questo computer e Toma non ha ancora un encoder H.265 software. Scegli invece H.264 o ProRes.

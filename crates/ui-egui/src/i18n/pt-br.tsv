@@ -3809,3 +3809,49 @@
 	{frames} frames ({seconds} s)	{frames} quadros ({seconds} s)
 	{name} (Modified)	{name} (modificado)
 	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} já existe, então nada foi exportado. Para substituí-lo, escolha-o na caixa de diálogo de salvar.
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	{n} predefinição(ões) importada(s); {skipped} ignorada(s), {warnings} com parâmetros não compatíveis
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Parte do Nodalia. MIT OR Apache-2.0. Fontes: Inter, Noto Serif e JetBrains Mono (SIL OFL 1.1). Ícones: Nodalia Design (MIT).
+	Add pause	Adicionar pausa
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Adicionar pausa insere [pause 1s]. Altere o número para uma pausa mais longa ou mais curta, por exemplo [pause 500ms] ou [pause 2s].
+	Add to timeline	Adicionar à linha do tempo
+	Basic voices (built in)	Vozes básicas (integradas)
+	Cannot check export destination: {e}	Não foi possível verificar o destino da exportação: {e}
+	Depth:	Profundidade:
+	Download	Baixar
+	Download natural voices ({mb} MB)…	Baixar vozes naturais ({mb} MB)…
+	Download of the natural voices failed: {e}	Falha ao baixar as vozes naturais: {e}
+	Download the natural voices? {mb} MB, once.	Baixar as vozes naturais? {mb} MB, uma única vez.
+	Editing the selected narration	Editando a narração selecionada
+	Exported frame to {path}	Quadro exportado para {path}
+	Extra high	Muito agudo
+	Extra low	Muito grave
+	Format:	Formato:
+	Frame time: {time}	Tempo do quadro: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	De {source} e github.com/cmusphinx/cmudict (pronúncias). Licença: {licence}. Cada arquivo é verificado em relação a um SHA-256 fixo.
+	Hear this voice	Ouvir esta voz
+	Import into project	Importar para o projeto
+	Keep existing file	Manter o arquivo existente
+	Narration added on an audio track	Narração adicionada em uma trilha de áudio
+	Narration added on {track}	Narração adicionada em {track}
+	Narration updated	Narração atualizada
+	Natural voices	Vozes naturais
+	Natural voices installed	Vozes naturais instaladas
+	Natural voices need a one-time download.	As vozes naturais precisam de um download único.
+	New narration	Nova narração
+	Pace	Ritmo
+	Path:	Caminho:
+	Synthesizing narration…	Sintetizando a narração…
+	Synthesizing…	Sintetizando…
+	Text to Speech: {e}	Texto para fala: {e}
+	This file already exists: {path}	Este arquivo já existe: {path}
+	Type what you want the voice to say	Digite o que você quer que a voz diga
+	Vocal pitch	Tom da voz
+	{bits} Bit	{bits} bits
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (download)
+	H.265 (HEVC) needs a hardware encoder (NVENC on NVIDIA GPUs, VideoToolbox on macOS); none was found on this machine, and Toma has no software H.265 encoder yet. Choose H.264 or ProRes instead.	O H.265 (HEVC) precisa de um codificador de hardware (NVENC em GPUs NVIDIA, VideoToolbox no macOS); nenhum foi encontrado neste computador, e o Toma ainda não tem codificador H.265 por software. Escolha H.264 ou ProRes.
+	Resize floating panel	Redimensionar painel flutuante
+	DirectX 12 only	Somente DirectX 12
+	software rendering	renderização por software
+	integrated GPU	GPU integrada
+	Opens in your web browser: {url}	Abre no seu navegador: {url}
