@@ -3638,3 +3638,152 @@
 	Toggle Color Grading Section	Przełącz sekcję korekcji kolorów
 	Color Grading Section	Sekcja korekcji kolorów
 	Read Video Scopes	Odczytaj wskaźniki wideo
+	1 frame ({seconds} s)	1 klatka ({seconds} s)
+	A range marker needs a positive duration	Znacznik zakresu wymaga dodatniego czasu trwania
+	Add Custom Color	Dodaj własny kolor
+	Add Track	Dodaj ścieżkę
+	Add and apply	Dodaj i zastosuj
+	Add color	Dodaj kolor
+	Add custom color	Dodaj własny kolor
+	Add custom color…	Dodaj własny kolor…
+	Audio Names	Nazwy audio
+	Author	Autor
+	Caption Export Settings	Ustawienia eksportu napisów
+	Caption Track	Ścieżka napisów
+	Change Sequence Settings	Zmień ustawienia sekwencji
+	Change the sequence to match the clip's settings?	Zmienić sekwencję, aby pasowała do ustawień klipu?
+	Chapter	Rozdział
+	Chapter Marker	Znacznik rozdziału
+	Check for Updates…	Sprawdź aktualizacje…
+	Choose Color…	Wybierz kolor…
+	Choose color with system picker	Wybierz kolor systemowym próbnikiem
+	Clip Mismatch Warning	Ostrzeżenie o niezgodności klipu
+	Clip: {settings}	Klip: {settings}
+	Color picker	Próbnik kolorów
+	Color selected markers	Pokoloruj zaznaczone znaczniki
+	Comment Marker	Znacznik komentarza
+	Copy of the project saved to {path}	Kopię projektu zapisano w {path}
+	Cube LUT	Cube LUT
+	Custom Color…	Własny kolor…
+	Delete Clips	Usuń klipy
+	Delete Marker	Usuń znacznik
+	Delete Track	Usuń ścieżkę
+	Delete selected markers	Usuń zaznaczone znaczniki
+	Desktop's own	Systemowe
+	Edit Custom Color	Edytuj własny kolor
+	Edit Marker	Edytuj znacznik
+	Edit Marker…	Edytuj znacznik…
+	Edit color	Edytuj kolor
+	Editing or removing a swatch leaves assigned colors unchanged.	Edycja lub usunięcie próbki nie zmienia już przypisanych kolorów.
+	Enter a positive duration within the supported speed range.	Wpisz dodatni czas trwania w obsługiwanym zakresie prędkości.
+	Enter a valid HH:MM:SS:FF timecode	Wpisz prawidłowy kod czasowy HH:MM:SS:FF
+	Enter a valid HTTP or HTTPS URL without credentials	Wpisz prawidłowy adres HTTP lub HTTPS bez danych logowania
+	Enter six hex digits, for example FF80C0.	Wpisz sześć cyfr szesnastkowych, na przykład FF80C0.
+	Export .cube…	Eksportuj .cube…
+	Exported {path} as {format}, from its file extension	Wyeksportowano {path} jako {format}, na podstawie rozszerzenia pliku
+	Exported {path}; not in the LUT: {effects}	Wyeksportowano {path}; poza LUT: {effects}
+	Flash Cue Point	Punkt Flash Cue
+	From preset file:	Z pliku ustawień:
+	Full Screen Program Monitor	Monitor programu na pełnym ekranie
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 10 Mbps, loudness normalized to −14 LUFS	H.264 pionowo 9:16, skalowane do wypełnienia, VBR 1 przebieg, 10 Mb/s, głośność znormalizowana do −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 12 Mbps, loudness normalized to −14 LUFS	H.264 pionowo 9:16, skalowane do wypełnienia, VBR 1 przebieg, 12 Mb/s, głośność znormalizowana do −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 8 Mbps, loudness normalized to −14 LUFS	H.264 pionowo 9:16, skalowane do wypełnienia, VBR 1 przebieg, 8 Mb/s, głośność znormalizowana do −14 LUFS
+	Hex	Hex
+	Hex color	Kolor hex
+	Highlight Balance	Balans świateł
+	Highlight Hue	Barwa świateł
+	Highlight Level	Poziom świateł
+	Highlight Softness	Miękkość świateł
+	Import media	Importuj multimedia
+	Imported {n} preset(s)	Zaimportowano ustawienia: {n}
+	Imported {n} preset(s); not imported: {error}	Zaimportowano ustawienia: {n}; nie zaimportowano: {error}
+	Imported {n} preset(s); {skipped} skipped	Zaimportowano ustawienia: {n}; pominięto: {skipped}
+	Imported {n} preset(s); {warnings} with unsupported parameters	Zaimportowano ustawienia: {n}; z nieobsługiwanymi parametrami: {warnings}
+	Instagram Reels 1080×1920	Instagram Reels 1080×1920
+	Keep Existing Settings	Zachowaj obecne ustawienia
+	Key Out Brights	Kluczuj jasne obszary
+	Looks for a newer Toma release and offers to update.	Szuka nowszego wydania Toma i proponuje aktualizację.
+	MP3	MP3
+	MP3 48 kHz 320 kbps	MP3 48 kHz 320 kb/s
+	MPEG audio (.mp3), joint stereo 48 kHz at 320 kbps	Dźwięk MPEG (.mp3), joint stereo 48 kHz, 320 kb/s
+	Main Menu	Menu główne
+	Manage Colors	Zarządzaj kolorami
+	Manage Colors…	Zarządzaj kolorami…
+	Marker changed or was removed. Reopen it to continue.	Znacznik został zmieniony lub usunięty. Otwórz go ponownie, aby kontynuować.
+	Marker owner is unavailable	Właściciel znacznika jest niedostępny
+	Maximize	Maksymalizuj
+	Midtone Balance	Balans półtonów
+	Midtone Hue	Barwa półtonów
+	Midtone Level	Poziom półtonów
+	Minimize	Minimalizuj
+	New project	Nowy projekt
+	Next	Następny
+	No markers	Brak znaczników
+	No matching markers	Brak pasujących znaczników
+	No presets folder: the app has no data directory	Brak folderu ustawień: aplikacja nie ma katalogu danych
+	No saved colors	Brak zapisanych kolorów
+	No sequence open	Nie otwarto sekwencji
+	No source clip open	Nie otwarto klipu źródłowego
+	Nodalia	Nodalia
+	Notes	Notatki
+	Open Link	Otwórz link
+	Open Presets Folder	Otwórz folder ustawień
+	Open project…	Otwórz projekt…
+	Open-source video editing in pure Rust.	Otwartoźródłowy montaż wideo w czystym Ruście.
+	Opens this address in your web browser	Otwiera ten adres w przeglądarce
+	Preset library is up to date	Biblioteka ustawień jest aktualna
+	Preset library updated	Zaktualizowano bibliotekę ustawień
+	Preset library updated: {imported} loaded, {removed} removed	Zaktualizowano bibliotekę ustawień: wczytano {imported}, usunięto {removed}
+	Previous	Poprzedni
+	Project Colors	Kolory projektu
+	Project saved to {path}	Projekt zapisano w {path}
+	Range marker	Znacznik zakresu
+	Recent projects	Ostatnie projekty
+	Remove saved color	Usuń zapisany kolor
+	Replace	Zastąp
+	Replace File	Zastąp plik
+	Responsive Design – Time remaps the graphic's layer keyframes; clip effects like Opacity and Motion keep media time	Projekt responsywny – Czas przemapowuje klatki kluczowe warstw grafiki; efekty klipu, takie jak Krycie i Ruch, zachowują czas multimediów
+	Save color	Zapisz kolor
+	Scan Presets Folder	Przeskanuj folder ustawień
+	Search markers	Szukaj znaczników
+	Search name, notes, author	Szukaj nazwy, notatek, autora
+	Segmentation Marker	Znacznik segmentacji
+	Select all	Zaznacz wszystko
+	Select all visible markers	Zaznacz wszystkie widoczne znaczniki
+	Select one clip (or a linked clip) in the Timeline, or one item in the Project panel, to rename	Aby zmienić nazwę, zaznacz jeden klip (lub klip połączony) na osi czasu albo jeden element w panelu Projekt
+	Sequence: {name}	Sekwencja: {name}
+	Sequence: {settings}	Sekwencja: {settings}
+	Set Work Area Bar In Point	Ustaw punkt wejścia paska obszaru roboczego
+	Set Work Area Bar Out Point	Ustaw punkt wyjścia paska obszaru roboczego
+	Set as Default Transition	Ustaw jako przejście domyślne
+	Shadow Balance	Balans cieni
+	Shadow Hue	Barwa cieni
+	Shadow Level	Poziom cieni
+	Shadow Softness	Miękkość cieni
+	Shadow Threshold	Próg cieni
+	Show Audio Names	Pokaż nazwy audio
+	Show Video Names	Pokaż nazwy wideo
+	Source In/Out is only 1 frame. Choose Entire Source to export the whole sequence.	Wejście/wyjście źródła ma tylko 1 klatkę. Wybierz Całe źródło, aby wyeksportować całą sekwencję.
+	Source: {name}	Źródło: {name}
+	Source: {name} (shared source markers)	Źródło: {name} (wspólne znaczniki źródła)
+	Strikethrough	Przekreślenie
+	System color picker unavailable: {error}	Systemowy próbnik kolorów jest niedostępny: {error}
+	The control server is disabled: TOMA_CONTROL_TOKEN must contain 64 random hex characters (see docs/control-protocol.md)	Serwer sterowania jest wyłączony: TOMA_CONTROL_TOKEN musi zawierać 64 losowe znaki szesnastkowe (zobacz docs/control-protocol.md)
+	This clip does not match the sequence settings.	Ten klip nie pasuje do ustawień sekwencji.
+	This preference is not available yet.	Ta opcja nie jest jeszcze dostępna.
+	Three-Way Color Corrector	Trójdrożna korekcja kolorów
+	Ticked attributes are removed from the selected clips.	Zaznaczone atrybuty zostaną usunięte z wybranych klipów.
+	TikTok 1080×1920	TikTok 1080×1920
+	Time Format	Format czasu
+	Time is outside the supported range	Czas jest poza obsługiwanym zakresem
+	Tonal Range	Zakres tonalny
+	URL	URL
+	Video Names	Nazwy wideo
+	Web Link	Link internetowy
+	When enabled, GIF transparency is on/off: alpha below 128 is transparent; 128 and above is opaque.	Po włączeniu przezroczystość GIF jest tylko włączona lub wyłączona: alfa poniżej 128 jest przezroczysta, od 128 nieprzezroczysta.
+	Window Controls	Przyciski okna
+	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	{count} selected	Zaznaczono: {count}
+	{frames} frames ({seconds} s)	{frames} klatek ({seconds} s)
+	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} już istnieje, więc nic nie wyeksportowano. Aby go zastąpić, wybierz go w oknie zapisu.
+	“{file}” already exists in “{folder}”. Do you want to replace it?	„{file}” już istnieje w „{folder}”. Czy chcesz go zastąpić?

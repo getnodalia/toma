@@ -3740,3 +3740,60 @@
 	Toggle Color Grading Section	Переключить раздел грейдинга
 	Color Grading Section	Раздел грейдинга
 	Read Video Scopes	Считать данные видеоскопов
+	Caption Track	Дорожка субтитров
+	Copy of the project saved to {path}	Копия проекта сохранена в {path}
+	Cube LUT	Cube LUT
+	Delete Clips	Удалить клипы
+	Desktop's own	Системные
+	Export .cube…	Экспорт .cube…
+	Exported {path}; not in the LUT: {effects}	Экспортировано {path}; не вошло в LUT: {effects}
+	From preset file:	Из файла пресетов:
+	Full Screen Program Monitor	Монитор программы на весь экран
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 10 Mbps, loudness normalized to −14 LUFS	H.264, вертикально 9:16, с заполнением кадра, VBR 1 проход, 10 Мбит/с, громкость нормализована до −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 12 Mbps, loudness normalized to −14 LUFS	H.264, вертикально 9:16, с заполнением кадра, VBR 1 проход, 12 Мбит/с, громкость нормализована до −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 8 Mbps, loudness normalized to −14 LUFS	H.264, вертикально 9:16, с заполнением кадра, VBR 1 проход, 8 Мбит/с, громкость нормализована до −14 LUFS
+	Highlight Balance	Баланс светов
+	Highlight Hue	Тон светов
+	Highlight Level	Уровень светов
+	Highlight Softness	Мягкость светов
+	Import media	Импорт медиаданных
+	Imported {n} preset(s)	Импортировано пресетов: {n}
+	Imported {n} preset(s); not imported: {error}	Импортировано пресетов: {n}; не импортировано: {error}
+	Imported {n} preset(s); {skipped} skipped	Импортировано пресетов: {n}; пропущено: {skipped}
+	Imported {n} preset(s); {warnings} with unsupported parameters	Импортировано пресетов: {n}; с неподдерживаемыми параметрами: {warnings}
+	Instagram Reels 1080×1920	Instagram Reels 1080×1920
+	Key Out Brights	Убрать светлые области
+	MP3	MP3
+	MP3 48 kHz 320 kbps	MP3 48 кГц 320 кбит/с
+	MPEG audio (.mp3), joint stereo 48 kHz at 320 kbps	Аудио MPEG (.mp3), joint stereo 48 кГц, 320 кбит/с
+	Main Menu	Главное меню
+	Maximize	Развернуть
+	Midtone Balance	Баланс средних тонов
+	Midtone Hue	Тон средних тонов
+	Midtone Level	Уровень средних тонов
+	Minimize	Свернуть
+	New project	Новый проект
+	No presets folder: the app has no data directory	Нет папки пресетов: у приложения нет каталога данных
+	Nodalia	Nodalia
+	Open Presets Folder	Открыть папку пресетов
+	Open project…	Открыть проект…
+	Open-source video editing in pure Rust.	Видеомонтаж с открытым исходным кодом на чистом Rust.
+	Preset library is up to date	Библиотека пресетов актуальна
+	Preset library updated	Библиотека пресетов обновлена
+	Preset library updated: {imported} loaded, {removed} removed	Библиотека пресетов обновлена: загружено {imported}, удалено {removed}
+	Project saved to {path}	Проект сохранён в {path}
+	Recent projects	Недавние проекты
+	Scan Presets Folder	Просканировать папку пресетов
+	Shadow Balance	Баланс теней
+	Shadow Hue	Тон теней
+	Shadow Level	Уровень теней
+	Shadow Softness	Мягкость теней
+	Shadow Threshold	Порог теней
+	This preference is not available yet.	Этот параметр пока недоступен.
+	Three-Way Color Corrector	Трёхканальный корректор цвета
+	Ticked attributes are removed from the selected clips.	Отмеченные атрибуты удаляются из выбранных клипов.
+	TikTok 1080×1920	TikTok 1080×1920
+	Time Format	Формат времени
+	Tonal Range	Тональный диапазон
+	Window Controls	Кнопки окна
+	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
