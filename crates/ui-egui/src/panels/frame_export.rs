@@ -139,16 +139,17 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
                     d.depth = 8;
                 }
                 ui.label(tl!("Depth:"));
-                let combo = craft_ui::ComboBox::from_id_salt("frame-export-depth").width(292.0).selected_text(tlf!("{bits} Bit", bits = d.depth)).show_ui(ui, |ui| {
-                    for bits in [8, 16] {
-                        let r = ui.add_enabled(bits == 8 || d.format.supports_16(), egui::Button::selectable(d.depth == bits, tlf!("{bits} Bit", bits)));
-                        if r.clicked() {
-                            d.depth = bits;
+                let combo =
+                    craft_ui::ComboBox::from_id_salt("frame-export-depth").width(292.0).selected_text(tlf!("{bits} Bit", bits = d.depth)).show_ui(ui, |ui| {
+                        for bits in [8, 16] {
+                            let r = ui.add_enabled(bits == 8 || d.format.supports_16(), egui::Button::selectable(d.depth == bits, tlf!("{bits} Bit", bits)));
+                            if r.clicked() {
+                                d.depth = bits;
+                            }
+                            elems.push((format!("exportFrame.depth.{bits}"), r.rect, format!("{bits} Bit")));
                         }
-                        elems.push((format!("exportFrame.depth.{bits}"), r.rect, format!("{bits} Bit")));
-                    }
-                    ui.min_rect()
-                });
+                        ui.min_rect()
+                    });
                 if let Some(rect) = combo.inner {
                     popup_rects.push(rect);
                 }
@@ -201,7 +202,12 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
             }
             ui.add_space(12.0);
             ui.separator();
-            ui.label(tlf!("{kind} — {width} × {height}", kind = if d.target.source { tl!("Source") } else { tl!("Program") }, width = d.target.width, height = d.target.height));
+            ui.label(tlf!(
+                "{kind} — {width} × {height}",
+                kind = if d.target.source { tl!("Source") } else { tl!("Program") },
+                width = d.target.width,
+                height = d.target.height
+            ));
             ui.label(&d.target.name);
             let r = ui.label(tlf!("Frame time: {time}", time = d.timecode));
             elems.push(("exportFrame.timecode".into(), r.rect, d.timecode.clone()));
