@@ -262,7 +262,8 @@ fn hash(f: &[u8]) -> u64 {
     h
 }
 
-/// Recorded from the local reader on `main` 1ec744c2.
+/// Recorded from the local reader on `main` 1ec744c2. The two monochrome rows were re-recorded for this app's
+/// synthetic camera name ("Toma Synthetic"), which the hash covers through `Info`.
 const EXPECTED: &[(&str, u64)] = &[
     ("bayer16 strips", 0x5f89dc4f74daf2a2),
     ("bayer12 big-endian preview subifd bggr", 0xa95e6716ea514df7),
@@ -272,8 +273,8 @@ const EXPECTED: &[(&str, u64)] = &[
     ("linearization table", 0xd336eb35864a9ddf),
     ("linear raw rgb16", 0xa0cd05e7e7d6f791),
     ("linear raw rgb lossy jpeg", 0xa8f6a8ab5202cdb2),
-    ("monochrome lossy jpeg", 0x7a8bb3ff8d32ae49),
-    ("monochrome 16", 0x284d958a1f4c71ff),
+    ("monochrome lossy jpeg", 0xa578035009559170),
+    ("monochrome 16", 0x949f871f8c2511fa),
     ("6x6 cfa", 0xbee3e94bf8e25f34),
     ("cinemadng tags tiles big-endian", 0xedf973d5ac4e41b7),
     ("opcode lists", 0x0678fa3703acda03),
