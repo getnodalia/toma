@@ -82,7 +82,7 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
         crate::titlebar::drag_area(ui, rect);
     }
     let cy = rect.center().y;
-    let mut x = rect.min.x + if app.integrated_titlebar { 80.0 } else { crate::theme::ISLAND_GAP + 2.0 };
+    let mut x = rect.min.x + if app.integrated_titlebar { nodalia_theme::titlebar::MAC_LIGHTS } else { crate::theme::ISLAND_GAP + 2.0 };
     let square = |x: f32| Rect::from_min_size(pos2(x, cy - BUTTON / 2.0), vec2(BUTTON, BUTTON));
     main_menu(app, ui, square(x));
     x += BUTTON + 4.0;
