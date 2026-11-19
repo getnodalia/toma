@@ -3712,3 +3712,135 @@
 	Toggle Color Grading Section	Attiva/disattiva sezione di gradazione colore
 	Color Grading Section	Sezione di gradazione colore
 	Read Video Scopes	Leggi oscilloscopi video
+	1 frame ({seconds} s)	1 fotogramma ({seconds} s)
+	AV1 needs a hardware encoder; none was found on this machine, and Toma has no software AV1 encoder yet.	AV1 richiede un codificatore hardware; su questo computer non ne è stato trovato nessuno e Toma non ha ancora un codificatore AV1 software.
+	Add Track	Aggiungi traccia
+	Caption Export Settings	Impostazioni di esportazione dei sottotitoli
+	Caption Track	Traccia sottotitoli
+	Change Sequence Settings	Modifica impostazioni sequenza
+	Change the sequence to match the clip's settings?	Modificare la sequenza per farla corrispondere alle impostazioni della clip?
+	Check for Updates…	Verifica aggiornamenti…
+	Clear History	Cancella cronologia
+	Clip Mismatch Warning	Avviso di mancata corrispondenza della clip
+	Clip: {settings}	Clip: {settings}
+	Copy of the project saved to {path}	Copia del progetto salvata in {path}
+	Cube LUT	LUT Cube
+	Delete Clips	Elimina clip
+	Delete Redoable Actions	Elimina azioni ripristinabili
+	Delete Track	Elimina traccia
+	Delete the dimmed actions after the current state? They cannot be redone.	Eliminare le azioni attenuate dopo lo stato attuale? Non potranno essere ripristinate.
+	Desktop's own	Quelli del desktop
+	Duration: {tc}	Durata: {tc}
+	End: {tc}	Fine: {tc}
+	Export .cube…	Esporta .cube…
+	Exported {path} as {format}, from its file extension	{path} esportato come {format}, in base all'estensione del file
+	Exported {path}; not in the LUT: {effects}	{path} esportato; non incluso nella LUT: {effects}
+	From preset file:	Da file di predefiniti:
+	Full Screen Program Monitor	Monitor programma a schermo intero
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 10 Mbps, loudness normalized to −14 LUFS	H.264 verticale 9:16, ridimensionato per riempire, VBR 1 passaggio, 10 Mbps, loudness normalizzata a −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 12 Mbps, loudness normalized to −14 LUFS	H.264 verticale 9:16, ridimensionato per riempire, VBR 1 passaggio, 12 Mbps, loudness normalizzata a −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 8 Mbps, loudness normalized to −14 LUFS	H.264 verticale 9:16, ridimensionato per riempire, VBR 1 passaggio, 8 Mbps, loudness normalizzata a −14 LUFS
+	Hide Others	Nascondi altre
+	Hide Toma	Nascondi Toma
+	Highlight Balance	Bilanciamento luci
+	Highlight Hue	Tonalità luci
+	Highlight Level	Livello luci
+	Highlight Softness	Morbidezza luci
+	Import media	Importa media
+	Imported {n} preset(s)	{n} predefiniti importati
+	Imported {n} preset(s); not imported: {error}	{n} predefiniti importati; non importati: {error}
+	Imported {n} preset(s); {skipped} skipped	{n} predefiniti importati; {skipped} saltati
+	Imported {n} preset(s); {warnings} with unsupported parameters	{n} predefiniti importati; {warnings} con parametri non supportati
+	Instagram Reels 1080×1920	Instagram Reels 1080×1920
+	Keep Existing Settings	Mantieni impostazioni esistenti
+	Key Out Brights	Rimuovi zone chiare
+	Looks for a newer Toma release and offers to update.	Cerca una versione più recente di Toma e propone di aggiornare.
+	MP3	MP3
+	MP3 48 kHz 320 kbps	MP3 48 kHz 320 kbps
+	MPEG audio (.mp3), joint stereo 48 kHz at 320 kbps	Audio MPEG (.mp3), joint stereo 48 kHz a 320 kbps
+	Main Menu	Menu principale
+	Maximize	Ingrandisci
+	Midtone Balance	Bilanciamento toni medi
+	Midtone Hue	Tonalità toni medi
+	Midtone Level	Livello toni medi
+	Minimize	Riduci a icona
+	New project	Nuovo progetto
+	No presets folder: the app has no data directory	Nessuna cartella dei predefiniti: l'app non ha una cartella dati
+	Nodalia	Nodalia
+	Open Presets Folder	Apri cartella dei predefiniti
+	Open project…	Apri progetto…
+	Open-source video editing in pure Rust.	Montaggio video open source in puro Rust.
+	Preset library is up to date	La libreria dei predefiniti è aggiornata
+	Preset library updated	Libreria dei predefiniti aggiornata
+	Preset library updated: {imported} loaded, {removed} removed	Libreria dei predefiniti aggiornata: {imported} caricati, {removed} rimossi
+	Project saved to {path}	Progetto salvato in {path}
+	Recent projects	Progetti recenti
+	Responsive Design – Time remaps the graphic's layer keyframes; clip effects like Opacity and Motion keep media time	Responsive Design – Tempo rimappa i fotogrammi chiave dei livelli della grafica; gli effetti della clip come Opacità e Movimento mantengono il tempo del media
+	Scan Presets Folder	Analizza cartella dei predefiniti
+	Sequence: {settings}	Sequenza: {settings}
+	Set Work Area Bar In Point	Imposta attacco della barra dell'area di lavoro
+	Set Work Area Bar Out Point	Imposta stacco della barra dell'area di lavoro
+	Set as Default Transition	Imposta come transizione predefinita
+	Shadow Balance	Bilanciamento ombre
+	Shadow Hue	Tonalità ombre
+	Shadow Level	Livello ombre
+	Shadow Softness	Morbidezza ombre
+	Shadow Threshold	Soglia ombre
+	Source In/Out is only 1 frame. Choose Entire Source to export the whole sequence.	L'attacco/stacco della sorgente è di 1 solo fotogramma. Scegli Intera sorgente per esportare tutta la sequenza.
+	Start: {tc}	Inizio: {tc}
+	This clip does not match the sequence settings.	Questa clip non corrisponde alle impostazioni della sequenza.
+	This preference is not available yet.	Questa preferenza non è ancora disponibile.
+	Three-Way Color Corrector	Correttore colore a tre vie
+	Ticked attributes are removed from the selected clips.	Gli attributi selezionati vengono rimossi dalle clip selezionate.
+	TikTok 1080×1920	TikTok 1080×1920
+	Time Format	Formato ora
+	Tonal Range	Gamma tonale
+	Transparency Grid	Griglia di trasparenza
+	When enabled, GIF transparency is on/off: alpha below 128 is transparent; 128 and above is opaque.	Se attivo, la trasparenza GIF è attiva o disattiva: un alfa sotto 128 è trasparente, da 128 in su è opaco.
+	Window Controls	Controlli della finestra
+	Work Area Bar	Barra dell'area di lavoro
+	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	no Korean font is installed on this system; the interface stays in English	nessun font coreano è installato su questo sistema; l'interfaccia resta in inglese
+	{frames} frames ({seconds} s)	{frames} fotogrammi ({seconds} s)
+	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} esiste già, quindi non è stato esportato nulla. Per sostituirlo, sceglilo nella finestra di salvataggio.
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	Importati {n} preset; {skipped} saltati, {warnings} con parametri non supportati
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Parte di Nodalia. MIT OR Apache-2.0. Caratteri: Inter, Noto Serif e JetBrains Mono (SIL OFL 1.1). Icone: Nodalia Design (MIT).
+	Add pause	Aggiungi pausa
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Aggiungi pausa inserisce [pause 1s]. Cambia il numero per una pausa più lunga o più breve, ad es. [pause 500ms] o [pause 2s].
+	Add to timeline	Aggiungi alla timeline
+	Basic voices (built in)	Voci di base (integrate)
+	Cannot check export destination: {e}	Impossibile controllare la destinazione dell’esportazione: {e}
+	Depth:	Profondità:
+	Download	Scarica
+	Download natural voices ({mb} MB)…	Scarica le voci naturali ({mb} MB)…
+	Download of the natural voices failed: {e}	Download delle voci naturali non riuscito: {e}
+	Download the natural voices? {mb} MB, once.	Scaricare le voci naturali? {mb} MB, una sola volta.
+	Editing the selected narration	Modifica della narrazione selezionata
+	Exported frame to {path}	Fotogramma esportato in {path}
+	Extra high	Altissimo
+	Extra low	Bassissimo
+	Format:	Formato:
+	Frame time: {time}	Tempo del fotogramma: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Da {source} e github.com/cmusphinx/cmudict (pronunce). Licenza: {licence}. Ogni file viene controllato rispetto a uno SHA-256 fissato.
+	Hear this voice	Ascolta questa voce
+	Import into project	Importa nel progetto
+	Keep existing file	Mantieni il file esistente
+	Narration added on an audio track	Narrazione aggiunta su una traccia audio
+	Narration added on {track}	Narrazione aggiunta su {track}
+	Narration updated	Narrazione aggiornata
+	Natural voices	Voci naturali
+	Natural voices installed	Voci naturali installate
+	Natural voices need a one-time download.	Le voci naturali richiedono un download una tantum.
+	New narration	Nuova narrazione
+	Pace	Ritmo
+	Path:	Percorso:
+	Synthesizing narration…	Sintesi della narrazione…
+	Synthesizing…	Sintesi in corso…
+	Text to Speech: {e}	Sintesi vocale: {e}
+	This file already exists: {path}	Questo file esiste già: {path}
+	Type what you want the voice to say	Scrivi ciò che la voce deve dire
+	Vocal pitch	Tono della voce
+	{bits} Bit	{bits} bit
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (download)
+	H.265 (HEVC) needs a hardware encoder (NVENC on NVIDIA GPUs, VideoToolbox on macOS); none was found on this machine, and Toma has no software H.265 encoder yet. Choose H.264 or ProRes instead.	H.265 (HEVC) richiede un encoder hardware (NVENC sulle GPU NVIDIA, VideoToolbox su macOS); non ne è stato trovato nessuno su questo computer e Toma non ha ancora un encoder H.265 software. Scegli invece H.264 o ProRes.

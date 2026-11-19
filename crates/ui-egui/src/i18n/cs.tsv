@@ -3650,3 +3650,199 @@
 	Toggle Color Grading Section	Přepnout sekci barevných úprav
 	Color Grading Section	Sekce barevných úprav
 	Read Video Scopes	Načíst videoskopy
+	1 frame ({seconds} s)	1 snímek ({seconds} s)
+	A range marker needs a positive duration	Značka rozsahu potřebuje kladnou délku
+	Add Custom Color	Přidat vlastní barvu
+	Add Track	Přidat stopu
+	Add and apply	Přidat a použít
+	Add color	Přidat barvu
+	Add custom color	Přidat vlastní barvu
+	Add custom color…	Přidat vlastní barvu…
+	Audio Names	Názvy zvuku
+	Author	Autor
+	Caption Export Settings	Nastavení exportu titulků
+	Caption Track	Stopa titulků
+	Change Sequence Settings	Změnit nastavení sekvence
+	Change the sequence to match the clip's settings?	Změnit sekvenci podle nastavení klipu?
+	Chapter	Kapitola
+	Chapter Marker	Značka kapitoly
+	Choose Color…	Vybrat barvu…
+	Choose color with system picker	Vybrat barvu systémovým výběrem
+	Clip Mismatch Warning	Upozornění na neshodu klipu
+	Clip: {settings}	Klip: {settings}
+	Color picker	Výběr barvy
+	Color selected markers	Obarvit vybrané značky
+	Comment Marker	Značka komentáře
+	Copy of the project saved to {path}	Kopie projektu uložena do {path}
+	Cube LUT	Cube LUT
+	Custom Color…	Vlastní barva…
+	Delete Clips	Odstranit klipy
+	Delete Marker	Odstranit značku
+	Delete Track	Odstranit stopu
+	Delete selected markers	Odstranit vybrané značky
+	Desktop's own	Vlastní pro plochu
+	Edit Custom Color	Upravit vlastní barvu
+	Edit Marker	Upravit značku
+	Edit Marker…	Upravit značku…
+	Edit color	Upravit barvu
+	Editing or removing a swatch leaves assigned colors unchanged.	Úprava nebo odstranění vzorku nemění již přiřazené barvy.
+	Enter a positive duration within the supported speed range.	Zadejte kladnou délku v podporovaném rozsahu rychlosti.
+	Enter a valid HH:MM:SS:FF timecode	Zadejte platný časový kód HH:MM:SS:FF
+	Enter a valid HTTP or HTTPS URL without credentials	Zadejte platnou adresu HTTP nebo HTTPS bez přihlašovacích údajů
+	Enter six hex digits, for example FF80C0.	Zadejte šest šestnáctkových číslic, například FF80C0.
+	Export .cube…	Exportovat .cube…
+	Exported {path} as {format}, from its file extension	{path} exportováno jako {format} podle přípony souboru
+	Exported {path}; not in the LUT: {effects}	{path} exportováno; mimo LUT: {effects}
+	Flash Cue Point	Bod Flash Cue
+	From preset file:	Ze souboru přednastavení:
+	Full Screen Program Monitor	Monitor programu na celou obrazovku
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 10 Mbps, loudness normalized to −14 LUFS	H.264 na výšku 9:16, škálováno na vyplnění, VBR 1 průchod, 10 Mb/s, hlasitost normalizována na −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 12 Mbps, loudness normalized to −14 LUFS	H.264 na výšku 9:16, škálováno na vyplnění, VBR 1 průchod, 12 Mb/s, hlasitost normalizována na −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 8 Mbps, loudness normalized to −14 LUFS	H.264 na výšku 9:16, škálováno na vyplnění, VBR 1 průchod, 8 Mb/s, hlasitost normalizována na −14 LUFS
+	Hex	Hex
+	Hex color	Barva v hex
+	Highlight Balance	Vyvážení světel
+	Highlight Hue	Odstín světel
+	Highlight Level	Úroveň světel
+	Highlight Softness	Měkkost světel
+	Import media	Importovat média
+	Imported {n} preset(s)	Importováno přednastavení: {n}
+	Imported {n} preset(s); not imported: {error}	Importováno přednastavení: {n}; neimportováno: {error}
+	Imported {n} preset(s); {skipped} skipped	Importováno přednastavení: {n}; přeskočeno: {skipped}
+	Imported {n} preset(s); {warnings} with unsupported parameters	Importováno přednastavení: {n}; s nepodporovanými parametry: {warnings}
+	Instagram Reels 1080×1920	Instagram Reels 1080×1920
+	Keep Existing Settings	Ponechat stávající nastavení
+	Key Out Brights	Vyklíčovat světlé oblasti
+	MP3	MP3
+	MP3 48 kHz 320 kbps	MP3 48 kHz 320 kb/s
+	MPEG audio (.mp3), joint stereo 48 kHz at 320 kbps	Zvuk MPEG (.mp3), joint stereo 48 kHz, 320 kb/s
+	Main Menu	Hlavní nabídka
+	Manage Colors	Spravovat barvy
+	Manage Colors…	Spravovat barvy…
+	Marker changed or was removed. Reopen it to continue.	Značka se změnila nebo byla odstraněna. Pokračujte jejím opětovným otevřením.
+	Marker owner is unavailable	Vlastník značky není k dispozici
+	Maximize	Maximalizovat
+	Midtone Balance	Vyvážení středních tónů
+	Midtone Hue	Odstín středních tónů
+	Midtone Level	Úroveň středních tónů
+	Minimize	Minimalizovat
+	New project	Nový projekt
+	Next	Další
+	No markers	Žádné značky
+	No matching markers	Žádné odpovídající značky
+	No presets folder: the app has no data directory	Žádná složka přednastavení: aplikace nemá datový adresář
+	No saved colors	Žádné uložené barvy
+	No sequence open	Není otevřena žádná sekvence
+	No source clip open	Není otevřen žádný zdrojový klip
+	Nodalia	Nodalia
+	Notes	Poznámky
+	Open Link	Otevřít odkaz
+	Open Presets Folder	Otevřít složku přednastavení
+	Open project…	Otevřít projekt…
+	Open-source video editing in pure Rust.	Open-source střih videa v čistém Rustu.
+	Opens this address in your web browser	Otevře tuto adresu ve webovém prohlížeči
+	Preset library is up to date	Knihovna přednastavení je aktuální
+	Preset library updated	Knihovna přednastavení aktualizována
+	Preset library updated: {imported} loaded, {removed} removed	Knihovna přednastavení aktualizována: načteno {imported}, odstraněno {removed}
+	Previous	Předchozí
+	Project Colors	Barvy projektu
+	Project saved to {path}	Projekt uložen do {path}
+	Range marker	Značka rozsahu
+	Recent projects	Nedávné projekty
+	Remove saved color	Odebrat uloženou barvu
+	Replace	Nahradit
+	Replace File	Nahradit soubor
+	Responsive Design – Time remaps the graphic's layer keyframes; clip effects like Opacity and Motion keep media time	Responzivní design – čas přemapuje klíčové snímky vrstev grafiky; efekty klipu jako Neprůhlednost a Pohyb si ponechají čas média
+	Save color	Uložit barvu
+	Scan Presets Folder	Prohledat složku přednastavení
+	Search markers	Hledat značky
+	Search name, notes, author	Hledat název, poznámky, autora
+	Segmentation Marker	Segmentační značka
+	Select all	Vybrat vše
+	Select all visible markers	Vybrat všechny viditelné značky
+	Select one clip (or a linked clip) in the Timeline, or one item in the Project panel, to rename	Pro přejmenování vyberte jeden klip (nebo propojený klip) na časové ose nebo jednu položku v panelu Projekt
+	Sequence: {name}	Sekvence: {name}
+	Sequence: {settings}	Sekvence: {settings}
+	Set as Default Transition	Nastavit jako výchozí přechod
+	Shadow Balance	Vyvážení stínů
+	Shadow Hue	Odstín stínů
+	Shadow Level	Úroveň stínů
+	Shadow Softness	Měkkost stínů
+	Shadow Threshold	Práh stínů
+	Show Audio Names	Zobrazit názvy zvuku
+	Show Video Names	Zobrazit názvy videa
+	Source In/Out is only 1 frame. Choose Entire Source to export the whole sequence.	Vstup/výstup zdroje má jen 1 snímek. Chcete-li exportovat celou sekvenci, zvolte Celý zdroj.
+	Source: {name}	Zdroj: {name}
+	Source: {name} (shared source markers)	Zdroj: {name} (sdílené značky zdroje)
+	Strikethrough	Přeškrtnutí
+	System color picker unavailable: {error}	Systémový výběr barvy není k dispozici: {error}
+	The control server is disabled: TOMA_CONTROL_TOKEN must contain 64 random hex characters (see docs/control-protocol.md)	Řídicí server je vypnutý: TOMA_CONTROL_TOKEN musí obsahovat 64 náhodných šestnáctkových znaků (viz docs/control-protocol.md)
+	This clip does not match the sequence settings.	Tento klip neodpovídá nastavení sekvence.
+	This preference is not available yet.	Tato předvolba zatím není k dispozici.
+	Three-Way Color Corrector	Třícestný korektor barev
+	Ticked attributes are removed from the selected clips.	Zaškrtnuté atributy se z vybraných klipů odeberou.
+	TikTok 1080×1920	TikTok 1080×1920
+	Time Format	Formát času
+	Time is outside the supported range	Čas je mimo podporovaný rozsah
+	Tonal Range	Tónový rozsah
+	URL	URL
+	Video Names	Názvy videa
+	Web Link	Webový odkaz
+	When enabled, GIF transparency is on/off: alpha below 128 is transparent; 128 and above is opaque.	Je-li zapnuto, průhlednost GIF je jen zapnutá/vypnutá: alfa pod 128 je průhledná, od 128 výš neprůhledná.
+	Window Controls	Ovládací prvky okna
+	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	{count} selected	Vybráno: {count}
+	{frames} frames ({seconds} s)	{frames} snímků ({seconds} s)
+	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} již existuje, proto se nic neexportovalo. Chcete-li ho nahradit, vyberte ho v dialogu uložení.
+	“{file}” already exists in “{folder}”. Do you want to replace it?	„{file}“ již ve složce „{folder}“ existuje. Chcete ho nahradit?
+	Center at Cut	Vystředit na střihu
+	Start at Cut	Začít na střihu
+	End at Cut	Skončit na střihu
+	Custom Start	Vlastní začátek
+	In:	Vstup:
+	Marker Color:	Barva značky:
+	Options:	Možnosti:
+	Invalid duration: {error}	Neplatná doba trvání: {error}
+	Remove Custom Color	Odebrat vlastní barvu
+	Edit Markers	Upravit značky
+	Delete Markers	Odstranit značky
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	Importováno předvoleb: {n}; přeskočeno: {skipped}, s nepodporovanými parametry: {warnings}
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Součást Nodalia. MIT OR Apache-2.0. Písma: Inter, Noto Serif a JetBrains Mono (SIL OFL 1.1). Ikony: Nodalia Design (MIT).
+	Add pause	Přidat pauzu
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Přidat pauzu vloží [pause 1s]. Změňte číslo pro delší nebo kratší pauzu, např. [pause 500ms] nebo [pause 2s].
+	Add to timeline	Přidat na časovou osu
+	Basic voices (built in)	Základní hlasy (vestavěné)
+	Cannot check export destination: {e}	Cíl exportu nelze zkontrolovat: {e}
+	Depth:	Hloubka:
+	Download	Stáhnout
+	Download natural voices ({mb} MB)…	Stáhnout přirozené hlasy ({mb} MB)…
+	Download of the natural voices failed: {e}	Stažení přirozených hlasů se nezdařilo: {e}
+	Download the natural voices? {mb} MB, once.	Stáhnout přirozené hlasy? {mb} MB, jednorázově.
+	Editing the selected narration	Úprava vybraného komentáře
+	Exported frame to {path}	Snímek exportován do {path}
+	Extra high	Velmi vysoký
+	Extra low	Velmi nízký
+	Format:	Formát:
+	Frame time: {time}	Čas snímku: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Z {source} a github.com/cmusphinx/cmudict (výslovnost). Licence: {licence}. Každý soubor se kontroluje proti pevně určenému SHA-256.
+	Hear this voice	Poslechnout tento hlas
+	Import into project	Importovat do projektu
+	Keep existing file	Ponechat stávající soubor
+	Narration added on an audio track	Komentář přidán na zvukovou stopu
+	Narration added on {track}	Komentář přidán na {track}
+	Narration updated	Komentář aktualizován
+	Natural voices	Přirozené hlasy
+	Natural voices installed	Přirozené hlasy nainstalovány
+	Natural voices need a one-time download.	Přirozené hlasy vyžadují jednorázové stažení.
+	New narration	Nový komentář
+	Pace	Tempo
+	Path:	Cesta:
+	Synthesizing narration…	Syntéza komentáře…
+	Synthesizing…	Syntéza…
+	Text to Speech: {e}	Převod textu na řeč: {e}
+	This file already exists: {path}	Tento soubor již existuje: {path}
+	Type what you want the voice to say	Napište, co má hlas říct
+	Vocal pitch	Výška hlasu
+	{bits} Bit	{bits} bitů
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (stažení)

@@ -3685,3 +3685,170 @@
 	Toggle Color Grading Section	Aktifkan/Nonaktifkan Bagian Gradasi Warna
 	Color Grading Section	Bagian Gradasi Warna
 	Read Video Scopes	Baca Skop Video
+	0 fastest, 8 smallest	0 tercepat, 8 terkecil
+	1 frame ({seconds} s)	1 bingkai ({seconds} d)
+	A file dialog is already open	Dialog file sudah terbuka
+	AV1 needs a hardware encoder; none was found on this machine, and Toma has no software AV1 encoder yet.	AV1 memerlukan encoder perangkat keras; tidak ditemukan di komputer ini, dan Toma belum memiliki encoder AV1 perangkat lunak.
+	Add Track	Tambah Trek
+	An earlier start failed with the default graphics. Updating the graphics driver usually fixes this.	Peluncuran sebelumnya gagal dengan grafis bawaan. Memperbarui driver grafis biasanya mengatasi hal ini.
+	Caption Export Settings	Pengaturan Ekspor Teks
+	Caption Track	Trek Teks
+	Change Sequence Settings	Ubah Pengaturan Sekuens
+	Change the sequence to match the clip's settings?	Ubah sekuens agar cocok dengan pengaturan klip?
+	Check for Updates…	Periksa Pembaruan…
+	Clear History	Hapus Riwayat
+	Clip Mismatch Warning	Peringatan Ketidakcocokan Klip
+	Clip: {settings}	Klip: {settings}
+	Compression	Kompresi
+	Compression Level	Tingkat Kompresi
+	Copy of the project saved to {path}	Salinan proyek disimpan ke {path}
+	Couldn't open your web browser	Tidak dapat membuka peramban web Anda
+	Cube LUT	LUT Cube
+	Delete Clips	Hapus Klip
+	Delete Redoable Actions	Hapus Tindakan yang Dapat Diulang
+	Delete Track	Hapus Trek
+	Delete the dimmed actions after the current state? They cannot be redone.	Hapus tindakan yang diredupkan setelah status saat ini? Tindakan tersebut tidak dapat diulang.
+	Delete this preset	Hapus preset ini
+	Desktop's own	Bawaan desktop
+	Dock Panel	Tambatkan Panel
+	Docking Action	Tindakan Penambatan
+	Drag inward to round the corners	Seret ke dalam untuk membulatkan sudut
+	Duration: {tc}	Durasi: {tc}
+	End: {tc}	Akhir: {tc}
+	Export .cube…	Ekspor .cube…
+	Export the labels to a preset file…	Ekspor label ke file preset…
+	Exported {path} as {format}, from its file extension	{path} diekspor sebagai {format}, berdasarkan ekstensi filenya
+	Exported {path}; not in the LUT: {effects}	{path} diekspor; tidak ada di LUT: {effects}
+	FLAC	FLAC
+	FLAC (lossless)	FLAC (lossless)
+	FLAC 48 kHz 24-bit	FLAC 48 kHz 24-bit
+	FLAC, stereo 48 kHz 24-bit, lossless	FLAC, stereo 48 kHz 24-bit, lossless
+	From preset file:	Dari file preset:
+	Full Screen Program Monitor	Monitor Program Layar Penuh
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 10 Mbps, loudness normalized to −14 LUFS	H.264 potret 9:16, diskalakan untuk mengisi, VBR 1 lintasan, 10 Mbps, kenyaringan dinormalkan ke −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 12 Mbps, loudness normalized to −14 LUFS	H.264 potret 9:16, diskalakan untuk mengisi, VBR 1 lintasan, 12 Mbps, kenyaringan dinormalkan ke −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 8 Mbps, loudness normalized to −14 LUFS	H.264 potret 9:16, diskalakan untuk mengisi, VBR 1 lintasan, 8 Mbps, kenyaringan dinormalkan ke −14 LUFS
+	Hide Others	Sembunyikan Lainnya
+	Hide Toma	Sembunyikan Toma
+	Highlight Balance	Keseimbangan Sorotan
+	Highlight Hue	Hue Sorotan
+	Highlight Level	Level Sorotan
+	Highlight Softness	Kelembutan Sorotan
+	Import a preset file…	Impor file preset…
+	Import media	Impor media
+	Imported {n} preset(s)	{n} preset diimpor
+	Imported {n} preset(s); not imported: {error}	{n} preset diimpor; tidak diimpor: {error}
+	Imported {n} preset(s); {skipped} skipped	{n} preset diimpor; {skipped} dilewati
+	Imported {n} preset(s); {warnings} with unsupported parameters	{n} preset diimpor; {warnings} dengan parameter yang tidak didukung
+	Instagram Reels 1080×1920	Instagram Reels 1080×1920
+	Keep Existing Settings	Pertahankan Pengaturan yang Ada
+	Key Out Brights	Hilangkan Area Terang
+	Label Color Presets	Preset Warna Label
+	Looks for a newer Toma release and offers to update.	Mencari rilis Toma yang lebih baru dan menawarkan pembaruan.
+	MP3	MP3
+	MP3 48 kHz 320 kbps	MP3 48 kHz 320 kbps
+	MPEG audio (.mp3), joint stereo 48 kHz at 320 kbps	Audio MPEG (.mp3), joint stereo 48 kHz pada 320 kbps
+	Main Menu	Menu Utama
+	Maximize	Maksimalkan
+	Midtone Balance	Keseimbangan Nada Tengah
+	Midtone Hue	Hue Nada Tengah
+	Midtone Level	Level Nada Tengah
+	Minimize	Minimalkan
+	More transport controls	Kontrol transport lainnya
+	New project	Proyek baru
+	No presets folder: the app has no data directory	Tidak ada folder preset: aplikasi tidak memiliki direktori data
+	Nodalia	Nodalia
+	Open Presets Folder	Buka Folder Preset
+	Open project…	Buka proyek…
+	Open this address in your browser yourself:	Buka alamat ini di peramban Anda sendiri:
+	Open-source video editing in pure Rust.	Penyuntingan video sumber terbuka dalam Rust murni.
+	Preset library is up to date	Pustaka preset sudah terbaru
+	Preset library updated	Pustaka preset diperbarui
+	Preset library updated: {imported} loaded, {removed} removed	Pustaka preset diperbarui: {imported} dimuat, {removed} dihapus
+	Project saved to {path}	Proyek disimpan ke {path}
+	Recent projects	Proyek terbaru
+	Responsive Design – Time remaps the graphic's layer keyframes; clip effects like Opacity and Motion keep media time	Desain Responsif – Waktu memetakan ulang keyframe layer grafis; efek klip seperti Opasitas dan Gerak tetap memakai waktu media
+	Revert to the preset's colors and names	Kembalikan ke warna dan nama preset
+	Safe graphics mode: {mode}	Mode grafis aman: {mode}
+	Saves this session's log and shows it in your file manager.	Menyimpan log sesi ini dan menampilkannya di pengelola file Anda.
+	Scan Presets Folder	Pindai Folder Preset
+	Sequence: {settings}	Sekuens: {settings}
+	Set Work Area Bar In Point	Atur Titik Masuk Bilah Area Kerja
+	Set Work Area Bar Out Point	Atur Titik Keluar Bilah Area Kerja
+	Set as Default Transition	Atur sebagai Transisi Bawaan
+	Shadow Balance	Keseimbangan Bayangan
+	Shadow Hue	Hue Bayangan
+	Shadow Level	Level Bayangan
+	Shadow Softness	Kelembutan Bayangan
+	Shadow Threshold	Ambang Bayangan
+	Show the presets folder	Tampilkan folder preset
+	Shows a report on this computer.	Menampilkan laporan tentang komputer ini.
+	Shows the version, community links and credits in a Toma window.	Menampilkan versi, tautan komunitas, dan kredit dalam jendela Toma.
+	Source In/Out is only 1 frame. Choose Entire Source to export the whole sequence.	Masuk/Keluar sumber hanya 1 bingkai. Pilih Seluruh Sumber untuk mengekspor seluruh sekuens.
+	Start: {tc}	Awal: {tc}
+	The default graphics are used from the next start.	Grafis bawaan digunakan mulai peluncuran berikutnya.
+	This clip does not match the sequence settings.	Klip ini tidak cocok dengan pengaturan sekuens.
+	This preference is not available yet.	Preferensi ini belum tersedia.
+	Three-Way Color Corrector	Koreksi Warna Tiga Arah
+	Ticked attributes are removed from the selected clips.	Atribut yang dicentang dihapus dari klip yang dipilih.
+	TikTok 1080×1920	TikTok 1080×1920
+	Time Format	Format Waktu
+	Tonal Range	Rentang Tonal
+	Transparency Grid	Kisi Transparansi
+	Undock Panel	Lepaskan Panel
+	Use Default Graphics	Gunakan Grafis Bawaan
+	When enabled, GIF transparency is on/off: alpha below 128 is transparent; 128 and above is opaque.	Jika diaktifkan, transparansi GIF hanya hidup/mati: alfa di bawah 128 transparan; 128 ke atas buram.
+	Window Controls	Kontrol Jendela
+	Work Area Bar	Bilah Area Kerja
+	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	ZIP (1 scan line)	ZIP (1 baris pindai)
+	ZIP (16 scan lines)	ZIP (16 baris pindai)
+	{frames} frames ({seconds} s)	{frames} bingkai ({seconds} d)
+	{name} (Modified)	{name} (Diubah)
+	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} sudah ada, jadi tidak ada yang diekspor. Untuk menggantinya, pilih file tersebut di dialog simpan.
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	{n} prasetel diimpor; {skipped} dilewati, {warnings} dengan parameter yang tidak didukung
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Bagian dari Nodalia. MIT OR Apache-2.0. Font: Inter, Noto Serif, dan JetBrains Mono (SIL OFL 1.1). Ikon: Nodalia Design (MIT).
+	Add pause	Tambah jeda
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Tambah jeda menyisipkan [pause 1s]. Ubah angkanya untuk jeda yang lebih panjang atau pendek, mis. [pause 500ms] atau [pause 2s].
+	Add to timeline	Tambahkan ke lini masa
+	Basic voices (built in)	Suara dasar (bawaan)
+	Cannot check export destination: {e}	Tidak dapat memeriksa tujuan ekspor: {e}
+	Depth:	Kedalaman:
+	Download	Unduh
+	Download natural voices ({mb} MB)…	Unduh suara alami ({mb} MB)…
+	Download of the natural voices failed: {e}	Pengunduhan suara alami gagal: {e}
+	Download the natural voices? {mb} MB, once.	Unduh suara alami? {mb} MB, sekali saja.
+	Editing the selected narration	Mengedit narasi yang dipilih
+	Exported frame to {path}	Bingkai diekspor ke {path}
+	Extra high	Sangat tinggi
+	Extra low	Sangat rendah
+	Format:	Format:
+	Frame time: {time}	Waktu bingkai: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Dari {source} dan github.com/cmusphinx/cmudict (pelafalan). Lisensi: {licence}. Setiap berkas diperiksa terhadap SHA-256 yang disematkan.
+	Hear this voice	Dengarkan suara ini
+	Import into project	Impor ke proyek
+	Keep existing file	Pertahankan berkas yang ada
+	Narration added on an audio track	Narasi ditambahkan pada trek audio
+	Narration added on {track}	Narasi ditambahkan pada {track}
+	Narration updated	Narasi diperbarui
+	Natural voices	Suara alami
+	Natural voices installed	Suara alami terpasang
+	Natural voices need a one-time download.	Suara alami memerlukan unduhan satu kali.
+	New narration	Narasi baru
+	Pace	Kecepatan
+	Path:	Jalur:
+	Synthesizing narration…	Mensintesis narasi…
+	Synthesizing…	Mensintesis…
+	Text to Speech: {e}	Teks ke Ucapan: {e}
+	This file already exists: {path}	Berkas ini sudah ada: {path}
+	Type what you want the voice to say	Ketik apa yang ingin diucapkan oleh suara
+	Vocal pitch	Nada suara
+	{bits} Bit	{bits} bit
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (unduh)
+	H.265 (HEVC) needs a hardware encoder (NVENC on NVIDIA GPUs, VideoToolbox on macOS); none was found on this machine, and Toma has no software H.265 encoder yet. Choose H.264 or ProRes instead.	H.265 (HEVC) memerlukan encoder perangkat keras (NVENC pada GPU NVIDIA, VideoToolbox pada macOS); tidak ada yang ditemukan di komputer ini, dan Toma belum memiliki encoder H.265 perangkat lunak. Pilih H.264 atau ProRes.
+	Resize floating panel	Ubah ukuran panel mengambang
+	DirectX 12 only	Hanya DirectX 12
+	software rendering	perenderan perangkat lunak
+	integrated GPU	GPU terintegrasi
+	Opens in your web browser: {url}	Terbuka di peramban web Anda: {url}

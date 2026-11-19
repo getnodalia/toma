@@ -3643,3 +3643,201 @@
 	Toggle Color Grading Section	Renk Derecelendirme Bölümünü Aç/Kapat
 	Color Grading Section	Renk Derecelendirme Bölümü
 	Read Video Scopes	Video Ölçümlerini Oku
+	1 frame ({seconds} s)	1 kare ({seconds} sn)
+	A range marker needs a positive duration	Aralık işaretçisi pozitif bir süre gerektirir
+	Add Custom Color	Özel Renk Ekle
+	Add Track	Parça Ekle
+	Add and apply	Ekle ve uygula
+	Add color	Renk ekle
+	Add custom color	Özel renk ekle
+	Add custom color…	Özel renk ekle…
+	Audio Names	Ses Adları
+	Author	Yazar
+	Caption Export Settings	Altyazı Dışa Aktarma Ayarları
+	Caption Track	Altyazı Parçası
+	Change Sequence Settings	Sekans Ayarlarını Değiştir
+	Change the sequence to match the clip's settings?	Sekans, klibin ayarlarına uyacak şekilde değiştirilsin mi?
+	Chapter	Bölüm
+	Chapter Marker	Bölüm İşaretçisi
+	Check for Updates…	Güncellemeleri Denetle…
+	Choose Color…	Renk Seç…
+	Choose color with system picker	Sistem seçicisiyle renk seç
+	Clip Mismatch Warning	Klip Uyumsuzluğu Uyarısı
+	Clip: {settings}	Klip: {settings}
+	Color picker	Renk seçici
+	Color selected markers	Seçili işaretçileri renklendir
+	Comment Marker	Yorum İşaretçisi
+	Copy of the project saved to {path}	Projenin kopyası {path} konumuna kaydedildi
+	Cube LUT	Cube LUT
+	Custom Color…	Özel Renk…
+	Delete Clips	Klipleri Sil
+	Delete Marker	İşaretçiyi Sil
+	Delete Track	Parçayı Sil
+	Delete selected markers	Seçili işaretçileri sil
+	Desktop's own	Masaüstünün kendi
+	Edit Custom Color	Özel Rengi Düzenle
+	Edit Marker	İşaretçiyi Düzenle
+	Edit Marker…	İşaretçiyi Düzenle…
+	Edit color	Rengi düzenle
+	Editing or removing a swatch leaves assigned colors unchanged.	Bir örneği düzenlemek veya kaldırmak atanmış renkleri değiştirmez.
+	Enter a positive duration within the supported speed range.	Desteklenen hız aralığında pozitif bir süre girin.
+	Enter a valid HH:MM:SS:FF timecode	Geçerli bir SS:DD:SN:KK zaman kodu girin
+	Enter a valid HTTP or HTTPS URL without credentials	Kimlik bilgisi içermeyen geçerli bir HTTP veya HTTPS URL'si girin
+	Enter six hex digits, for example FF80C0.	Altı onaltılık rakam girin, örneğin FF80C0.
+	Export .cube…	.cube Olarak Dışa Aktar…
+	Exported {path} as {format}, from its file extension	{path}, dosya uzantısına göre {format} olarak dışa aktarıldı
+	Exported {path}; not in the LUT: {effects}	{path} dışa aktarıldı; LUT'ta olmayanlar: {effects}
+	Flash Cue Point	Flash Cue Noktası
+	From preset file:	Ön ayar dosyasından:
+	Full Screen Program Monitor	Program Monitörü Tam Ekran
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 10 Mbps, loudness normalized to −14 LUFS	H.264 dikey 9:16, dolduracak şekilde ölçeklenmiş, VBR 1 geçiş, 10 Mbps, ses yüksekliği −14 LUFS'ye normalleştirilmiş
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 12 Mbps, loudness normalized to −14 LUFS	H.264 dikey 9:16, dolduracak şekilde ölçeklenmiş, VBR 1 geçiş, 12 Mbps, ses yüksekliği −14 LUFS'ye normalleştirilmiş
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 8 Mbps, loudness normalized to −14 LUFS	H.264 dikey 9:16, dolduracak şekilde ölçeklenmiş, VBR 1 geçiş, 8 Mbps, ses yüksekliği −14 LUFS'ye normalleştirilmiş
+	Hex	Hex
+	Hex color	Hex renk
+	Highlight Balance	Açık Ton Dengesi
+	Highlight Hue	Açık Ton Renk Tonu
+	Highlight Level	Açık Ton Düzeyi
+	Highlight Softness	Açık Ton Yumuşaklığı
+	Import media	Medya içe aktar
+	Imported {n} preset(s)	{n} ön ayar içe aktarıldı
+	Imported {n} preset(s); not imported: {error}	{n} ön ayar içe aktarıldı; içe aktarılamayan: {error}
+	Imported {n} preset(s); {skipped} skipped	{n} ön ayar içe aktarıldı; {skipped} atlandı
+	Imported {n} preset(s); {warnings} with unsupported parameters	{n} ön ayar içe aktarıldı; {warnings} tanesinde desteklenmeyen parametreler var
+	Instagram Reels 1080×1920	Instagram Reels 1080×1920
+	Keep Existing Settings	Mevcut Ayarları Koru
+	Key Out Brights	Parlakları Ayıkla
+	Looks for a newer Toma release and offers to update.	Daha yeni bir Toma sürümü arar ve güncellemeyi önerir.
+	MP3	MP3
+	MP3 48 kHz 320 kbps	MP3 48 kHz 320 kbps
+	MPEG audio (.mp3), joint stereo 48 kHz at 320 kbps	MPEG ses (.mp3), joint stereo 48 kHz, 320 kbps
+	Main Menu	Ana Menü
+	Manage Colors	Renkleri Yönet
+	Manage Colors…	Renkleri Yönet…
+	Marker changed or was removed. Reopen it to continue.	İşaretçi değişti veya kaldırıldı. Devam etmek için yeniden açın.
+	Marker owner is unavailable	İşaretçinin sahibi kullanılamıyor
+	Maximize	Ekranı Kapla
+	Midtone Balance	Orta Ton Dengesi
+	Midtone Hue	Orta Ton Renk Tonu
+	Midtone Level	Orta Ton Düzeyi
+	Minimize	Simge Durumuna Küçült
+	New project	Yeni proje
+	Next	Sonraki
+	No markers	İşaretçi yok
+	No matching markers	Eşleşen işaretçi yok
+	No presets folder: the app has no data directory	Ön ayar klasörü yok: uygulamanın veri dizini yok
+	No saved colors	Kayıtlı renk yok
+	No sequence open	Açık sekans yok
+	No source clip open	Açık kaynak klip yok
+	Nodalia	Nodalia
+	Notes	Notlar
+	Open Link	Bağlantıyı Aç
+	Open Presets Folder	Ön Ayar Klasörünü Aç
+	Open project…	Proje aç…
+	Open-source video editing in pure Rust.	Saf Rust ile açık kaynaklı video düzenleme.
+	Opens this address in your web browser	Bu adresi web tarayıcınızda açar
+	Preset library is up to date	Ön ayar kitaplığı güncel
+	Preset library updated	Ön ayar kitaplığı güncellendi
+	Preset library updated: {imported} loaded, {removed} removed	Ön ayar kitaplığı güncellendi: {imported} yüklendi, {removed} kaldırıldı
+	Previous	Önceki
+	Project Colors	Proje Renkleri
+	Project saved to {path}	Proje {path} konumuna kaydedildi
+	Range marker	Aralık işaretçisi
+	Recent projects	Son projeler
+	Remove saved color	Kayıtlı rengi kaldır
+	Replace	Değiştir
+	Replace File	Dosyayı Değiştir
+	Responsive Design – Time remaps the graphic's layer keyframes; clip effects like Opacity and Motion keep media time	Duyarlı Tasarım – Zaman, grafiğin katman anahtar karelerini yeniden eşler; Opaklık ve Hareket gibi klip efektleri medya zamanını korur
+	Save color	Rengi kaydet
+	Scan Presets Folder	Ön Ayar Klasörünü Tara
+	Search markers	İşaretçilerde ara
+	Search name, notes, author	Ad, notlar, yazar ara
+	Segmentation Marker	Bölümleme İşaretçisi
+	Select all	Tümünü seç
+	Select all visible markers	Görünen tüm işaretçileri seç
+	Select one clip (or a linked clip) in the Timeline, or one item in the Project panel, to rename	Yeniden adlandırmak için Zaman Çizgisi'nde bir klip (veya bağlı bir klip) ya da Proje panelinde bir öğe seçin
+	Sequence: {name}	Sekans: {name}
+	Sequence: {settings}	Sekans: {settings}
+	Set Work Area Bar In Point	Çalışma Alanı Çubuğu Giriş Noktasını Ayarla
+	Set Work Area Bar Out Point	Çalışma Alanı Çubuğu Çıkış Noktasını Ayarla
+	Set as Default Transition	Varsayılan Geçiş Olarak Ayarla
+	Shadow Balance	Gölge Dengesi
+	Shadow Hue	Gölge Renk Tonu
+	Shadow Level	Gölge Düzeyi
+	Shadow Softness	Gölge Yumuşaklığı
+	Shadow Threshold	Gölge Eşiği
+	Show Audio Names	Ses Adlarını Göster
+	Show Video Names	Video Adlarını Göster
+	Source In/Out is only 1 frame. Choose Entire Source to export the whole sequence.	Kaynak giriş/çıkışı yalnızca 1 kare. Tüm sekansı dışa aktarmak için Kaynağın Tamamı'nı seçin.
+	Source: {name}	Kaynak: {name}
+	Source: {name} (shared source markers)	Kaynak: {name} (paylaşılan kaynak işaretçileri)
+	System color picker unavailable: {error}	Sistem renk seçicisi kullanılamıyor: {error}
+	This clip does not match the sequence settings.	Bu klip sekans ayarlarıyla eşleşmiyor.
+	This preference is not available yet.	Bu tercih henüz kullanılamıyor.
+	Three-Way Color Corrector	Üç Yönlü Renk Düzeltici
+	Ticked attributes are removed from the selected clips.	İşaretli öznitelikler seçili kliplerden kaldırılır.
+	TikTok 1080×1920	TikTok 1080×1920
+	Time Format	Zaman Biçimi
+	Time is outside the supported range	Zaman desteklenen aralığın dışında
+	Tonal Range	Ton Aralığı
+	URL	URL
+	Video Names	Video Adları
+	Web Link	Web Bağlantısı
+	When enabled, GIF transparency is on/off: alpha below 128 is transparent; 128 and above is opaque.	Etkinleştirildiğinde GIF saydamlığı açık/kapalıdır: 128'in altındaki alfa saydam, 128 ve üzeri opaktır.
+	Window Controls	Pencere Denetimleri
+	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	{count} selected	{count} seçili
+	{frames} frames ({seconds} s)	{frames} kare ({seconds} sn)
+	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} zaten var, bu yüzden hiçbir şey dışa aktarılmadı. Değiştirmek için kaydetme iletişim kutusunda onu seçin.
+	“{file}” already exists in “{folder}”. Do you want to replace it?	“{file}”, “{folder}” içinde zaten var. Değiştirmek istiyor musunuz?
+	Center at Cut	Kesimde Ortala
+	Start at Cut	Kesimde Başla
+	End at Cut	Kesimde Bitir
+	Custom Start	Özel Başlangıç
+	In:	Giriş:
+	Marker Color:	İşaretçi Rengi:
+	Options:	Seçenekler:
+	Invalid duration: {error}	Geçersiz süre: {error}
+	Remove Custom Color	Özel Rengi Kaldır
+	Edit Markers	İşaretçileri Düzenle
+	Delete Markers	İşaretçileri Sil
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	{n} hazır ayar içe aktarıldı; {skipped} atlandı, {warnings} tanesinde desteklenmeyen parametreler var
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Nodalia'nın bir parçasıdır. MIT OR Apache-2.0. Yazı tipleri: Inter, Noto Serif ve JetBrains Mono (SIL OFL 1.1). Simgeler: Nodalia Design (MIT).
+	Add pause	Duraklama ekle
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Duraklama ekle, [pause 1s] ekler. Daha uzun veya kısa bir duraklama için sayıyı değiştirin, örn. [pause 500ms] veya [pause 2s].
+	Add to timeline	Zaman çizelgesine ekle
+	Basic voices (built in)	Temel sesler (yerleşik)
+	Cannot check export destination: {e}	Dışa aktarma hedefi denetlenemiyor: {e}
+	Depth:	Derinlik:
+	Download	İndir
+	Download natural voices ({mb} MB)…	Doğal sesleri indir ({mb} MB)…
+	Download of the natural voices failed: {e}	Doğal seslerin indirilmesi başarısız oldu: {e}
+	Download the natural voices? {mb} MB, once.	Doğal sesler indirilsin mi? {mb} MB, yalnızca bir kez.
+	Editing the selected narration	Seçili seslendirme düzenleniyor
+	Exported frame to {path}	Kare {path} konumuna aktarıldı
+	Extra high	Çok yüksek
+	Extra low	Çok alçak
+	Format:	Biçim:
+	Frame time: {time}	Kare zamanı: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Kaynak: {source} ve github.com/cmusphinx/cmudict (telaffuzlar). Lisans: {licence}. Her dosya sabitlenmiş bir SHA-256'ya karşı denetlenir.
+	Hear this voice	Bu sesi dinle
+	Import into project	Projeye aktar
+	Keep existing file	Mevcut dosyayı koru
+	Narration added on an audio track	Seslendirme bir ses kanalına eklendi
+	Narration added on {track}	Seslendirme {track} üzerine eklendi
+	Narration updated	Seslendirme güncellendi
+	Natural voices	Doğal sesler
+	Natural voices installed	Doğal sesler yüklendi
+	Natural voices need a one-time download.	Doğal sesler tek seferlik bir indirme gerektirir.
+	New narration	Yeni seslendirme
+	Pace	Tempo
+	Path:	Yol:
+	Synthesizing narration…	Seslendirme sentezleniyor…
+	Synthesizing…	Sentezleniyor…
+	Text to Speech: {e}	Metin Okuma: {e}
+	This file already exists: {path}	Bu dosya zaten var: {path}
+	Type what you want the voice to say	Sesin söylemesini istediğiniz metni yazın
+	Vocal pitch	Ses perdesi
+	{bits} Bit	{bits} bit
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (indir)

@@ -82,7 +82,17 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
         crate::titlebar::drag_area(ui, rect);
     }
     let cy = rect.center().y;
-    let mut x = rect.min.x + if app.integrated_titlebar { 80.0 } else { crate::theme::ISLAND_GAP + 2.0 };
+    // Nodalia's window controls at the left (the desktop's choice on Linux) take the bar's first
+    // stretch and the right end is free; otherwise they end the bar.
+    let controls_left = crate::titlebar::side(app) == Some(nodalia_theme::titlebar::Side::Left);
+    let mut x = rect.min.x
+        + if app.integrated_titlebar {
+            nodalia_theme::titlebar::MAC_LIGHTS
+        } else if controls_left {
+            crate::titlebar::WIDTH + nodalia_theme::titlebar::CONTENT_GAP
+        } else {
+            crate::theme::ISLAND_GAP + 2.0
+        };
     let square = |x: f32| Rect::from_min_size(pos2(x, cy - BUTTON / 2.0), vec2(BUTTON, BUTTON));
     main_menu(app, ui, square(x));
     x += BUTTON + 4.0;
@@ -117,7 +127,7 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
         left_end = mu.min_rect().max.x;
     }
     // Right group, from the right: window controls, workspace selector, Quick Export, search.
-    let mut rx = rect.max.x - if app.custom_titlebar { crate::titlebar::WIDTH + 8.0 } else { crate::theme::ISLAND_GAP + 2.0 };
+    let mut rx = rect.max.x - if app.custom_titlebar && !controls_left { crate::titlebar::WIDTH + 8.0 } else { crate::theme::ISLAND_GAP + 2.0 };
     if app.custom_titlebar {
         crate::titlebar::window_controls(app, ui, rect);
     }
