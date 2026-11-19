@@ -3802,3 +3802,35 @@
 	{frames} frames ({seconds} s)	{frames} Frames ({seconds} s)
 	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} ist bereits vorhanden, daher wurde nichts exportiert. Wählen Sie die Datei im Speichern-Dialog, um sie zu ersetzen.
 	“{file}” already exists in “{folder}”. Do you want to replace it?	„{file}“ ist in „{folder}“ bereits vorhanden. Möchten Sie die Datei ersetzen?
+	Lower Third – Minimal	Bauchbinde – minimal
+	Lower Third – Split	Bauchbinde – geteilt
+	Title – Opening	Titel – Eröffnung
+	Title – Chapter	Titel – Kapitel
+	Title – Quote	Titel – Zitat
+	Callout – Location	Callout – Ort
+	Callout – Info Card	Callout – Infokarte
+	End Credits – Thank You	Abspann – Dank
+	A name and role beside a thin vertical rule, with no background.	Name und Funktion neben einer dünnen senkrechten Linie, ohne Hintergrund.
+	Name on a dark slab with the role on a light one below; both widen with their text.	Name auf einem dunklen Balken und Funktion auf einem hellen darunter; beide werden mit ihrem Text breiter.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	Ein linksbündiger Eröffnungstitel mit Vorzeile darüber, einer kurzen Linie und einem Untertitelspruch.
+	A chapter card: small label, large number, short rule and the chapter name.	Eine Kapitelkarte: kleines Label, große Nummer, kurze Linie und der Kapitelname.
+	A centred quote in italics with a large opening mark and its author.	Ein zentriertes Zitat in Kursivschrift mit großem Anführungszeichen und seinem Urheber.
+	A place name and a detail line on a rounded card with a marker dot.	Ein Ortsname und eine Detailzeile auf einer abgerundeten Karte mit Markierungspunkt.
+	A heading and a short fact on a rounded card that fits its text.	Eine Überschrift und eine kurze Information auf einer abgerundeten Karte, die sich dem Text anpasst.
+	A still closing card: a thank-you, a short rule and a parting line.	Eine feste Schlusskarte: ein Dank, eine kurze Linie und ein Abschiedssatz.
+	Body	Text
+	Card Color	Kartenfarbe
+	Details	Details
+	Kicker	Vorzeile
+	Mark Color	Farbe des Anführungszeichens
+	Message	Nachricht
+	Message Size	Nachrichtengröße
+	Name Slab Color	Farbe des Namensbalkens
+	Number	Nummer
+	Place	Ort
+	Quote	Zitat
+	Quote Color	Zitatfarbe
+	Quote Size	Zitatgröße
+	Role Color	Funktionsfarbe
+	Role Slab Color	Farbe des Funktionsbalkens
+	Tagline	Leitspruch

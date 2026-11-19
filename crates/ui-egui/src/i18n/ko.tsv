@@ -3797,3 +3797,35 @@
 	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
 	{frames} frames ({seconds} s)	{frames}프레임({seconds}초)
 	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name}이(가) 이미 있어 아무것도 내보내지 않았습니다. 바꾸려면 저장 대화 상자에서 선택하세요.
+	Lower Third – Minimal	하단 자막 – 미니멀
+	Lower Third – Split	하단 자막 – 분할
+	Title – Opening	제목 – 오프닝
+	Title – Chapter	제목 – 챕터
+	Title – Quote	제목 – 인용문
+	Callout – Location	콜아웃 – 장소
+	Callout – Info Card	콜아웃 – 정보 카드
+	End Credits – Thank You	엔딩 크레딧 – 감사
+	A name and role beside a thin vertical rule, with no background.	가는 세로선 옆에 이름과 직함을 배치한 배경 없는 디자인입니다.
+	Name on a dark slab with the role on a light one below; both widen with their text.	어두운 막대에 이름, 그 아래 밝은 막대에 직함을 표시합니다. 둘 다 텍스트에 맞춰 넓어집니다.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	왼쪽 정렬 오프닝 제목으로, 위에 머리말, 짧은 선, 슬로건이 함께 들어갑니다.
+	A chapter card: small label, large number, short rule and the chapter name.	챕터 카드: 작은 레이블, 큰 번호, 짧은 선, 챕터 이름.
+	A centred quote in italics with a large opening mark and its author.	기울임꼴로 가운데 정렬한 인용문에 큰 여는 따옴표와 출처가 붙습니다.
+	A place name and a detail line on a rounded card with a marker dot.	마커 점이 있는 둥근 카드에 장소 이름과 설명 한 줄을 담습니다.
+	A heading and a short fact on a rounded card that fits its text.	텍스트에 맞춰지는 둥근 카드에 제목과 짧은 사실 한 줄을 담습니다.
+	A still closing card: a thank-you, a short rule and a parting line.	움직이지 않는 마무리 카드: 감사 인사, 짧은 선, 작별 한 줄.
+	Body	본문
+	Card Color	카드 색상
+	Details	세부 정보
+	Kicker	머리말
+	Mark Color	따옴표 색상
+	Message	메시지
+	Message Size	메시지 크기
+	Name Slab Color	이름 막대 색상
+	Number	번호
+	Place	장소
+	Quote	인용문
+	Quote Color	인용문 색상
+	Quote Size	인용문 크기
+	Role Color	직함 색상
+	Role Slab Color	직함 막대 색상
+	Tagline	슬로건

@@ -3787,3 +3787,35 @@
 	{frames} frames ({seconds} s)	{frames} klatek ({seconds} s)
 	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} już istnieje, więc nic nie wyeksportowano. Aby go zastąpić, wybierz go w oknie zapisu.
 	“{file}” already exists in “{folder}”. Do you want to replace it?	„{file}” już istnieje w „{folder}”. Czy chcesz go zastąpić?
+	Lower Third – Minimal	Belka dolna – minimalistyczna
+	Lower Third – Split	Belka dolna – dzielona
+	Title – Opening	Tytuł – otwarcie
+	Title – Chapter	Tytuł – rozdział
+	Title – Quote	Tytuł – cytat
+	Callout – Location	Dymek – miejsce
+	Callout – Info Card	Dymek – karta informacyjna
+	End Credits – Thank You	Napisy końcowe – podziękowanie
+	A name and role beside a thin vertical rule, with no background.	Imię i stanowisko obok cienkiej pionowej linii, bez tła.
+	Name on a dark slab with the role on a light one below; both widen with their text.	Imię na ciemnym pasku, a stanowisko na jasnym pod nim; oba rozszerzają się razem z tekstem.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	Tytuł otwierający wyrównany do lewej z nadtytułem, krótką linią i hasłem.
+	A chapter card: small label, large number, short rule and the chapter name.	Karta rozdziału: mała etykieta, duży numer, krótka linia i nazwa rozdziału.
+	A centred quote in italics with a large opening mark and its author.	Wyśrodkowany cytat kursywą z dużym cudzysłowem otwierającym i autorem.
+	A place name and a detail line on a rounded card with a marker dot.	Nazwa miejsca i wiersz ze szczegółami na zaokrąglonej karcie ze znacznikiem.
+	A heading and a short fact on a rounded card that fits its text.	Nagłówek i krótka ciekawostka na zaokrąglonej karcie dopasowanej do tekstu.
+	A still closing card: a thank-you, a short rule and a parting line.	Nieruchoma karta końcowa: podziękowanie, krótka linia i słowa pożegnania.
+	Body	Treść
+	Card Color	Kolor karty
+	Details	Szczegóły
+	Kicker	Nadtytuł
+	Mark Color	Kolor cudzysłowu
+	Message	Wiadomość
+	Message Size	Rozmiar wiadomości
+	Name Slab Color	Kolor paska imienia
+	Number	Numer
+	Place	Miejsce
+	Quote	Cytat
+	Quote Color	Kolor cytatu
+	Quote Size	Rozmiar cytatu
+	Role Color	Kolor stanowiska
+	Role Slab Color	Kolor paska stanowiska
+	Tagline	Hasło

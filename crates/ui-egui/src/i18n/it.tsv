@@ -3803,3 +3803,35 @@
 	no Korean font is installed on this system; the interface stays in English	nessun font coreano è installato su questo sistema; l'interfaccia resta in inglese
 	{frames} frames ({seconds} s)	{frames} fotogrammi ({seconds} s)
 	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} esiste già, quindi non è stato esportato nulla. Per sostituirlo, sceglilo nella finestra di salvataggio.
+	Lower Third – Minimal	Sottopancia – minimale
+	Lower Third – Split	Sottopancia – diviso
+	Title – Opening	Titolo – apertura
+	Title – Chapter	Titolo – capitolo
+	Title – Quote	Titolo – citazione
+	Callout – Location	Didascalia – luogo
+	Callout – Info Card	Didascalia – scheda informativa
+	End Credits – Thank You	Titoli di coda – ringraziamento
+	A name and role beside a thin vertical rule, with no background.	Nome e ruolo accanto a una sottile linea verticale, senza sfondo.
+	Name on a dark slab with the role on a light one below; both widen with their text.	Nome su un blocco scuro e ruolo su uno chiaro sotto; entrambi si allargano con il testo.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	Un titolo di apertura allineato a sinistra, con un sopratitolo sopra, una linea corta e uno slogan.
+	A chapter card: small label, large number, short rule and the chapter name.	Una scheda capitolo: piccola etichetta, numero grande, linea corta e nome del capitolo.
+	A centred quote in italics with a large opening mark and its author.	Una citazione centrata in corsivo con un grande segno di apertura e il suo autore.
+	A place name and a detail line on a rounded card with a marker dot.	Il nome di un luogo e una riga di dettaglio su una scheda arrotondata con un punto segnaposto.
+	A heading and a short fact on a rounded card that fits its text.	Un'intestazione e un breve dato su una scheda arrotondata che si adatta al testo.
+	A still closing card: a thank-you, a short rule and a parting line.	Una scheda di chiusura fissa: un ringraziamento, una linea corta e un saluto.
+	Body	Corpo
+	Card Color	Colore scheda
+	Details	Dettagli
+	Kicker	Sopratitolo
+	Mark Color	Colore segno
+	Message	Messaggio
+	Message Size	Dimensione messaggio
+	Name Slab Color	Colore blocco nome
+	Number	Numero
+	Place	Luogo
+	Quote	Citazione
+	Quote Color	Colore citazione
+	Quote Size	Dimensione citazione
+	Role Color	Colore ruolo
+	Role Slab Color	Colore blocco ruolo
+	Tagline	Slogan

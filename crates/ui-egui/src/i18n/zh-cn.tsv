@@ -3816,3 +3816,35 @@
 	Tonal Range	色调范围
 	Window Controls	窗口控件
 	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	Lower Third – Minimal	下三分之一 – 极简
+	Lower Third – Split	下三分之一 – 分层
+	Title – Opening	标题 – 开场
+	Title – Chapter	标题 – 章节
+	Title – Quote	标题 – 引语
+	Callout – Location	标注 – 地点
+	Callout – Info Card	标注 – 信息卡片
+	End Credits – Thank You	片尾字幕 – 致谢
+	A name and role beside a thin vertical rule, with no background.	姓名和头衔位于一条细竖线旁，无背景。
+	Name on a dark slab with the role on a light one below; both widen with their text.	姓名在深色条上，头衔在其下的浅色条上；两者都随文字变宽。
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	左对齐的开场标题，上方有引导语，并配有短线和标语。
+	A chapter card: small label, large number, short rule and the chapter name.	章节卡片：小标签、大号数字、短线和章节名称。
+	A centred quote in italics with a large opening mark and its author.	居中的斜体引语，配有大号开引号和出处。
+	A place name and a detail line on a rounded card with a marker dot.	圆角卡片上显示地点名称和一行详情，并带有标记圆点。
+	A heading and a short fact on a rounded card that fits its text.	圆角卡片上显示标题和一条简短的趣闻，卡片随文字大小调整。
+	A still closing card: a thank-you, a short rule and a parting line.	静态的结束卡片：一句致谢、一条短线和一句告别语。
+	Body	正文
+	Card Color	卡片颜色
+	Details	详情
+	Kicker	引导语
+	Mark Color	引号颜色
+	Message	消息
+	Message Size	消息大小
+	Name Slab Color	姓名条颜色
+	Number	编号
+	Place	地点
+	Quote	引语
+	Quote Color	引语颜色
+	Quote Size	引语大小
+	Role Color	头衔颜色
+	Role Slab Color	头衔条颜色
+	Tagline	标语

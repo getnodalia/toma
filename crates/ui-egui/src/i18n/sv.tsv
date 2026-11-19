@@ -3808,3 +3808,35 @@
 	Tonal Range	Tonomfång
 	Window Controls	Fönsterknappar
 	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	Lower Third – Minimal	Namnskylt – minimal
+	Lower Third – Split	Namnskylt – delad
+	Title – Opening	Titel – öppning
+	Title – Chapter	Titel – kapitel
+	Title – Quote	Titel – citat
+	Callout – Location	Infoskylt – plats
+	Callout – Info Card	Infoskylt – faktakort
+	End Credits – Thank You	Eftertexter – tack
+	A name and role beside a thin vertical rule, with no background.	Namn och roll bredvid en tunn lodrät linje, utan bakgrund.
+	Name on a dark slab with the role on a light one below; both widen with their text.	Namn på ett mörkt block och roll på ett ljust under; båda blir bredare med sin text.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	En vänsterställd öppningstitel med överrubrik, en kort linje och en slogan.
+	A chapter card: small label, large number, short rule and the chapter name.	Ett kapitelkort: liten etikett, stort nummer, kort linje och kapitlets namn.
+	A centred quote in italics with a large opening mark and its author.	Ett centrerat citat i kursiv med ett stort inledande citattecken och dess upphovsperson.
+	A place name and a detail line on a rounded card with a marker dot.	Ett platsnamn och en detaljrad på ett rundat kort med en markeringsprick.
+	A heading and a short fact on a rounded card that fits its text.	En rubrik och ett kort faktum på ett rundat kort som anpassar sig efter texten.
+	A still closing card: a thank-you, a short rule and a parting line.	Ett stilla avslutningskort: ett tack, en kort linje och en avskedsrad.
+	Body	Brödtext
+	Card Color	Kortfärg
+	Details	Detaljer
+	Kicker	Överrubrik
+	Mark Color	Citattecknets färg
+	Message	Meddelande
+	Message Size	Meddelandestorlek
+	Name Slab Color	Namnblockets färg
+	Number	Nummer
+	Place	Plats
+	Quote	Citat
+	Quote Color	Citatfärg
+	Quote Size	Citatstorlek
+	Role Color	Rollfärg
+	Role Slab Color	Rollblockets färg
+	Tagline	Slogan

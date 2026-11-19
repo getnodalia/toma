@@ -3819,3 +3819,35 @@
 	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
 	{frames} frames ({seconds} s)	{frames} フレーム（{seconds} 秒）
 	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} はすでに存在するため、何も書き出しませんでした。置き換えるには、保存ダイアログでそのファイルを選んでください。
+	Lower Third – Minimal	ロワーサード – ミニマル
+	Lower Third – Split	ロワーサード – 分割
+	Title – Opening	タイトル – オープニング
+	Title – Chapter	タイトル – チャプター
+	Title – Quote	タイトル – 引用
+	Callout – Location	コールアウト – 場所
+	Callout – Info Card	コールアウト – 情報カード
+	End Credits – Thank You	エンドクレジット – 感謝
+	A name and role beside a thin vertical rule, with no background.	細い縦線の横に名前と肩書きを置く、背景なしのデザインです。
+	Name on a dark slab with the role on a light one below; both widen with their text.	暗いバーに名前、その下の明るいバーに肩書きを表示します。どちらもテキストに合わせて幅が変わります。
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	左揃えのオープニングタイトル。上に前置きの一行、短い罫線、キャッチコピーを添えます。
+	A chapter card: small label, large number, short rule and the chapter name.	チャプターカード。小さなラベル、大きな番号、短い罫線、チャプター名で構成します。
+	A centred quote in italics with a large opening mark and its author.	斜体の引用を中央に置き、大きな始め引用符と発言者を添えます。
+	A place name and a detail line on a rounded card with a marker dot.	角丸カードに、マーカーのドットと場所の名前、詳細の一行を載せます。
+	A heading and a short fact on a rounded card that fits its text.	テキストに合わせて広がる角丸カードに、見出しと短い豆知識を載せます。
+	A still closing card: a thank-you, a short rule and a parting line.	動かないエンドカード。感謝の言葉、短い罫線、結びの一行で構成します。
+	Body	本文
+	Card Color	カードの色
+	Details	詳細
+	Kicker	前置き
+	Mark Color	引用符の色
+	Message	メッセージ
+	Message Size	メッセージのサイズ
+	Name Slab Color	名前バーの色
+	Number	番号
+	Place	場所
+	Quote	引用
+	Quote Color	引用の色
+	Quote Size	引用のサイズ
+	Role Color	肩書きの色
+	Role Slab Color	肩書きバーの色
+	Tagline	キャッチコピー
