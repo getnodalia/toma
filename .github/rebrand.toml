@@ -11,7 +11,7 @@ keep = [
     # Links to upstream's issues, pull requests and commits, and to other people's repositories:
     # history, not branding. Links to upstream's tree and repository page are renamed below.
     "(https?://)?github\\.com/storytold/[\\w.-]+/(issues|pull|commit|discussions)/[^\\s)\\]\"'<>`]*",
-    "https?://(github\\.com|raw\\.githubusercontent\\.com)/(?!storytold/filmcraft\\b|getnodalia|danielmigueltejedor)[^\\s)\\]\"'<>`]*",
+    "https?://(?!github\\.com/storytold/(craft-libs|egui|winit|winprint\\.rs|indd-utils)(\\.git)?\")(github\\.com|raw\\.githubusercontent\\.com)/(?!storytold/filmcraft\\b|getnodalia|danielmigueltejedor)[^\\s)\\]\"'<>`]*",
     # Upstream's issues named without a link (`storytold/filmcraft#123`, `artcraft#2093`).
     "storytold/[\\w.-]+#\\d+",
     "\\b[a-z]+craft#\\d+",
@@ -28,6 +28,8 @@ keep = [
     "(?<=\\{\")filmcraft(?=\":)",
     "(?<=\\[\")filmcraft(?=\"\\])",
     "(?<=get\\(\")filmcraft(?=\"\\))",
+    "(?<=get_mut\\(\")filmcraft(?=\"\\))",
+    "(?<=namespace: \")filmcraft(?=\")",
     "(?<=uid=\\\\\")filmcraft(?=\\.)",
     "(?<=strip_prefix\\(\")filmcraft(?=:)",
     "(?<=format!\\(\")filmcraft(?=:\\{)",
@@ -63,6 +65,48 @@ file = "Cargo.toml"
 pattern = '^version = "[^"]*"'
 
 # Identity: app id, publisher, installer identities (a product of its own, never FilmCraft's).
+# Cargo sources: the shared libraries come from getnodalia/foundation, which vendors them at the
+# same commits (standards/shared-libraries.md there). Before the broader link rules below.
+[[replace]]
+from = 'git = "https://github.com/storytold/craft-libs.git"'
+to = 'git = "https://github.com/getnodalia/foundation"'
+
+[[replace]]
+from = 'git = "https://github.com/storytold/craft-libs"'
+to = 'git = "https://github.com/getnodalia/foundation"'
+
+[[replace]]
+from = 'git = "https://github.com/storytold/egui.git"'
+to = 'git = "https://github.com/getnodalia/foundation"'
+
+[[replace]]
+from = 'git = "https://github.com/storytold/egui"'
+to = 'git = "https://github.com/getnodalia/foundation"'
+
+[[replace]]
+from = 'git = "https://github.com/storytold/winit.git"'
+to = 'git = "https://github.com/getnodalia/foundation"'
+
+[[replace]]
+from = 'git = "https://github.com/storytold/winit"'
+to = 'git = "https://github.com/getnodalia/foundation"'
+
+[[replace]]
+from = 'git = "https://github.com/storytold/winprint.rs.git"'
+to = 'git = "https://github.com/getnodalia/foundation"'
+
+[[replace]]
+from = 'git = "https://github.com/storytold/winprint.rs"'
+to = 'git = "https://github.com/getnodalia/foundation"'
+
+[[replace]]
+from = 'git = "https://github.com/storytold/indd-utils.git"'
+to = 'git = "https://github.com/getnodalia/foundation"'
+
+[[replace]]
+from = 'git = "https://github.com/storytold/indd-utils"'
+to = 'git = "https://github.com/getnodalia/foundation"'
+
 [[replace]]
 from = "ai.storyteller.filmcraft"
 to = "dev.danielmiguelt.Toma"

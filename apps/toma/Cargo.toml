@@ -24,6 +24,7 @@ whisper = ["toma-engine/whisper", "toma-engine/speech-download"]
 neural-voices = ["toma-engine/neural-voices"]
 
 [dependencies]
+craft-control-protocol = { workspace = true }
 toma-engine = { workspace = true }
 toma-export = { workspace = true }
 toma-project = { workspace = true }
@@ -36,7 +37,6 @@ egui = { workspace = true }
 eframe = { workspace = true, features = ["default_fonts", "wgpu", "accesskit", "clipboard", "wayland", "x11"] }
 serde_json = { workspace = true }
 # Constant-time comparison of control-channel credentials.
-subtle = "2.6"
 log = { workspace = true }
 rfd = { workspace = true }
 cpal = "0.16"

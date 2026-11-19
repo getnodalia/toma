@@ -132,7 +132,7 @@ pub fn videotoolbox_encoder_factory(format: Format, w: u32, h: u32, rate: FrameR
         Ok(c) => c,
         Err(why) => {
             log::info!("hardware {name} encoding declined: {why}");
-            toma_export::note_hw_encode_declined();
+            toma_export::note_hw_encode_declined_by("VideoToolbox", &why);
             return None;
         }
     };
@@ -143,7 +143,7 @@ pub fn videotoolbox_encoder_factory(format: Format, w: u32, h: u32, rate: FrameR
         }
         Err(why) => {
             log::info!("hardware {name} encoding declined: {why}");
-            toma_export::note_hw_encode_declined();
+            toma_export::note_hw_encode_declined_by("VideoToolbox", &why);
             None
         }
     }
@@ -299,6 +299,10 @@ impl VideoEncoder for HardwareEncoder {
     fn flush(&mut self) -> toma_export::Result<Vec<EncodedPacket>> {
         let packets = self.vt.flush().map_err(ExportError::Encode)?;
         self.samples(packets)
+    }
+
+    fn hardware(&self) -> Option<&'static str> {
+        Some("VideoToolbox")
     }
 }
 

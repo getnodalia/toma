@@ -637,8 +637,8 @@ fn make_subsequence(s: &mut Session, p: &Value) -> Result<Value> {
         for (kind, ti, it) in placed {
             nq.tracks_mut(kind)[ti].items.push(it);
         }
-        for (kind, ti, t) in transitions {
-            nq.tracks_mut(kind)[ti].transitions.push(t);
+        for (kind, ti, t) in &transitions {
+            nq.tracks_mut(*kind)[*ti].transitions.push(t.clone());
         }
         for tr in nq.all_tracks_mut() {
             tr.sort();
@@ -753,9 +753,9 @@ pub(crate) fn place_sequence_clips(s: &mut Session, placement: crate::commands::
         let min = seq.settings.frame_rate.frame_duration();
         let mut ctx = edit::EditCtx { next_id: &mut next, media_duration: &durations, media_start: &starts, min_duration: min };
         let new = if insert { edit::insert(seq, placements, &mut ctx)? } else { edit::overwrite(seq, placements, &mut ctx)? };
-        for (kind, lane, t) in transitions {
-            if let Some(tr) = dest.get(&(audio(kind), lane)).and_then(|id| seq.track_mut(*id)) {
-                tr.transitions.push(t);
+        for (kind, lane, t) in &transitions {
+            if let Some(tr) = dest.get(&(audio(*kind), *lane)).and_then(|id| seq.track_mut(*id)) {
+                tr.transitions.push(t.clone());
             }
         }
         for tr in seq.all_tracks_mut() {
