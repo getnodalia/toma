@@ -3809,6 +3809,38 @@
 	{frames} frames ({seconds} s)	{frames} quadros ({seconds} s)
 	{name} (Modified)	{name} (modificado)
 	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} já existe, então nada foi exportado. Para substituí-lo, escolha-o na caixa de diálogo de salvar.
+	Lower Third – Minimal	Terço inferior – Mínimo
+	Lower Third – Split	Terço inferior – Dividido
+	Title – Opening	Título – Abertura
+	Title – Chapter	Título – Capítulo
+	Title – Quote	Título – Citação
+	Callout – Location	Chamada – Local
+	Callout – Info Card	Chamada – Cartão informativo
+	End Credits – Thank You	Créditos finais – Agradecimento
+	A name and role beside a thin vertical rule, with no background.	Nome e cargo ao lado de uma linha vertical fina, sem fundo.
+	Name on a dark slab with the role on a light one below; both widen with their text.	Nome sobre um bloco escuro e cargo sobre um claro abaixo; ambos se alargam com o texto.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	Um título de abertura alinhado à esquerda, com um antetítulo acima, uma linha curta e um lema.
+	A chapter card: small label, large number, short rule and the chapter name.	Um cartão de capítulo: rótulo pequeno, número grande, linha curta e o nome do capítulo.
+	A centred quote in italics with a large opening mark and its author.	Uma citação centralizada em itálico com aspas de abertura grandes e seu autor.
+	A place name and a detail line on a rounded card with a marker dot.	Um nome de local e uma linha de detalhe em um cartão arredondado com um ponto marcador.
+	A heading and a short fact on a rounded card that fits its text.	Um cabeçalho e um fato curto em um cartão arredondado que se ajusta ao texto.
+	A still closing card: a thank-you, a short rule and a parting line.	Um cartão de encerramento fixo: um agradecimento, uma linha curta e uma despedida.
+	Body	Corpo
+	Card Color	Cor do cartão
+	Details	Detalhes
+	Kicker	Antetítulo
+	Mark Color	Cor das aspas
+	Message	Mensagem
+	Message Size	Tamanho da mensagem
+	Name Slab Color	Cor do bloco do nome
+	Number	Número
+	Place	Local
+	Quote	Citação
+	Quote Color	Cor da citação
+	Quote Size	Tamanho da citação
+	Role Color	Cor do cargo
+	Role Slab Color	Cor do bloco do cargo
+	Tagline	Lema
 	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	{n} predefinição(ões) importada(s); {skipped} ignorada(s), {warnings} com parâmetros não compatíveis
 	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Parte do Nodalia. MIT OR Apache-2.0. Fontes: Inter, Noto Serif e JetBrains Mono (SIL OFL 1.1). Ícones: Nodalia Design (MIT).
 	Add pause	Adicionar pausa

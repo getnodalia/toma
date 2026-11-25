@@ -3734,6 +3734,38 @@
 	✔ matches	✓ збігається
 	✔ same file	✓ той самий файл
 	✖ different file	× інший файл
+	Lower Third – Minimal	Нижня третина — мінімалізм
+	Lower Third – Split	Нижня третина — розділена
+	Title – Opening	Заголовок — відкриття
+	Title – Chapter	Заголовок — розділ
+	Title – Quote	Заголовок — цитата
+	Callout – Location	Виноска — місце
+	Callout – Info Card	Виноска — картка з фактом
+	End Credits – Thank You	Фінальні титри — подяка
+	A name and role beside a thin vertical rule, with no background.	Ім'я та посада поруч із тонкою вертикальною лінією, без тла.
+	Name on a dark slab with the role on a light one below; both widen with their text.	Ім'я на темній плашці, а посада на світлій під нею; обидві розтягуються за текстом.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	Вступний заголовок за лівим краєм з надрядком, короткою лінією та слоганом.
+	A chapter card: small label, large number, short rule and the chapter name.	Картка розділу: маленька мітка, великий номер, коротка лінія та назва розділу.
+	A centred quote in italics with a large opening mark and its author.	Цитата по центру курсивом з великою відкривною лапкою та іменем автора.
+	A place name and a detail line on a rounded card with a marker dot.	Назва місця та рядок із подробицями на заокругленій картці з маркером.
+	A heading and a short fact on a rounded card that fits its text.	Заголовок і короткий факт на заокругленій картці за розміром тексту.
+	A still closing card: a thank-you, a short rule and a parting line.	Нерухома заключна картка: подяка, коротка лінія та прощальний рядок.
+	Body	Основний текст
+	Card Color	Колір картки
+	Details	Подробиці
+	Kicker	Надрядок
+	Mark Color	Колір лапки
+	Message	Повідомлення
+	Message Size	Розмір повідомлення
+	Name Slab Color	Колір плашки імені
+	Number	Номер
+	Place	Місце
+	Quote	Цитата
+	Quote Color	Колір цитати
+	Quote Size	Розмір цитати
+	Role Color	Колір посади
+	Role Slab Color	Колір плашки посади
+	Tagline	Слоган
 	Center at Cut	Центрувати на розрізі
 	Start at Cut	Почати на розрізі
 	End at Cut	Закінчити на розрізі

@@ -3795,6 +3795,38 @@
 	{frames} frames ({seconds} s)	{frames} snímků ({seconds} s)
 	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} již existuje, proto se nic neexportovalo. Chcete-li ho nahradit, vyberte ho v dialogu uložení.
 	“{file}” already exists in “{folder}”. Do you want to replace it?	„{file}“ již ve složce „{folder}“ existuje. Chcete ho nahradit?
+	Lower Third – Minimal	Spodní titulek – minimální
+	Lower Third – Split	Spodní titulek – dělený
+	Title – Opening	Titulek – úvod
+	Title – Chapter	Titulek – kapitola
+	Title – Quote	Titulek – citát
+	Callout – Location	Vysvětlivka – místo
+	Callout – Info Card	Vysvětlivka – informační karta
+	End Credits – Thank You	Závěrečné titulky – poděkování
+	A name and role beside a thin vertical rule, with no background.	Jméno a funkce vedle tenké svislé linky, bez pozadí.
+	Name on a dark slab with the role on a light one below; both widen with their text.	Jméno na tmavém pruhu a funkce na světlém pod ním; oba se rozšiřují podle textu.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	Úvodní titulek zarovnaný vlevo s nadtitulkem, krátkou linkou a sloganem.
+	A chapter card: small label, large number, short rule and the chapter name.	Karta kapitoly: malý štítek, velké číslo, krátká linka a název kapitoly.
+	A centred quote in italics with a large opening mark and its author.	Citát na střed kurzívou s velkou úvodní uvozovkou a jeho autorem.
+	A place name and a detail line on a rounded card with a marker dot.	Název místa a řádek s podrobnostmi na zaoblené kartě se značkou.
+	A heading and a short fact on a rounded card that fits its text.	Nadpis a krátká zajímavost na zaoblené kartě přizpůsobené textu.
+	A still closing card: a thank-you, a short rule and a parting line.	Statická závěrečná karta: poděkování, krátká linka a rozloučení.
+	Body	Text
+	Card Color	Barva karty
+	Details	Podrobnosti
+	Kicker	Nadtitulek
+	Mark Color	Barva uvozovky
+	Message	Zpráva
+	Message Size	Velikost zprávy
+	Name Slab Color	Barva pruhu jména
+	Number	Číslo
+	Place	Místo
+	Quote	Citát
+	Quote Color	Barva citátu
+	Quote Size	Velikost citátu
+	Role Color	Barva funkce
+	Role Slab Color	Barva pruhu funkce
+	Tagline	Slogan
 	Center at Cut	Vystředit na střihu
 	Start at Cut	Začít na střihu
 	End at Cut	Skončit na střihu

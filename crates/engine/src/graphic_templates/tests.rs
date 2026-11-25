@@ -147,7 +147,7 @@ fn mogrt_files_are_never_read() {
 fn builtin_templates_apply_and_thumbnail() {
     let mut s = demo("gt-builtin");
     let list = s.execute("graphics.template.list", json!({"category": "Callouts"})).unwrap();
-    assert_eq!(list.as_array().unwrap().len(), 2);
+    assert_eq!(list.as_array().unwrap().len(), 4);
     for e in s.execute("graphics.template.list", json!({"source": "builtin"})).unwrap().as_array().unwrap().clone() {
         let id = e["id"].as_str().unwrap();
         let r = s.execute("graphics.template.apply", json!({"template": id})).unwrap();
