@@ -5,7 +5,7 @@
 | Upstream | `storytold/filmcraft` |
 | Last observed | `2d536e6af1c886887e8299edfb34b5d565e30a69` |
 | Last evaluated | `2d536e6af1c886887e8299edfb34b5d565e30a69` |
-| Last integrated | `2d536e6af1c886887e8299edfb34b5d565e30a69` merged on 2026-11-10 |
+| Last integrated | `0b3f30edaa89934797c43dd7a1123d2790cde219` (409 commits since the last sync) on 2026-11-18 |
 | Skipped | none in the baseline import |
 | Adapted | desktop binary name `toma` |
 | Conflicting | `README.md` (kept ours), `AGENTS.md` (upstream plus our quality contract) |
@@ -19,12 +19,13 @@ metadata key in OTIO and FCPXML), so files saved before the rename keep opening.
 
 Upstream's code arrives renamed: `scripts/rebrand.py` applies `.github/rebrand.toml` (FilmCraft
 becomes Toma, internal names included) to upstream's tree, and the weekly sync
-(`.github/workflows/upstream-sync.yml`) records the result on the `upstream-toma` branch. Each
-commit there has the previous mirror commit and the upstream commit it renames as parents, and
-names that commit in an `Upstream-Commit:` trailer. The sync merges the newest mirror commit
-into a branch and opens a pull request; files listed in `.github/upstream-keep` keep this
-repository's version.
+(`.github/workflows/upstream-sync.yml`) records the result as one mirror commit: its only parent is
+the previous mirror commit, its subject is `Upstream <sha> with this app's names`, and an
+`Upstream-Commit:` trailer names the upstream commit it renames. The sync merges that commit into a
+branch and opens a pull request; files listed in `.github/upstream-keep` keep this repository's
+version. No mirror branch is pushed, so merge sync pull requests with a merge commit: a squash would
+drop the mirror commit the next sync starts from.
 
-The mirror starts at the renamed `2d536e6a`, merged into `main` (with this repository's tree)
-by the pull request that renamed the app. `python3 scripts/rebrand.py check` fails when an old
-name comes back; a line that must keep one says `rebrand: keep`.
+The mirror starts at the renamed `2d536e6a`, merged into `main` (with this repository's tree) by the
+pull request that renamed the app. `python3 scripts/rebrand.py check` fails when an old name comes
+back; a line that must keep one says `rebrand: keep`.

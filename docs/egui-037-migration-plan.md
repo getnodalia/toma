@@ -270,17 +270,17 @@ resolved only after G-PINS:
 
 ```toml
 [patch.crates-io]
-egui = { git = "https://github.com/storytold/egui", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
-eframe = { git = "https://github.com/storytold/egui", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
-egui-winit = { git = "https://github.com/storytold/egui", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
-egui-wgpu = { git = "https://github.com/storytold/egui", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
-egui_glow = { git = "https://github.com/storytold/egui", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
-egui_kittest = { git = "https://github.com/storytold/egui", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
-epaint = { git = "https://github.com/storytold/egui", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
-emath = { git = "https://github.com/storytold/egui", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
-ecolor = { git = "https://github.com/storytold/egui", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
-epaint_default_fonts = { git = "https://github.com/storytold/egui", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
-winit = { git = "https://github.com/storytold/winit", rev = "REPLACE_WITH_APPROVED_WINIT_SHA" }
+egui = { git = "https://github.com/getnodalia/foundation", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
+eframe = { git = "https://github.com/getnodalia/foundation", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
+egui-winit = { git = "https://github.com/getnodalia/foundation", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
+egui-wgpu = { git = "https://github.com/getnodalia/foundation", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
+egui_glow = { git = "https://github.com/getnodalia/foundation", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
+egui_kittest = { git = "https://github.com/getnodalia/foundation", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
+epaint = { git = "https://github.com/getnodalia/foundation", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
+emath = { git = "https://github.com/getnodalia/foundation", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
+ecolor = { git = "https://github.com/getnodalia/foundation", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
+epaint_default_fonts = { git = "https://github.com/getnodalia/foundation", rev = "REPLACE_WITH_APPROVED_EGUI_SHA" }
+winit = { git = "https://github.com/getnodalia/foundation", rev = "REPLACE_WITH_APPROVED_WINIT_SHA" }
 ```
 
 If a stock-0.37 comparison is needed, it lives in a separate local/CI branch or harness with

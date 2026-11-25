@@ -3700,3 +3700,186 @@
 	Toggle Color Grading Section	Farbgrading-Abschnitt umschalten
 	Color Grading Section	Farbgrading-Abschnitt
 	Read Video Scopes	Videoskope auslesen
+	1 frame ({seconds} s)	1 Frame ({seconds} s)
+	AV1 needs a hardware encoder; none was found on this machine, and Toma has no software AV1 encoder yet.	AV1 benötigt einen Hardware-Encoder; auf diesem Rechner wurde keiner gefunden, und Toma hat noch keinen Software-Encoder für AV1.
+	Add Track	Spur hinzufügen
+	Animate zoom, scrolling and menus	Zoom, Scrollen und Menüs animieren
+	Audio Names	Audionamen
+	Caption Export Settings	Exporteinstellungen für Untertitel
+	Caption Track	Untertitelspur
+	Change Sequence Settings	Sequenzeinstellungen ändern
+	Change the sequence to match the clip's settings?	Die Sequenz an die Einstellungen des Clips anpassen?
+	Check for Updates…	Nach Updates suchen…
+	Clear History	Verlauf löschen
+	Clip Mismatch Warning	Warnung: Clip passt nicht
+	Clip: {settings}	Clip: {settings}
+	Copy of the project saved to {path}	Kopie des Projekts in {path} gespeichert
+	Cube LUT	Cube-LUT
+	Delete Clips	Clips löschen
+	Delete Redoable Actions	Wiederholbare Aktionen löschen
+	Delete Track	Spur löschen
+	Delete the dimmed actions after the current state? They cannot be redone.	Die abgeblendeten Aktionen nach dem aktuellen Zustand löschen? Sie können nicht wiederholt werden.
+	Desktop's own	Die des Desktops
+	Duration: {tc}	Dauer: {tc}
+	End: {tc}	Ende: {tc}
+	Enter a positive duration within the supported speed range.	Geben Sie eine positive Dauer im unterstützten Geschwindigkeitsbereich ein.
+	Export .cube…	.cube exportieren…
+	Exported {path} as {format}, from its file extension	{path} anhand der Dateiendung als {format} exportiert
+	Exported {path}; not in the LUT: {effects}	{path} exportiert; nicht in der LUT: {effects}
+	From preset file:	Aus Vorgabendatei:
+	Full Screen Program Monitor	Programmmonitor im Vollbild
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 10 Mbps, loudness normalized to −14 LUFS	H.264 hochkant 9:16, skaliert zum Füllen, VBR 1 Durchgang, 10 Mbit/s, Lautheit auf −14 LUFS normalisiert
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 12 Mbps, loudness normalized to −14 LUFS	H.264 hochkant 9:16, skaliert zum Füllen, VBR 1 Durchgang, 12 Mbit/s, Lautheit auf −14 LUFS normalisiert
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 8 Mbps, loudness normalized to −14 LUFS	H.264 hochkant 9:16, skaliert zum Füllen, VBR 1 Durchgang, 8 Mbit/s, Lautheit auf −14 LUFS normalisiert
+	Highlight Balance	Lichter-Balance
+	Highlight Hue	Lichter-Farbton
+	Highlight Level	Lichter-Pegel
+	Highlight Softness	Lichter-Weichheit
+	Import media	Medien importieren
+	Imported {n} preset(s)	{n} Vorgabe(n) importiert
+	Imported {n} preset(s); not imported: {error}	{n} Vorgabe(n) importiert; nicht importiert: {error}
+	Imported {n} preset(s); {skipped} skipped	{n} Vorgabe(n) importiert; {skipped} übersprungen
+	Imported {n} preset(s); {warnings} with unsupported parameters	{n} Vorgabe(n) importiert; {warnings} mit nicht unterstützten Parametern
+	Instagram Reels 1080×1920	Instagram Reels 1080×1920
+	Keep Existing Settings	Vorhandene Einstellungen beibehalten
+	Key Out Brights	Helle Bereiche ausstanzen
+	Looks for a newer Toma release and offers to update.	Sucht nach einer neueren Toma-Version und bietet das Update an.
+	MP3	MP3
+	MP3 48 kHz 320 kbps	MP3 48 kHz 320 kbit/s
+	MPEG audio (.mp3), joint stereo 48 kHz at 320 kbps	MPEG-Audio (.mp3), Joint Stereo 48 kHz mit 320 kbit/s
+	Main Menu	Hauptmenü
+	Maximize	Maximieren
+	Midtone Balance	Mitteltöne-Balance
+	Midtone Hue	Mitteltöne-Farbton
+	Midtone Level	Mitteltöne-Pegel
+	Minimize	Minimieren
+	New project	Neues Projekt
+	No matching text.	Kein passender Text.
+	No presets folder: the app has no data directory	Kein Vorgabenordner: Die App hat kein Datenverzeichnis
+	No text graphics in this sequence. Add text with the Type tool.	Diese Sequenz enthält keine Textgrafiken. Fügen Sie mit dem Textwerkzeug Text hinzu.
+	Nodalia	Nodalia
+	Open Presets Folder	Vorgabenordner öffnen
+	Open a sequence to search its graphics	Öffnen Sie eine Sequenz, um ihre Grafiken zu durchsuchen
+	Open project…	Projekt öffnen…
+	Open-source video editing in pure Rust.	Open-Source-Videoschnitt in reinem Rust.
+	Preset library is up to date	Die Vorgabenbibliothek ist aktuell
+	Preset library updated	Vorgabenbibliothek aktualisiert
+	Preset library updated: {imported} loaded, {removed} removed	Vorgabenbibliothek aktualisiert: {imported} geladen, {removed} entfernt
+	Project saved to {path}	Projekt in {path} gespeichert
+	Recent projects	Zuletzt verwendete Projekte
+	Replace	Ersetzen
+	Replace File	Datei ersetzen
+	Reset Interface Zoom	Oberflächenzoom zurücksetzen
+	Responsive Design – Time remaps the graphic's layer keyframes; clip effects like Opacity and Motion keep media time	Responsive Design – Zeit ordnet die Ebenen-Keyframes der Grafik neu zu; Clipeffekte wie Deckkraft und Bewegung behalten die Medienzeit
+	Scan Presets Folder	Vorgabenordner durchsuchen
+	Sequence: {settings}	Sequenz: {settings}
+	Set Work Area Bar In Point	In-Punkt der Arbeitsbereichsleiste setzen
+	Set Work Area Bar Out Point	Out-Punkt der Arbeitsbereichsleiste setzen
+	Set as Default Transition	Als Standardübergang festlegen
+	Shadow Balance	Tiefen-Balance
+	Shadow Hue	Tiefen-Farbton
+	Shadow Level	Tiefen-Pegel
+	Shadow Softness	Tiefen-Weichheit
+	Shadow Threshold	Tiefen-Schwellenwert
+	Show Audio Names	Audionamen anzeigen
+	Show Video Names	Videonamen anzeigen
+	Source In/Out is only 1 frame. Choose Entire Source to export the whole sequence.	In/Out der Quelle umfasst nur 1 Frame. Wählen Sie „Gesamte Quelle“, um die ganze Sequenz zu exportieren.
+	Start: {tc}	Anfang: {tc}
+	This clip does not match the sequence settings.	Dieser Clip passt nicht zu den Sequenzeinstellungen.
+	This preference is not available yet.	Diese Einstellung ist noch nicht verfügbar.
+	Three-Way Color Corrector	Drei-Wege-Farbkorrektur
+	Ticked attributes are removed from the selected clips.	Die angehakten Attribute werden aus den ausgewählten Clips entfernt.
+	TikTok 1080×1920	TikTok 1080×1920
+	Time Format	Zeitformat
+	Tonal Range	Tonwertbereich
+	Track Color	Spurfarbe
+	Transparency Grid	Transparenzraster
+	Video Names	Videonamen
+	When enabled, GIF transparency is on/off: alpha below 128 is transparent; 128 and above is opaque.	Wenn aktiviert, ist die GIF-Transparenz an oder aus: Alpha unter 128 ist transparent, ab 128 deckend.
+	Window Controls	Fenstersteuerelemente
+	Work Area Bar	Arbeitsbereichsleiste
+	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	{frames} frames ({seconds} s)	{frames} Frames ({seconds} s)
+	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} ist bereits vorhanden, daher wurde nichts exportiert. Wählen Sie die Datei im Speichern-Dialog, um sie zu ersetzen.
+	“{file}” already exists in “{folder}”. Do you want to replace it?	„{file}“ ist in „{folder}“ bereits vorhanden. Möchten Sie die Datei ersetzen?
+	Lower Third – Minimal	Bauchbinde – minimal
+	Lower Third – Split	Bauchbinde – geteilt
+	Title – Opening	Titel – Eröffnung
+	Title – Chapter	Titel – Kapitel
+	Title – Quote	Titel – Zitat
+	Callout – Location	Callout – Ort
+	Callout – Info Card	Callout – Infokarte
+	End Credits – Thank You	Abspann – Dank
+	A name and role beside a thin vertical rule, with no background.	Name und Funktion neben einer dünnen senkrechten Linie, ohne Hintergrund.
+	Name on a dark slab with the role on a light one below; both widen with their text.	Name auf einem dunklen Balken und Funktion auf einem hellen darunter; beide werden mit ihrem Text breiter.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	Ein linksbündiger Eröffnungstitel mit Vorzeile darüber, einer kurzen Linie und einem Untertitelspruch.
+	A chapter card: small label, large number, short rule and the chapter name.	Eine Kapitelkarte: kleines Label, große Nummer, kurze Linie und der Kapitelname.
+	A centred quote in italics with a large opening mark and its author.	Ein zentriertes Zitat in Kursivschrift mit großem Anführungszeichen und seinem Urheber.
+	A place name and a detail line on a rounded card with a marker dot.	Ein Ortsname und eine Detailzeile auf einer abgerundeten Karte mit Markierungspunkt.
+	A heading and a short fact on a rounded card that fits its text.	Eine Überschrift und eine kurze Information auf einer abgerundeten Karte, die sich dem Text anpasst.
+	A still closing card: a thank-you, a short rule and a parting line.	Eine feste Schlusskarte: ein Dank, eine kurze Linie und ein Abschiedssatz.
+	Body	Text
+	Card Color	Kartenfarbe
+	Details	Details
+	Kicker	Vorzeile
+	Mark Color	Farbe des Anführungszeichens
+	Message	Nachricht
+	Message Size	Nachrichtengröße
+	Name Slab Color	Farbe des Namensbalkens
+	Number	Nummer
+	Place	Ort
+	Quote	Zitat
+	Quote Color	Zitatfarbe
+	Quote Size	Zitatgröße
+	Role Color	Funktionsfarbe
+	Role Slab Color	Farbe des Funktionsbalkens
+	Tagline	Leitspruch
+	Center at Cut	Am Schnitt zentrieren
+	Start at Cut	Am Schnitt beginnen
+	End at Cut	Am Schnitt enden
+	Custom Start	Benutzerdefinierter Start
+	In:	Ein:
+	Marker Color:	Markerfarbe:
+	Options:	Optionen:
+	Invalid duration: {error}	Ungültige Dauer: {error}
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	{n} Preset(s) importiert; {skipped} übersprungen, {warnings} mit nicht unterstützten Parametern
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Teil von Nodalia. MIT OR Apache-2.0. Schriften: Inter, Noto Serif und JetBrains Mono (SIL OFL 1.1). Symbole: Nodalia Design (MIT).
+	Add pause	Pause hinzufügen
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	„Pause hinzufügen“ fügt [pause 1s] ein. Ändern Sie die Zahl für eine längere oder kürzere Pause, z. B. [pause 500ms] oder [pause 2s].
+	Add to timeline	Zur Timeline hinzufügen
+	Basic voices (built in)	Basisstimmen (integriert)
+	Cannot check export destination: {e}	Exportziel kann nicht geprüft werden: {e}
+	Depth:	Tiefe:
+	Download	Herunterladen
+	Download natural voices ({mb} MB)…	Natürliche Stimmen herunterladen ({mb} MB)…
+	Download of the natural voices failed: {e}	Der Download der natürlichen Stimmen ist fehlgeschlagen: {e}
+	Download the natural voices? {mb} MB, once.	Natürliche Stimmen herunterladen? {mb} MB, einmalig.
+	Editing the selected narration	Die ausgewählte Sprachausgabe wird bearbeitet
+	Exported frame to {path}	Bild nach {path} exportiert
+	Extra high	Sehr hoch
+	Extra low	Sehr tief
+	Format:	Format:
+	Frame time: {time}	Bildzeit: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Von {source} und github.com/cmusphinx/cmudict (Aussprachen). Lizenz: {licence}. Jede Datei wird gegen eine festgelegte SHA-256-Prüfsumme geprüft.
+	Hear this voice	Diese Stimme anhören
+	Import into project	In Projekt importieren
+	Keep existing file	Vorhandene Datei behalten
+	Narration added on an audio track	Sprachausgabe auf einer Audiospur hinzugefügt
+	Narration added on {track}	Sprachausgabe auf {track} hinzugefügt
+	Narration updated	Sprachausgabe aktualisiert
+	Natural voices	Natürliche Stimmen
+	Natural voices installed	Natürliche Stimmen installiert
+	Natural voices need a one-time download.	Natürliche Stimmen erfordern einen einmaligen Download.
+	New narration	Neue Sprachausgabe
+	Pace	Tempo
+	Path:	Pfad:
+	Synthesizing narration…	Sprachausgabe wird erzeugt…
+	Synthesizing…	Wird erzeugt…
+	Text to Speech: {e}	Text-zu-Sprache: {e}
+	This file already exists: {path}	Diese Datei existiert bereits: {path}
+	Type what you want the voice to say	Geben Sie ein, was die Stimme sagen soll
+	Vocal pitch	Stimmlage
+	{bits} Bit	{bits} Bit
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (Download)
+	H.265 (HEVC) needs a hardware encoder (NVENC on NVIDIA GPUs, VideoToolbox on macOS); none was found on this machine, and Toma has no software H.265 encoder yet. Choose H.264 or ProRes instead.	H.265 (HEVC) benötigt einen Hardware-Encoder (NVENC auf NVIDIA-Grafikkarten, VideoToolbox unter macOS); auf diesem Computer wurde keiner gefunden, und Toma hat noch keinen Software-H.265-Encoder. Wählen Sie stattdessen H.264 oder ProRes.

@@ -7,7 +7,7 @@
 
 use serde_json::{Value, json};
 
-use toma_captions::{Document, Format, WriteOptions};
+use toma_captions::{Document, Format};
 use toma_edit as edit;
 use toma_edit::Edge;
 use toma_project::{CaptionAlign, CaptionAnchor, CaptionFormat, CaptionStyle, CaptionTrack, ClipId, SequenceSettings, TrackId};
@@ -137,7 +137,7 @@ pub fn import(s: &mut Session, path: &str, bytes: &[u8], format: Format, name: O
             next += 1;
             v
         };
-        let mut track = toma_captions::track_from_document(&doc, tid, &track_name, format.track_format(), &mut alloc);
+        let mut track = toma_captions::track_from_document(&doc, tid, &track_name, toma_captions::track_format(format), &mut alloc);
         if let Some(language) = language {
             track.language = language.to_string();
         }
@@ -269,7 +269,7 @@ fn export(s: &mut Session, p: &Value) -> Result<Value> {
     let track = seq.caption_track(tid).ok_or_else(|| bad("captions.export", "no such caption track"))?;
     let doc: Document = toma_captions::document_from_track(track, Tick::ZERO);
     let df = bool_p(p, "dropFrame").unwrap_or(true);
-    let opts = WriteOptions { drop_frame: df, rate: Some(seq.settings.frame_rate) };
+    let opts = toma_captions::write_options(df, Some(seq.settings.frame_rate));
     let bytes = toma_captions::write(&doc, format, opts);
     let warnings = toma_captions::charset_warnings(&doc, format, opts);
     let n = doc.cues.len();

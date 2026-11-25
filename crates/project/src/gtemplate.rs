@@ -703,6 +703,247 @@ pub fn builtin_templates() -> Vec<GraphicsTemplate> {
         t.graphic.roll = Roll { mode: RollMode::CrawlLeft, start_off_screen: true, end_off_screen: true, ..Default::default() };
         v.push(t);
     }
+    // Lower third: a hairline rule beside a name and role, light text with a soft shadow.
+    {
+        let shadow = |e: &mut EffectInstance| {
+            set(e, "shadow", ParamValue::Bool(true));
+            set(e, "shadow_distance", ParamValue::Float(3.0));
+            set(e, "shadow_blur", ParamValue::Float(14.0));
+            set(e, "shadow_opacity", ParamValue::Float(55.0));
+        };
+        let rule = shape(1, "Rule", 0, (144.0, 930.0), (5.0, 124.0), 0xf8fafc);
+        let mut name = text(2, "Name", "Elena Duarte", (170.0, 920.0), 60.0, "SemiBold");
+        shadow(&mut name);
+        let mut role = text(3, "Role", "Marine Biologist", (172.0, 975.0), 34.0, "Regular");
+        set(&mut role, "fill_color", rgb(0xcbd5e1));
+        shadow(&mut role);
+        v.push(builtin(
+            "lower-third-minimal",
+            "Lower Third – Minimal",
+            "Lower Thirds",
+            "A name and role beside a thin vertical rule, with no background.",
+            6,
+            vec![rule, name, role],
+            vec![
+                ctl("name", "Name", 2, "text"),
+                ctl("role", "Role", 3, "text"),
+                ctl("rule_color", "Rule Color", 1, "fill_color"),
+                ctl("text_color", "Name Color", 2, "fill_color"),
+                ctl("show_role", "Show Role", 3, "enabled"),
+                ctl("font", "Font", 2, "font"),
+                slider("name_size", "Name Size", 2, "size", 24.0, 140.0),
+            ],
+        ));
+    }
+    // Lower third: the name on a dark slab and the role on a light one underneath, each fitting its text.
+    {
+        let mut name_slab = shape(1, "Name Slab", 0, (400.0, 906.0), (400.0, 88.0), 0x0f172a);
+        set(&mut name_slab, "opacity", ParamValue::Float(95.0));
+        pin(&mut name_slab, 3, [true, false, true, false], [-32.0, 0.0, 32.0, 0.0]);
+        let mut role_slab = shape(2, "Role Slab", 0, (400.0, 977.0), (300.0, 54.0), 0xe2e8f0);
+        pin(&mut role_slab, 4, [true, false, true, false], [-32.0, 0.0, 32.0, 0.0]);
+        let mut name = text(3, "Name", "Tomás Ibarra", (160.0, 920.0), 54.0, "SemiBold");
+        set(&mut name, "fill_color", rgb(0xffffff));
+        let mut role = text(4, "Role", "Harbour Master", (160.0, 984.0), 30.0, "Medium");
+        set(&mut role, "fill_color", rgb(0x0f172a));
+        set(&mut role, "tracking", ParamValue::Float(40.0));
+        v.push(builtin(
+            "lower-third-split",
+            "Lower Third – Split",
+            "Lower Thirds",
+            "Name on a dark slab with the role on a light one below; both widen with their text.",
+            6,
+            vec![name_slab, role_slab, name, role],
+            vec![
+                ctl("name", "Name", 3, "text"),
+                ctl("role", "Role", 4, "text"),
+                ctl("name_slab_color", "Name Slab Color", 1, "fill_color"),
+                ctl("role_slab_color", "Role Slab Color", 2, "fill_color"),
+                ctl("name_color", "Name Color", 3, "fill_color"),
+                ctl("role_color", "Role Color", 4, "fill_color"),
+                ctl("font", "Font", 3, "font"),
+            ],
+        ));
+    }
+    // Opening title: a small kicker, a large left-aligned title, a short rule and a tagline.
+    {
+        let shadow = |e: &mut EffectInstance| {
+            set(e, "shadow", ParamValue::Bool(true));
+            set(e, "shadow_distance", ParamValue::Float(4.0));
+            set(e, "shadow_blur", ParamValue::Float(24.0));
+            set(e, "shadow_opacity", ParamValue::Float(55.0));
+        };
+        let mut kicker = text(1, "Kicker", "A FILM BY MIRA OKAFOR", (180.0, 470.0), 30.0, "Medium");
+        set(&mut kicker, "tracking", ParamValue::Float(260.0));
+        set(&mut kicker, "fill_color", rgb(0xcbd5e1));
+        shadow(&mut kicker);
+        let mut title = text(2, "Title", "Salt & Silence", (176.0, 620.0), 150.0, "Bold");
+        shadow(&mut title);
+        let rule = shape(3, "Rule", 0, (240.0, 684.0), (120.0, 5.0), 0x38bdf8);
+        let mut tagline = text(4, "Tagline", "Summer 2026", (180.0, 760.0), 40.0, "Regular");
+        set(&mut tagline, "fill_color", rgb(0xe2e8f0));
+        shadow(&mut tagline);
+        v.push(builtin(
+            "title-opening",
+            "Title – Opening",
+            "Titles",
+            "A left-aligned opening title with a kicker above, a short rule and a tagline.",
+            6,
+            vec![kicker, title, rule, tagline],
+            vec![
+                ctl("kicker", "Kicker", 1, "text"),
+                ctl("title", "Title", 2, "text"),
+                ctl("tagline", "Tagline", 4, "text"),
+                slider("title_size", "Title Size", 2, "size", 40.0, 240.0),
+                ctl("title_color", "Title Color", 2, "fill_color"),
+                ctl("accent", "Accent Color", 3, "fill_color"),
+                ctl("font", "Font", 2, "font"),
+            ],
+        ));
+    }
+    // Chapter card: a small label, a big number, a short rule and the chapter's name.
+    {
+        let centred = |e: &mut EffectInstance| set(e, "align", ParamValue::Choice(1));
+        let mut label = text(1, "Label", "CHAPTER", (960.0, 380.0), 30.0, "Medium");
+        centred(&mut label);
+        set(&mut label, "tracking", ParamValue::Float(300.0));
+        set(&mut label, "fill_color", rgb(0xcbd5e1));
+        let mut number = text(2, "Number", "01", (960.0, 600.0), 240.0, "Bold");
+        centred(&mut number);
+        set(&mut number, "opacity", ParamValue::Float(92.0));
+        let rule = shape(3, "Rule", 0, (960.0, 676.0), (160.0, 4.0), 0xfbbf24);
+        let mut title = text(4, "Title", "The Harbour", (960.0, 762.0), 84.0, "SemiBold");
+        centred(&mut title);
+        v.push(builtin(
+            "title-chapter",
+            "Title – Chapter",
+            "Titles",
+            "A chapter card: small label, large number, short rule and the chapter name.",
+            5,
+            vec![label, number, rule, title],
+            vec![
+                ctl("label", "Label", 1, "text"),
+                ctl("number", "Number", 2, "text"),
+                ctl("title", "Title", 4, "text"),
+                ctl("title_color", "Title Color", 4, "fill_color"),
+                ctl("accent", "Accent Color", 3, "fill_color"),
+                ctl("font", "Font", 4, "font"),
+            ],
+        ));
+    }
+    // Quote: a large opening mark, the quote in italics and who said it.
+    {
+        let centred = |e: &mut EffectInstance| set(e, "align", ParamValue::Choice(1));
+        let mut mark = text(1, "Mark", "\u{201C}", (960.0, 470.0), 300.0, "Bold");
+        centred(&mut mark);
+        set(&mut mark, "fill_color", rgb(0xfbbf24));
+        set(&mut mark, "opacity", ParamValue::Float(90.0));
+        let mut quote = text(2, "Quote", "The sea does not\nreward haste.", (960.0, 580.0), 66.0, "Italic");
+        centred(&mut quote);
+        set(&mut quote, "leading", ParamValue::Float(10.0));
+        let mut author = text(3, "Author", "\u{2014} Lucía Marín", (960.0, 780.0), 36.0, "Medium");
+        centred(&mut author);
+        set(&mut author, "tracking", ParamValue::Float(60.0));
+        set(&mut author, "fill_color", rgb(0xcbd5e1));
+        v.push(builtin(
+            "title-quote",
+            "Title – Quote",
+            "Titles",
+            "A centred quote in italics with a large opening mark and its author.",
+            6,
+            vec![mark, quote, author],
+            vec![
+                ctl("quote", "Quote", 2, "text"),
+                ctl("author", "Author", 3, "text"),
+                slider("quote_size", "Quote Size", 2, "size", 32.0, 120.0),
+                ctl("quote_color", "Quote Color", 2, "fill_color"),
+                ctl("mark_color", "Mark Color", 1, "fill_color"),
+                ctl("font", "Font", 2, "font"),
+            ],
+        ));
+    }
+    // Callout: a place name and a detail line on a dark card, with a coloured dot.
+    {
+        let mut card = shape(1, "Card", 0, (500.0, 162.0), (420.0, 132.0), 0x0f172a);
+        set(&mut card, "opacity", ParamValue::Float(88.0));
+        set(&mut card, "corner_radius", ParamValue::Float(28.0));
+        pin(&mut card, 3, [true, false, true, false], [-86.0, 0.0, 44.0, 0.0]);
+        let mut dot = shape(2, "Dot", 1, (210.0, 135.0), (24.0, 24.0), 0xfb7185);
+        pin(&mut dot, 3, [true, false, false, false], [-50.0, 0.0, 0.0, 0.0]);
+        let place = text(3, "Place", "Lisbon, Portugal", (230.0, 150.0), 44.0, "SemiBold");
+        let mut detail = text(4, "Details", "38.72° N, 9.14° W", (230.0, 196.0), 28.0, "Regular");
+        set(&mut detail, "fill_color", rgb(0x93c5fd));
+        v.push(builtin(
+            "callout-location",
+            "Callout – Location",
+            "Callouts",
+            "A place name and a detail line on a rounded card with a marker dot.",
+            5,
+            vec![card, dot, place, detail],
+            vec![
+                ctl("place", "Place", 3, "text"),
+                ctl("details", "Details", 4, "text"),
+                ctl("card_color", "Card Color", 1, "fill_color"),
+                ctl("dot_color", "Dot Color", 2, "fill_color"),
+                ctl("text_color", "Text Color", 3, "fill_color"),
+                ctl("font", "Font", 3, "font"),
+            ],
+        ));
+    }
+    // Callout: a small heading over a short fact on a dark card.
+    {
+        let mut card = shape(1, "Card", 0, (1400.0, 384.0), (520.0, 216.0), 0x0f172a);
+        set(&mut card, "opacity", ParamValue::Float(90.0));
+        set(&mut card, "corner_radius", ParamValue::Float(24.0));
+        pin(&mut card, 2, [true, false, true, false], [-44.0, 0.0, 44.0, 0.0]);
+        let mut body = text(2, "Body", "The tide here rises\nup to four metres.", (1190.0, 400.0), 40.0, "Medium");
+        set(&mut body, "leading", ParamValue::Float(8.0));
+        let mut heading = text(3, "Heading", "DID YOU KNOW?", (1190.0, 330.0), 28.0, "Bold");
+        set(&mut heading, "tracking", ParamValue::Float(180.0));
+        set(&mut heading, "fill_color", rgb(0xfbbf24));
+        v.push(builtin(
+            "callout-info-card",
+            "Callout – Info Card",
+            "Callouts",
+            "A heading and a short fact on a rounded card that fits its text.",
+            6,
+            vec![card, body, heading],
+            vec![
+                ctl("heading", "Heading", 3, "text"),
+                ctl("body", "Body", 2, "text"),
+                ctl("card_color", "Card Color", 1, "fill_color"),
+                ctl("accent", "Accent Color", 3, "fill_color"),
+                ctl("text_color", "Text Color", 2, "fill_color"),
+                ctl("font", "Font", 2, "font"),
+            ],
+        ));
+    }
+    // Closing card: a thank-you, a short rule and a parting line.
+    {
+        let centred = |e: &mut EffectInstance| set(e, "align", ParamValue::Choice(1));
+        let mut thanks = text(1, "Message", "Thank you for watching", (960.0, 520.0), 100.0, "SemiBold");
+        centred(&mut thanks);
+        let rule = shape(2, "Rule", 0, (960.0, 584.0), (220.0, 4.0), 0xfbbf24);
+        let mut sub = text(3, "Subtitle", "See you next time", (960.0, 670.0), 42.0, "Regular");
+        centred(&mut sub);
+        set(&mut sub, "fill_color", rgb(0xcbd5e1));
+        v.push(builtin(
+            "end-credits-thanks",
+            "End Credits – Thank You",
+            "End Credits",
+            "A still closing card: a thank-you, a short rule and a parting line.",
+            6,
+            vec![thanks, rule, sub],
+            vec![
+                ctl("message", "Message", 1, "text"),
+                ctl("subtitle", "Subtitle", 3, "text"),
+                slider("message_size", "Message Size", 1, "size", 40.0, 200.0),
+                ctl("text_color", "Text Color", 1, "fill_color"),
+                ctl("accent", "Accent Color", 2, "fill_color"),
+                ctl("font", "Font", 1, "font"),
+            ],
+        ));
+    }
     v
 }
 
@@ -724,7 +965,7 @@ mod tests {
     #[test]
     fn builtins_are_valid_and_round_trip() {
         let all = builtin_templates();
-        assert!(all.len() >= 8);
+        assert!(all.len() >= 16);
         let mut ids: Vec<&str> = all.iter().map(|t| t.id.as_str()).collect();
         ids.dedup();
         assert_eq!(ids.len(), all.len());

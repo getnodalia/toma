@@ -3773,3 +3773,116 @@
 	Toggle Color Grading Section	切换色彩分级分区
 	Color Grading Section	色彩分级分区
 	Read Video Scopes	读取视频示波器
+	Caption Track	字幕轨道
+	Copy of the project saved to {path}	项目副本已保存到 {path}
+	Cube LUT	Cube LUT
+	Delete Clips	删除剪辑
+	Desktop's own	桌面自带
+	Export .cube…	导出 .cube…
+	Exported {path}; not in the LUT: {effects}	已导出 {path}；未包含在 LUT 中：{effects}
+	Full Screen Program Monitor	全屏节目监视器
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 10 Mbps, loudness normalized to −14 LUFS	H.264 竖屏 9:16，缩放填充，VBR 1 次，10 Mbps，响度标准化为 −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 12 Mbps, loudness normalized to −14 LUFS	H.264 竖屏 9:16，缩放填充，VBR 1 次，12 Mbps，响度标准化为 −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 8 Mbps, loudness normalized to −14 LUFS	H.264 竖屏 9:16，缩放填充，VBR 1 次，8 Mbps，响度标准化为 −14 LUFS
+	Highlight Balance	高光平衡
+	Highlight Hue	高光色相
+	Highlight Level	高光级别
+	Highlight Softness	高光柔和度
+	Import media	导入媒体
+	Instagram Reels 1080×1920	Instagram Reels 1080×1920
+	Key Out Brights	抠出亮部
+	Main Menu	主菜单
+	Maximize	最大化
+	Midtone Balance	中间调平衡
+	Midtone Hue	中间调色相
+	Midtone Level	中间调级别
+	Minimize	最小化
+	New project	新建项目
+	Nodalia	Nodalia
+	Open project…	打开项目…
+	Open-source video editing in pure Rust.	纯 Rust 编写的开源视频编辑软件。
+	Project saved to {path}	项目已保存到 {path}
+	Recent projects	最近的项目
+	Shadow Balance	阴影平衡
+	Shadow Hue	阴影色相
+	Shadow Level	阴影级别
+	Shadow Softness	阴影柔和度
+	Shadow Threshold	阴影阈值
+	This preference is not available yet.	此首选项暂不可用。
+	Three-Way Color Corrector	三向颜色校正器
+	Ticked attributes are removed from the selected clips.	勾选的属性将从所选剪辑中移除。
+	TikTok 1080×1920	TikTok 1080×1920
+	Time Format	时间格式
+	Tonal Range	色调范围
+	Window Controls	窗口控件
+	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	Lower Third – Minimal	下三分之一 – 极简
+	Lower Third – Split	下三分之一 – 分层
+	Title – Opening	标题 – 开场
+	Title – Chapter	标题 – 章节
+	Title – Quote	标题 – 引语
+	Callout – Location	标注 – 地点
+	Callout – Info Card	标注 – 信息卡片
+	End Credits – Thank You	片尾字幕 – 致谢
+	A name and role beside a thin vertical rule, with no background.	姓名和头衔位于一条细竖线旁，无背景。
+	Name on a dark slab with the role on a light one below; both widen with their text.	姓名在深色条上，头衔在其下的浅色条上；两者都随文字变宽。
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	左对齐的开场标题，上方有引导语，并配有短线和标语。
+	A chapter card: small label, large number, short rule and the chapter name.	章节卡片：小标签、大号数字、短线和章节名称。
+	A centred quote in italics with a large opening mark and its author.	居中的斜体引语，配有大号开引号和出处。
+	A place name and a detail line on a rounded card with a marker dot.	圆角卡片上显示地点名称和一行详情，并带有标记圆点。
+	A heading and a short fact on a rounded card that fits its text.	圆角卡片上显示标题和一条简短的趣闻，卡片随文字大小调整。
+	A still closing card: a thank-you, a short rule and a parting line.	静态的结束卡片：一句致谢、一条短线和一句告别语。
+	Body	正文
+	Card Color	卡片颜色
+	Details	详情
+	Kicker	引导语
+	Mark Color	引号颜色
+	Message	消息
+	Message Size	消息大小
+	Name Slab Color	姓名条颜色
+	Number	编号
+	Place	地点
+	Quote	引语
+	Quote Color	引语颜色
+	Quote Size	引语大小
+	Role Color	头衔颜色
+	Role Slab Color	头衔条颜色
+	Tagline	标语
+	Add pause	添加停顿
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	“添加停顿”会插入 [pause 1s]。修改数字可延长或缩短停顿，例如 [pause 500ms] 或 [pause 2s]。
+	Add to timeline	添加到时间轴
+	Basic voices (built in)	基础人声（内置）
+	Cannot check export destination: {e}	无法检查导出目标：{e}
+	Depth:	位深：
+	Download	下载
+	Download natural voices ({mb} MB)…	下载自然人声（{mb} MB）…
+	Download of the natural voices failed: {e}	自然人声下载失败：{e}
+	Download the natural voices? {mb} MB, once.	下载自然人声？共 {mb} MB，仅需一次。
+	Editing the selected narration	正在编辑所选旁白
+	Exported frame to {path}	已将帧导出到 {path}
+	Extra high	极高
+	Extra low	极低
+	Format:	格式：
+	Frame time: {time}	帧时间：{time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	来自 {source} 和 github.com/cmusphinx/cmudict（发音）。许可证：{licence}。每个文件都会按固定的 SHA-256 校验。
+	Hear this voice	试听此人声
+	Import into project	导入到项目
+	Keep existing file	保留现有文件
+	Narration added on an audio track	已在音频轨道上添加旁白
+	Narration added on {track}	已在 {track} 上添加旁白
+	Narration updated	旁白已更新
+	Natural voices	自然人声
+	Natural voices installed	自然人声已安装
+	Natural voices need a one-time download.	自然人声需要一次性下载。
+	New narration	新建旁白
+	Pace	语速
+	Path:	路径：
+	Synthesizing narration…	正在合成旁白…
+	Synthesizing…	正在合成…
+	Text to Speech: {e}	文字转语音：{e}
+	This file already exists: {path}	此文件已存在：{path}
+	Type what you want the voice to say	输入希望人声说出的内容
+	Vocal pitch	音高
+	{bits} Bit	{bits} 位
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name}（下载）

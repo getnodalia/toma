@@ -10,10 +10,17 @@ rust-version.workspace = true
 workspace = true
 
 [dependencies]
+craft-audio = { workspace = true }
+craft-jpeg = { git = "https://github.com/getnodalia/foundation", rev = "2e686d9668a7ff383182c15c9997a89dec1b07c2" }
+craft-exr = { workspace = true }
+craft-tga = { workspace = true }
+craft-dpx = { workspace = true }
+craft-video = { workspace = true }
 toma-time = { workspace = true }
 toma-frame = { workspace = true }
 toma-color = { workspace = true }
 toma-media = { workspace = true }
+craft-media = { workspace = true, features = ["mxf"] }
 toma-codecs = { workspace = true }
 toma-project = { workspace = true }
 toma-render = { workspace = true }
@@ -21,20 +28,14 @@ toma-audio-dsp = { workspace = true }
 toma-geom = { workspace = true }
 toma-text = { workspace = true }
 toma-isobmff = { workspace = true }
-toma-prores = { workspace = true }
-toma-dnx = { workspace = true }
-toma-apv = { workspace = true }
-toma-mxf = { workspace = true }
-toma-aac = { workspace = true }
-toma-mp3enc = { workspace = true }
-toma-flac = { workspace = true }
-toma-h264enc = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
 thiserror = { workspace = true }
 rayon = { workspace = true }
+log = { workspace = true }
 web-time = "1"
 image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif", "tiff", "bmp"] }
 
 [dev-dependencies]
+flate2 = { version = "1", default-features = false, features = ["rust_backend"] }
 toma-testkit = { workspace = true }

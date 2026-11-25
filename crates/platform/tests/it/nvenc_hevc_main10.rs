@@ -5,9 +5,9 @@
 //! hostile inputs are errors. Skips (with SKIPPED) only on a machine without a 10-bit HEVC encoder.
 #![cfg(target_os = "windows")]
 
+use craft_video::hevc::decode::params::Sps;
 use toma_bitstream::unescape_rbsp;
 use toma_export::{ColorSignal, rgbf_to_yuv420_10};
-use toma_hevc::params::Sps;
 use toma_isobmff::SampleEntry;
 use toma_platform::nvenc::export::nvenc_signal;
 use toma_platform::nvenc::{Codec, Config, Nvenc, Packet, Profile, Signal, hevc_available, hevc_hdr_available, nal_type};

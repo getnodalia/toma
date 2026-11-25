@@ -24,6 +24,7 @@ toma-geom = { workspace = true }
 toma-color = { workspace = true }
 toma-frame = { workspace = true }
 toma-media = { workspace = true }
+craft-media = { workspace = true, features = ["mxf"] }
 toma-codecs = { workspace = true }
 toma-project = { workspace = true }
 toma-edit = { workspace = true }
@@ -32,7 +33,6 @@ toma-scopes = { workspace = true }
 toma-text = { workspace = true }
 toma-audio-dsp = { workspace = true }
 toma-export = { workspace = true }
-toma-mxf = { workspace = true }
 toma-format = { workspace = true }
 toma-interchange = { workspace = true }
 toma-captions = { workspace = true }
@@ -49,6 +49,7 @@ web-time = "1"
 
 [dev-dependencies]
 toma-testkit = { workspace = true }
+tempfile = "3"
 toma-audio-dsp = { workspace = true, features = ["test-util"] }
 toma-dng = { workspace = true, features = ["writer"] }
 toma-isobmff = { workspace = true }

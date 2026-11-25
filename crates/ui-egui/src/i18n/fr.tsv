@@ -3745,3 +3745,149 @@
 	Toggle Color Grading Section	Activer ou désactiver une section d’étalonnage
 	Color Grading Section	Section d’étalonnage
 	Read Video Scopes	Lire les oscilloscopes vidéo
+	1 frame ({seconds} s)	1 image ({seconds} s)
+	Add Track	Ajouter une piste
+	Caption Export Settings	Réglages d'exportation des sous-titres
+	Caption Track	Piste de sous-titres
+	Change Sequence Settings	Modifier les réglages de la séquence
+	Change the sequence to match the clip's settings?	Modifier la séquence pour qu'elle corresponde aux réglages du clip ?
+	Clip Mismatch Warning	Avertissement de non-concordance du clip
+	Clip: {settings}	Clip : {settings}
+	Copy of the project saved to {path}	Copie du projet enregistrée dans {path}
+	Cube LUT	LUT Cube
+	Delete Clips	Supprimer les clips
+	Delete Track	Supprimer la piste
+	Desktop's own	Ceux du bureau
+	Export .cube…	Exporter en .cube…
+	Exported {path} as {format}, from its file extension	{path} exporté au format {format}, d'après son extension
+	Exported {path}; not in the LUT: {effects}	{path} exporté ; absent de la LUT : {effects}
+	From preset file:	Depuis le fichier de préréglages :
+	Full Screen Program Monitor	Moniteur du programme en plein écran
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 10 Mbps, loudness normalized to −14 LUFS	H.264 portrait 9:16, mis à l'échelle pour remplir, VBR 1 passe, 10 Mbit/s, sonie normalisée à −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 12 Mbps, loudness normalized to −14 LUFS	H.264 portrait 9:16, mis à l'échelle pour remplir, VBR 1 passe, 12 Mbit/s, sonie normalisée à −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 8 Mbps, loudness normalized to −14 LUFS	H.264 portrait 9:16, mis à l'échelle pour remplir, VBR 1 passe, 8 Mbit/s, sonie normalisée à −14 LUFS
+	Highlight Balance	Balance des tons clairs
+	Highlight Hue	Teinte des tons clairs
+	Highlight Level	Niveau des tons clairs
+	Highlight Softness	Adoucissement des tons clairs
+	Import media	Importer des médias
+	Imported {n} preset(s)	{n} préréglage(s) importé(s)
+	Imported {n} preset(s); not imported: {error}	{n} préréglage(s) importé(s) ; non importé : {error}
+	Imported {n} preset(s); {skipped} skipped	{n} préréglage(s) importé(s) ; {skipped} ignoré(s)
+	Imported {n} preset(s); {warnings} with unsupported parameters	{n} préréglage(s) importé(s) ; {warnings} avec des paramètres non pris en charge
+	Instagram Reels 1080×1920	Instagram Reels 1080×1920
+	Keep Existing Settings	Conserver les réglages actuels
+	Key Out Brights	Incrustation des tons clairs
+	Main Menu	Menu principal
+	Maximize	Agrandir
+	Midtone Balance	Balance des tons moyens
+	Midtone Hue	Teinte des tons moyens
+	Midtone Level	Niveau des tons moyens
+	Minimize	Réduire
+	New project	Nouveau projet
+	No presets folder: the app has no data directory	Aucun dossier de préréglages : l'application n'a pas de répertoire de données
+	Nodalia	Nodalia
+	Open Presets Folder	Ouvrir le dossier des préréglages
+	Open project…	Ouvrir un projet…
+	Open-source video editing in pure Rust.	Montage vidéo open source en pur Rust.
+	Preset library is up to date	La bibliothèque de préréglages est à jour
+	Preset library updated	Bibliothèque de préréglages mise à jour
+	Preset library updated: {imported} loaded, {removed} removed	Bibliothèque de préréglages mise à jour : {imported} chargé(s), {removed} supprimé(s)
+	Project saved to {path}	Projet enregistré dans {path}
+	Recent projects	Projets récents
+	Responsive Design – Time remaps the graphic's layer keyframes; clip effects like Opacity and Motion keep media time	Responsive Design – Le temps remappe les images clés des calques du graphique ; les effets du clip comme l'opacité et le mouvement gardent le temps du média
+	Scan Presets Folder	Analyser le dossier des préréglages
+	Sequence: {settings}	Séquence : {settings}
+	Set as Default Transition	Définir comme transition par défaut
+	Shadow Balance	Balance des tons foncés
+	Shadow Hue	Teinte des tons foncés
+	Shadow Level	Niveau des tons foncés
+	Shadow Softness	Adoucissement des tons foncés
+	Shadow Threshold	Seuil des tons foncés
+	Source In/Out is only 1 frame. Choose Entire Source to export the whole sequence.	L'entrée/sortie de la source ne fait qu'une image. Choisissez Source entière pour exporter toute la séquence.
+	This clip does not match the sequence settings.	Ce clip ne correspond pas aux réglages de la séquence.
+	This preference is not available yet.	Cette préférence n'est pas encore disponible.
+	Three-Way Color Corrector	Correcteur colorimétrique tridirectionnel
+	Ticked attributes are removed from the selected clips.	Les attributs cochés sont supprimés des clips sélectionnés.
+	TikTok 1080×1920	TikTok 1080×1920
+	Time Format	Format d'heure
+	Tonal Range	Plage tonale
+	When enabled, GIF transparency is on/off: alpha below 128 is transparent; 128 and above is opaque.	Si activé, la transparence GIF est tout ou rien : un alpha inférieur à 128 est transparent ; 128 et plus est opaque.
+	Window Controls	Commandes de fenêtre
+	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	{frames} frames ({seconds} s)	{frames} images ({seconds} s)
+	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} existe déjà, rien n'a donc été exporté. Pour le remplacer, choisissez-le dans la boîte de dialogue d'enregistrement.
+	Lower Third – Minimal	Tiers inférieur – Minimal
+	Lower Third – Split	Tiers inférieur – Scindé
+	Title – Opening	Titre – Ouverture
+	Title – Chapter	Titre – Chapitre
+	Title – Quote	Titre – Citation
+	Callout – Location	Légende – Lieu
+	Callout – Info Card	Légende – Carte d'information
+	End Credits – Thank You	Générique de fin – Remerciements
+	A name and role beside a thin vertical rule, with no background.	Un nom et une fonction à côté d'un fin filet vertical, sans fond.
+	Name on a dark slab with the role on a light one below; both widen with their text.	Nom sur un bloc sombre et fonction sur un bloc clair en dessous ; les deux s'élargissent avec leur texte.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	Un titre d'ouverture aligné à gauche, avec un surtitre au-dessus, un filet court et une accroche.
+	A chapter card: small label, large number, short rule and the chapter name.	Une carte de chapitre : petite étiquette, grand numéro, filet court et nom du chapitre.
+	A centred quote in italics with a large opening mark and its author.	Une citation centrée en italique avec un grand guillemet ouvrant et son auteur.
+	A place name and a detail line on a rounded card with a marker dot.	Un nom de lieu et une ligne de détail sur une carte arrondie avec un point repère.
+	A heading and a short fact on a rounded card that fits its text.	Un intitulé et un fait court sur une carte arrondie qui s'adapte au texte.
+	A still closing card: a thank-you, a short rule and a parting line.	Une carte de fin fixe : un remerciement, un filet court et une formule d'adieu.
+	Body	Corps
+	Card Color	Couleur de la carte
+	Details	Détails
+	Kicker	Surtitre
+	Mark Color	Couleur du guillemet
+	Message	Message
+	Message Size	Taille du message
+	Name Slab Color	Couleur du bloc du nom
+	Number	Numéro
+	Place	Lieu
+	Quote	Citation
+	Quote Color	Couleur de la citation
+	Quote Size	Taille de la citation
+	Role Color	Couleur de la fonction
+	Role Slab Color	Couleur du bloc de la fonction
+	Tagline	Accroche
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	{n} préréglage(s) importé(s) ; {skipped} ignoré(s), {warnings} avec des paramètres non pris en charge
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Fait partie de Nodalia. MIT OR Apache-2.0. Polices : Inter, Noto Serif et JetBrains Mono (SIL OFL 1.1). Icônes : Nodalia Design (MIT).
+	Add pause	Ajouter une pause
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Ajouter une pause insère [pause 1s]. Changez le nombre pour une pause plus longue ou plus courte, p. ex. [pause 500ms] ou [pause 2s].
+	Add to timeline	Ajouter à la timeline
+	Basic voices (built in)	Voix de base (intégrées)
+	Cannot check export destination: {e}	Impossible de vérifier la destination d’exportation : {e}
+	Depth:	Profondeur :
+	Download	Télécharger
+	Download natural voices ({mb} MB)…	Télécharger les voix naturelles ({mb} Mo)…
+	Download of the natural voices failed: {e}	Le téléchargement des voix naturelles a échoué : {e}
+	Download the natural voices? {mb} MB, once.	Télécharger les voix naturelles ? {mb} Mo, une seule fois.
+	Editing the selected narration	Modification de la narration sélectionnée
+	Exported frame to {path}	Image exportée vers {path}
+	Extra high	Très aiguë
+	Extra low	Très grave
+	Format:	Format :
+	Frame time: {time}	Durée de l’image : {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	Depuis {source} et github.com/cmusphinx/cmudict (prononciations). Licence : {licence}. Chaque fichier est vérifié par rapport à un SHA-256 figé.
+	Hear this voice	Écouter cette voix
+	Import into project	Importer dans le projet
+	Keep existing file	Conserver le fichier existant
+	Narration added on an audio track	Narration ajoutée sur une piste audio
+	Narration added on {track}	Narration ajoutée sur {track}
+	Narration updated	Narration mise à jour
+	Natural voices	Voix naturelles
+	Natural voices installed	Voix naturelles installées
+	Natural voices need a one-time download.	Les voix naturelles nécessitent un téléchargement unique.
+	New narration	Nouvelle narration
+	Pace	Débit
+	Path:	Chemin :
+	Synthesizing narration…	Synthèse de la narration…
+	Synthesizing…	Synthèse en cours…
+	Text to Speech: {e}	Synthèse vocale : {e}
+	This file already exists: {path}	Ce fichier existe déjà : {path}
+	Type what you want the voice to say	Saisissez ce que la voix doit dire
+	Vocal pitch	Hauteur de la voix
+	{bits} Bit	{bits} bits
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (téléchargement)
+	Temporal Interpolation	Interpolation temporelle
+	Select items to clear	Sélectionnez les éléments à effacer

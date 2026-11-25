@@ -3688,3 +3688,202 @@
 	Toggle Color Grading Section	Alternar seção de gradação de cor
 	Color Grading Section	Seção de gradação de cor
 	Read Video Scopes	Ler escopos de vídeo
+	0 fastest, 8 smallest	0 mais rápido, 8 menor
+	1 frame ({seconds} s)	1 quadro ({seconds} s)
+	A file dialog is already open	Uma caixa de diálogo de arquivo já está aberta
+	AV1 needs a hardware encoder; none was found on this machine, and Toma has no software AV1 encoder yet.	AV1 precisa de um codificador de hardware; nenhum foi encontrado neste computador, e o Toma ainda não tem um codificador AV1 de software.
+	Add Track	Adicionar faixa
+	An earlier start failed with the default graphics. Updating the graphics driver usually fixes this.	Uma inicialização anterior falhou com os gráficos padrão. Atualizar o driver de vídeo costuma resolver isso.
+	Caption Export Settings	Configurações de exportação de legendas
+	Caption Track	Faixa de legendas
+	Change Sequence Settings	Alterar configurações da sequência
+	Change the sequence to match the clip's settings?	Alterar a sequência para corresponder às configurações do clipe?
+	Check for Updates…	Procurar atualizações…
+	Clear History	Limpar histórico
+	Clip Mismatch Warning	Aviso de incompatibilidade do clipe
+	Clip: {settings}	Clipe: {settings}
+	Compression	Compactação
+	Compression Level	Nível de compactação
+	Copy of the project saved to {path}	Cópia do projeto salva em {path}
+	Couldn't open your web browser	Não foi possível abrir seu navegador
+	Cube LUT	LUT Cube
+	Delete Clips	Excluir clipes
+	Delete Redoable Actions	Excluir ações refazíveis
+	Delete Track	Excluir faixa
+	Delete the dimmed actions after the current state? They cannot be redone.	Excluir as ações esmaecidas após o estado atual? Elas não poderão ser refeitas.
+	Delete this preset	Excluir esta predefinição
+	Desktop's own	Os da área de trabalho
+	Dock Panel	Encaixar painel
+	Docking Action	Ação de encaixe
+	Drag inward to round the corners	Arraste para dentro para arredondar os cantos
+	Duration: {tc}	Duração: {tc}
+	End: {tc}	Fim: {tc}
+	Export .cube…	Exportar .cube…
+	Export the labels to a preset file…	Exportar os rótulos para um arquivo de predefinições…
+	Exported {path} as {format}, from its file extension	{path} exportado como {format}, pela extensão do arquivo
+	Exported {path}; not in the LUT: {effects}	{path} exportado; fora da LUT: {effects}
+	FLAC	FLAC
+	FLAC (lossless)	FLAC (sem perdas)
+	FLAC 48 kHz 24-bit	FLAC 48 kHz 24 bits
+	FLAC, stereo 48 kHz 24-bit, lossless	FLAC, estéreo 48 kHz 24 bits, sem perdas
+	From preset file:	Do arquivo de predefinições:
+	Full Screen Program Monitor	Monitor de programa em tela cheia
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 10 Mbps, loudness normalized to −14 LUFS	H.264 retrato 9:16, dimensionado para preencher, VBR 1 passagem, 10 Mbps, loudness normalizado para −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 12 Mbps, loudness normalized to −14 LUFS	H.264 retrato 9:16, dimensionado para preencher, VBR 1 passagem, 12 Mbps, loudness normalizado para −14 LUFS
+	H.264 9:16 portrait, scaled to fill, VBR 1 pass, 8 Mbps, loudness normalized to −14 LUFS	H.264 retrato 9:16, dimensionado para preencher, VBR 1 passagem, 8 Mbps, loudness normalizado para −14 LUFS
+	Hide Others	Ocultar outros
+	Hide Toma	Ocultar Toma
+	Highlight Balance	Balanço dos realces
+	Highlight Hue	Matiz dos realces
+	Highlight Level	Nível dos realces
+	Highlight Softness	Suavidade dos realces
+	Import a preset file…	Importar um arquivo de predefinições…
+	Import media	Importar mídia
+	Imported {n} preset(s)	{n} predefinição(ões) importada(s)
+	Imported {n} preset(s); not imported: {error}	{n} predefinição(ões) importada(s); não importadas: {error}
+	Imported {n} preset(s); {skipped} skipped	{n} predefinição(ões) importada(s); {skipped} ignorada(s)
+	Imported {n} preset(s); {warnings} with unsupported parameters	{n} predefinição(ões) importada(s); {warnings} com parâmetros sem suporte
+	Instagram Reels 1080×1920	Instagram Reels 1080×1920
+	Keep Existing Settings	Manter configurações atuais
+	Key Out Brights	Remover áreas claras
+	Label Color Presets	Predefinições de cores de rótulo
+	Looks for a newer Toma release and offers to update.	Procura uma versão mais recente do Toma e oferece a atualização.
+	MP3	MP3
+	MP3 48 kHz 320 kbps	MP3 48 kHz 320 kbps
+	MPEG audio (.mp3), joint stereo 48 kHz at 320 kbps	Áudio MPEG (.mp3), joint stereo 48 kHz a 320 kbps
+	Main Menu	Menu principal
+	Maximize	Maximizar
+	Midtone Balance	Balanço dos meios-tons
+	Midtone Hue	Matiz dos meios-tons
+	Midtone Level	Nível dos meios-tons
+	Minimize	Minimizar
+	More transport controls	Mais controles de transporte
+	New project	Novo projeto
+	No presets folder: the app has no data directory	Sem pasta de predefinições: o app não tem um diretório de dados
+	Nodalia	Nodalia
+	Open Presets Folder	Abrir pasta de predefinições
+	Open project…	Abrir projeto…
+	Open this address in your browser yourself:	Abra este endereço no seu navegador:
+	Open-source video editing in pure Rust.	Edição de vídeo de código aberto em Rust puro.
+	Preset library is up to date	A biblioteca de predefinições está atualizada
+	Preset library updated	Biblioteca de predefinições atualizada
+	Preset library updated: {imported} loaded, {removed} removed	Biblioteca de predefinições atualizada: {imported} carregadas, {removed} removidas
+	Project saved to {path}	Projeto salvo em {path}
+	Recent projects	Projetos recentes
+	Responsive Design – Time remaps the graphic's layer keyframes; clip effects like Opacity and Motion keep media time	Design responsivo – Tempo remapeia os quadros-chave das camadas do gráfico; efeitos de clipe como Opacidade e Movimento mantêm o tempo da mídia
+	Revert to the preset's colors and names	Voltar às cores e nomes da predefinição
+	Safe graphics mode: {mode}	Modo gráfico seguro: {mode}
+	Saves this session's log and shows it in your file manager.	Salva o registro desta sessão e o mostra no gerenciador de arquivos.
+	Scan Presets Folder	Verificar pasta de predefinições
+	Sequence: {settings}	Sequência: {settings}
+	Set Work Area Bar In Point	Definir ponto de entrada da barra da região de trabalho
+	Set Work Area Bar Out Point	Definir ponto de saída da barra da região de trabalho
+	Set as Default Transition	Definir como transição padrão
+	Shadow Balance	Balanço das sombras
+	Shadow Hue	Matiz das sombras
+	Shadow Level	Nível das sombras
+	Shadow Softness	Suavidade das sombras
+	Shadow Threshold	Limiar das sombras
+	Show the presets folder	Mostrar a pasta de predefinições
+	Shows a report on this computer.	Mostra um relatório sobre este computador.
+	Shows the version, community links and credits in a Toma window.	Mostra a versão, os links da comunidade e os créditos em uma janela do Toma.
+	Source In/Out is only 1 frame. Choose Entire Source to export the whole sequence.	A entrada/saída da origem tem só 1 quadro. Escolha Origem inteira para exportar a sequência toda.
+	Start: {tc}	Início: {tc}
+	The default graphics are used from the next start.	Os gráficos padrão serão usados a partir da próxima inicialização.
+	This clip does not match the sequence settings.	Este clipe não corresponde às configurações da sequência.
+	This preference is not available yet.	Esta preferência ainda não está disponível.
+	Three-Way Color Corrector	Corretor de cor de três vias
+	Ticked attributes are removed from the selected clips.	Os atributos marcados são removidos dos clipes selecionados.
+	TikTok 1080×1920	TikTok 1080×1920
+	Time Format	Formato de tempo
+	Tonal Range	Faixa tonal
+	Transparency Grid	Grade de transparência
+	Undock Panel	Desencaixar painel
+	Use Default Graphics	Usar gráficos padrão
+	When enabled, GIF transparency is on/off: alpha below 128 is transparent; 128 and above is opaque.	Quando ativado, a transparência do GIF é liga/desliga: alfa abaixo de 128 é transparente; 128 ou mais é opaco.
+	Window Controls	Controles da janela
+	Work Area Bar	Barra da região de trabalho
+	YouTube Shorts 1080×1920	YouTube Shorts 1080×1920
+	ZIP (1 scan line)	ZIP (1 linha de varredura)
+	ZIP (16 scan lines)	ZIP (16 linhas de varredura)
+	{frames} frames ({seconds} s)	{frames} quadros ({seconds} s)
+	{name} (Modified)	{name} (modificado)
+	{name} already exists, so nothing was exported. To replace it, choose it in the save dialog.	{name} já existe, então nada foi exportado. Para substituí-lo, escolha-o na caixa de diálogo de salvar.
+	Lower Third – Minimal	Terço inferior – Mínimo
+	Lower Third – Split	Terço inferior – Dividido
+	Title – Opening	Título – Abertura
+	Title – Chapter	Título – Capítulo
+	Title – Quote	Título – Citação
+	Callout – Location	Chamada – Local
+	Callout – Info Card	Chamada – Cartão informativo
+	End Credits – Thank You	Créditos finais – Agradecimento
+	A name and role beside a thin vertical rule, with no background.	Nome e cargo ao lado de uma linha vertical fina, sem fundo.
+	Name on a dark slab with the role on a light one below; both widen with their text.	Nome sobre um bloco escuro e cargo sobre um claro abaixo; ambos se alargam com o texto.
+	A left-aligned opening title with a kicker above, a short rule and a tagline.	Um título de abertura alinhado à esquerda, com um antetítulo acima, uma linha curta e um lema.
+	A chapter card: small label, large number, short rule and the chapter name.	Um cartão de capítulo: rótulo pequeno, número grande, linha curta e o nome do capítulo.
+	A centred quote in italics with a large opening mark and its author.	Uma citação centralizada em itálico com aspas de abertura grandes e seu autor.
+	A place name and a detail line on a rounded card with a marker dot.	Um nome de local e uma linha de detalhe em um cartão arredondado com um ponto marcador.
+	A heading and a short fact on a rounded card that fits its text.	Um cabeçalho e um fato curto em um cartão arredondado que se ajusta ao texto.
+	A still closing card: a thank-you, a short rule and a parting line.	Um cartão de encerramento fixo: um agradecimento, uma linha curta e uma despedida.
+	Body	Corpo
+	Card Color	Cor do cartão
+	Details	Detalhes
+	Kicker	Antetítulo
+	Mark Color	Cor das aspas
+	Message	Mensagem
+	Message Size	Tamanho da mensagem
+	Name Slab Color	Cor do bloco do nome
+	Number	Número
+	Place	Local
+	Quote	Citação
+	Quote Color	Cor da citação
+	Quote Size	Tamanho da citação
+	Role Color	Cor do cargo
+	Role Slab Color	Cor do bloco do cargo
+	Tagline	Lema
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	{n} predefinição(ões) importada(s); {skipped} ignorada(s), {warnings} com parâmetros não compatíveis
+	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Parte do Nodalia. MIT OR Apache-2.0. Fontes: Inter, Noto Serif e JetBrains Mono (SIL OFL 1.1). Ícones: Nodalia Design (MIT).
+	Add pause	Adicionar pausa
+	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Adicionar pausa insere [pause 1s]. Altere o número para uma pausa mais longa ou mais curta, por exemplo [pause 500ms] ou [pause 2s].
+	Add to timeline	Adicionar à linha do tempo
+	Basic voices (built in)	Vozes básicas (integradas)
+	Cannot check export destination: {e}	Não foi possível verificar o destino da exportação: {e}
+	Depth:	Profundidade:
+	Download	Baixar
+	Download natural voices ({mb} MB)…	Baixar vozes naturais ({mb} MB)…
+	Download of the natural voices failed: {e}	Falha ao baixar as vozes naturais: {e}
+	Download the natural voices? {mb} MB, once.	Baixar as vozes naturais? {mb} MB, uma única vez.
+	Editing the selected narration	Editando a narração selecionada
+	Exported frame to {path}	Quadro exportado para {path}
+	Extra high	Muito agudo
+	Extra low	Muito grave
+	Format:	Formato:
+	Frame time: {time}	Tempo do quadro: {time}
+	From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.	De {source} e github.com/cmusphinx/cmudict (pronúncias). Licença: {licence}. Cada arquivo é verificado em relação a um SHA-256 fixo.
+	Hear this voice	Ouvir esta voz
+	Import into project	Importar para o projeto
+	Keep existing file	Manter o arquivo existente
+	Narration added on an audio track	Narração adicionada em uma trilha de áudio
+	Narration added on {track}	Narração adicionada em {track}
+	Narration updated	Narração atualizada
+	Natural voices	Vozes naturais
+	Natural voices installed	Vozes naturais instaladas
+	Natural voices need a one-time download.	As vozes naturais precisam de um download único.
+	New narration	Nova narração
+	Pace	Ritmo
+	Path:	Caminho:
+	Synthesizing narration…	Sintetizando a narração…
+	Synthesizing…	Sintetizando…
+	Text to Speech: {e}	Texto para fala: {e}
+	This file already exists: {path}	Este arquivo já existe: {path}
+	Type what you want the voice to say	Digite o que você quer que a voz diga
+	Vocal pitch	Tom da voz
+	{bits} Bit	{bits} bits
+	{kind} — {width} × {height}	{kind} — {width} × {height}
+	{name} (download)	{name} (download)
+	H.265 (HEVC) needs a hardware encoder (NVENC on NVIDIA GPUs, VideoToolbox on macOS); none was found on this machine, and Toma has no software H.265 encoder yet. Choose H.264 or ProRes instead.	O H.265 (HEVC) precisa de um codificador de hardware (NVENC em GPUs NVIDIA, VideoToolbox no macOS); nenhum foi encontrado neste computador, e o Toma ainda não tem codificador H.265 por software. Escolha H.264 ou ProRes.
+	Resize floating panel	Redimensionar painel flutuante
+	DirectX 12 only	Somente DirectX 12
+	software rendering	renderização por software
+	integrated GPU	GPU integrada
+	Opens in your web browser: {url}	Abre no seu navegador: {url}

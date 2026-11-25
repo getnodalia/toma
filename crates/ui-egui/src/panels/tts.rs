@@ -83,6 +83,16 @@ fn natural_installed() -> bool {
     toma_engine::transcript::models_dir().as_deref().is_some_and(toma_tts::catalog::installed)
 }
 
+/// This build can download and run the natural voices (`neural-voices` on the engine).
+fn natural_voices_available() -> bool {
+    toma_engine::narration::natural_voices_available()
+}
+
+/// The panel offers the download only when this build includes the feature and the package is not installed.
+fn offer_natural_download(available: bool, installed: bool) -> bool {
+    available && !installed
+}
+
 /// State of job `id`: `None` while running, else its result.
 fn job_outcome(app: &TomaApp, id: u64) -> Option<Result<(), String>> {
     use std::sync::atomic::Ordering;
@@ -108,7 +118,7 @@ fn start(app: &mut TomaApp, cmd: &str, params: serde_json::Value, play: bool) {
         Ok(r) => match r["job"].as_u64() {
             Some(job) => {
                 app.ui.tts.pending = Some(Pending { cmd: cmd.to_string(), params, play, job });
-                app.ui.status = "Synthesizing narration…".into();
+                app.ui.status = tl!("Synthesizing narration…").into();
             }
             None => run_now(app, cmd, params, play),
         },
@@ -125,8 +135,11 @@ fn run_now(app: &mut TomaApp, cmd: &str, params: serde_json::Value, play: bool) 
                 }
             } else {
                 app.ui.status = match cmd {
-                    "tts.create" => format!("Narration added on {}", r["track"].as_str().unwrap_or("an audio track")),
-                    _ => "Narration updated".into(),
+                    "tts.create" => match r["track"].as_str() {
+                        Some(track) => tlf!("Narration added on {track}", track),
+                        None => tl!("Narration added on an audio track").to_string(),
+                    },
+                    _ => tl!("Narration updated").into(),
                 };
             }
         }
@@ -145,7 +158,7 @@ fn poll(app: &mut TomaApp) {
             }
             Some(Err(e)) => {
                 app.ui.tts.pending = None;
-                app.ui.status = format!("Text to Speech: {e}");
+                app.ui.status = tlf!("Text to Speech: {e}", e);
             }
         }
     }
@@ -154,8 +167,8 @@ fn poll(app: &mut TomaApp) {
     {
         app.ui.tts.download_job = None;
         app.ui.status = match r {
-            Ok(()) => "Natural voices installed".into(),
-            Err(e) => format!("Download of the natural voices failed: {e}"),
+            Ok(()) => tl!("Natural voices installed").into(),
+            Err(e) => tlf!("Download of the natural voices failed: {e}", e),
         };
     }
 }
@@ -208,6 +221,7 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
     let painter = ui.painter().clone();
     painter.rect_filled(rect, 0.0, t.panel_bg);
     let models = toma_engine::transcript::models_dir();
+    let available = natural_voices_available();
     let voices = toma_tts::voices_in(models.as_deref());
     let installed = models.as_deref().is_some_and(toma_tts::catalog::installed);
     let busy = app.ui.tts.pending.is_some();
@@ -229,11 +243,11 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
         let w = ui.available_width();
         // mode line: editing a clip, or writing a new narration
         ui.horizontal(|ui| {
-            let mode = if editing.is_some() { "Editing the selected narration" } else { "New narration" };
+            let mode = if editing.is_some() { tl!("Editing the selected narration") } else { tl!("New narration") };
             ui.label(egui::RichText::new(mode).color(t.text_dim).size(11.5));
             if editing.is_some() {
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                    let b = ui.small_button("New");
+                    let b = ui.small_button(tl!("New"));
                     auto.add("tts.new", visible(ui, b.rect), "New narration");
                     if b.clicked() {
                         actions.push(Action::New);
@@ -242,7 +256,7 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
             }
         });
         ui.add_space(6.0);
-        label(ui, &t, "Language");
+        label(ui, &t, tl!("Language"));
         let lang_name = toma_tts::LANGUAGES.iter().find(|(id, _)| *id == d.language).map_or(d.language.as_str(), |(_, n)| n);
         let cb = craft_ui::ComboBox::from_id_salt("tts-language").selected_text(lang_name).width(w).show_ui(ui, |ui| {
             for (id, name) in toma_tts::LANGUAGES {
@@ -253,13 +267,16 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
         });
         auto.add("tts.language", visible(ui, cb.response.rect), "Language");
         ui.add_space(10.0);
-        label(ui, &t, "Voice");
+        label(ui, &t, tl!("Voice"));
         let voice_name = voices.iter().find(|v| v.id == d.voice).map_or(d.voice.as_str(), |v| v.name);
         let cb = craft_ui::ComboBox::from_id_salt("tts-voice").selected_text(voice_name).width(w).show_ui(ui, |ui| {
-            for (engine, heading) in [("neural", "Natural voices"), ("basic", "Basic voices (built in)")] {
+            for (engine, heading) in [("neural", tl!("Natural voices")), ("basic", tl!("Basic voices (built in)"))] {
+                if engine == "neural" && !available {
+                    continue;
+                }
                 ui.label(egui::RichText::new(heading).color(t.text_faint).size(11.0));
                 for v in voices.iter().filter(|v| v.language == d.language && v.engine == engine) {
-                    let label = if v.engine == "neural" && !v.installed { format!("{} (download)", v.name) } else { v.name.to_string() };
+                    let label = if v.engine == "neural" && !v.installed { tlf!("{name} (download)", name = v.name) } else { v.name.to_string() };
                     let r = ui.selectable_label(d.voice == v.id, label).on_hover_text(v.description);
                     if r.clicked() {
                         d.voice = v.id.to_string();
@@ -268,8 +285,12 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
             }
         });
         auto.add("tts.voice", visible(ui, cb.response.rect), "Voice");
+        if !available {
+            ui.add_space(4.0);
+            ui.label(egui::RichText::new("Natural voices are not included in this build.").color(t.text_dim).size(11.5));
+        }
         let natural = toma_tts::catalog::find(&d.voice).is_some();
-        if natural && !installed {
+        if natural && offer_natural_download(available, installed) {
             ui.add_space(6.0);
             egui::Frame::new().fill(t.field_bg).stroke(egui::Stroke::new(1.0, t.field_border)).corner_radius(4.0).inner_margin(8.0).show(ui, |ui| {
                 ui.set_width(w - 18.0);
@@ -277,7 +298,7 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
                     Some((frac, status)) => {
                         ui.label(egui::RichText::new(status).color(t.text).size(11.5));
                         ui.add(egui::ProgressBar::new(*frac).show_percentage());
-                        let b = ui.small_button("Cancel");
+                        let b = ui.small_button(tl!("Cancel"));
                         auto.add("tts.download.cancel", visible(ui, b.rect), "Cancel download");
                         if b.clicked() {
                             actions.push(Action::CancelDownload);
@@ -285,20 +306,20 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
                     }
                     None if d.confirm_download => {
                         let mb = toma_tts::catalog::size() as f64 / 1e6;
-                        ui.label(egui::RichText::new(format!("Download the natural voices? {mb:.0} MB, once.")).color(t.text).size(12.0).strong());
+                        ui.label(egui::RichText::new(tlf!("Download the natural voices? {mb} MB, once.", mb = format!("{mb:.0}"))).color(t.text).size(12.0).strong());
                         ui.label(
-                            egui::RichText::new(format!(
-                                "From {} and github.com/cmusphinx/cmudict (pronunciations). Licence: {}. Every file is checked against a pinned SHA-256.",
-                                toma_tts::catalog::SOURCE,
-                                toma_tts::catalog::LICENSE
+                            egui::RichText::new(tlf!(
+                                "From {source} and github.com/cmusphinx/cmudict (pronunciations). Licence: {licence}. Every file is checked against a pinned SHA-256.",
+                                source = toma_tts::catalog::SOURCE,
+                                licence = toma_tts::catalog::LICENSE
                             ))
                             .color(t.text_dim)
                             .size(11.0),
                         );
                         ui.horizontal(|ui| {
-                            let ok = ui.button("Download");
+                            let ok = ui.button(tl!("Download"));
                             auto.add("tts.download.confirm", visible(ui, ok.rect), "Download");
-                            let no = ui.button("Cancel");
+                            let no = ui.button(tl!("Cancel"));
                             if ok.clicked() {
                                 actions.push(Action::Download);
                             }
@@ -308,8 +329,8 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
                         });
                     }
                     None => {
-                        ui.label(egui::RichText::new("Natural voices need a one-time download.").color(t.text).size(11.5));
-                        let b = ui.button(format!("Download natural voices ({:.0} MB)…", toma_tts::catalog::size() as f64 / 1e6));
+                        ui.label(egui::RichText::new(tl!("Natural voices need a one-time download.")).color(t.text).size(11.5));
+                        let b = ui.button(tlf!("Download natural voices ({mb} MB)…", mb = format!("{:.0}", toma_tts::catalog::size() as f64 / 1e6)));
                         auto.add("tts.download", visible(ui, b.rect), "Download natural voices");
                         if b.clicked() {
                             d.confirm_download = true;
@@ -323,28 +344,28 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
         let (r, resp) = ui.allocate_exact_size(vec2(130.0, 22.0), Sense::click());
         let col = if resp.hovered() { t.accent_hover } else { t.accent };
         icons::paint(ui.painter(), Rect::from_center_size(pos2(r.min.x + 8.0, r.center().y), vec2(14.0, 14.0)), Icon::Play, col);
-        ui.painter().text(pos2(r.min.x + 22.0, r.center().y), Align2::LEFT_CENTER, "Hear this voice", Tokens::semibold(12.0), col);
+        ui.painter().text(pos2(r.min.x + 22.0, r.center().y), Align2::LEFT_CENTER, tl!("Hear this voice"), Tokens::semibold(12.0), col);
         auto.add("tts.hearVoice", visible(ui, r), "Hear this voice");
         if resp.clicked() && voice_ready && !busy {
             actions.push(Action::Run("tts.preview", json!({"sample": true, "voice": d.voice, "pitch": d.pitch.id(), "pace": d.pace}), true));
         }
         ui.add_space(8.0);
-        let (hr, open) = crate::widgets::section_header(ui, egui::Id::unique("tts-advanced"), "Advanced", d.advanced_open, &t, true);
+        let (hr, open) = crate::widgets::section_header(ui, egui::Id::unique("tts-advanced"), tl!("Advanced"), d.advanced_open, &t, true);
         auto.add("tts.advanced", visible(ui, hr.rect), "Advanced");
         d.advanced_open = open;
         if open {
             ui.add_space(4.0);
-            label(ui, &t, "Vocal pitch");
-            let cb = craft_ui::ComboBox::from_id_salt("tts-pitch").selected_text(d.pitch.label()).width(w).show_ui(ui, |ui| {
+            label(ui, &t, tl!("Vocal pitch"));
+            let cb = craft_ui::ComboBox::from_id_salt("tts-pitch").selected_text(crate::i18n::t(d.pitch.label())).width(w).show_ui(ui, |ui| {
                 for p in VocalPitch::ALL {
-                    if ui.selectable_label(d.pitch == p, p.label()).clicked() {
+                    if ui.selectable_label(d.pitch == p, crate::i18n::t(p.label())).clicked() {
                         d.pitch = p;
                     }
                 }
             });
             auto.add("tts.pitch", visible(ui, cb.response.rect), "Vocal pitch");
             ui.add_space(10.0);
-            label(ui, &t, "Pace");
+            label(ui, &t, tl!("Pace"));
             ui.spacing_mut().slider_width = w - 56.0;
             let s = ui.add(egui::Slider::new(&mut d.pace, toma_tts::MIN_PACE..=toma_tts::MAX_PACE).step_by(0.05).fixed_decimals(2).suffix("×"));
             auto.add("tts.pace", visible(ui, s.rect), "Pace");
@@ -356,12 +377,12 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
         }
         ui.add_space(12.0);
         ui.horizontal(|ui| {
-            ui.label(egui::RichText::new("Text").color(t.text).size(12.5).strong());
+            ui.label(egui::RichText::new(tl!("Text")).color(t.text).size(12.5).strong());
             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                 let (ir, i) = ui.allocate_exact_size(vec2(14.0, 14.0), Sense::hover());
                 icons::paint(ui.painter(), ir, Icon::Info, t.text_faint);
-                i.on_hover_text("Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].");
-                let b = ui.small_button("Add pause");
+                i.on_hover_text(tl!("Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s]."));
+                let b = ui.small_button(tl!("Add pause"));
                 auto.add("tts.addPause", visible(ui, b.rect), "Add pause");
                 if b.clicked() {
                     if !d.text.is_empty() && !d.text.ends_with(' ') {
@@ -374,7 +395,7 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
         });
         ui.add_space(4.0);
         let te = egui::TextEdit::multiline(&mut d.text)
-            .hint_text("Type what you want the voice to say")
+            .hint_text(tl!("Type what you want the voice to say"))
             .desired_width(w)
             .desired_rows(8)
             .char_limit(toma_tts::MAX_TEXT_BYTES);
@@ -388,13 +409,13 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
     let natural = toma_tts::catalog::find(&d.voice).is_some();
     let can_say = toma_tts::check_text(&d.text).is_ok() && (!natural || installed) && !busy;
     let pr = Rect::from_min_size(pos2(rect.min.x + PAD, fy), vec2(half, 28.0));
-    if button(ui, &t, pr, Icon::Play, if busy { "Synthesizing…" } else { "Preview" }, false, can_say, "tts-preview").clicked() && can_say {
+    if button(ui, &t, pr, Icon::Play, if busy { tl!("Synthesizing…") } else { tl!("Preview") }, false, can_say, "tts-preview").clicked() && can_say {
         actions.push(Action::Run("tts.preview", d.params(), true));
     }
     auto.add("tts.preview", pr, "Preview");
     let sr = Rect::from_min_size(pos2(pr.max.x + 10.0, fy), vec2(half, 28.0));
     let can_save = can_say && app.session.active_sequence().is_some();
-    if button(ui, &t, sr, Icon::Plus, if editing.is_some() { "Save" } else { "Add to timeline" }, true, can_save, "tts-save").clicked() && can_save {
+    if button(ui, &t, sr, Icon::Plus, if editing.is_some() { tl!("Save") } else { tl!("Add to timeline") }, true, can_save, "tts-save").clicked() && can_save {
         let mut p = d.params();
         match editing {
             Some(c) => {
@@ -462,4 +483,44 @@ fn button(ui: &mut egui::Ui, t: &Tokens, r: Rect, icon: Icon, text: &str, primar
     icons::paint(p, Rect::from_center_size(pos2(x0 + 7.0, r.center().y), vec2(14.0, 14.0)), icon, fg);
     p.galley(pos2(x0 + 18.0, r.center().y - g.size().y / 2.0), g, fg);
     resp
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::TomaApp;
+
+    #[test]
+    fn the_download_is_offered_only_when_the_build_includes_natural_voices() {
+        assert!(!offer_natural_download(false, false));
+        assert!(!offer_natural_download(false, true));
+        assert!(offer_natural_download(true, false));
+        assert!(!offer_natural_download(true, true));
+    }
+
+    fn frame(app: &mut TomaApp, ctx: &egui::Context) {
+        app.auto.begin_frame();
+        let mut out = ctx.run_ui(
+            egui::RawInput { time: Some(1.0), screen_rect: Some(Rect::from_min_size(egui::Pos2::ZERO, vec2(1000.0, 800.0))), ..Default::default() },
+            |ui| show(app, ui, Rect::from_min_size(egui::Pos2::ZERO, vec2(400.0, 700.0))),
+        );
+        out.textures_delta.clear();
+    }
+
+    fn has_id(app: &TomaApp, id: &str) -> bool {
+        app.auto.elements.iter().any(|w| w.id == id)
+    }
+
+    #[test]
+    fn a_build_without_the_feature_does_not_offer_the_natural_voice_download() {
+        let mut app = TomaApp::new(toma_engine::Session::default());
+        let ctx = egui::Context::default();
+        crate::theme::install(&ctx, &app.tokens);
+        // A natural voice in the draft must not surface a download the build cannot perform (#2318).
+        app.ui.tts.voice = "kokoro-heart".into();
+        frame(&mut app, &ctx);
+        assert!(!toma_engine::narration::natural_voices_available(), "ui-egui tests build the engine without neural-voices");
+        assert!(!has_id(&app, "tts.download"), "download offered in a build without neural-voices");
+        assert!(!has_id(&app, "tts.download.confirm"));
+    }
 }

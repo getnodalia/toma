@@ -7,6 +7,8 @@
 
 use egui::{CursorIcon, Id, LayerId, Order, PointerButton, Rect, ResizeDirection, Sense, Ui, ViewportCommand, pos2, vec2};
 
+use nodalia_theme::titlebar::{Placement, Side};
+
 use crate::TomaApp;
 
 /// The room the round window controls take at the app bar's right end, with their gap to the
@@ -54,19 +56,30 @@ fn handed_to_os(ctx: &egui::Context) {
     ctx.input_mut(|i| i.pointer = Default::default());
 }
 
-/// Nodalia's minimize, maximize/restore and close at the right end of `bar`. Close closes the
+/// The end of the app bar Nodalia's controls sit at: the side the desktop keeps its own on (the
+/// right unless the desktop's button layout puts them at the left). `None` without them.
+pub fn side(app: &TomaApp) -> Option<Side> {
+    app.custom_titlebar.then(nodalia_theme::titlebar::system_side)
+}
+
+/// Nodalia's minimize, maximize/restore and close at the desktop's side of `bar`. Close closes the
 /// window, as the system's would (unsaved work stays in the recovery journal).
 pub fn window_controls(app: &mut TomaApp, ui: &mut Ui, bar: Rect) {
     let ctx = ui.ctx().clone();
     let t = app.tokens;
     let mode = if t.dark() { nodalia_theme::Mode::Dark } else { nodalia_theme::Mode::Light };
     let palette = crate::theme::ndl_palette(t.kind);
-    let rect = Rect::from_min_max(pos2(bar.right() - WIDTH, bar.top()), pos2(bar.right() - EDGE_GAP, bar.bottom()));
+    let side = side(app).unwrap_or(Side::Right);
+    let rect = Placement::nodalia(side).controls_rect(bar);
     let focused = ctx.input(|i| i.viewport().focused.unwrap_or(true));
     let labels = nodalia_theme::window_controls::Labels { minimize: tl!("Minimize"), maximize: tl!("Maximize"), restore: tl!("Restore"), close: tl!("Close") };
-    app.auto.add("header.window.close", Rect::from_min_size(pos2(rect.right() - 28.0, rect.center().y - 14.0), vec2(28.0, 28.0)), "Close");
+    app.auto.add(
+        "header.window.close",
+        Rect::from_min_size(pos2(if side == Side::Left { rect.left() } else { rect.right() - 28.0 }, rect.center().y - 14.0), vec2(28.0, 28.0)),
+        "Close",
+    );
     use nodalia_theme::window_controls::Action;
-    match nodalia_theme::window_controls::show(ui, rect, &palette, mode, focused, maximized(&ctx), labels) {
+    match nodalia_theme::window_controls::show_on(ui, rect, side, &palette, mode, focused, maximized(&ctx), labels) {
         Some(Action::Minimize) => ctx.send_viewport_cmd(ViewportCommand::Minimized(true)),
         Some(Action::Maximize | Action::Restore) => toggle_maximize(&ctx),
         Some(Action::Close) => ctx.send_viewport_cmd(ViewportCommand::Close),

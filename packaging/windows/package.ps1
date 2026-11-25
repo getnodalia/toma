@@ -62,7 +62,8 @@ if (-not $SkipBuild) {
   [Environment]::SetEnvironmentVariable($flagVar, '-C target-feature=+crt-static')
   # Fail the build (rather than warn) if the icon/VERSIONINFO can't be embedded.
   $env:TOMA_REQUIRE_WINRES = '1'
-  Invoke-Native "cargo build ($Target)" { cargo build --release --locked -p toma -p toma-cli --target $Target }
+  # Official packages include Kokoro natural voices (downloaded on first use). #2318 #3773
+  Invoke-Native "cargo build ($Target)" { cargo build --release --locked -p toma -p toma-cli --features toma/neural-voices --target $Target }
 }
 
 $Bin = Join-Path $TargetDir "$Target\release"

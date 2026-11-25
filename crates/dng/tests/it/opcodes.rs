@@ -3,7 +3,11 @@
 //! opcodes follow their optional flag, preview-only opcodes are skipped on the reduced path, and
 //! hostile lists are errors, never panics.
 
-use toma_dng::opcode::encode;
+use toma_dng::opcode::encode as encode_checked;
+
+fn encode(list: &[(u32, u32, Vec<u8>)]) -> Vec<u8> {
+    encode_checked(list).unwrap()
+}
 use toma_dng::tiff::tags;
 use toma_dng::writer::{Compression, Options, Value, write};
 use toma_dng::{Dng, Error, ProcessOptions, decode_with};
