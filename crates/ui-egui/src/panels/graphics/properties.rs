@@ -868,7 +868,10 @@ pub fn dialogs(app: &mut TomaApp, ctx: &egui::Context) {
     let mut ok = false;
     let name = |paragraph: bool| if paragraph { tl!("Paragraph Text") } else { tl!("Point Text") };
     let id = egui::Id::unique("gfx-text-properties");
-    egui::Window::new(tl!("Text Properties")).id(id).collapsible(false).resizable(false).centered(ctx).show(ctx, |ui| {
+    egui::Window::new(tl!("Text Properties")).title_bar(false).id(id).collapsible(false).resizable(false).centered(ctx).show(ctx, |ui| {
+        if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Text Properties")) {
+            close = true;
+        }
         ui.label(tl!("Text Layer Type"));
         let r = craft_ui::ComboBox::from_id_salt("gfx-text-type").selected_text(name(d.paragraph)).width(190.0).show_ui(ui, |ui| {
             for paragraph in [false, true] {

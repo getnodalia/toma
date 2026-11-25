@@ -19,15 +19,20 @@ pub(super) fn preset_manager(app: &mut TomaApp, ctx: &egui::Context) {
     let favorite = |n: &str| app.session.export_presets.is_favorite(n);
     let q = m.query.trim().to_string();
     egui::Window::new(tl!("Preset Manager"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
+        .open(&mut { open })
         .id(egui::Id::unique("Preset Manager"))
         .id(egui::Id::unique("preset-manager"))
-        .open(&mut open)
         .collapsible(false)
         .resizable(true)
         .default_size(vec2(560.0, 520.0))
         .pivot(Align2::CENTER_CENTER)
         .default_pos(ctx.content_rect().center())
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Preset Manager")) {
+                open = false;
+            }
             ui.horizontal(|ui| {
                 let r = crate::widgets::search_field(ui, &mut m.query, tl!("Search presets"), 300.0, &t);
                 reg.add("presetManager.search", r.rect, "Search");

@@ -26,12 +26,16 @@ pub fn show(app: &mut TomaApp, ctx: &egui::Context) {
         ProjectDialog::FreeformOptions { .. } => tl!("Freeform View Options"),
         ProjectDialog::SaveArrangement { .. } => tl!("Save Arrangement"),
     };
-    let mut win = egui::Window::new(title).id(egui::Id::unique("project-dialog")).collapsible(false).resizable(false).centered(ctx);
+    // NDL: its own header (the title and the round close button) instead of egui's title bar.
+    let mut win = egui::Window::new(title).id(egui::Id::unique("project-dialog")).title_bar(false).collapsible(false).resizable(false).centered(ctx);
     // a fixed size keeps the two-list dialog from shifting while its lists settle
     if matches!(d, ProjectDialog::MetadataDisplay { .. }) {
         win = win.fixed_size(egui::vec2(480.0, 470.0));
     }
     win.show(ctx, |ui| {
+        if crate::widgets::dialog_header(ui, &app.tokens, title) {
+            close = true;
+        }
         match &mut d {
             ProjectDialog::MetadataDisplay { columns, filter } => metadata_display(app, ui, columns, filter, &mut run),
             ProjectDialog::SavePresetAs { name } => {

@@ -106,6 +106,8 @@ pub fn show_dialog(app: &mut TomaApp, ctx: &egui::Context) {
     let accent = app.tokens.accent;
     let names: Vec<String> = d.items.iter().filter_map(|i| app.session.project.item(ItemId(*i)).map(|it| it.name.clone())).collect();
     egui::Window::new(title)
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique(("sync-dialog", pre)))
         .collapsible(false)
         .resizable(false)
@@ -113,6 +115,9 @@ pub fn show_dialog(app: &mut TomaApp, ctx: &egui::Context) {
         .pivot(Align2::CENTER_CENTER)
         .default_pos(crate::widgets::dialog_center(ctx))
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*title) {
+                action = Some("cancel");
+            }
             if pre != "sync" {
                 ui.horizontal(|ui| {
                     ui.label(if pre == "merge" { tl!("Clip Name:") } else { tl!("Sequence Name:") });
@@ -461,6 +466,8 @@ pub fn show_edit_cameras(app: &mut TomaApp, ctx: &egui::Context) {
     let th = thumb_w * q.settings.height.max(1) as f32 / q.settings.width.max(1) as f32;
     let tokens = app.tokens;
     egui::Window::new(tl!("Edit Cameras"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique("Edit Cameras"))
         .collapsible(false)
         .resizable(false)
@@ -468,6 +475,9 @@ pub fn show_edit_cameras(app: &mut TomaApp, ctx: &egui::Context) {
         .pivot(Align2::CENTER_CENTER)
         .default_pos(crate::widgets::dialog_center(ctx))
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Edit Cameras")) {
+                action = Some("cancel");
+            }
             ui.label(RichText::new(tl!("Cameras shown in the Multi-Camera view (uncheck to hide).")).weak().small());
             egui::ScrollArea::vertical().max_height(420.0).show(ui, |ui| {
                 for a in 0..d.names.len() {

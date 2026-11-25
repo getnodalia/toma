@@ -508,6 +508,24 @@ pub fn dropdown_text(ui: &mut Ui, rect: Rect, text: &str, t: &Tokens, id: egui::
     resp
 }
 
+/// The top of a dialog drawn without egui's title bar (`Window::title_bar(false)`): its title and
+/// Nodalia's round close button at the right end, as every creator dialog. Returns true when the
+/// close button was clicked.
+pub fn dialog_header(ui: &mut egui::Ui, t: &crate::theme::Tokens, title: &str) -> bool {
+    let (row, _) = ui.allocate_exact_size(egui::vec2(ui.available_width(), 28.0), egui::Sense::hover());
+    let mut job = egui::text::LayoutJob::simple_singleline(title.to_owned(), crate::theme::Tokens::semibold(15.0), t.text);
+    job.wrap = egui::text::TextWrapping::truncate_at_width((row.width() - 40.0).max(0.0));
+    let galley = ui.painter().layout_job(job);
+    ui.painter().galley(egui::pos2(row.left(), row.center().y - galley.size().y / 2.0), galley, t.text);
+    let close = egui::Rect::from_center_size(egui::pos2(row.right() - 12.0, row.center().y), egui::vec2(24.0, 24.0));
+    let id = ui.scope_id().with("ndl-dialog-close");
+    let clicked = nodalia_theme::creator::close_button(ui, &t.creator(), close, id);
+    // NDL names the button in English; screen readers get it in the interface's language.
+    ui.ctx().accesskit_node_builder(id, |n| n.set_label(tl!("Close")));
+    ui.add_space(8.0);
+    clicked
+}
+
 /// Where dialogs open: the centre of the app window. Dialogs use it as `default_pos` with a
 /// centre pivot instead of `Window::anchor`, which would pin them: egui makes anchored windows
 /// immovable, so they could not be dragged by the title bar.

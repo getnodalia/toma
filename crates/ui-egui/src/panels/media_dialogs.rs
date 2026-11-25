@@ -164,6 +164,8 @@ fn link_media(app: &mut TomaApp, ctx: &egui::Context) {
     let rows_max_h = (ctx.content_rect().height() * 0.3).clamp(90.0, 320.0);
     let width = (ctx.content_rect().width() - 40.0).clamp(1.0, 760.0);
     egui::Window::new(tl!("Link Media"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique("Link Media"))
         .collapsible(false)
         .resizable(false)
@@ -172,6 +174,9 @@ fn link_media(app: &mut TomaApp, ctx: &egui::Context) {
         .pivot(egui::Align2::CENTER_CENTER)
         .default_pos(crate::widgets::dialog_center(ctx))
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Link Media")) {
+                keep = false;
+            }
             egui::ScrollArea::vertical().id_salt("link-media-body-scroll").max_height((ctx.content_rect().height() - 140.0).max(1.0)).show(ui, |ui| {
                 ui.label(tlf!("{n} clip(s) can't find their media. Locate them, search a folder, or leave them offline.", n = rows.len()));
                 ui.add_space(6.0);
@@ -383,12 +388,17 @@ fn make_offline(app: &mut TomaApp, ctx: &egui::Context) {
     let mut ok = false;
     let n = app.session.state.project_selection.len();
     egui::Window::new(tl!("Make Offline"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique("Make Offline"))
         .collapsible(false)
         .resizable(false)
         .pivot(egui::Align2::CENTER_CENTER)
         .default_pos(crate::widgets::dialog_center(ctx))
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Make Offline")) {
+                keep = false;
+            }
             ui.label(tlf!("Make {n} selected clip(s) offline. Their clips show the offline slate until you link them again.", n));
             let r = ui.radio(!delete, tl!("Media files remain on disk"));
             push(&mut elems, "makeOffline.keep", &r, "Media files remain on disk");
@@ -428,12 +438,17 @@ fn create_proxies(app: &mut TomaApp, ctx: &egui::Context) {
     let mut ok = false;
     let mut browse = false;
     egui::Window::new(tl!("Create Proxies"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique("Create Proxies"))
         .collapsible(false)
         .resizable(false)
         .pivot(egui::Align2::CENTER_CENTER)
         .default_pos(crate::widgets::dialog_center(ctx))
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Create Proxies")) {
+                keep = false;
+            }
             ui.label(tlf!("{n} clip(s) selected.", n = d.items.len()));
             ui.add_space(4.0);
             ui.label(RichText::new(tl!("Format and size")).strong());
@@ -512,12 +527,17 @@ fn project_manager(app: &mut TomaApp, ctx: &egui::Context) {
     let (mut ok, mut calc, mut browse) = (false, false, false);
     let seqs: Vec<(u64, String)> = app.session.project.sequences().map(|i| (i.id.0, i.name.clone())).collect();
     egui::Window::new(tl!("Project Manager"))
+        // NDL: its own header (the title and the round close button) instead of egui's title bar.
+        .title_bar(false)
         .id(egui::Id::unique("Project Manager"))
         .collapsible(false)
         .resizable(false)
         .pivot(egui::Align2::CENTER_CENTER)
         .default_pos(crate::widgets::dialog_center(ctx))
         .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Project Manager")) {
+                keep = false;
+            }
             ui.label(RichText::new(tl!("Sequences")).strong());
             for (id, name) in &seqs {
                 let mut on = d.sequences.contains(id);

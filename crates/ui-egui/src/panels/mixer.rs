@@ -288,9 +288,16 @@ pub fn track_mixer(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
     if show_hide {
         let mut open = true;
         let mut close = false;
-        egui::Window::new(tl!("Show/Hide Tracks")).id(egui::Id::unique("mixer-show-hide")).collapsible(false).resizable(false).open(&mut open).show(
-            ui.ctx(),
-            |ui| {
+        egui::Window::new(tl!("Show/Hide Tracks"))
+            .title_bar(false)
+            .open(&mut { open })
+            .id(egui::Id::unique("mixer-show-hide"))
+            .collapsible(false)
+            .resizable(false)
+            .show(ui.ctx(), |ui| {
+                if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Show/Hide Tracks")) {
+                    open = false;
+                }
                 for id in seq.audio_tracks.iter().chain(&seq.submix_tracks).map(|t| t.id) {
                     let label = strip_label(seq, id);
                     let name = seq.mix_track(id).map(|t| t.name.clone()).unwrap_or_default();
@@ -317,8 +324,7 @@ pub fn track_mixer(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
                         close = true;
                     }
                 });
-            },
-        );
+            });
         show_hide = open && !close;
     }
     ui.data_mut(|d| d.insert_temp(show_hide_id, show_hide));

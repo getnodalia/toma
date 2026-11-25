@@ -297,9 +297,17 @@ pub fn save_dialog(app: &mut TomaApp, ctx: &egui::Context) {
     let mut open = true;
     let mut close = false;
     let mut apply = false;
-    egui::Window::new(tl!("Save Preset")).id(egui::Id::unique("Save Preset")).open(&mut open).collapsible(false).resizable(false).default_width(340.0).show(
-        ctx,
-        |ui| {
+    egui::Window::new(tl!("Save Preset"))
+        .title_bar(false)
+        .open(&mut { open })
+        .id(egui::Id::unique("Save Preset"))
+        .collapsible(false)
+        .resizable(false)
+        .default_width(340.0)
+        .show(ctx, |ui| {
+            if crate::widgets::dialog_header(ui, &app.tokens, &*tl!("Save Preset")) {
+                open = false;
+            }
             ui.horizontal(|ui| {
                 ui.label(tl!("Name:"));
                 let r = crate::widgets::accessible_name(ui.text_edit_singleline(&mut d.name), tl!("Name"));
@@ -332,8 +340,7 @@ pub fn save_dialog(app: &mut TomaApp, ctx: &egui::Context) {
                 apply = o.clicked();
                 close = apply || c.clicked();
             });
-        },
-    );
+        });
     app.ui.save_preset = if close || !open { None } else { Some(d.clone()) };
     if apply {
         let r = app.session.execute(
