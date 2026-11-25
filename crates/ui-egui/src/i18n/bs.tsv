@@ -3607,7 +3607,7 @@
 	Start: {tc}	Početak: {tc}
 	End: {tc}	Kraj: {tc}
 	Duration: {tc}	Trajanje: {tc}
-	Animate zoom, scrolling and menus	Animiraj zumiranje, pomicanje i menije
+	Animate zoom, scrolling and menus	Animiraj zumiranje, pomjeranje i menije
 	Reset Interface Zoom	Vrati zumiranje interfejsa
 	Track Color	Boja trake
 	Open a sequence to search its graphics	Otvorite sekvencu da pretražite njene grafike
@@ -3701,6 +3701,10 @@
 	MP3 48 kHz 320 kbps	MP3 48 kHz 320 kb/s
 	MPEG audio (.mp3), joint stereo 48 kHz at 320 kbps	MPEG zvuk (.mp3), joint stereo 48 kHz, 320 kb/s
 	Main Menu	Glavni meni
+	Delete Markers	Izbriši markere
+	Duration (frames):	Trajanje (sličice):
+	Edit Markers	Uredi markere
+	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	Uvezeno predložaka: {n}; preskočeno: {skipped}, s nepodržanim parametrima: {warnings}
 	Manage Colors	Upravljaj bojama
 	Manage Colors…	Upravljaj bojama…
 	Marker changed or was removed. Reopen it to continue.	Marker je promijenjen ili uklonjen. Ponovo ga otvorite da nastavite.
@@ -3820,9 +3824,6 @@
 	Options:	Opcije:
 	Invalid duration: {error}	Nevažeće trajanje: {error}
 	Remove Custom Color	Ukloni prilagođenu boju
-	Edit Markers	Uredi oznake
-	Delete Markers	Izbriši oznake
-	Imported {n} preset(s); {skipped} skipped, {warnings} with unsupported parameters	Uvezeno unaprijed postavki: {n}; preskočeno: {skipped}, s nepodržanim parametrima: {warnings}
 	Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT).	Dio Nodalije. MIT OR Apache-2.0. Fontovi: Inter, Noto Serif i JetBrains Mono (SIL OFL 1.1). Ikone: Nodalia Design (MIT).
 	Add pause	Dodaj pauzu
 	Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].	Dodaj pauzu umeće [pause 1s]. Promijenite broj za dužu ili kraću pauzu, npr. [pause 500ms] ili [pause 2s].

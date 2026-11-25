@@ -192,15 +192,6 @@ impl toma_isobmff::ByteSource for Src {
     }
 }
 
-impl toma_avi::ByteSource for Src {
-    fn len(&self) -> u64 {
-        self.0.len()
-    }
-    fn read_at(&self, offset: u64, buf: &mut [u8]) -> std::io::Result<()> {
-        self.0.read_at(offset, buf)
-    }
-}
-
 /// Convenience: an `Arc` media source from bytes (tries MP4/MOV then audio files).
 pub fn open_bytes(name: &str, bytes: Arc<[u8]>) -> std::result::Result<toma_media::SharedSource, toma_media::MediaError> {
     toma_media::open_bytes(name, bytes, &openers())
@@ -210,6 +201,8 @@ pub fn open_bytes(name: &str, bytes: Arc<[u8]>) -> std::result::Result<toma_medi
 mod audio_timing_tests;
 #[cfg(test)]
 mod avi_tests;
+#[cfg(test)]
+mod mjpeg_tests;
 #[cfg(test)]
 mod rounded_pts_tests;
 #[cfg(test)]
