@@ -104,7 +104,7 @@ fn browse_search_apply_and_edit_template_properties() {
     d.ok("ui.click", json!({"id": "gfxTemplates.search"}));
     d.ok("ui.type", json!({"text": "credits"}));
     d.frames(3);
-    assert_eq!(d.ids("gfxTemplates.item."), vec!["gfxTemplates.item.builtin:end-credits-roll"]);
+    assert_eq!(d.ids("gfxTemplates.item."), vec!["gfxTemplates.item.builtin:end-credits-roll", "gfxTemplates.item.builtin:end-credits-thanks"]);
     // select and apply
     d.exec("playhead.set", json!({"seconds": 300}));
     d.ok("ui.click", json!({"id": "gfxTemplates.item.builtin:end-credits-roll"}));
