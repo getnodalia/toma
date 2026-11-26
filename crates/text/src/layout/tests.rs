@@ -83,7 +83,7 @@ fn newlines_make_paragraphs_and_leading_adds() {
 
 #[test]
 fn japanese_vertical_titles_with_an_installed_font() {
-    // Japanese glyphs come from the craft-fonts (built with CRAFT_FONTS_DIR) or a system font:
+    // Japanese glyphs come from the nodalia-fonts (built with NODALIA_FONTS_DIR) or a system font:
     // skip where neither is present. `covers_text` probes a face without keeping its file:
     // `has_char` over every installed face would load each font file (a CJK collection once
     // per face in it) and keep them all, gigabytes on a machine with Noto CJK installed.

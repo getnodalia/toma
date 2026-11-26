@@ -55,7 +55,7 @@ impl TomaApp {
             ime_composition: None,
             ime_reset: Default::default(),
             ime_composition_viewport: None,
-            ime_composer: craft_ui::ime::Composer::new(),
+            ime_composer: nodalia_ui::ime::Composer::new(),
             ime_composer_target: None,
             ime_drawn_editor: None,
             ime_document_epoch,
@@ -296,7 +296,7 @@ impl TomaApp {
                     // show the sequence with its own view (or fitted, the first time)
                     self.timeline_view_of = None;
                     self.ui.dock.restore_timeline();
-                    let _ = self.apply_dock(craft_ui::docking::Action::Activate { panel: PanelKind::Timeline });
+                    let _ = self.apply_dock(nodalia_ui::docking::Action::Activate { panel: PanelKind::Timeline });
                 }
                 toma_engine::Event::OpenSource(_) => {
                     // a closed Source panel reopens, and another panel's maximize would hide it

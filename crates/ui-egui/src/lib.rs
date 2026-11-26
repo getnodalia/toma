@@ -229,7 +229,7 @@ pub struct TomaApp {
     ime_composition_viewport: Option<egui::ViewportId>,
     /// The input method at the Program monitor's text caret: event order, the keys it uses, the
     /// marked text drawn on the video until it commits, and the published IME descriptor.
-    pub(crate) ime_composer: craft_ui::ime::Composer,
+    pub(crate) ime_composer: nodalia_ui::ime::Composer,
     /// The edit target `ime_composer` was made for; another target gets a new composer, so a
     /// new IME context.
     pub(crate) ime_composer_target: Option<ImeTarget>,
@@ -360,7 +360,7 @@ pub struct TomaApp {
     file_drag_hover: Option<(usize, egui::Pos2, egui::ViewportId)>,
     /// Files dragged over or dropped on dock panels in their own OS windows last frame; the
     /// dock area reports them after the panels have drawn, so they are imported next frame.
-    window_files: Vec<craft_ui::docking::WindowFiles<PanelKind>>,
+    window_files: Vec<nodalia_ui::docking::WindowFiles<PanelKind>>,
     timeline_view_last: Option<toma_engine::project::SequenceView>,
     pub fps: f32,
     last_time: f64,

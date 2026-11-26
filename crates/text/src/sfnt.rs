@@ -1,5 +1,5 @@
 //! SFNT face metadata discovery for Toma fonts.
-pub use craft_font_catalog::sfnt::{FaceNames, read_faces, read_faces_bytes};
+pub use nodalia_font_catalog::sfnt::{FaceNames, read_faces, read_faces_bytes};
 
 #[cfg(test)]
 mod tests {

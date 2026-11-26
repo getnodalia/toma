@@ -1,6 +1,6 @@
 //! Conversion between Toma effect values and the shared timeline model.
 
-use craft_timeline::model as shared;
+use nodalia_timeline::model as shared;
 use toma_project as film;
 use toma_time::Tick;
 
@@ -62,7 +62,7 @@ fn to_effect(effect: &film::EffectInstance) -> Result<shared::EffectInstance, se
                 .iter()
                 .map(|k| {
                     Ok(shared::Keyframe {
-                        time: craft_timeline::time::Tick(k.time.0),
+                        time: nodalia_timeline::time::Tick(k.time.0),
                         value: to_value(&k.value)?,
                         interp: to_interp(k.interp),
                         out_influence: k.out_influence,
@@ -114,8 +114,8 @@ fn from_effect(effect: &shared::EffectInstance) -> Result<film::EffectInstance, 
 fn to_marker(marker: &film::Marker) -> Result<shared::Marker, serde_json::Error> {
     Ok(shared::Marker {
         id: shared::MarkerId(marker.id.0),
-        start: craft_timeline::time::Tick(marker.start.0),
-        duration: craft_timeline::time::Tick(marker.duration.0),
+        start: nodalia_timeline::time::Tick(marker.start.0),
+        duration: nodalia_timeline::time::Tick(marker.duration.0),
         name: marker.name.clone(),
         comment: marker.comment.clone(),
         kind: match marker.kind {
@@ -685,21 +685,21 @@ fn legacy_or_ext(ext: &shared::Ext) -> Option<serde_json::Value> {
     let outer: serde_json::Value = serde_json::from_str(ext.as_deref()?).ok()?;
     Some(outer.get("toma_legacy_metadata").cloned().unwrap_or(outer))
 }
-fn merge_report(dst: &mut crate::Report, src: craft_timeline::Report) {
+fn merge_report(dst: &mut crate::Report, src: nodalia_timeline::Report) {
     for entry in src.entries {
         let level = match entry.level {
-            craft_timeline::Level::Info => crate::Level::Info,
-            craft_timeline::Level::Warning => crate::Level::Warning,
+            nodalia_timeline::Level::Info => crate::Level::Info,
+            nodalia_timeline::Level::Warning => crate::Level::Warning,
         };
         dst.push_n(level, entry.message, entry.count);
     }
 }
-fn convert_error(e: craft_timeline::Error) -> crate::Error {
+fn convert_error(e: nodalia_timeline::Error) -> crate::Error {
     match e {
-        craft_timeline::Error::Parse { format, message } => crate::Error::Parse { format, message },
-        craft_timeline::Error::Empty => crate::Error::Empty,
-        craft_timeline::Error::NoSequence(id) => crate::Error::NoSequence(film::ItemId(id.0)),
-        craft_timeline::Error::Other(message) => crate::Error::Other(message),
+        nodalia_timeline::Error::Parse { format, message } => crate::Error::Parse { format, message },
+        nodalia_timeline::Error::Empty => crate::Error::Empty,
+        nodalia_timeline::Error::NoSequence(id) => crate::Error::NoSequence(film::ItemId(id.0)),
+        nodalia_timeline::Error::Other(message) => crate::Error::Other(message),
     }
 }
 fn merge_otio_palette(project: &mut film::Project, meta: Option<&serde_json::Value>, report: &mut crate::Report) {
@@ -739,9 +739,9 @@ pub(crate) fn import_otio(text: &str, opts: &crate::ImportOptions, report: &mut 
     drop(value);
     let catalog = FilmCatalog;
     let shared_opts =
-        craft_timeline::ImportOptions { base_dir: opts.base_dir.as_deref(), name: opts.name.as_deref(), catalog: &catalog, namespace: "filmcraft" };
-    let mut shared_report = craft_timeline::Report::default();
-    let result = craft_timeline::otio::import_with_report_limit(&normalized, &shared_opts, &mut shared_report, Some(crate::MAX_REPORT_ENTRIES));
+        nodalia_timeline::ImportOptions { base_dir: opts.base_dir.as_deref(), name: opts.name.as_deref(), catalog: &catalog, namespace: "filmcraft" };
+    let mut shared_report = nodalia_timeline::Report::default();
+    let result = nodalia_timeline::otio::import_with_report_limit(&normalized, &shared_opts, &mut shared_report, Some(crate::MAX_REPORT_ENTRIES));
     merge_report(report, shared_report);
     let imported = result.map_err(convert_error)?;
     let mut project = from_project(&imported.project).map_err(|e| crate::Error::Other(e.to_string()))?;
@@ -753,7 +753,7 @@ pub(crate) fn import_otio(text: &str, opts: &crate::ImportOptions, report: &mut 
 pub(crate) fn export_otio(project: &film::Project, seq: film::ItemId, opts: &crate::ExportOptions, report: &mut crate::Report) -> crate::Result<String> {
     let project = to_project(project, seq).map_err(|e| crate::Error::Other(e.to_string()))?;
     let catalog = FilmCatalog;
-    let shared_opts = craft_timeline::ExportOptions {
+    let shared_opts = nodalia_timeline::ExportOptions {
         relative_to: opts.relative_to.as_deref(),
         name: opts.name.as_deref(),
         catalog: &catalog,
@@ -761,9 +761,9 @@ pub(crate) fn export_otio(project: &film::Project, seq: film::ItemId, opts: &cra
         xmeml_version: opts.xmeml_version,
         fcpxml_version: Default::default(),
     };
-    let mut shared_report = craft_timeline::Report::default();
+    let mut shared_report = nodalia_timeline::Report::default();
     let result =
-        craft_timeline::otio::export_with_report_limit(&project, shared::ItemId(seq.0), &shared_opts, &mut shared_report, Some(crate::MAX_REPORT_ENTRIES));
+        nodalia_timeline::otio::export_with_report_limit(&project, shared::ItemId(seq.0), &shared_opts, &mut shared_report, Some(crate::MAX_REPORT_ENTRIES));
     merge_report(report, shared_report);
     let text = result.map_err(convert_error)?;
     let mut value: serde_json::Value = serde_json::from_str(&text).map_err(|e| crate::Error::Other(e.to_string()))?;
@@ -772,17 +772,18 @@ pub(crate) fn export_otio(project: &film::Project, seq: film::ItemId, opts: &cra
 }
 
 /// A shared timeline reader's signature (FCPXML, FCP7 XML).
-type SharedImport = fn(&str, &craft_timeline::ImportOptions, &mut craft_timeline::Report, Option<usize>) -> craft_timeline::Result<craft_timeline::Imported>;
+type SharedImport =
+    fn(&str, &nodalia_timeline::ImportOptions, &mut nodalia_timeline::Report, Option<usize>) -> nodalia_timeline::Result<nodalia_timeline::Imported>;
 /// A shared timeline writer's signature (FCPXML, FCP7 XML).
 type SharedExport =
-    fn(&shared::Project, shared::ItemId, &craft_timeline::ExportOptions, &mut craft_timeline::Report, Option<usize>) -> craft_timeline::Result<String>;
+    fn(&shared::Project, shared::ItemId, &nodalia_timeline::ExportOptions, &mut nodalia_timeline::Report, Option<usize>) -> nodalia_timeline::Result<String>;
 
 /// Read `text` with a shared timeline reader, keeping its report notes, into Toma's model.
 fn import_shared(text: &str, opts: &crate::ImportOptions, report: &mut crate::Report, import: SharedImport) -> crate::Result<crate::Imported> {
     let catalog = FilmCatalog;
     let shared_opts =
-        craft_timeline::ImportOptions { base_dir: opts.base_dir.as_deref(), name: opts.name.as_deref(), catalog: &catalog, namespace: "filmcraft" };
-    let mut shared_report = craft_timeline::Report::default();
+        nodalia_timeline::ImportOptions { base_dir: opts.base_dir.as_deref(), name: opts.name.as_deref(), catalog: &catalog, namespace: "filmcraft" };
+    let mut shared_report = nodalia_timeline::Report::default();
     let result = import(text, &shared_opts, &mut shared_report, Some(crate::MAX_REPORT_ENTRIES));
     merge_report(report, shared_report);
     let imported = result.map_err(convert_error)?;
@@ -795,14 +796,14 @@ fn export_shared(
     project: &film::Project,
     seq: film::ItemId,
     opts: &crate::ExportOptions,
-    fcpxml_version: craft_timeline::FcpxmlVersion,
+    fcpxml_version: nodalia_timeline::FcpxmlVersion,
     report: &mut crate::Report,
     export: SharedExport,
 ) -> crate::Result<String> {
     crate::warn_marker_metadata_loss(project, seq, report);
     let project = to_project(project, seq).map_err(|e| crate::Error::Other(e.to_string()))?;
     let catalog = FilmCatalog;
-    let shared_opts = craft_timeline::ExportOptions {
+    let shared_opts = nodalia_timeline::ExportOptions {
         relative_to: opts.relative_to.as_deref(),
         name: opts.name.as_deref(),
         catalog: &catalog,
@@ -810,29 +811,29 @@ fn export_shared(
         xmeml_version: opts.xmeml_version,
         fcpxml_version,
     };
-    let mut shared_report = craft_timeline::Report::default();
+    let mut shared_report = nodalia_timeline::Report::default();
     let result = export(&project, shared::ItemId(seq.0), &shared_opts, &mut shared_report, Some(crate::MAX_REPORT_ENTRIES));
     merge_report(report, shared_report);
     result.map_err(convert_error)
 }
 
 pub(crate) fn import_fcpxml(text: &str, opts: &crate::ImportOptions, report: &mut crate::Report) -> crate::Result<crate::Imported> {
-    import_shared(text, opts, report, craft_timeline::fcpxml::import_with_report_limit)
+    import_shared(text, opts, report, nodalia_timeline::fcpxml::import_with_report_limit)
 }
 pub(crate) fn export_fcpxml(project: &film::Project, seq: film::ItemId, opts: &crate::ExportOptions, report: &mut crate::Report) -> crate::Result<String> {
     let version = match opts.fcpxml_version {
-        crate::FcpxmlVersion::V1_9 => craft_timeline::FcpxmlVersion::V1_9,
-        crate::FcpxmlVersion::V1_10 => craft_timeline::FcpxmlVersion::V1_10,
-        crate::FcpxmlVersion::V1_11 => craft_timeline::FcpxmlVersion::V1_11,
+        crate::FcpxmlVersion::V1_9 => nodalia_timeline::FcpxmlVersion::V1_9,
+        crate::FcpxmlVersion::V1_10 => nodalia_timeline::FcpxmlVersion::V1_10,
+        crate::FcpxmlVersion::V1_11 => nodalia_timeline::FcpxmlVersion::V1_11,
     };
-    export_shared(project, seq, opts, version, report, craft_timeline::fcpxml::export_with_report_limit)
+    export_shared(project, seq, opts, version, report, nodalia_timeline::fcpxml::export_with_report_limit)
 }
 
 pub(crate) fn import_fcp7(text: &str, opts: &crate::ImportOptions, report: &mut crate::Report) -> crate::Result<crate::Imported> {
-    import_shared(text, opts, report, craft_timeline::fcp7::import_with_report_limit)
+    import_shared(text, opts, report, nodalia_timeline::fcp7::import_with_report_limit)
 }
 pub(crate) fn export_fcp7(project: &film::Project, seq: film::ItemId, opts: &crate::ExportOptions, report: &mut crate::Report) -> crate::Result<String> {
-    export_shared(project, seq, opts, Default::default(), report, craft_timeline::fcp7::export_with_report_limit)
+    export_shared(project, seq, opts, Default::default(), report, nodalia_timeline::fcp7::export_with_report_limit)
 }
 
 #[cfg(test)]

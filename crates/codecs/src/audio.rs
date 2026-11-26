@@ -79,10 +79,10 @@ impl SymphoniaDecoder {
 }
 
 enum Inner {
-    /// Our own AAC decoder (craft-audio): AAC-LC, and HE-AAC with its SBR high band when the
-    /// stream plays at twice the core rate (see [`craft_audio::aac::Decoder::set_sbr`]).
+    /// Our own AAC decoder (nodalia-audio): AAC-LC, and HE-AAC with its SBR high band when the
+    /// stream plays at twice the core rate (see [`nodalia_audio::aac::Decoder::set_sbr`]).
     /// Surround output is reordered to WAV/SMPTE order (see [`aac_to_wav_order`]).
-    Aac { dec: Box<craft_audio::aac::Decoder>, asc: Vec<u8> },
+    Aac { dec: Box<nodalia_audio::aac::Decoder>, asc: Vec<u8> },
     /// AAC whose configuration arrives with the first frame (ADTS / LATM).
     AacPending,
     /// MPEG audio at this rate whose layer arrives with the first frame (MP4 / QuickTime name the
@@ -90,13 +90,13 @@ enum Inner {
     MpegPending(u32),
     /// Our own Opus decoder (always 48 kHz output; pre-skip is left to container timestamps).
     /// `order` maps output channel → decoded channel (Vorbis → WAV/SMPTE order for surround).
-    Opus { dec: Box<craft_audio::opus::Decoder>, order: Option<&'static [usize]> },
+    Opus { dec: Box<nodalia_audio::opus::Decoder>, order: Option<&'static [usize]> },
     /// Bootstrap decoders (MP3, ALAC, FLAC, HE-AAC…) via symphonia.
     Symphonia(SymphoniaDecoder),
     /// Our AC-3 and E-AC-3 decoder (ATSC A/52, Annex E).
-    Ac3(Box<craft_audio::ac3::Decoder>),
+    Ac3(Box<nodalia_audio::ac3::Decoder>),
     /// Our MPEG-1/2 audio Layer I and II decoder (ISO/IEC 11172-3, 13818-3).
-    Mpa(Box<craft_audio::mpa::Decoder>),
+    Mpa(Box<nodalia_audio::mpa::Decoder>),
 }
 
 /// Opus always decodes at 48 kHz (RFC 7845 §5.1: the input rate in the header is informational).
@@ -141,11 +141,11 @@ fn aac_to_wav_order(channel_config: u8) -> Option<&'static [usize]> {
 }
 
 /// [`aac_to_wav_order`] for a stream's configuration. Configuration 0 takes the speakers its
-/// program config element spells out (`craft_audio::aac::speaker_config`), so a PCE carried in an
+/// program config element spells out (`nodalia_audio::aac::speaker_config`), so a PCE carried in an
 /// MP4 `esds` or in LATM's `StreamMuxConfig` in the shape of 5.1 is reordered like configuration 6;
 /// a layout that cannot be told keeps the decoded order.
-fn aac_wav_order(asc: &craft_audio::aac::AudioSpecificConfig) -> Option<&'static [usize]> {
-    aac_to_wav_order(craft_audio::aac::speaker_config(asc))
+fn aac_wav_order(asc: &nodalia_audio::aac::AudioSpecificConfig) -> Option<&'static [usize]> {
+    aac_to_wav_order(nodalia_audio::aac::speaker_config(asc))
 }
 
 /// `channels` reordered by `order` (output channel → decoded channel). A decode whose channel count
@@ -161,7 +161,7 @@ fn reorder(mut channels: Vec<Vec<f32>>, order: Option<&[usize]>) -> Vec<Vec<f32>
 /// without parsing frame lengths. For a multistream packet this is the first stream's TOC, which
 /// every stream shares. `None` for an empty or invalid (> 120 ms) packet.
 pub fn opus_packet_samples(data: &[u8]) -> Option<usize> {
-    let toc = craft_audio::opus::Toc::parse(*data.first()?);
+    let toc = nodalia_audio::opus::Toc::parse(*data.first()?);
     let frames = match data[0] & 3 {
         0 => 1,
         1 | 2 => 2,
@@ -191,7 +191,7 @@ impl PacketDecoder {
     /// object types. `sample_rate` is the stream's output rate: when it is twice the core rate
     /// (HE-AAC, see [`aac_output_rate`]) the SBR high band is decoded at that rate.
     pub fn aac(asc: &[u8], sample_rate: u32) -> Result<Self> {
-        if let Ok(mut dec) = craft_audio::aac::Decoder::new(asc) {
+        if let Ok(mut dec) = nodalia_audio::aac::Decoder::new(asc) {
             let sbr = decodes_sbr(dec.sample_rate(), sample_rate);
             dec.set_sbr(sbr);
             return Ok(Self { inner: Inner::Aac { dec: Box::new(dec), asc: asc.to_vec() }, channels: 0 });
@@ -200,8 +200,8 @@ impl PacketDecoder {
     }
     /// Opus from an `OpusHead` (Matroska `CodecPrivate`, Ogg) or a `dOps` box payload. Output is
     /// 48 kHz; pre-skip is *not* trimmed here (Matroska `CodecDelay` / MP4 edit lists do that).
-    pub fn opus(head: craft_audio::opus::OpusHead) -> Result<Self> {
-        let dec = craft_audio::opus::Decoder::from_head(head, OPUS_RATE).map_err(|e| CodecError::Unsupported(format!("Opus: {e}")))?;
+    pub fn opus(head: nodalia_audio::opus::OpusHead) -> Result<Self> {
+        let dec = nodalia_audio::opus::Decoder::from_head(head, OPUS_RATE).map_err(|e| CodecError::Unsupported(format!("Opus: {e}")))?;
         let channels = dec.channels();
         let order = if dec.head().mapping_family == 1 { vorbis_to_wav_order(channels) } else { None };
         Ok(Self { inner: Inner::Opus { dec: Box::new(dec), order }, channels })
@@ -233,13 +233,13 @@ impl PacketDecoder {
         {
             return Ok(());
         }
-        let dec = craft_audio::aac::Decoder::new(asc).map_err(|e| CodecError::Unsupported(format!("AAC: {e}")))?;
+        let dec = nodalia_audio::aac::Decoder::new(asc).map_err(|e| CodecError::Unsupported(format!("AAC: {e}")))?;
         self.inner = Inner::Aac { dec: Box::new(dec), asc: asc.to_vec() };
         Ok(())
     }
     /// AC-3 and E-AC-3 (ATSC A/52, Annex E).
     pub fn ac3() -> Result<Self> {
-        Ok(Self { inner: Inner::Ac3(Box::new(craft_audio::ac3::Decoder::new())), channels: 0 })
+        Ok(Self { inner: Inner::Ac3(Box::new(nodalia_audio::ac3::Decoder::new())), channels: 0 })
     }
     /// Whether this decodes Opus (which needs [`OPUS_PRE_ROLL`] of pre-roll after a seek).
     pub fn is_opus(&self) -> bool {
@@ -254,7 +254,7 @@ impl PacketDecoder {
             C::Alac { cookie } => Self::new(CODEC_TYPE_ALAC, rate, Some(cookie.clone())),
             // the decoder needs the STREAMINFO body: `dfLa` holds it after the 4-byte block header
             C::Flac(f) => Self::new(CODEC_TYPE_FLAC, rate, f.metadata_blocks.get(4..38).map(<[u8]>::to_vec)),
-            C::Opus(o) => Self::opus(craft_audio::opus::OpusHead::from_dops(&o.to_bytes()).map_err(|e| CodecError::Unsupported(format!("Opus: {e}")))?),
+            C::Opus(o) => Self::opus(nodalia_audio::opus::OpusHead::from_dops(&o.to_bytes()).map_err(|e| CodecError::Unsupported(format!("Opus: {e}")))?),
             other => Err(CodecError::Unsupported(format!("{} audio", other.name()))),
         }
     }
@@ -339,7 +339,7 @@ impl PacketDecoder {
     }
     pub fn reset(&mut self) {
         match &mut self.inner {
-            // craft-audio's reset clears the overlap, noise and SBR signal state but keeps the
+            // nodalia-audio's reset clears the overlap, noise and SBR signal state but keeps the
             // SBR header the stream last sent, so packets after a seek that carry no header still
             // get their high band. Rebuilding the decoder would drop it until the next header.
             Inner::Aac { dec, .. } => dec.reset(),
@@ -372,9 +372,9 @@ pub fn mpeg_audio_layer(frame: &[u8]) -> Option<u8> {
 
 /// The output rate of an AAC stream: twice the core rate for HE-AAC (ISO/IEC 14496-3 §1.6.5),
 /// from the `AudioSpecificConfig` or, with implicit signalling, the first access units
-/// ([`craft_audio::aac::output_rate`]). `None` if `asc` is not one our decoder reads.
+/// ([`nodalia_audio::aac::output_rate`]). `None` if `asc` is not one our decoder reads.
 pub fn aac_output_rate<'a>(asc: &[u8], first_units: impl IntoIterator<Item = &'a [u8]>) -> Option<u32> {
-    craft_audio::aac::output_rate(asc, first_units)
+    nodalia_audio::aac::output_rate(asc, first_units)
 }
 
 /// Whether [`PacketDecoder::aac`] decodes the SBR high band of an AAC core at `core` Hz to play
@@ -406,13 +406,13 @@ pub enum FixedFrames<'a> {
 pub fn fixed_packet_samples(codec: FixedFrames, first: &[u8], rate: u32) -> Option<i64> {
     let mpegts = match codec {
         FixedFrames::Aac(asc) => {
-            let core = craft_audio::aac::Decoder::new(asc).ok()?.sample_rate();
+            let core = nodalia_audio::aac::Decoder::new(asc).ok()?.sample_rate();
             return Some(if decodes_sbr(core, rate) { 2048 } else { 1024 });
         }
         FixedFrames::Eac3 => {
             let mut samples = 0usize;
             let mut p = 0;
-            while let Some(h) = first.get(p..).and_then(|b| craft_audio::ac3::parse_header(b).ok()) {
+            while let Some(h) = first.get(p..).and_then(|b| nodalia_audio::ac3::parse_header(b).ok()) {
                 if h.is_primary() {
                     if h.sample_rate != rate {
                         return None;
@@ -423,10 +423,10 @@ pub fn fixed_packet_samples(codec: FixedFrames, first: &[u8], rate: u32) -> Opti
             }
             return i64::try_from(samples).ok().filter(|&n| n > 0);
         }
-        FixedFrames::MpegAudio => craft_media::mpegts::Codec::MpegAudio,
-        FixedFrames::Ac3 => craft_media::mpegts::Codec::Ac3,
+        FixedFrames::MpegAudio => nodalia_media::mpegts::Codec::MpegAudio,
+        FixedFrames::Ac3 => nodalia_media::mpegts::Codec::Ac3,
     };
-    let f = craft_media::mpegts::frame_info(&mpegts, first)?;
+    let f = nodalia_media::mpegts::frame_info(&mpegts, first)?;
     (f.sample_rate == rate && f.samples > 0).then_some(f.samples as i64)
 }
 
@@ -477,27 +477,27 @@ fn asc_bytes(object_type: u8, sf_index: u8, channel_config: u8) -> Vec<u8> {
     v.to_be_bytes().to_vec()
 }
 
-/// An ADTS frame (ISO/IEC 13818-7 §6.2, parsed by [`craft_audio::aac::AdtsHeader`]): the
+/// An ADTS frame (ISO/IEC 13818-7 §6.2, parsed by [`nodalia_audio::aac::AdtsHeader`]): the
 /// equivalent AudioSpecificConfig and the raw data block. Frames with several raw data blocks are
 /// not split (`None`).
 pub fn adts_split(frame: &[u8]) -> Option<(Vec<u8>, &[u8])> {
-    let h = craft_audio::aac::AdtsHeader::parse(frame).ok().filter(|h| h.raw_data_blocks == 1)?;
+    let h = nodalia_audio::aac::AdtsHeader::parse(frame).ok().filter(|h| h.raw_data_blocks == 1)?;
     let end = h.frame_length.min(frame.len());
     (end > h.header_length).then(|| (asc_bytes(h.object_type, h.sf_index, h.channel_config), &frame[h.header_length..end]))
 }
 
-/// LOAS / LATM (AAC in MPEG transport streams): craft-audio reads the StreamMuxConfig and the
+/// LOAS / LATM (AAC in MPEG transport streams): nodalia-audio reads the StreamMuxConfig and the
 /// payload of the single sub-frame.
-pub use craft_audio::aac::{LatmConfig, latm_config, latm_split};
+pub use nodalia_audio::aac::{LatmConfig, latm_config, latm_split};
 
 /// Blu-ray and DVD LPCM packet decoding from the shared audio library.
-pub use craft_audio::lpcm::{BlurayLpcm, bluray_lpcm_header, decode_bluray_lpcm, decode_dvd_lpcm, dvd_lpcm_group_bytes};
+pub use nodalia_audio::lpcm::{BlurayLpcm, bluray_lpcm_header, decode_bluray_lpcm, decode_dvd_lpcm, dvd_lpcm_group_bytes};
 
 /// Decode interleaved PCM bytes into planar f32.
 pub fn decode_pcm(data: &[u8], cfg: &toma_isobmff::PcmConfig) -> Vec<Vec<f32>> {
     let mut out = vec![Vec::new(); cfg.channels.max(1) as usize];
-    let format = craft_audio::pcm_interleaved::Format { bits: cfg.bits, float: cfg.float, big_endian: cfg.big_endian, signed: cfg.signed };
-    craft_audio::pcm_interleaved::decode_into(data, format, &mut out);
+    let format = nodalia_audio::pcm_interleaved::Format { bits: cfg.bits, float: cfg.float, big_endian: cfg.big_endian, signed: cfg.signed };
+    nodalia_audio::pcm_interleaved::decode_into(data, format, &mut out);
     out
 }
 
@@ -552,8 +552,8 @@ impl AudioFileSource {
     fn decode_inner(name: &str, bytes: Arc<[u8]>, make_decoder: impl FnOnce(&CodecParameters) -> Result<SymphoniaDecoder>) -> Result<Self> {
         let ext = name.rsplit('.').next().unwrap_or("").to_ascii_lowercase();
         if ext == "mp3" {
-            let (audio, decoded) = craft_audio::decode(&bytes, Some("mp3")).map_err(|e| match e {
-                craft_audio::AudioError::Unsupported(message) | craft_audio::AudioError::TooLarge(message) => {
+            let (audio, decoded) = nodalia_audio::decode(&bytes, Some("mp3")).map_err(|e| match e {
+                nodalia_audio::AudioError::Unsupported(message) | nodalia_audio::AudioError::TooLarge(message) => {
                     CodecError::Unsupported(format!("{name}: {message}"))
                 }
                 error => CodecError::Decode(format!("{name}: {error}")),
@@ -724,10 +724,10 @@ pub(crate) fn check_decoded_budget(retained: usize, add: usize) -> Result<()> {
     Ok(())
 }
 
-/// The length of the ADTS frame starting `b` ([`craft_audio::aac::AdtsHeader`]: sync word, layer
+/// The length of the ADTS frame starting `b` ([`nodalia_audio::aac::AdtsHeader`]: sync word, layer
 /// `00`, 13-bit `frame_length` including the header), when it starts with a header and fits in `b`.
 fn adts_frame_len(b: &[u8]) -> Option<usize> {
-    let h = craft_audio::aac::AdtsHeader::parse(b).ok()?;
+    let h = nodalia_audio::aac::AdtsHeader::parse(b).ok()?;
     (h.frame_length > h.header_length && h.frame_length <= b.len()).then_some(h.frame_length)
 }
 
@@ -791,13 +791,13 @@ fn decode_adts(bytes: &[u8]) -> Result<Option<(u32, Vec<Vec<f32>>)>> {
 /// with a Layer I / II frame followed by another frame (or the end), e.g. MP3.
 fn decode_mpeg_layer12(bytes: &[u8]) -> Option<(u8, u32, Vec<Vec<f32>>)> {
     let mut p = id3v2_len(bytes);
-    let frame_at = |p: usize| bytes.get(p..).and_then(|b| craft_audio::mpa::parse_header(b).ok()).filter(|h| h.frame_bytes > 0);
+    let frame_at = |p: usize| bytes.get(p..).and_then(|b| nodalia_audio::mpa::parse_header(b).ok()).filter(|h| h.frame_bytes > 0);
     let first = frame_at(p)?;
     let next = p.saturating_add(first.frame_bytes);
     if first.layer == 3 || (next < bytes.len() && frame_at(next).is_none_or(|h| h.layer != first.layer || h.sample_rate != first.sample_rate)) {
         return None;
     }
-    let mut dec = craft_audio::mpa::Decoder::new();
+    let mut dec = nodalia_audio::mpa::Decoder::new();
     let mut out: Vec<Vec<f32>> = vec![Vec::new(); first.channels()];
     while let Some(rest) = bytes.get(p..).filter(|r| r.len() >= 4) {
         match dec.decode(rest) {
@@ -862,7 +862,7 @@ mod mpeg_layer12_tests {
     fn silent_frame(bitrate_index: u8, mode: u8) -> Vec<u8> {
         let h = [0xFF, 0xFD, bitrate_index << 4 | 0x04, mode << 6];
         let mut f = h.to_vec();
-        f.resize(craft_audio::mpa::parse_header(&h).unwrap().frame_bytes, 0);
+        f.resize(nodalia_audio::mpa::parse_header(&h).unwrap().frame_bytes, 0);
         f
     }
 
@@ -925,12 +925,12 @@ mod he_aac_tests {
         assert_eq!(aac_output_rate(&[0x12, 0x10], [&SBR_FILL[..]]), Some(44_100));
     }
 
-    /// HE-AAC played at its output rate decodes through craft-audio's SBR tool (2048 samples an
+    /// HE-AAC played at its output rate decodes through nodalia-audio's SBR tool (2048 samples an
     /// access unit, the core's band carried through the filter banks), not an interpolated core;
     /// the same stream at its core rate stays AAC-LC. A reset keeps the SBR choice.
     #[test]
     fn he_aac_decodes_its_sbr_band_at_the_output_rate() {
-        let mut enc = craft_audio::aac::Encoder::new(craft_audio::aac::EncoderConfig::cbr(22_050, 2, 64_000)).unwrap();
+        let mut enc = nodalia_audio::aac::Encoder::new(nodalia_audio::aac::EncoderConfig::cbr(22_050, 2, 64_000)).unwrap();
         let tone: Vec<f32> = (0..22_050).map(|i| (i as f32 * std::f32::consts::TAU * 440.0 / 22_050.0).sin() * 0.5).collect();
         let mut aus = enc.encode(&[&tone, &tone]);
         aus.extend(enc.flush());
@@ -978,7 +978,7 @@ mod surround_order_tests {
         let wav: Vec<Vec<f32>> = hz.iter().map(|&f| tone(f)).collect();
         // the encoder takes AAC element order (as the exporter feeds it): C L R Ls Rs LFE
         let coded: Vec<&[f32]> = [2usize, 0, 1, 4, 5, 3].iter().map(|&c| wav[c].as_slice()).collect();
-        let mut enc = craft_audio::aac::Encoder::new(craft_audio::aac::EncoderConfig::cbr(rate, 6, 384_000)).unwrap();
+        let mut enc = nodalia_audio::aac::Encoder::new(nodalia_audio::aac::EncoderConfig::cbr(rate, 6, 384_000)).unwrap();
         let mut units = enc.encode(&coded);
         units.extend(enc.flush());
 
@@ -1012,7 +1012,7 @@ mod surround_order_tests {
     /// pair-first PCE (ffmpeg's 5.1(side)) already decodes in WAV order and is left alone.
     #[test]
     fn a_program_config_element_in_the_shape_of_5_1_is_reordered_like_configuration_6() {
-        use craft_audio::aac::{AudioSpecificConfig, ProgramConfig};
+        use nodalia_audio::aac::{AudioSpecificConfig, ProgramConfig};
         let with = |front: Vec<(bool, u8)>, side: Vec<(bool, u8)>, back: Vec<(bool, u8)>, lfe: Vec<u8>| {
             let mut pce = ProgramConfig::default();
             (pce.front, pce.side, pce.back, pce.lfe) = (front, side, back, lfe);

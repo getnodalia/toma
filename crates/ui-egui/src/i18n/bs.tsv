@@ -3,7 +3,7 @@
 # Original clean-room translations from the meaning of Toma's English labels, using standard
 # Bosnian video-editing vocabulary (sekvenca, glava za reprodukciju, radno područje). No proprietary
 # localization resources were used. AI-assisted (Claude Code), not yet reviewed by a native speaker;
-# the wording is shared with storytold/craft-i18n (locales/bs/toma.tsv and common.tsv).
+# the wording is shared with getnodalia/foundation (nodalia/i18n) (locales/bs/toma.tsv and common.tsv).
 
 	About Toma	O aplikaciji Toma
 	Add Audio Submix Track	Dodaj audio podmiks traku

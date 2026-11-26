@@ -1,5 +1,5 @@
 //! The font database: bundled fonts (always available, also on the web), the optional
-//! [`CRAFT_FONTS`] (present when built with `CRAFT_FONTS_DIR`, also on the web) plus fonts
+//! [`NODALIA_FONTS`] (present when built with `NODALIA_FONTS_DIR`, also on the web) plus fonts
 //! discovered by [`FontSource`]s (system font folders on native platforms).
 //!
 //! Faces are addressed by [`FaceId`] (an index that never changes for the life of the process).
@@ -24,9 +24,9 @@ pub static INTER_ITALIC: &[u8] = include_bytes!("../../../assets/fonts/Inter-Ita
 pub static JETBRAINS_MONO_REGULAR: &[u8] = include_bytes!("../../../assets/fonts/JetBrainsMono-Regular.ttf");
 pub static NOTO_SERIF_REGULAR: &[u8] = include_bytes!("../../../assets/fonts/NotoSerif-Regular.ttf");
 
-/// A font from the optional craft-fonts build input (empty unless built with `CRAFT_FONTS_DIR`; see
-/// `build.rs` and storytold/craft-fonts `docs/integration.md`).
-pub struct CraftFont {
+/// A font from the optional nodalia-fonts build input (empty unless built with `NODALIA_FONTS_DIR`; see
+/// `build.rs` and getnodalia/foundation (nodalia/fonts) `docs/integration.md`).
+pub struct NodaliaFont {
     pub family: &'static str,
     pub style: &'static str,
     /// ISO 15924 scripts the font is for, e.g. `"Jpan"`.
@@ -34,38 +34,38 @@ pub struct CraftFont {
     pub bytes: &'static [u8],
 }
 
-include!(concat!(env!("OUT_DIR"), "/craft_fonts.rs"));
+include!(concat!(env!("OUT_DIR"), "/nodalia_fonts.rs"));
 
 #[cfg(test)]
-mod craft_wasm_tests {
+mod nodalia_wasm_tests {
     use super::*;
 
     /// The web build embeds the UI font and Noto Sans Thai, so Thai names draw on a browser
-    /// without a Thai font (#3374). Skipped without craft-fonts.
+    /// without a Thai font (#3374). Skipped without nodalia-fonts.
     #[test]
     fn web_build_embeds_the_ui_font_and_the_thai_face() {
-        if CRAFT_FONTS.is_empty() {
-            eprintln!("skipped: built without craft-fonts");
+        if NODALIA_FONTS.is_empty() {
+            eprintln!("skipped: built without nodalia-fonts");
             return;
         }
-        assert!(CRAFT_WASM_FACES.contains(&("BIZ UDPGothic", "Regular")), "{CRAFT_WASM_FACES:?}");
-        assert!(CRAFT_WASM_FACES.contains(&("Noto Sans Thai", "Regular")), "{CRAFT_WASM_FACES:?}");
-        // every listed face is a real craft-fonts entry, and the Thai one carries the Thai script
-        for (family, style) in CRAFT_WASM_FACES {
-            assert!(CRAFT_FONTS.iter().any(|f| f.family == *family && f.style == *style), "{family} {style}");
+        assert!(NODALIA_WASM_FACES.contains(&("BIZ UDPGothic", "Regular")), "{NODALIA_WASM_FACES:?}");
+        assert!(NODALIA_WASM_FACES.contains(&("Noto Sans Thai", "Regular")), "{NODALIA_WASM_FACES:?}");
+        // every listed face is a real nodalia-fonts entry, and the Thai one carries the Thai script
+        for (family, style) in NODALIA_WASM_FACES {
+            assert!(NODALIA_FONTS.iter().any(|f| f.family == *family && f.style == *style), "{family} {style}");
         }
-        assert!(CRAFT_FONTS.iter().any(|f| f.family == "Noto Sans Thai" && f.scripts.contains(&"Thai")));
+        assert!(NODALIA_FONTS.iter().any(|f| f.family == "Noto Sans Thai" && f.scripts.contains(&"Thai")));
     }
 }
 
-/// The craft-fonts entries for Japanese (`Jpan`), in [`CRAFT_FONTS`] order. Empty when the app was
-/// built without craft-fonts.
-pub fn craft_japanese() -> impl Iterator<Item = &'static CraftFont> {
-    CRAFT_FONTS.iter().filter(|f| f.scripts.contains(&"Jpan"))
+/// The nodalia-fonts entries for Japanese (`Jpan`), in [`NODALIA_FONTS`] order. Empty when the app was
+/// built without nodalia-fonts.
+pub fn nodalia_japanese() -> impl Iterator<Item = &'static NodaliaFont> {
+    NODALIA_FONTS.iter().filter(|f| f.scripts.contains(&"Jpan"))
 }
 
-/// Origin of faces registered from [`CRAFT_FONTS`].
-pub const CRAFT_ORIGIN: &str = "craft-fonts";
+/// Origin of faces registered from [`NODALIA_FONTS`].
+pub const NODALIA_ORIGIN: &str = "nodalia-fonts";
 
 /// The default family for new text.
 pub const DEFAULT_FAMILY: &str = "Inter";
@@ -389,9 +389,9 @@ fn db() -> &'static RwLock<Db> {
         }
         // after the bundled faces, before anything a FontSource finds (a system copy of the same
         // family + style is then skipped as a duplicate)
-        for f in CRAFT_FONTS {
+        for f in NODALIA_FONTS {
             for n in read_faces_bytes(f.bytes) {
-                push(&mut db, info_from(n, FaceData::Static(f.bytes), CRAFT_ORIGIN));
+                push(&mut db, info_from(n, FaceData::Static(f.bytes), NODALIA_ORIGIN));
             }
         }
         RwLock::new(db)
@@ -561,7 +561,7 @@ fn is_serif(family: &str) -> bool {
     (f.contains("serif") && !f.contains("sans")) || f.contains("mincho")
 }
 
-/// A face that covers `c`, preferring `prefer`; bundled, craft-fonts and already-registered faces
+/// A face that covers `c`, preferring `prefer`; bundled, nodalia-fonts and already-registered faces
 /// are searched, in that order.
 pub fn fallback_for(c: char, prefer: FaceId) -> FaceId {
     let p = face(prefer);
@@ -575,11 +575,11 @@ pub fn fallback_for(c: char, prefer: FaceId) -> FaceId {
             return f.id;
         }
     }
-    // then the craft-fonts faces (Japanese): Mincho for serif text, Gothic otherwise, nearest weight
+    // then the nodalia-fonts faces (Japanese): Mincho for serif text, Gothic otherwise, nearest weight
     let serif = is_serif(&p.info.family);
-    let mut craft: Vec<&Arc<Face>> = faces.iter().filter(|f| f.info.origin == CRAFT_ORIGIN).collect();
-    craft.sort_by_key(|f| (is_serif(&f.info.family) != serif, f.info.italic != p.info.italic, f.info.weight.abs_diff(p.info.weight)));
-    for f in craft {
+    let mut nodalia_faces: Vec<&Arc<Face>> = faces.iter().filter(|f| f.info.origin == NODALIA_ORIGIN).collect();
+    nodalia_faces.sort_by_key(|f| (is_serif(&f.info.family) != serif, f.info.italic != p.info.italic, f.info.weight.abs_diff(p.info.weight)));
+    for f in nodalia_faces {
         if f.has_char(c) {
             return f.id;
         }
@@ -641,24 +641,24 @@ mod tests {
         }
     }
 
-    /// craft-fonts faces are registered after the bundled ones and serve Japanese characters the
+    /// nodalia-fonts faces are registered after the bundled ones and serve Japanese characters the
     /// requested face lacks: Gothic for sans text, Mincho for serif text.
     #[test]
-    fn japanese_falls_back_to_craft_fonts() {
-        let craft: Vec<_> = all_faces().into_iter().filter(|f| f.info.origin == CRAFT_ORIGIN).collect();
-        if craft_japanese().next().is_none() {
-            eprintln!("SKIPPED: built without craft-fonts (set CRAFT_FONTS_DIR to run)");
-            assert!(craft.is_empty());
+    fn japanese_falls_back_to_nodalia_fonts() {
+        let nodalia_faces: Vec<_> = all_faces().into_iter().filter(|f| f.info.origin == NODALIA_ORIGIN).collect();
+        if nodalia_japanese().next().is_none() {
+            eprintln!("SKIPPED: built without nodalia-fonts (set NODALIA_FONTS_DIR to run)");
+            assert!(nodalia_faces.is_empty());
             return;
         }
-        assert!(craft.len() >= craft_japanese().count(), "{} faces", craft.len());
+        assert!(nodalia_faces.len() >= nodalia_japanese().count(), "{} faces", nodalia_faces.len());
         let bundled = all_faces().iter().take_while(|f| f.info.origin == "bundled").count();
-        assert!(craft.iter().all(|f| f.id >= bundled), "craft-fonts faces come after the bundled faces");
+        assert!(nodalia_faces.iter().all(|f| f.id >= bundled), "nodalia-fonts faces come after the bundled faces");
         let sans = resolve("Inter", "Regular").face;
         let serif = resolve("Noto Serif", "Regular").face;
         for c in "日本語の文字".chars() {
             let g = face(fallback_for(c, sans));
-            assert_eq!(g.info.origin, CRAFT_ORIGIN, "{c}");
+            assert_eq!(g.info.origin, NODALIA_ORIGIN, "{c}");
             assert!(g.has_char(c) && !is_serif(&g.info.family), "{c}: {}", g.info.family);
             let m = face(fallback_for(c, serif));
             assert!(m.has_char(c) && is_serif(&m.info.family), "{c}: {}", m.info.family);

@@ -71,29 +71,29 @@ covers every target starting with it (`toma*=debug`). The logger is
 `apps/toma/src/logging.rs`; the realtime audio callbacks do not log. The web app logs to the
 browser console instead.
 
-### Building with craft-fonts
+### Building with nodalia-fonts
 
-Font assets live in [storytold/craft-fonts](https://github.com/storytold/craft-fonts), never in this
+Font assets live in [getnodalia/foundation (nodalia/fonts)](https://github.com/getnodalia/foundation), never in this
 repo. It is an optional build input, not a Cargo
 dependency:
 
 ```sh
-git clone https://github.com/storytold/craft-fonts ../craft-fonts
-CRAFT_FONTS_DIR="$PWD/../craft-fonts" cargo run --release -p toma
+git clone https://github.com/getnodalia/foundation ../nodalia-fonts
+NODALIA_FONTS_DIR="$PWD/../nodalia-fonts" cargo run --release -p toma
 ```
 
-Use an absolute path: `build.rs` runs in `crates/text`, so a relative `CRAFT_FONTS_DIR` would
+Use an absolute path: `build.rs` runs in `crates/text`, so a relative `NODALIA_FONTS_DIR` would
 resolve from there. `crates/text/build.rs` reads its `fonts/manifest.txt` and embeds the fonts as
-`toma_text::fonts::CRAFT_FONTS` (native: all of them; the web build: only BIZ UDPGothic
+`toma_text::fonts::NODALIA_FONTS` (native: all of them; the web build: only BIZ UDPGothic
 Regular, to keep the wasm small). The Japanese ones become the last fallback of every UI font family
 (`crates/ui-egui/src/theme.rs`, BIZ UDPGothic first) and fallback faces in the text engine (Gothic
-for sans text, Mincho for serif text). Without `CRAFT_FONTS_DIR`, `CRAFT_FONTS` is empty and
-Toma uses its bundled and system fonts. A `CRAFT_FONTS_DIR` that is not a checkout is a build
-warning, or an error with `CRAFT_FONTS_REQUIRED=1` (release builds set both). With
-`CRAFT_FONTS_REQUIRED=1`, a build without `CRAFT_FONTS_DIR` is an error too. Tests on these fonts'
+for sans text, Mincho for serif text). Without `NODALIA_FONTS_DIR`, `NODALIA_FONTS` is empty and
+Toma uses its bundled and system fonts. A `NODALIA_FONTS_DIR` that is not a checkout is a build
+warning, or an error with `NODALIA_FONTS_REQUIRED=1` (release builds set both). With
+`NODALIA_FONTS_REQUIRED=1`, a build without `NODALIA_FONTS_DIR` is an error too. Tests on these fonts'
 glyphs skip when it is empty; when you touch fonts, run the gates both with and without it.
 
-Chinese media names and track labels use the `Hans` / `Hant` craft-fonts faces after the Japanese
+Chinese media names and track labels use the `Hans` / `Hant` nodalia-fonts faces after the Japanese
 fallbacks in every UI font family, regardless of interface language (Japanese and Chinese share code
 points, so Japanese text keeps Japanese glyph forms; the Chinese faces cover hanzi the Japanese ones lack). Without those build inputs,
 native builds look up an installed Chinese face (for example Microsoft YaHei or Noto Sans CJK SC)
@@ -102,7 +102,7 @@ Web builds depend on the font faces selected by `crates/text/build.rs`; they can
 `theme::tests::chinese_names_render_in_every_theme_and_font_family` verifies Chinese glyphs in the
 timeline's proportional, monospace, medium and semibold families under all three themes.
 
-Arabic and Hebrew work the same way (`crates/ui-egui/src/rtl.rs`): the `Arab` / `Hebr` craft-fonts
+Arabic and Hebrew work the same way (`crates/ui-egui/src/rtl.rs`): the `Arab` / `Hebr` nodalia-fonts
 faces, else one installed face per script (for example Noto Sans Arabic, SF Arabic or Segoe UI),
 are the last fallbacks of every UI font family. egui shapes each font run (letters join) but lays
 runs out left to right with no bidi pass, so captions on the timeline and in the Text panel are laid
@@ -124,7 +124,7 @@ Every commit must pass all of these:
 | wasm | `cargo xtask wasm` (checks every L0–L4 crate, `toma-ui-egui` and `toma-web` for `wasm32-unknown-unknown`) |
 | All of the above | `cargo xtask ci` |
 
-Run them with `CRAFT_FONTS_DIR` set too when you change font code ([craft-fonts](#building-with-craft-fonts)).
+Run them with `NODALIA_FONTS_DIR` set too when you change font code ([nodalia-fonts](#building-with-craft-fonts)).
 
 `cargo xtask` is an alias in `.cargo/config.toml` for `cargo run -p xtask --`.
 
@@ -246,7 +246,7 @@ stream is cut into blocks (there are tests for this).
    - containers: an `Opener` in `codecs::openers()`;
    - encoders: an `export::VideoEncoder` / audio encoder plus a `Format` in `crates/export`.
 5. Write the README: features, API, test matrix, accuracy and speed numbers, limitations. Use
-   the H.264 README in craft-libs (`crates/video/src/h264/decode/README.md`) as the model.
+   the H.264 README in nodalia-libs (`crates/video/src/h264/decode/README.md`) as the model.
 
 ### A panel or widget
 
@@ -276,10 +276,10 @@ In short:
 - Screenshots show only Toma (or other open projects) with media we generated or that is
   openly licensed.
 
-- **Fonts live in [storytold/craft-fonts](https://github.com/storytold/craft-fonts), not here.**
+- **Fonts live in [getnodalia/foundation (nodalia/fonts)](https://github.com/getnodalia/foundation), not here.**
   Don't commit new font files to this repo (the Latin UI fonts already in `assets/fonts/` stay): add
-  the font to craft-fonts (file, licence, manifest line, `ATTRIBUTION.md` row) and use it through
-  `toma_text::fonts::CRAFT_FONTS`. See [Building with craft-fonts](#building-with-craft-fonts).
+  the font to nodalia-fonts (file, licence, manifest line, `ATTRIBUTION.md` row) and use it through
+  `toma_text::fonts::NODALIA_FONTS`. See [Building with nodalia-fonts](#building-with-craft-fonts).
 
 For each asset file `X`, commit a sidecar `X.attribution`. This is the real one for
 `assets/fonts/Inter-Regular.ttf`:

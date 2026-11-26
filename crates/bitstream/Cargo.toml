@@ -9,4 +9,4 @@ rust-version.workspace = true
 workspace = true
 
 [dependencies]
-craft-media = { workspace = true, features = ["bitstream"] }
+nodalia-media = { workspace = true, features = ["bitstream"] }

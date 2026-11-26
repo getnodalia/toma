@@ -1,6 +1,6 @@
 [package]
 name = "toma-cfb"
-description = "Compatibility facade for the shared craft-cfb reader and writer used by AAF"
+description = "Compatibility facade for the shared nodalia-cfb reader and writer used by AAF"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
@@ -10,4 +10,4 @@ rust-version.workspace = true
 workspace = true
 
 [dependencies]
-craft-cfb = { workspace = true }
+nodalia-cfb = { workspace = true }

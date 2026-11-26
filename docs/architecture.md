@@ -29,7 +29,7 @@ Design principles:
  L2  edit · codecs · interchange · captions · speech · tts · tts-text
  L1  frame · media · project · audio-dsp · text
  L0  foundation: time · geom · color · bitstream · testkit (dev-dependency only)
-     codecs/containers: isobmff · matroska · cfb · dnx · dng · craft-media (avi · mpegts · mxf · ogg) · craft-video (h264 decoder and encoder · hevc · vp9 · av1 · mpeg2 · apv · prores decoder and encoder) · craft-audio (aac · ac3 · mpa · opus · flac · mp3 encoder)
+     codecs/containers: isobmff · matroska · cfb · dnx · dng · nodalia-media (avi · mpegts · mxf · ogg) · nodalia-video (h264 decoder and encoder · hevc · vp9 · av1 · mpeg2 · apv · prores decoder and encoder) · nodalia-audio (aac · ac3 · mpa · opus · flac · mp3 encoder)
 ```
 
 Crates are named `toma-<dir>` (`crates/time` is `toma-time`). The apps are `toma`
@@ -37,18 +37,18 @@ and `toma-cli`.
 
 | Crate | Layer | Purpose |
 |---|---|---|
-| `time` | L0 | `Tick`, `FrameRate`, `TimeRange`, timecode parse/format (NDF/DF, frames, feet+frames, samples): a re-export of `craft_timeline::time` from [craft-libs](https://github.com/storytold/craft-libs/tree/main/crates/timeline), where its code and tests live |
+| `time` | L0 | `Tick`, `FrameRate`, `TimeRange`, timecode parse/format (NDF/DF, frames, feet+frames, samples): a re-export of `nodalia_timeline::time` from [nodalia-libs](https://github.com/getnodalia/foundation/tree/nodalia/libs/crates/timeline), where its code and tests live |
 | `geom` | L0 | `Vec2`, `Rect`, `Affine`, Motion-transform composition |
 | `color` | L0 | colour spaces, transfer functions, YUV↔RGB matrices, LUTs |
 | `bitstream` | L0 | bit reader/writer, Exp-Golomb, emulation prevention |
 | `isobmff` | L0 | MP4/MOV demux and mux |
 | `matroska` | L0 | MKV/WebM demux |
-| `cfb` | L0 | Compatibility facade over shared `craft-cfb`; AAF container parsing/writing lives in craft-libs ([README](../crates/cfb/README.md)) |
+| `cfb` | L0 | Compatibility facade over shared `nodalia-cfb`; AAF container parsing/writing lives in nodalia-libs ([README](../crates/cfb/README.md)) |
 | `dnx` | L0 | DNxHD / DNxHR (SMPTE ST 2019-1 VC-3) decoder and DNxHR encoder |
 | `dng` | L0 | DNG / CinemaDNG camera RAW decoder: TIFF container, uncompressed and lossless JPEG raw data, DNG processing to linear Rec. 709 ([README](../crates/dng/README.md)) |
-| `craft-audio` | shared | the audio codecs, from [craft-libs](https://github.com/storytold/craft-libs/tree/main/crates/audio): AAC-LC decoder and encoder, AC-3 / E-AC-3 decoder, MPEG-1/2 Audio Layer I and II decoder, Opus decoder, FLAC encoder, MPEG-1/2 Layer III (MP3) encoder. They moved there from this repository; fixes go to craft-libs |
-| `craft-media` | shared | containers from [craft-libs](https://github.com/storytold/craft-libs/tree/main/crates/media): ISO BMFF, Matroska, AVI / OpenDML, MPEG-2 transport and program streams, MXF (OP1a / OP-Atom demux and writer), and the Ogg demuxer with Ogg Opus timing and Vorbis headers |
-| `craft-video` | shared | video codecs from [craft-libs](https://github.com/storytold/craft-libs/tree/main/crates/video): H.264, H.265 (Main / Main 10), VP9, AV1 and MPEG-2 / MPEG-1 decoders; APV decoder and encoder; ProRes decoder and encoder. They moved there from this repository; fixes, their READMEs and their conformance tests are in craft-libs |
+| `nodalia-audio` | shared | the audio codecs, from [nodalia-libs](https://github.com/getnodalia/foundation/tree/nodalia/libs/crates/audio): AAC-LC decoder and encoder, AC-3 / E-AC-3 decoder, MPEG-1/2 Audio Layer I and II decoder, Opus decoder, FLAC encoder, MPEG-1/2 Layer III (MP3) encoder. They moved there from this repository; fixes go to nodalia-libs |
+| `nodalia-media` | shared | containers from [nodalia-libs](https://github.com/getnodalia/foundation/tree/nodalia/libs/crates/media): ISO BMFF, Matroska, AVI / OpenDML, MPEG-2 transport and program streams, MXF (OP1a / OP-Atom demux and writer), and the Ogg demuxer with Ogg Opus timing and Vorbis headers |
+| `nodalia-video` | shared | video codecs from [nodalia-libs](https://github.com/getnodalia/foundation/tree/nodalia/libs/crates/video): H.264, H.265 (Main / Main 10), VP9, AV1 and MPEG-2 / MPEG-1 decoders; APV decoder and encoder; ProRes decoder and encoder. They moved there from this repository; fixes, their READMEs and their conformance tests are in nodalia-libs |
 | `testkit` | L0 | test-only helpers, used only as a dev-dependency: ffmpeg/ffprobe discovery, fixture dirs, golden images ([testing.md](testing.md)) |
 | `frame` | L1 | `VideoFrame` (planar YUV / RGBA8 / linear RGBA f32, colour metadata), `AudioBuffer` |
 | `media` | L1 | `MediaSource` trait, probing/openers, frame cache, generators, stills, image sequences, WAV / Broadcast WAV |
@@ -673,13 +673,13 @@ file.exportMedia {path, preset?, settings?, format?, range?, …}     export.qui
 
 | Format | Encoder | Container |
 |---|---|---|
-| `h264` | `craft_video::h264::Encoder` (profile, level, CBR / VBR 1-pass / VBR 2-pass, keyframe distance) + `craft_audio::aac` | MP4 or QuickTime (`isobmff`, the Multiplexer setting) |
-| `prores` | `craft_video::prores` (Proxy / LT / 422 / HQ) | MOV |
-| `dnxhr` | `craft-video` `dnx` (LB / SQ / HQ / HQX) | MOV (`AVdh`) |
+| `h264` | `nodalia_video::h264::Encoder` (profile, level, CBR / VBR 1-pass / VBR 2-pass, keyframe distance) + `nodalia_audio::aac` | MP4 or QuickTime (`isobmff`, the Multiplexer setting) |
+| `prores` | `nodalia_video::prores` (Proxy / LT / 422 / HQ) | MOV |
+| `dnxhr` | `nodalia-video` `dnx` (LB / SQ / HQ / HQX) | MOV (`AVdh`) |
 | `mjpeg` | built in | MOV |
-| `aac` | `craft_audio::aac` (AAC-LC, the audio settings' bitrate) | audio only: MPEG-4 audio `.m4a` (`isobmff`, priming in an edit list), or raw ADTS when the path ends in `.aac` |
-| `mp3` | `craft_audio::mp3` (Layer III CBR, the audio settings' bitrate snapped to a Layer III one; 16-48 kHz, mono or stereo) | audio only: a plain `.mp3` stream of frames (no ID3 or gapless tag) |
-| `mxf-op1a` | DNxHR (default), ProRes or H.264 (Annex B, long GOP), `mxfVideoCodec`; PCM 16/24/32-bit integer | MXF OP1a (`craft_media::mxf` writer: frame-wrapped, index with temporal offsets, start timecode) |
+| `aac` | `nodalia_audio::aac` (AAC-LC, the audio settings' bitrate) | audio only: MPEG-4 audio `.m4a` (`isobmff`, priming in an edit list), or raw ADTS when the path ends in `.aac` |
+| `mp3` | `nodalia_audio::mp3` (Layer III CBR, the audio settings' bitrate snapped to a Layer III one; 16-48 kHz, mono or stereo) | audio only: a plain `.mp3` stream of frames (no ID3 or gapless tag) |
+| `mxf-op1a` | DNxHR (default), ProRes or H.264 (Annex B, long GOP), `mxfVideoCodec`; PCM 16/24/32-bit integer | MXF OP1a (`nodalia_media::mxf` writer: frame-wrapped, index with temporal offsets, start timecode) |
 | `mxf-opatom` | as `mxf-op1a` | Avid-style MXF OP-Atom: clip-wrapped picture at `path`, one mono PCM file per channel (`<stem>_A1.mxf` …, `Report::extra_files`) |
 | `png`, `tiff`, `bmp`, `jpg` | `image` | numbered stills `<name>000.<ext>`, `<name>001.<ext>` … |
 | `tga`, `dpx`, `exr` | built in (`raster.rs`: uncompressed Targa 24/32-bit; DPX 10-bit RGB, SMPTE ST 268; OpenEXR half-float linear RGB(A), uncompressed scan lines) | numbered stills, as above |

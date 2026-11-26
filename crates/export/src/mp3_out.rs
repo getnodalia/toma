@@ -30,8 +30,8 @@ pub(crate) fn export(
     s.audio.sample_rate = Some(rate);
     s.audio.channels = channels;
     let mut a = AudioOut::new(project.clone(), seq, &s, range)?;
-    let cfg = craft_audio::mp3::Config::cbr(a.sr, a.channels, kbps);
-    let mut enc = craft_audio::mp3::Encoder::new(cfg).map_err(|e| ExportError::Encode(e.to_string()))?;
+    let cfg = nodalia_audio::mp3::Config::cbr(a.sr, a.channels, kbps);
+    let mut enc = nodalia_audio::mp3::Encoder::new(cfg).map_err(|e| ExportError::Encode(e.to_string()))?;
     let frames = a.remaining();
     // one second per chunk: memory stays flat however long the range is
     let chunk = i64::from(a.sr.max(1));

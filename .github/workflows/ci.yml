@@ -18,11 +18,11 @@ concurrency:
 
 jobs:
   gate:
-    uses: getnodalia/foundation/.github/workflows/rust-gate.yml@976581262c95c0d95c0184149c0e1ba55485ccb3 # foundation main
+    uses: getnodalia/foundation/.github/workflows/rust-gate.yml@c37ef19e6bc213e3ebf3a281f1bf0f3fd7c5d495 # foundation main
     with:
-      # Same craft-fonts commit as the release-*.yml workflows.
+      # Same nodalia-fonts commit as the release-*.yml workflows.
       fonts-repository: getnodalia/foundation
-      fonts-ref: b076417b5880bd4154bd22f00695b1d28c6bea83
+      fonts-ref: 7a66e2c6c6d60ac6417caef3e339e186d003b5b8
       timeout-minutes: 120
       packages: >-
         pkg-config libxkbcommon-dev libwayland-dev libx11-dev libxcb1-dev libxcursor-dev

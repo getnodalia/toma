@@ -5,7 +5,7 @@ Status: Base Nodalia preparada, as of 2026-11-13. Evidence: the pull request tha
 
 ## Current state
 
-Pure-Rust video editor (egui), MIT OR Apache-2.0. Cargo git dependencies come from getnodalia/foundation and nodalia-design. The gate, FreeBSD,
+Pure-Rust video editor (egui), MIT OR Apache-2.0. Cargo git dependencies come from getnodalia/foundation (the `nodalia-*` libraries) and nodalia-design. Windows ARM64 calls Foundation's reusable workflow. The gate, FreeBSD,
 Nix, packaging lint, AGENTS.md and git-sources checks call getnodalia/foundation's reusable
 workflows pinned by commit. SonarCloud was removed; CodeQL and Scorecard remain.
 
@@ -18,10 +18,7 @@ interface follows Foundation's [NDL standard](https://github.com/getnodalia/foun
 
 | Dependency | Where | Replacement | Blocked on |
 |---|---|---|---|
-| `storytold/craft-common-actions` | `.github/workflows/windows-arm64.yml` | Foundation reusable workflows (release, refresh-contributors, windows-arm64) | writing and testing them |
-| `storytold/craft-fonts` | `crates/text/build.rs` | getnodalia/foundation `vendor/craft-fonts/main` | repointing |
-| `storytold/craft-libs` | `packaging/web/README.md` | to decide | — |
-| `storytold/vectorcraft` | `packaging/macos/dmg/README.md` | to decide | — |
+| `storytold/craft-libs`, `storytold/vectorcraft` (links) | `packaging/web/README.md`, `packaging/macos/dmg/README.md` | prose only; the code is `nodalia-*` from getnodalia/foundation | rewording |
 
 ## Technical debt
 

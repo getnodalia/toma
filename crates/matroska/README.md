@@ -1,3 +1,3 @@
 # toma-matroska
 
-A re-export of `craft_media::matroska`. Documentation: https://github.com/storytold/craft-libs/blob/main/crates/media/README.md
+A re-export of `nodalia_media::matroska`. Documentation: https://github.com/getnodalia/foundation/blob/nodalia/libs/crates/media/README.md

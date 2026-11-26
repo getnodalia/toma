@@ -202,7 +202,7 @@ fn jpeg_without_huffman_tables_uses_the_standard_ones() {
     let b = d.decode(&stripped, 0).unwrap().remove(0).frame.to_rgba8();
     assert!(a == b);
     // the inserted segment is 418 bytes and well-formed: 4 tables of 12, 12, 162, 162 codes
-    let with = craft_jpeg::with_avi1_default_huffman(&stripped);
+    let with = nodalia_jpeg::with_avi1_default_huffman(&stripped);
     assert_eq!(with.len(), stripped.len() + 420);
 }
 

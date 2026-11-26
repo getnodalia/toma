@@ -1,7 +1,7 @@
 //! Host modes: a page that runs Toma (as an `<iframe>`, or in its own document) opens
 //! projects in it and stores what it saves instead of the browser downloading. The messages and
-//! the two transports are `craft-web-host`'s (storytold/craft-libs), the same contract as the
-//! other Craft apps' bridges, with the `toma:` prefix. This module is Toma's part of it.
+//! the two transports are `nodalia-web-host`'s (getnodalia/foundation (nodalia/libs)), the same contract as the
+//! the other Nodalia apps' bridges, with the `toma:` prefix. This module is Toma's part of it.
 //!
 //! - `?host=parent` (an `<iframe>`, such as a Nextcloud app) talks to the same-origin parent over
 //!   `postMessage`; `data-host="page"` on the canvas (the page's own document) uses DOM
@@ -51,7 +51,7 @@
 use std::cell::RefCell;
 use std::rc::Rc;
 
-use craft_web_host::web::{FileData, Host, Message};
+use nodalia_web_host::web::{FileData, Host, Message};
 use toma_engine::Session;
 
 use crate::hostmode::{MAX_OPEN_BYTES, PROJECT_OPEN_MAX, is_project, is_save_as, open_name, open_size_ok, project_open_ok};

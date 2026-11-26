@@ -1,7 +1,7 @@
 //! Toma captions.
 //!
 //! - **Files:** SubRip, WebVTT, Scenarist SCC, MacCaption MCC, EBU STL and TTML / DFXP come from
-//!   [`craft_captions`] in craft-libs, re-exported here (`toma_captions::srt`, [`parse`],
+//!   [`nodalia_captions`] in nodalia-libs, re-exported here (`toma_captions::srt`, [`parse`],
 //!   [`write`], [`Document`] and the rest). Format fixes go there.
 //! - **Model:** [`track_from_document`] / [`document_from_track`] convert to and from the project's
 //!   [`CaptionTrack`]; [`track_format`] names the track format a file maps to.
@@ -13,7 +13,7 @@
 
 pub mod burn;
 
-pub use craft_captions::*;
+pub use nodalia_captions::*;
 
 use toma_project::{Caption, CaptionFormat, CaptionTrack, ClipId, TrackId};
 

@@ -24,7 +24,7 @@ toma-geom = { workspace = true }
 toma-color = { workspace = true }
 toma-frame = { workspace = true }
 toma-media = { workspace = true }
-craft-media = { workspace = true, features = ["mxf"] }
+nodalia-media = { workspace = true, features = ["mxf"] }
 toma-codecs = { workspace = true }
 toma-project = { workspace = true }
 toma-edit = { workspace = true }
@@ -44,7 +44,7 @@ thiserror = { workspace = true }
 log = { workspace = true }
 roxmltree = { workspace = true }
 chrono = { workspace = true }
-craft-docpath = { workspace = true }
+nodalia-docpath = { workspace = true }
 web-time = "1"
 
 [dev-dependencies]

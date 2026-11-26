@@ -1,7 +1,7 @@
 //! Conversion between the project-facing composition and the shared OMF model.
 use crate::comp as local;
-use craft_aaf::model as shared;
-use craft_aaf::time as st;
+use nodalia_aaf::model as shared;
+use nodalia_aaf::time as st;
 use toma_time as lt;
 
 fn s_tick(t: lt::Tick) -> st::Tick {
@@ -171,18 +171,18 @@ pub(crate) fn from_shared(d: shared::Document) -> local::Document {
         nested: d.nested.into_iter().map(l_comp).collect(),
     }
 }
-pub(crate) fn error(e: craft_aaf::Error) -> crate::Error {
+pub(crate) fn error(e: nodalia_aaf::Error) -> crate::Error {
     match e {
-        craft_aaf::Error::Parse { format, message } => crate::Error::Parse { format, message },
-        craft_aaf::Error::Empty => crate::Error::Empty,
-        craft_aaf::Error::Other(s) => crate::Error::Other(s),
+        nodalia_aaf::Error::Parse { format, message } => crate::Error::Parse { format, message },
+        nodalia_aaf::Error::Empty => crate::Error::Empty,
+        nodalia_aaf::Error::Other(s) => crate::Error::Other(s),
     }
 }
-pub(crate) fn merge_report(dst: &mut crate::Report, src: craft_aaf::Report) {
+pub(crate) fn merge_report(dst: &mut crate::Report, src: nodalia_aaf::Report) {
     for e in src.entries {
         let level = match e.level {
-            craft_aaf::report::Level::Info => crate::Level::Info,
-            craft_aaf::report::Level::Warning => crate::Level::Warning,
+            nodalia_aaf::report::Level::Info => crate::Level::Info,
+            nodalia_aaf::report::Level::Warning => crate::Level::Warning,
         };
         let key = if dst.entries.len() >= crate::MAX_REPORT_ENTRIES && !dst.entries.iter().any(|x| x.level == level && x.message == e.message) {
             "further diagnostics omitted"

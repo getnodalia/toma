@@ -63,17 +63,17 @@ pub fn export(project: &Project, sequence: ItemId, opts: &AafOptions) -> Result<
     crate::warn_marker_metadata_loss(project, sequence, &mut report);
     let name = opts.name.clone().or_else(|| project.item(sequence).map(|i| i.name.clone())).unwrap_or_else(|| "Sequence".into());
     let doc = comp::from_project(project, sequence, &name, &opts.media, comp::Nests::Compositions, &mut report)?;
-    let identity = craft_aaf::Identity {
+    let identity = nodalia_aaf::Identity {
         company: "Toma",
         product: "Toma",
         version: env!("CARGO_PKG_VERSION"),
         platform: "Toma",
         product_id: [0x4d, 0x4c, 0x49, 0x46, 0x52, 0x43, 0x46, 0x41, b'T', b'-', b'A', b'A', b'F', b'-', b'E', b'P'],
     };
-    let options = craft_aaf::aaf::WriteOptions { identity, small_sectors: opts.small_sectors };
-    let references = craft_aaf::aaf::ReferenceOptions { source_slot_rate: false, encode_relative_locator: false };
-    let mut shared_report = craft_aaf::Report::default();
-    let bytes = craft_aaf::aaf::write_with_references(&crate::omf::shared_model::to_shared(doc), &options, &references, &mut shared_report)
+    let options = nodalia_aaf::aaf::WriteOptions { identity, small_sectors: opts.small_sectors };
+    let references = nodalia_aaf::aaf::ReferenceOptions { source_slot_rate: false, encode_relative_locator: false };
+    let mut shared_report = nodalia_aaf::Report::default();
+    let bytes = nodalia_aaf::aaf::write_with_references(&crate::omf::shared_model::to_shared(doc), &options, &references, &mut shared_report)
         .map_err(crate::omf::shared_model::error)?;
     crate::omf::shared_model::merge_report(&mut report, shared_report);
     Ok((bytes, report))
@@ -83,15 +83,15 @@ pub fn export(project: &Project, sequence: ItemId, opts: &AafOptions) -> Result<
 /// as WAV files whose paths are the paths of the imported media items.
 pub fn import(bytes: &[u8], opts: &ImportOptions) -> Result<(Imported, Vec<ExtractedMedia>, Report)> {
     let mut report = Report::default();
-    let options = craft_aaf::aaf::ReadOptions {
+    let options = nodalia_aaf::aaf::ReadOptions {
         source_slot_rate: false,
         infer_clip_name: false,
         decode_relative_locator: false,
         report_flattening: false,
         permissive_pcm: true,
     };
-    let mut shared_report = craft_aaf::Report::default();
-    let doc = craft_aaf::aaf::read_with_options(bytes, &options, &mut shared_report).map_err(crate::omf::shared_model::error)?;
+    let mut shared_report = nodalia_aaf::Report::default();
+    let doc = nodalia_aaf::aaf::read_with_options(bytes, &options, &mut shared_report).map_err(crate::omf::shared_model::error)?;
     crate::omf::shared_model::merge_report(&mut report, shared_report);
     let doc = crate::omf::shared_model::from_shared(doc);
     let (imported, extracted) = comp::to_project(doc, opts, &mut report)?;
@@ -103,7 +103,7 @@ pub fn import(bytes: &[u8], opts: &ImportOptions) -> Result<(Imported, Vec<Extra
 /// Whether `bytes` look like an AAF file (a compound file whose root has the AAF root class or a
 /// `Header-2` storage).
 pub fn sniff(bytes: &[u8]) -> bool {
-    craft_aaf::aaf::sniff(bytes)
+    nodalia_aaf::aaf::sniff(bytes)
 }
 
 #[cfg(test)]

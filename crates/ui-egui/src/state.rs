@@ -454,7 +454,7 @@ pub struct UiState {
     pub tool: Tool,
     pub mode: Mode,
     pub workspace: String,
-    /// The panel arrangement in use: craft-ui's frame tree and floating windows.
+    /// The panel arrangement in use: nodalia-ui's frame tree and floating windows.
     pub dock: crate::dock::Layout,
     /// Where each panel closed while floating was ([x, y, width, height]): opening it again
     /// brings it back there, floating, instead of docked (#1985).

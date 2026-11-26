@@ -1,6 +1,6 @@
 //! Pure host-mode rules, shared by the bridge ([`crate::host`]) and testable without a browser:
 //! the name and kind the bridge reads out of an open request, and the `saveAs` rule. Which pages
-//! host the app is `craft-web-host`'s. Pure, so it is tested natively in `tests/it/hostmode.rs`.
+//! host the app is `nodalia-web-host`'s. Pure, so it is tested natively in `tests/it/hostmode.rs`.
 
 /// The file name used when an open request carries no usable one: an untitled project — what
 /// a host that never names a file still opens (Toma's document is its project file).
@@ -10,7 +10,7 @@ pub const DEFAULT_OPEN_NAME: &str = "Untitled.fcproj";
 /// file dropped on the page.
 pub const PROJECT_EXT: &str = ".fcproj";
 
-/// The name `craft-web-host` gives an open request that carries no usable one (it cleans a host's
+/// The name `nodalia-web-host` gives an open request that carries no usable one (it cleans a host's
 /// name and falls back to this).
 const NAMELESS: &str = "document";
 

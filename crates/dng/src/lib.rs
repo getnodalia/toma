@@ -57,7 +57,7 @@ pub fn sniff(b: &[u8]) -> bool {
     t.read_ifd(first, 0).is_ok_and(|(ifd, _)| ifd.get(tags::DNG_VERSION).is_some())
 }
 
-pub use craft_raw::dng_metadata::Timecode;
+pub use nodalia_raw::dng_metadata::Timecode;
 
 /// What a DNG holds, without decoding the pixels.
 #[derive(Clone, Debug, PartialEq)]
@@ -124,8 +124,8 @@ impl<'a> Dng<'a> {
         self.ifds.get(self.raw).unwrap_or(self.ifd0())
     }
 
-    fn metadata(&self) -> craft_raw::dng_metadata::Metadata<'_, '_> {
-        craft_raw::dng_metadata::Metadata { tiff: self.tiff.inner(), main: self.ifd0(), raw: self.raw_ifd() }
+    fn metadata(&self) -> nodalia_raw::dng_metadata::Metadata<'_, '_> {
+        nodalia_raw::dng_metadata::Metadata { tiff: self.tiff.inner(), main: self.ifd0(), raw: self.raw_ifd() }
     }
 
     fn cfa(&self) -> Result<Option<Pattern>> {

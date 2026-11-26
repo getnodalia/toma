@@ -100,12 +100,12 @@ reproduce an image (for example, point lists traced from someone else's icon).
 8. **No brand marks.** Toma ships no trademark logos: no third-party marks (Adobe, Discord, GitHub
    and other logos stay out; draw a generic icon instead). The app shows its own icon
    (`assets/app-icon/`).
-9. **Fonts live in [getnodalia/foundation's `vendor/craft-fonts/main` branch](https://github.com/getnodalia/foundation/tree/vendor/craft-fonts/main), never in this
+9. **Fonts live in [getnodalia/foundation's `nodalia/fonts` branch](https://github.com/getnodalia/foundation/tree/nodalia/fonts), never in this
    repo.** Don't commit new font files (the small Latin UI fonts already in `assets/fonts/` stay). A
-   font Toma needs is added to craft-fonts, which the app reads through the optional build input
-   `CRAFT_FONTS_DIR=<absolute path of a craft-fonts checkout>` (`crates/text/build.rs` embeds the fonts in its
-   `fonts/manifest.txt` as `toma_text::fonts::CRAFT_FONTS`; unset, it is empty and the app uses its
-   bundled and system fonts). Never add craft-fonts to a `Cargo.toml`. Code using `CRAFT_FONTS` must work
+   font Toma needs is added to nodalia-fonts, which the app reads through the optional build input
+   `NODALIA_FONTS_DIR=<absolute path of a nodalia-fonts checkout>` (`crates/text/build.rs` embeds the fonts in its
+   `fonts/manifest.txt` as `toma_text::fonts::NODALIA_FONTS`; unset, it is empty and the app uses its
+   bundled and system fonts). Never add nodalia-fonts to a `Cargo.toml`. Code using `NODALIA_FONTS` must work
    when it is empty.
 
 ## 2. Clean-room code
@@ -144,7 +144,7 @@ linked partners; explicit move requests with repeated identities are still rejec
 - **Exact time:** all time is `toma_time::Tick` (254 016 000 000/s). Never use f64 seconds for edit math.
 - **Everything is a command** (`crates/engine`): id, label, menu path, shortcut, params, enabled(), run(). UI, CLI, control channel and MCP all dispatch by id.
 - **Everything is agent-drivable:** every interactive widget registers an automation id; UI state is serde so the control channel can read and set it.
-- **Fonts** are the optional build input `CRAFT_FONTS_DIR` (`crates/text/build.rs`). Unset, the build must still pass. Never add craft-fonts to a `Cargo.toml`.
+- **Fonts** are the optional build input `NODALIA_FONTS_DIR` (`crates/text/build.rs`). Unset, the build must still pass. Never add nodalia-fonts to a `Cargo.toml`.
 - OS media APIs go through Rust bindings in `crates/platform` (the one crate allowed `unsafe`; `docs/adr/0001-platform-ffi.md`), optional, behind traits, with our decoders as the fallback.
 - **Quality gates** before every commit: `cargo xtask ci` (fmt, clippy -D warnings, tests, layers, assets, wasm).
 - New workspace crates include `[lints] workspace = true` in `Cargo.toml`. Production crate roots declare the crate-level lint attributes before modules; crate-level `//!` documentation may precede them.

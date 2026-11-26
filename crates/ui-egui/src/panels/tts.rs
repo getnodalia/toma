@@ -258,7 +258,7 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
         ui.add_space(6.0);
         label(ui, &t, tl!("Language"));
         let lang_name = toma_tts::LANGUAGES.iter().find(|(id, _)| *id == d.language).map_or(d.language.as_str(), |(_, n)| n);
-        let cb = craft_ui::ComboBox::from_id_salt("tts-language").selected_text(lang_name).width(w).show_ui(ui, |ui| {
+        let cb = nodalia_ui::ComboBox::from_id_salt("tts-language").selected_text(lang_name).width(w).show_ui(ui, |ui| {
             for (id, name) in toma_tts::LANGUAGES {
                 if ui.selectable_label(d.language == *id, *name).clicked() {
                     d.language = id.to_string();
@@ -269,7 +269,7 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
         ui.add_space(10.0);
         label(ui, &t, tl!("Voice"));
         let voice_name = voices.iter().find(|v| v.id == d.voice).map_or(d.voice.as_str(), |v| v.name);
-        let cb = craft_ui::ComboBox::from_id_salt("tts-voice").selected_text(voice_name).width(w).show_ui(ui, |ui| {
+        let cb = nodalia_ui::ComboBox::from_id_salt("tts-voice").selected_text(voice_name).width(w).show_ui(ui, |ui| {
             for (engine, heading) in [("neural", tl!("Natural voices")), ("basic", tl!("Basic voices (built in)"))] {
                 if engine == "neural" && !available {
                     continue;
@@ -356,7 +356,7 @@ pub fn show(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) {
         if open {
             ui.add_space(4.0);
             label(ui, &t, tl!("Vocal pitch"));
-            let cb = craft_ui::ComboBox::from_id_salt("tts-pitch").selected_text(crate::i18n::t(d.pitch.label())).width(w).show_ui(ui, |ui| {
+            let cb = nodalia_ui::ComboBox::from_id_salt("tts-pitch").selected_text(crate::i18n::t(d.pitch.label())).width(w).show_ui(ui, |ui| {
                 for p in VocalPitch::ALL {
                     if ui.selectable_label(d.pitch == p, crate::i18n::t(p.label())).clicked() {
                         d.pitch = p;

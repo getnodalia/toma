@@ -10,18 +10,18 @@ rust-version.workspace = true
 workspace = true
 
 [dependencies]
-craft-y4m = { workspace = true }
-craft-audio = { workspace = true }
-craft-video = { workspace = true }
+nodalia-y4m = { workspace = true }
+nodalia-audio = { workspace = true }
+nodalia-video = { workspace = true }
 toma-time = { workspace = true }
 toma-color = { workspace = true }
 toma-frame = { workspace = true }
 toma-media = { workspace = true }
 toma-isobmff = { workspace = true }
 toma-matroska = { workspace = true }
-craft-media = { workspace = true, features = ["avi", "mpegts", "mxf", "ogg"] }
+nodalia-media = { workspace = true, features = ["avi", "mpegts", "mxf", "ogg"] }
 toma-bitstream = { workspace = true }
-craft-jpeg = { git = "https://github.com/getnodalia/foundation", rev = "937ac93c5cf3cd4b6a81e195b078fe161eb081b9" }
+nodalia-jpeg = { git = "https://github.com/getnodalia/foundation", rev = "ca4898e104f0578c1bc1b316461a97ec578a2fce" }
 rayon = { workspace = true }
 thiserror = { workspace = true }
 log = { workspace = true }

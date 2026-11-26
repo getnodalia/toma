@@ -10,7 +10,7 @@ rust-version.workspace = true
 workspace = true
 
 [dependencies]
-craft-fcproj-format = { workspace = true }
+nodalia-fcproj-format = { workspace = true }
 toma-project = { workspace = true }
 toma-media = { workspace = true }
 log = { workspace = true }

@@ -20,16 +20,16 @@ use toma_time::{FrameRate, Tick};
 
 use crate::CodecError;
 
-pub use craft_y4m::sniff;
+pub use nodalia_y4m::sniff;
 
-fn chroma(c: craft_y4m::Chroma) -> Chroma {
+fn chroma(c: nodalia_y4m::Chroma) -> Chroma {
     match c {
-        craft_y4m::Chroma::C420 => Chroma::C420,
-        craft_y4m::Chroma::C422 => Chroma::C422,
-        craft_y4m::Chroma::C444 => Chroma::C444,
+        nodalia_y4m::Chroma::C420 => Chroma::C420,
+        nodalia_y4m::Chroma::C422 => Chroma::C422,
+        nodalia_y4m::Chroma::C444 => Chroma::C444,
     }
 }
-fn layout_label(layout: craft_y4m::Layout) -> String {
+fn layout_label(layout: nodalia_y4m::Layout) -> String {
     let sub = match (layout.chroma, layout.alpha) {
         (None, _) => "Monochrome",
         (Some(_), true) => "YUVA 4:4:4:4",
@@ -41,7 +41,7 @@ fn layout_label(layout: craft_y4m::Layout) -> String {
 pub struct Y4mSource {
     info: MediaInfo,
     reader: toma_media::SharedReader,
-    stream: craft_y4m::Stream,
+    stream: nodalia_y4m::Stream,
     rate: FrameRate,
 }
 
@@ -52,12 +52,13 @@ impl Y4mSource {
 
     pub fn open_reader(name: &str, reader: toma_media::SharedReader) -> crate::Result<Self> {
         let len = reader.len();
-        let stream =
-            craft_y4m::Stream::open(len, |at, n| toma_media::reader::read_range(&*reader, at, n).ok(), &craft_y4m::Limits::default()).map_err(|e| match e {
-                craft_y4m::Error::UnsupportedColourSpace(c) => CodecError::Unsupported(format!("{name}: Y4M colour space {c}")),
-                craft_y4m::Error::LimitExceeded(_) => CodecError::Unsupported(format!("{name}: Y4M frames larger than 268 million pixels")),
-                craft_y4m::Error::Malformed(m) => CodecError::Container(format!("{name}: Y4M: {m}")),
-            })?;
+        let stream = nodalia_y4m::Stream::open(len, |at, n| toma_media::reader::read_range(&*reader, at, n).ok(), &nodalia_y4m::Limits::default()).map_err(
+            |e| match e {
+                nodalia_y4m::Error::UnsupportedColourSpace(c) => CodecError::Unsupported(format!("{name}: Y4M colour space {c}")),
+                nodalia_y4m::Error::LimitExceeded(_) => CodecError::Unsupported(format!("{name}: Y4M frames larger than 268 million pixels")),
+                nodalia_y4m::Error::Malformed(m) => CodecError::Container(format!("{name}: Y4M: {m}")),
+            },
+        )?;
         let hinfo = &stream.header;
         let (w, h) = (hinfo.width, hinfo.height);
         let rate = hinfo.frame_rate.map(|(n, d)| FrameRate::new(n, d)).unwrap_or(FrameRate::FPS_25);
@@ -101,7 +102,7 @@ impl Y4mSource {
         let header = &self.stream.header;
         let layout = header.layout;
         let (luma, chroma_samples, alpha) = header.plane_samples();
-        let grey = header.chroma_samples(craft_y4m::Chroma::C420);
+        let grey = header.chroma_samples(nodalia_y4m::Chroma::C420);
         let pixels = if layout.bits == 8 {
             let plane = |i: usize, n: usize| Arc::new(data.get(i..i + n).map(<[u8]>::to_vec).unwrap_or_else(|| vec![0; n]));
             let (y, cb, cr) = match layout.chroma {
@@ -113,7 +114,7 @@ impl Y4mSource {
         } else {
             let plane = |i: usize, n: usize| {
                 Arc::new(match data.get(i * 2..(i + n) * 2) {
-                    Some(b) => craft_y4m::samples_u16(b, layout.bits),
+                    Some(b) => nodalia_y4m::samples_u16(b, layout.bits),
                     None => vec![0; n],
                 })
             };
@@ -182,15 +183,15 @@ mod tests {
 
     #[test]
     fn colour_space_names() {
-        let l = |c: Option<craft_y4m::Chroma>, bits, alpha| Some(craft_y4m::Layout { chroma: c, bits, alpha });
-        assert_eq!(craft_y4m::Layout::parse("420jpeg"), l(Some(craft_y4m::Chroma::C420), 8, false));
-        assert_eq!(craft_y4m::Layout::parse("420p10"), l(Some(craft_y4m::Chroma::C420), 10, false));
-        assert_eq!(craft_y4m::Layout::parse("422p12"), l(Some(craft_y4m::Chroma::C422), 12, false));
-        assert_eq!(craft_y4m::Layout::parse("444alpha"), l(Some(craft_y4m::Chroma::C444), 8, true));
-        assert_eq!(craft_y4m::Layout::parse("mono"), l(None, 8, false));
-        assert_eq!(craft_y4m::Layout::parse("mono16"), l(None, 16, false));
+        let l = |c: Option<nodalia_y4m::Chroma>, bits, alpha| Some(nodalia_y4m::Layout { chroma: c, bits, alpha });
+        assert_eq!(nodalia_y4m::Layout::parse("420jpeg"), l(Some(nodalia_y4m::Chroma::C420), 8, false));
+        assert_eq!(nodalia_y4m::Layout::parse("420p10"), l(Some(nodalia_y4m::Chroma::C420), 10, false));
+        assert_eq!(nodalia_y4m::Layout::parse("422p12"), l(Some(nodalia_y4m::Chroma::C422), 12, false));
+        assert_eq!(nodalia_y4m::Layout::parse("444alpha"), l(Some(nodalia_y4m::Chroma::C444), 8, true));
+        assert_eq!(nodalia_y4m::Layout::parse("mono"), l(None, 8, false));
+        assert_eq!(nodalia_y4m::Layout::parse("mono16"), l(None, 16, false));
         for bad in ["411", "420p", "420p7", "420p17", "mono10p12", "444alphap10", "", "p10"] {
-            assert_eq!(craft_y4m::Layout::parse(bad), None, "{bad}");
+            assert_eq!(nodalia_y4m::Layout::parse(bad), None, "{bad}");
         }
     }
 }

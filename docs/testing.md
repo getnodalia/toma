@@ -4,7 +4,7 @@
 cargo test --workspace                          # everything; oracle tests skip without ffmpeg
 cargo nextest run --workspace                   # the same in parallel processes (doctests: cargo test --doc)
 cargo test -p toma-codecs                   # one crate
-cargo test --release -p craft-video --features prores,threads --test prores  # run from the craft-libs workspace
+cargo test --release -p nodalia-video --features prores,threads --test prores  # run from the nodalia-libs workspace
 cargo xtask ci                                  # all gates (fmt, clippy, tests, layers, assets, wasm)
 cargo xtask fixtures                            # pre-generate the ffmpeg fixture matrix
 TOMA_REQUIRE_ORACLES=1 cargo test --workspace   # CI: missing ffmpeg fails instead of skipping
@@ -50,13 +50,13 @@ Commit `*.proptest-regressions` files so failing cases are re-run.
 
 ### 32-bit parser regressions
 
-The `hostile_lengths` unit tests in `bitstream` (here) and in the VP9 and AV1 decoders (craft-libs'
-`craft-video`, where those decoders now live) cover #2801: NAL and superframe
+The `hostile_lengths` unit tests in `bitstream` (here) and in the VP9 and AV1 decoders (nodalia-libs'
+`nodalia-video`, where those decoders now live) cover #2801: NAL and superframe
 offset overflow, tile-size increment overflow and truncating an OBU's LEB128 size to `usize`.
 They also check valid payloads, truncated inputs and bit mutations. The NAL splitter rejects
 prefix widths outside 1–4 bytes with `BitError::InvalidNalLengthSize`, including zero (which
 would otherwise make no progress). These tests need no external media or ffmpeg.
-The bitstream tests exercise the `craft-media` re-export, so they also guard the shared
+The bitstream tests exercise the `nodalia-media` re-export, so they also guard the shared
 implementation when its pinned revision changes.
 
 A native 64-bit run does not reproduce the original overflows. Run the tests on
@@ -79,8 +79,8 @@ EOF
 export CARGO_TARGET_WASM32_WASIP1_RUNNER="node /tmp/toma-wasi-runner.cjs"
 cargo test -p toma-bitstream --lib \
   --no-default-features --target wasm32-wasip1 hostile_lengths -- --test-threads=1
-# The VP9 and AV1 cases, in a craft-libs checkout (same runner):
-cargo test -p craft-video --lib --features vp9-decode,av1-decode \
+# The VP9 and AV1 cases, in a nodalia-libs checkout (same runner):
+cargo test -p nodalia-video --lib --features vp9-decode,av1-decode \
   --target wasm32-wasip1 hostile_lengths -- --test-threads=1
 # Repeat with --release: wrapping arithmetic is also dangerous without overflow checks.
 ```
@@ -102,7 +102,7 @@ are never linked or shipped ([AGENTS.md](../AGENTS.md) §2).
 - If a tool is missing the test prints `SKIPPED (<test>): ffmpeg not found …` and passes. Set
   **`TOMA_REQUIRE_ORACLES=1`** (CI) to make every such skip a failure. In new tests use
   `let ff = toma_testkit::require_ffmpeg!();` (also `require_ffprobe!`, `require_oracles!`).
-- Some oracles need a recent ffmpeg: the APV tests (craft-libs `crates/video/tests/apv`) skip when
+- Some oracles need a recent ffmpeg: the APV tests (nodalia-libs `crates/video/tests/apv`) skip when
   `ffmpeg -formats` does not list `apv` (ffmpeg ≥ 8.0), naming the detected version.
 - Fixtures are generated on first use into `<workspace>/target/fixtures/<crate>/`
   (`toma_testkit::fixtures_dir`; independent of `CARGO_TARGET_DIR`, so agents with private
@@ -117,7 +117,7 @@ are never linked or shipped ([AGENTS.md](../AGENTS.md) §2).
   parallel test run or on a fresh machine). It runs each crate's ignored `generate_fixtures` test —
   the same generators the oracle tests call — for `h264`, `hevc`, `isobmff`, `matroska`, `dnx`,
   `prores`, `mpeg2v`, `ac3` and `codecs` (MXF, Ogg and MPEG TS / PS), and prints one `made` / `cached` / `skipped` line per fixture plus a summary. The
-  `aac` and `opus` oracles here generate small per-test signals on demand, and craft-libs H.264
+  `aac` and `opus` oracles here generate small per-test signals on demand, and nodalia-libs H.264
   encoder tests generate their own signals; none are part of the fixture matrix.
 - Fixture sources are synthetic: `testsrc2`, `mandelbrot`, SMPTE bars, noise and fades, sine tones.
   H.264 and HEVC fixtures need ffmpeg built with libx264 and libx265. VideoToolbox fixtures are
@@ -148,7 +148,7 @@ anything is "fixed" to match) and add asserts for anything new.
 |---|---|---|
 | `h264` | decode every fixture single-threaded and frame-threaded; compare with `ffmpeg -f rawvideo -pix_fmt yuv420p` | **bit-exact**, every frame |
 | `hevc` | same, `yuv420p` / `yuv420p10le` | **bit-exact** (8- and 10-bit) |
-| craft-video H.264 encoder (`h264-encode`) | `ffmpeg -v warning -err_detect +crccheck+bitstream+buffer+explode` decodes the shared encoder stream | no output at all (a `corrupt decoded frame` warning fails; a negative control checks dropped and truncated slices are reported), exact frame count, **bit-identical to the encoder's reconstruction**; B-frame order checked with ffprobe; rate-control targets |
+| nodalia-video H.264 encoder (`h264-encode`) | `ffmpeg -v warning -err_detect +crccheck+bitstream+buffer+explode` decodes the shared encoder stream | no output at all (a `corrupt decoded frame` warning fails; a negative control checks dropped and truncated slices are reported), exact frame count, **bit-identical to the encoder's reconstruction**; B-frame order checked with ffprobe; rate-control targets |
 | `prores` decode | ffmpeg `prores_ks` / `prores_aw` fixtures, compared at native depth | within **±1 LSB** (different integer IDCT); alpha bit-exact |
 | `prores` encode | ffmpeg decodes with `-xerror` | no errors; agrees with our decoder within ±1 |
 | `dnx` decode | ffmpeg VC-3 fixtures (13 DNxHD CIDs, DNxHR LB/SQ/HQ/HQX/444), compared at native depth | within **±2 LSB**, ≤ 100 samples per million beyond ±1 (ffmpeg's integer IDCT; we evaluate the exact IDCT) |
@@ -312,13 +312,13 @@ engine behaviour without a window.
 
 | Benchmark | Command |
 |---|---|
-| H.264 decode, 1080p, threads sweep | in craft-libs: `cargo test --release -p craft-video --features h264-decode,threads --test h264_decode perf:: -- --ignored --nocapture` |
-| HEVC decode, 1080p / 2160p | in craft-libs: `cargo test --release -p craft-video --features hevc-decode,threads --test hevc_decode perf:: -- --ignored --nocapture` |
-| ProRes decode/encode | in craft-libs: `cargo test --release -p craft-video --features prores,threads --test prores perf:: -- --ignored --nocapture` |
-| Encoder speed / PSNR / bitrate | in craft-libs: `cargo run --release -p craft-video --features h264-encode --example h264_h264enc_bench -- …` |
+| H.264 decode, 1080p, threads sweep | in nodalia-libs: `cargo test --release -p nodalia-video --features h264-decode,threads --test h264_decode perf:: -- --ignored --nocapture` |
+| HEVC decode, 1080p / 2160p | in nodalia-libs: `cargo test --release -p nodalia-video --features hevc-decode,threads --test hevc_decode perf:: -- --ignored --nocapture` |
+| ProRes decode/encode | in nodalia-libs: `cargo test --release -p nodalia-video --features prores,threads --test prores perf:: -- --ignored --nocapture` |
+| Encoder speed / PSNR / bitrate | in nodalia-libs: `cargo run --release -p nodalia-video --features h264-encode --example h264_h264enc_bench -- …` |
 | Export to H.264 + AAC on the CPU (1080p clip through `file.exportMedia`, wall time per run, `--keep out.mp4` to compare files) | `cargo run --release -p toma-engine --example bench_export -- --runs 7` |
 | Decode a real file through the media stack | `cargo run --release -p toma-cli -- bench-decode file.mp4 --frames 120` |
-| Coding-tool coverage of the fixtures | in craft-libs: `cargo test --release -p craft-video --features h264-decode --test h264_decode conformance::coverage_report -- --ignored --nocapture` (same for `hevc`) |
+| Coding-tool coverage of the fixtures | in nodalia-libs: `cargo test --release -p nodalia-video --features h264-decode --test h264_decode conformance::coverage_report -- --ignored --nocapture` (same for `hevc`) |
 | **Whole-app suite**: decode fps per codec, playback, scrubbing, timeline UI, export, project save/open, peak RSS | `cargo xtask bench` ([performance.md](performance.md)) |
 
 `cargo xtask bench` (the example `crates/ui-egui/examples/bench/`) runs six sections, each in its

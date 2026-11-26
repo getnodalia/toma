@@ -1,7 +1,7 @@
 //! MPEG-2 transport streams (`.ts`, `.m2ts`, `.mts`), program streams (`.mpg`, `.vob`, `.mod`)
 //! and MPEG-1/2 video elementary streams (`.m2v`, `.m1v`).
 //!
-//! - Demux and the access-unit index come from `craft_media::mpegts` (built when the file opens).
+//! - Demux and the access-unit index come from `nodalia_media::mpegts` (built when the file opens).
 //! - Video: MPEG-1/2 (our decoder), H.264 and HEVC (Annex B byte streams, our decoders) with
 //!   GOP-aware random access ([`crate::gop`]). Frames are presented in display order, from the
 //!   first random-access picture; display order comes from the PTS (or, without timestamps, the
@@ -14,7 +14,7 @@
 use std::collections::{HashMap, VecDeque};
 use std::sync::{Arc, Mutex};
 
-use craft_media::mpegts::{Codec, File, Kind, Unit};
+use nodalia_media::mpegts::{Codec, File, Kind, Unit};
 use toma_frame::{AudioBuffer, VideoFrame};
 use toma_media::{AudioStreamInfo, FrameRequest, MediaError, MediaInfo, MediaKind, MediaSource, SharedSource, VideoStreamInfo};
 use toma_time::{FrameRate, Tick};
@@ -29,7 +29,7 @@ fn is_video_es(head: &[u8]) -> bool {
 }
 
 pub fn sniff(head: &[u8]) -> bool {
-    craft_media::mpegts::sniff(head).is_some() || is_video_es(head)
+    nodalia_media::mpegts::sniff(head).is_some() || is_video_es(head)
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -62,7 +62,7 @@ enum ACodec {
     Latm,
     Ac3,
     LpcmBluray,
-    LpcmDvd(craft_media::mpegts::LpcmFormat),
+    LpcmDvd(nodalia_media::mpegts::LpcmFormat),
 }
 
 struct AudioState {
@@ -186,8 +186,8 @@ impl MpegSource {
         if is_video_es(&head) {
             return Self::open_es(name, bytes);
         }
-        let file = craft_media::mpegts::open(&bytes).map_err(|e| match e {
-            craft_media::mpegts::Error::NotMpeg => CodecError::Unsupported("not an MPEG stream".into()),
+        let file = nodalia_media::mpegts::open(&bytes).map_err(|e| match e {
+            nodalia_media::mpegts::Error::NotMpeg => CodecError::Unsupported("not an MPEG stream".into()),
             other => CodecError::Container(other.to_string()),
         })?;
         for w in &file.warnings {
@@ -282,8 +282,8 @@ impl MpegSource {
         let all: Arc<[u8]> = toma_media::reader::read_range(&*bytes.0, 0, usize::try_from(bytes.0.len()).unwrap_or(usize::MAX))
             .map_err(|e| CodecError::Container(e.to_string()))?
             .into();
-        let aus = craft_video::mpeg2::access_units(&all);
-        let infos: Vec<craft_video::mpeg2::AccessUnitInfo> = aus.iter().map(|r| craft_video::mpeg2::scan_access_unit(&all[r.clone()])).collect();
+        let aus = nodalia_video::mpeg2::access_units(&all);
+        let infos: Vec<nodalia_video::mpeg2::AccessUnitInfo> = aus.iter().map(|r| nodalia_video::mpeg2::scan_access_unit(&all[r.clone()])).collect();
         let first_key = infos.iter().position(|a| a.is_intra()).ok_or_else(|| CodecError::Decode("no I picture in the stream".into()))?;
         // fake units carrying the picture info for display ordering
         let mut keys = Vec::new();
@@ -385,10 +385,10 @@ impl MpegSource {
         match v.kind {
             VKind::Mpeg2 => {
                 let info =
-                    craft_video::mpeg2::probe(&first).ok_or_else(|| CodecError::Decode("no MPEG video sequence header at the first I picture".into()))?;
+                    nodalia_video::mpeg2::probe(&first).ok_or_else(|| CodecError::Decode("no MPEG video sequence header at the first I picture".into()))?;
                 let header = crate::video::mpeg2_sequence_header(&first).unwrap_or_default();
                 // field order from the first frames' picture coding extensions
-                let mut d = craft_video::mpeg2::Decoder::new();
+                let mut d = nodalia_video::mpeg2::Decoder::new();
                 let mut fo = None;
                 for i in 0..v.units.len().min(4) {
                     if let Ok(pics) = d.decode(&self.read_unit(v, i)?, i as i64)
@@ -510,7 +510,7 @@ impl MpegSource {
         let mut latm = None;
         let (codec, rate, channels, per_frame, bits) = match &st.codec {
             Codec::MpegAudio | Codec::AacAdts | Codec::Ac3 | Codec::Eac3 => {
-                let Some(fi) = craft_media::mpegts::frame_info(&st.codec, &first) else {
+                let Some(fi) = nodalia_media::mpegts::frame_info(&st.codec, &first) else {
                     return self.audio_unsupported(&codec_name, format!("{codec_name}: bad frame header"));
                 };
                 let c = match st.codec {
@@ -556,7 +556,7 @@ impl MpegSource {
             }
             byte_starts.push(acc);
         }
-        let group = |f: craft_media::mpegts::LpcmFormat| crate::audio::dvd_lpcm_group_bytes(f.channels as usize, f.bits) as u64;
+        let group = |f: nodalia_media::mpegts::LpcmFormat| crate::audio::dvd_lpcm_group_bytes(f.channels as usize, f.bits) as u64;
         // samples per unit
         let lens: Vec<u32> = st
             .units

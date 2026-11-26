@@ -87,7 +87,7 @@ foreach ($check in @(@('toma.exe', 2), @('toma-cli.exe', 3))) {
 $Stage = Join-Path $TargetDir "windows-package\$Arch"
 Remove-Item -Recurse -Force $Stage -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force -Path $Stage | Out-Null
-# Dependency font notices are required even without optional craft-fonts.
+# Dependency font notices are required even without optional nodalia-fonts.
 Copy-Item -LiteralPath (Join-Path $Root 'NOTICE') -Destination $Stage
 Copy-Item (Join-Path $Bin 'toma.exe'), (Join-Path $Bin 'toma-cli.exe') $Stage
 
@@ -98,8 +98,8 @@ Copy-Item (Join-Path $Bin 'toma.exe'), (Join-Path $Bin 'toma-cli.exe') $Stage
 $Docs = Join-Path $Stage 'font-licences'
 New-Item -ItemType Directory -Force -Path $Docs | Out-Null
 $HasCraftFontLicences = 0
-if ($env:CRAFT_FONTS_DIR) {
-  foreach ($ofl in Get-ChildItem -Path (Join-Path $env:CRAFT_FONTS_DIR 'fonts\*\OFL.txt') -File -ErrorAction SilentlyContinue) {
+if ($env:NODALIA_FONTS_DIR) {
+  foreach ($ofl in Get-ChildItem -Path (Join-Path $env:NODALIA_FONTS_DIR 'fonts\*\OFL.txt') -File -ErrorAction SilentlyContinue) {
     Copy-Item -LiteralPath $ofl.FullName -Destination (Join-Path $Docs "OFL-$($ofl.Directory.Name).txt")
     $HasCraftFontLicences = 1
   }
@@ -135,9 +135,9 @@ foreach ($f in 'README.md', 'LICENSE', 'LICENSE-MIT', 'LICENSE-APACHE', 'NOTICE'
   $p = Join-Path $Root $f
   if (Test-Path $p) { Copy-Item $p $Portable }
 }
-# Licences of the embedded craft-fonts fonts (builds with CRAFT_FONTS_DIR) as OFL-<family>.txt.
-if ($env:CRAFT_FONTS_DIR) {
-  foreach ($lic in Get-ChildItem -Path (Join-Path $env:CRAFT_FONTS_DIR 'fonts\*\OFL.txt') -ErrorAction SilentlyContinue) {
+# Licences of the embedded nodalia-fonts fonts (builds with NODALIA_FONTS_DIR) as OFL-<family>.txt.
+if ($env:NODALIA_FONTS_DIR) {
+  foreach ($lic in Get-ChildItem -Path (Join-Path $env:NODALIA_FONTS_DIR 'fonts\*\OFL.txt') -ErrorAction SilentlyContinue) {
     Copy-Item $lic.FullName (Join-Path $Portable "OFL-$($lic.Directory.Name).txt")
   }
 }

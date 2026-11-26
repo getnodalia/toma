@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   lint:
-    uses: getnodalia/foundation/.github/workflows/packaging-lint.yml@976581262c95c0d95c0184149c0e1ba55485ccb3 # foundation main
+    uses: getnodalia/foundation/.github/workflows/packaging-lint.yml@c37ef19e6bc213e3ebf3a281f1bf0f3fd7c5d495 # foundation main
 
   windows-install-policy:
     timeout-minutes: 10
@@ -32,7 +32,7 @@ jobs:
       - name: Install the pinned packaging toolchain
         shell: pwsh
         run: |
-          $tools = Join-Path $env:RUNNER_TEMP 'craft-install-policy-wix'
+          $tools = Join-Path $env:RUNNER_TEMP 'nodalia-install-policy-wix'
           dotnet tool install --tool-path $tools wix --version 5.0.2
           if ($LASTEXITCODE -ne 0) { throw 'WiX installation failed.' }
           $tools >> $env:GITHUB_PATH
@@ -43,4 +43,4 @@ jobs:
           }
       - name: Build and check non-executable installer fixtures
         shell: pwsh
-        run: ./packaging/windows/test-install-policy.ps1 -OutputDirectory (Join-Path $env:RUNNER_TEMP 'craft-install-policy-tests')
+        run: ./packaging/windows/test-install-policy.ps1 -OutputDirectory (Join-Path $env:RUNNER_TEMP 'nodalia-install-policy-tests')

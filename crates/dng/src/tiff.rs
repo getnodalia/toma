@@ -1,12 +1,12 @@
 //! Bounded classic TIFF access for DNG, implemented by the shared TIFF library.
 
 use crate::{Error, Result};
-pub use craft_tiff::classic::{Entry, Ifd, MAX_DEPTH, MAX_IFDS, Type, tags};
+pub use nodalia_tiff::classic::{Entry, Ifd, MAX_DEPTH, MAX_IFDS, Type, tags};
 
-fn error(e: craft_tiff::classic::Error) -> Error {
+fn error(e: nodalia_tiff::classic::Error) -> Error {
     match e {
-        craft_tiff::classic::Error::NotTiff => Error::NotDng,
-        craft_tiff::classic::Error::Malformed(s) => Error::Malformed(s),
+        nodalia_tiff::classic::Error::NotTiff => Error::NotDng,
+        nodalia_tiff::classic::Error::Malformed(s) => Error::Malformed(s),
     }
 }
 
@@ -17,12 +17,12 @@ pub struct Tiff<'a> {
     pub big_endian: bool,
 }
 impl<'a> Tiff<'a> {
-    pub(crate) fn inner(&self) -> craft_tiff::classic::Tiff<'a> {
-        craft_tiff::classic::Tiff { data: self.data, big_endian: self.big_endian }
+    pub(crate) fn inner(&self) -> nodalia_tiff::classic::Tiff<'a> {
+        nodalia_tiff::classic::Tiff { data: self.data, big_endian: self.big_endian }
     }
     /// Read the classic TIFF header and first IFD offset.
     pub fn new(data: &'a [u8]) -> Result<(Self, u64)> {
-        let (t, first) = craft_tiff::classic::Tiff::new(data).map_err(error)?;
+        let (t, first) = nodalia_tiff::classic::Tiff::new(data).map_err(error)?;
         Ok((Self { data: t.data, big_endian: t.big_endian }, first))
     }
     /// Read an endian-aware 16-bit integer.

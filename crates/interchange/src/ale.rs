@@ -1,11 +1,11 @@
 //! Avid Log Exchange (`.ale`) clip logs (File ▸ Export ▸ Avid Log Exchange…).
 //!
 //! The format itself (the document, its reader and writer, the heading and `Tracks` helpers) comes
-//! from [`craft_timeline::ale`] in craft-libs (craft-libs #778); this module keeps Toma's
+//! from [`nodalia_timeline::ale`] in nodalia-libs (nodalia-libs #778); this module keeps Toma's
 //! mapping from project items to log rows.
 
-pub use craft_timeline::ale::{AleDoc, fps_text, parse, row_range, write};
-use craft_timeline::ale::{EXTRA_COLUMNS, STANDARD_COLUMNS, clean, standard_heading, tracks_text};
+pub use nodalia_timeline::ale::{AleDoc, fps_text, parse, row_range, write};
+use nodalia_timeline::ale::{EXTRA_COLUMNS, STANDARD_COLUMNS, clean, standard_heading, tracks_text};
 use toma_project::{ItemId, MediaRef, Project};
 use toma_time::{FrameRate, Tick, format_timecode_frames};
 
@@ -53,7 +53,7 @@ pub fn export_items(p: &Project, items: &[ItemId]) -> AleDoc {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use craft_timeline::ale::video_format;
+    use nodalia_timeline::ale::video_format;
     use toma_media::{AudioStreamInfo, MediaInfo, MediaKind, VideoStreamInfo};
     use toma_project::{ItemKind, Label, MediaClip};
     use toma_time::TimeRange;

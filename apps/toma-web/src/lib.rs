@@ -140,7 +140,7 @@ pub async fn start(canvas_id: String) -> Result<(), JsValue> {
     let doc = web_sys::window().and_then(|w| w.document()).ok_or("no document")?;
     let canvas: web_sys::HtmlCanvasElement = doc.get_element_by_id(&canvas_id).ok_or("no canvas")?.dyn_into()?;
 
-    // Host modes (`craft-web-host`): `?host=parent`, a same-origin page framing Toma in an
+    // Host modes (`nodalia-web-host`): `?host=parent`, a same-origin page framing Toma in an
     // `<iframe>`, opens files in it and stores what it saves (`host`); unframed there is no parent,
     // so that URL on its own stays the normal app with downloads. `data-host="page"` on the canvas
     // opts a page in instead: it runs Toma in its own document and talks over DOM
