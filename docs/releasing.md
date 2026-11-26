@@ -16,7 +16,7 @@ The sections below describe the packaging scripts. Where they mention a `release
 
 
 Every push to the `release` branch runs `.github/workflows/release.yml`. The workflow builds
-installers for macOS, Windows, Linux (AppImage, deb, rpm, tarball, Flatpak) and FreeBSD, plus
+installers for macOS, Windows, Linux (AppImage, deb, rpm, tarball) and FreeBSD, plus
 the web build, and creates or updates a **draft**
 GitHub Release named `Toma v<version>`. Nobody sees a draft until a maintainer publishes it.
 
@@ -52,7 +52,7 @@ Once the draft is published, the workflow refuses to touch that version again: b
 applies it with `cargo xtask version set` before building. The signing jobs (macOS, Windows)
 and the draft-release job run in the `release` environment, which only the `release` branch can
 use, so pick that branch for a full run. Run from any other branch, it is a dry run: the jobs that
-sign nothing (Linux, Flatpak, FreeBSD, web) build and upload their artifacts to the run, the
+sign nothing (Linux, FreeBSD, web) build and upload their artifacts to the run, the
 signing jobs are refused, and the draft-release job, which needs them, is skipped.
 
 ## What gets built
@@ -67,7 +67,6 @@ signing jobs are refused, and the draft-release job, which needs them, is skippe
 | Linux aarch64 | `toma-<v>-linux-aarch64.{AppImage,deb,rpm,tar.gz}` | `ubuntu-22.04-arm` |
 | Linux riscv64 | `toma-<v>-linux-riscv64.tar.gz` | `ubuntu-24.04`, cross-compiled (glibc 2.39+; CLI smoke-tested under QEMU) |
 | AppImage updates | `toma-<v>-linux-{x86_64,aarch64}.AppImage.zsync` | with the AppImage |
-| Flatpak | `toma-<v>-linux-x86_64.flatpak`, `toma-<v>-linux-aarch64.flatpak` | `ubuntu-24.04`, `ubuntu-24.04-arm` (repackaged Linux tarball) |
 | FreeBSD 14 x86_64 | `toma-<v>-freebsd-x86_64.tar.gz` | FreeBSD 14.3 VM on `ubuntu-latest` |
 | Web | `toma-web-<v>.zip`, a static site (see [`packaging/web/README.md`](../packaging/web/README.md)) | `ubuntu-latest` |
 
@@ -147,18 +146,6 @@ runs each AppImage with `--version`.
 `zsyncmake`). [AppImageUpdate](https://github.com/AppImageCommunity/AppImageUpdate) and
 AppImageLauncher then fetch only the changed blocks from the newest published (non-pre-release)
 release. The job checks both with `--appimage-updateinformation` and `test -s`.
-
-**Flatpak.** The `flatpak` jobs (x86_64 on `ubuntu-24.04`, aarch64 on `ubuntu-24.04-arm`) run
-`packaging/linux/flatpak-bundle.sh` on the Linux job's tarball: it installs the binaries with
-`packaging/linux/flatpak/dev.danielmiguelt.Toma.bundle.yml` into a single-file bundle,
-`toma-<v>-linux-<arch>.flatpak` (no Rust build, so it takes a minute), then installs it and
-runs `toma-cli --version` in the sandbox. Users install it with
-`flatpak install --user <file>`; the freedesktop runtime comes from Flathub.
-`packaging/linux/flatpak/dev.danielmiguelt.Toma.yml` is the from-source manifest for a Flathub
-submission (its header says how to build it). Both manifests must keep the same runtime and
-`finish-args`, and install the same programs: the app and `toma-cli`, which runs the
-headless commands and the MCP server in the sandbox
-(`flatpak run --command=toma-cli dev.danielmiguelt.Toma mcp`). packaging-lint checks this.
 
 ### FreeBSD
 

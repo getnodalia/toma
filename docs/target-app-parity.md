@@ -156,7 +156,7 @@ Evidence for the cross-cutting rows:
   (#512), Windows 11 (#380, #582), a generic "keeps crashing" (#687), and **no workflow runs the
   test suite on pull requests** (`.github/workflows` has release, packaging lint, FreeBSD and
   Windows ARM64 builds only); `cargo xtask ci` runs locally only.
-- **Platforms ~60%.** Releases for macOS, Windows (x64, ARM64), Linux (AppImage, Flatpak, deb,
+- **Platforms ~60%.** Releases for macOS, Windows (x64, ARM64), Linux (AppImage, deb,
   tar) and FreeBSD; Linux is something Premiere doesn't run on at all. Runtime testing is still
   mostly macOS; Windows and Linux reports dominate the issue list. The web build runs but its shell
   is incomplete. No mobile.
