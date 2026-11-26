@@ -23,7 +23,6 @@
 	 frames	 프레임
 	 seconds	 초
 	 · {time} left	 · {time} 남음
-	% of all commits	전체 커밋 중 %
 	(Custom)	(사용자 정의)
 	(Default)	(기본값)
 	(empty)	(비어 있음)
@@ -374,8 +373,6 @@
 	Bin	빈
 	Bin From Selection	선택 항목으로 빈 만들기
 	Bin: {name}	빈: {name}
-	Binary assets added	추가된 바이너리 에셋
-	Binary assets removed	삭제된 바이너리 에셋
 	Binauralizer - Ambisonics	바이노럴라이저 - Ambisonics
 	Bins	빈
 	Bitrate Encoding	비트 전송률 인코딩
@@ -671,9 +668,7 @@
 	Commands:	명령:
 	Comment	주석
 	Comments:	설명:
-	Commits	커밋
 	Community	커뮤니티
-	Company	회사
 	Comparison	비교
 	Comparison View	비교 보기
 	Complexity	복잡도
@@ -914,7 +909,6 @@
 	Display Color Settings	디스플레이 색상 설정
 	Display Format:	표시 형식:
 	Display Mode	표시 모드
-	Display name	표시 이름
 	Display out of sync indicators for unlinked clips	연결 해제된 클립의 동기화 불일치 표시
 	Dissolve	디졸브
 	Dissolve Blocks	블록 디졸브
@@ -1187,7 +1181,6 @@
 	Find Next	다음 찾기
 	Find:	찾기:
 	Find…	찾기…
-	First commit	첫 커밋
 	first marker	첫 마커
 	Fit	맞춤
 	Fit to frame	프레임에 맞춤
@@ -1341,7 +1334,6 @@
 	Good	좋음
 	GPU acceleration is unavailable; preview renders on the CPU	GPU 가속 사용 불가. 미리 보기는 CPU로 렌더
 	GPU Rendering	GPU 렌더링
-	Grab bag	모음
 	Gradient	그레이디언트
 	Gradient Angle	그레이디언트 각도
 	Gradient End	그레이디언트 끝
@@ -1621,7 +1613,6 @@
 	Larger	크게
 	Last auto-save {a}	마지막 자동 저장 {a}
 	Last auto-save {a} · last recovery copy {j}	마지막 자동 저장 {a} · 마지막 복구 사본 {j}
-	Last commit	마지막 커밋
 	Last recovery copy {j}	마지막 복구 사본 {j}
 	Latch	래치
 	Lavender	라벤더
@@ -1682,7 +1673,6 @@
 	Limiter	리미터
 	Limiter Release	리미터 릴리스
 	Limiter Threshold	리미터 임계값
-	Line delta	줄 변화량
 	Line Thickness	선 두께
 	Linear	선형
 	Linear Burn	선형 번
@@ -1694,9 +1684,6 @@
 	Linear to Log	선형에서 로그로
 	Linear Wipe	선형 닦아내기
 	Linear Wipe (Legacy)	선형 닦아내기(레거시)
-	Lines +/−	줄 +/−
-	Lines added	추가된 줄
-	Lines deleted	삭제된 줄
 	Link	연결
 	Link Channels	채널 연결
 	Link Media	미디어 연결
@@ -1875,7 +1862,6 @@
 	Merge Clips…	클립 병합…
 	Merge selected captions	선택한 자막 병합
 	Merged clip created	병합 클립 생성됨
-	Merged PRs	병합된 PR
 	Metadata	메타데이터
 	Metadata & Timecode Burn-in	메타데이터 및 타임코드 번인
 	Metadata Display	메타데이터 표시
@@ -1912,7 +1898,6 @@
 	Mixed Crystals	혼합 결정
 	Mixer	믹서
 	Mode	모드
-	Model	모델
 	Models	모델
 	Modern High Gain	모던 하이 게인
 	Modifier held / selected	보조키 누름/선택됨
@@ -1995,7 +1980,6 @@
 	My Shortcuts	내 단축키
 	My Templates	내 템플릿
 	Name	이름
-	Name (A–Z)	이름 (A–Z)
 	Name and role on a coloured slab that widens with the name.	이름에 따라 넓어지는 색상 판 위의 이름과 직함.
 	Name Color	이름 색상
 	Name over a thin rule that always matches the name's width.	이름 너비에 항상 맞는 가는 선 위의 이름.
@@ -2052,7 +2036,6 @@
 	No captions on this track. Press + to add one at the playhead.	이 트랙에 자막 없음. +를 눌러 재생 헤드에 추가합니다.
 	no Chinese font is installed on this system; the interface stays in English	중국어 글꼴이 설치되어 있지 않아 인터페이스가 영어로 유지됩니다
 	no Korean font is installed on this system; the interface stays in English	한국어 글꼴이 설치되어 있지 않아 인터페이스가 영어로 유지됩니다
-	No contributor data was built into this copy.	이 사본에 기여자 데이터가 포함되지 않았습니다.
 	No effects	효과 없음
 	No events.	이벤트 없음
 	No export preset named `{name}`	`{name}` 내보내기 사전 설정 없음
@@ -2062,7 +2045,6 @@
 	No markers. Press M to add one.	마커 없음. M을 눌러 추가합니다.
 	No matching captions.	일치하는 자막 없음.
 	No matching commands	일치하는 명령 없음
-	No model credits were built into this copy.	이 사본에 모델 크레딧이 포함되지 않았습니다.
 	No Motion	모션 없음
 	No multi-camera clip at the playhead	재생 헤드에 멀티 카메라 클립 없음
 	No plugins are installed. Changes will take effect the next time you start Toma.	설치된 플러그인이 없습니다. 변경 사항은 Toma를 다음에 시작할 때 적용됩니다.
@@ -2436,7 +2418,6 @@
 	Razor Tool	자르기 도구
 	Read	읽기
 	Ready	준비됨
-	Real name	실명
 	Rec. 2100	Rec. 2100
 	Rec. 601	Rec. 601
 	Rec. 709	Rec. 709
@@ -2580,7 +2561,6 @@
 	Reverse Match Frame	역방향 프레임 일치
 	Reverse Speed	역방향 속도
 	Maintain Audio Pitch	오디오 피치 유지
-	Reverse the order	순서 반대로
 	Revert	되돌리기
 	Revert Remix	리믹스 되돌리기
 	Revert to the preset's colors and names	사전 설정의 색상과 이름으로 되돌리기
@@ -2940,7 +2920,6 @@
 	Solo	솔로
 	Solo safe	솔로 보호
 	Something went wrong while drawing the window. Your project is still open; save it to be safe.	창을 그리는 중 문제가 발생했습니다. 프로젝트는 열려 있으니 안전을 위해 저장하세요.
-	Sort	정렬
 	Sort Icons	아이콘 정렬
 	Sort Order	정렬 순서
 	Source	소스
@@ -3103,7 +3082,6 @@
 	System Compatibility Report…	시스템 호환성 보고서…
 	System Default	시스템 기본값
 	System Language	시스템 언어
-	Table	표
 	Tag Color	태그 색상
 	Tan	황갈색
 	Tape	테이프
@@ -3346,7 +3324,6 @@
 	Use Tint Color	색조 색상 사용
 	User	사용자
 	User Order	사용자 순서
-	Username	사용자 이름
 	Utility	유틸리티
 	Validate Content Credentials on import	가져올 때 콘텐츠 자격 증명 확인
 	Value	값
@@ -3360,7 +3337,6 @@
 	Vectorscope YUV	벡터스코프 YUV
 	Velocity	속력
 	Venetian Blinds	베니션 블라인드
-	Version	버전
 	Version {version}	버전 {version}
 	Vertical	세로
 	vertical	세로

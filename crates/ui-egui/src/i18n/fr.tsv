@@ -3436,18 +3436,6 @@
 	no Korean font is installed on this system; the interface stays in English	aucune police coréenne n'est installée sur ce système ; l'interface reste en anglais
 	no Japanese font is installed on this system; the interface stays in English	aucune police japonaise n'est installée sur ce système ; l'interface reste en anglais
 	Show	Afficher
-	Sort	Trier
-	Reverse the order	Inverser l'ordre
-	Grab bag	Pêle-mêle
-	Table	Tableau
-	No contributor data was built into this copy.	Aucune donnée de contributeurs n'est intégrée à cette copie.
-	No model credits were built into this copy.	Aucun crédit de modèle n'est intégré à cette copie.
-	Company	Société
-	Model	Modèle
-	Version	Version
-	Commits	Commits
-	% of all commits	% de tous les commits
-	Lines +/−	Lignes +/−
 	Audio output failed: playing without sound (check Settings > Audio Hardware)	Échec de la sortie audio : lecture sans son (vérifiez Préférences > Matériel audio)
 	Audio output is not responding: playing without sound (check Settings > Audio Hardware)	La sortie audio ne répond pas : lecture sans son (vérifiez Préférences > Matériel audio)
 	Clip Speed / Duration	Vitesse/durée du clip
@@ -3476,21 +3464,9 @@
 	 · {time} left	 · reste {time}
 	Discard take	Rejeter la prise
 	Voice-over take discarded	Prise de voix off rejetée
-	Binary assets added	Ressources binaires ajoutées
-	Binary assets removed	Ressources binaires supprimées
 	Deselect All Project Items	Désélectionner tous les éléments du projet
-	Display name	Nom affiché
-	First commit	Premier commit
 	H.265 (HEVC)	H.265 (HEVC)
-	Last commit	Dernier commit
-	Line delta	Delta de lignes
-	Lines added	Lignes ajoutées
-	Lines deleted	Lignes supprimées
-	Merged PRs	PR fusionnées
-	Name (A–Z)	Nom (A–Z)
-	Real name	Nom réel
 	Select All Project Items	Sélectionner tous les éléments du projet
-	Username	Nom d'utilisateur
 	Vertical Type Tool	Outil Texte vertical
 	Go to previous keyframe	Aller à l'image clé précédente
 	Go to next keyframe	Aller à l'image clé suivante

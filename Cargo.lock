@@ -3719,7 +3719,7 @@ dependencies = [
 [[package]]
 name = "nodalia-theme"
 version = "0.1.0-alpha.1"
-source = "git+https://github.com/getnodalia/nodalia-design?rev=44bfd0a37e6bd2837c473b4e5607b70e8d169e61#44bfd0a37e6bd2837c473b4e5607b70e8d169e61"
+source = "git+https://github.com/getnodalia/nodalia-design?rev=a44fa27219fe36cbc58228858084b6ad4007f6ef#a44fa27219fe36cbc58228858084b6ad4007f6ef"
 dependencies = [
  "egui",
 ]
@@ -6646,7 +6646,7 @@ dependencies = [
 
 [[package]]
 name = "toma"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "arboard",
  "chrono",
@@ -6682,14 +6682,14 @@ dependencies = [
 
 [[package]]
 name = "toma-audio-dsp"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "toma-testkit",
 ]
 
 [[package]]
 name = "toma-automation"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "base64",
  "image",
@@ -6708,14 +6708,14 @@ dependencies = [
 
 [[package]]
 name = "toma-bitstream"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "nodalia-media 0.1.0 (git+https://github.com/getnodalia/foundation?rev=1be19808c3c8446f21278f4f4f86e41795305be4)",
 ]
 
 [[package]]
 name = "toma-captions"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "nodalia-captions",
  "toma-color",
@@ -6726,14 +6726,14 @@ dependencies = [
 
 [[package]]
 name = "toma-cfb"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "nodalia-cfb 0.1.0 (git+https://github.com/getnodalia/foundation?rev=ac6da55733bfb6ff92f0e0c3ee58c7421c8e50ea)",
 ]
 
 [[package]]
 name = "toma-cli"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "nodalia-media 0.1.0 (git+https://github.com/getnodalia/foundation?rev=1be19808c3c8446f21278f4f4f86e41795305be4)",
  "serde_json",
@@ -6754,7 +6754,7 @@ dependencies = [
 
 [[package]]
 name = "toma-codecs"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "image",
  "log",
@@ -6780,7 +6780,7 @@ dependencies = [
 
 [[package]]
 name = "toma-color"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "proptest",
  "serde",
@@ -6788,7 +6788,7 @@ dependencies = [
 
 [[package]]
 name = "toma-dng"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "image",
  "nodalia-raw",
@@ -6802,7 +6802,7 @@ dependencies = [
 
 [[package]]
 name = "toma-edit"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "proptest",
  "serde_json",
@@ -6815,7 +6815,7 @@ dependencies = [
 
 [[package]]
 name = "toma-engine"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "chrono",
  "image",
@@ -6853,7 +6853,7 @@ dependencies = [
 
 [[package]]
 name = "toma-export"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "flate2",
  "image",
@@ -6886,7 +6886,7 @@ dependencies = [
 
 [[package]]
 name = "toma-format"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "chrono",
  "log",
@@ -6900,7 +6900,7 @@ dependencies = [
 
 [[package]]
 name = "toma-frame"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "rayon",
  "serde",
@@ -6910,7 +6910,7 @@ dependencies = [
 
 [[package]]
 name = "toma-geom"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "proptest",
  "serde",
@@ -6918,7 +6918,7 @@ dependencies = [
 
 [[package]]
 name = "toma-golden"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "pollster 1.0.1",
  "toma-color",
@@ -6935,7 +6935,7 @@ dependencies = [
 
 [[package]]
 name = "toma-gpu"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "image",
  "log",
@@ -6955,7 +6955,7 @@ dependencies = [
 
 [[package]]
 name = "toma-interchange"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "nodalia-aaf",
  "nodalia-audio 0.1.0 (git+https://github.com/getnodalia/foundation?rev=1be19808c3c8446f21278f4f4f86e41795305be4)",
@@ -6975,7 +6975,7 @@ dependencies = [
 
 [[package]]
 name = "toma-isobmff"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "nodalia-media 0.1.0 (git+https://github.com/getnodalia/foundation?rev=1be19808c3c8446f21278f4f4f86e41795305be4)",
  "proptest",
@@ -6985,7 +6985,7 @@ dependencies = [
 
 [[package]]
 name = "toma-matroska"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "nodalia-media 0.1.0 (git+https://github.com/getnodalia/foundation?rev=1be19808c3c8446f21278f4f4f86e41795305be4)",
  "serde_json",
@@ -6994,7 +6994,7 @@ dependencies = [
 
 [[package]]
 name = "toma-media"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "image",
  "nodalia-audio 0.1.0 (git+https://github.com/getnodalia/foundation?rev=1be19808c3c8446f21278f4f4f86e41795305be4)",
@@ -7016,7 +7016,7 @@ dependencies = [
 
 [[package]]
 name = "toma-platform"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "libloading",
  "log",
@@ -7042,7 +7042,7 @@ dependencies = [
 
 [[package]]
 name = "toma-project"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "proptest",
  "serde",
@@ -7057,7 +7057,7 @@ dependencies = [
 
 [[package]]
 name = "toma-render"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "image",
  "rayon",
@@ -7077,7 +7077,7 @@ dependencies = [
 
 [[package]]
 name = "toma-scopes"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "serde",
  "serde_json",
@@ -7086,7 +7086,7 @@ dependencies = [
 
 [[package]]
 name = "toma-speech"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "candle-core",
  "candle-nn",
@@ -7105,7 +7105,7 @@ dependencies = [
 
 [[package]]
 name = "toma-testkit"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "chrono",
  "png",
@@ -7114,7 +7114,7 @@ dependencies = [
 
 [[package]]
 name = "toma-text"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "harfrust",
  "nodalia-font-catalog",
@@ -7128,14 +7128,14 @@ dependencies = [
 
 [[package]]
 name = "toma-time"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "nodalia-timeline 0.1.0 (git+https://github.com/getnodalia/foundation?rev=729ae014767817b4630447158ed1a0eb025f1697)",
 ]
 
 [[package]]
 name = "toma-tts"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "candle-core",
  "candle-nn",
@@ -7150,7 +7150,7 @@ dependencies = [
 
 [[package]]
 name = "toma-tts-text"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "serde",
  "thiserror 2.0.21",
@@ -7158,7 +7158,7 @@ dependencies = [
 
 [[package]]
 name = "toma-ui-egui"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "cpu-time",
  "eframe",
@@ -7195,14 +7195,13 @@ dependencies = [
  "toma-text",
  "toma-time",
  "toma-tts",
- "toml 1.1.6+spec-1.1.0",
  "unicode-bidi",
  "web-time",
 ]
 
 [[package]]
 name = "toma-web"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "eframe",
  "egui",
@@ -8576,7 +8575,7 @@ checksum = "e450f9b2ed1dff33c94c12589a87338689467b9c4f5d8a5710bd09a847d2c8a7"
 
 [[package]]
 name = "xtask"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "serde_json",
  "toma-testkit",

@@ -3436,18 +3436,6 @@
 	no Korean font is installed on this system; the interface stays in English	в системе не установлен корейский шрифт; интерфейс остаётся на английском
 	no Japanese font is installed on this system; the interface stays in English	в системе не установлен японский шрифт; интерфейс остаётся на английском
 	Show	Показать
-	Sort	Сортировка
-	Reverse the order	Обратный порядок
-	Grab bag	Разное
-	Table	Таблица
-	No contributor data was built into this copy.	В эту копию не встроены данные об участниках.
-	No model credits were built into this copy.	В эту копию не встроены упоминания моделей.
-	Company	Компания
-	Model	Модель
-	Version	Версия
-	Commits	Коммиты
-	% of all commits	% от всех коммитов
-	Lines +/−	Строки +/−
 	Audio output failed: playing without sound (check Settings ▸ Audio Hardware)	Сбой вывода звука: воспроизведение без звука (см. Настройки ▸ Аудиооборудование)
 	Audio output is not responding: playing without sound (check Settings ▸ Audio Hardware)	Вывод звука не отвечает: воспроизведение без звука (см. Настройки ▸ Аудиооборудование)
 	Clip Speed / Duration	Скорость и длительность клипа
@@ -3475,21 +3463,9 @@
 	 · {time} left	 · осталось {time}
 	Discard take	Отклонить дубль
 	Voice-over take discarded	Дубль закадрового голоса отклонён
-	Binary assets added	Двоичные ресурсы добавлены
-	Binary assets removed	Двоичные ресурсы удалены
 	Deselect All Project Items	Отменить выделение всех элементов проекта
-	Display name	Отображаемое имя
-	First commit	Первый коммит
 	H.265 (HEVC)	H.265, HEVC
-	Last commit	Последний коммит
-	Line delta	Изменение числа строк
-	Lines added	Строк добавлено
-	Lines deleted	Строк удалено
-	Merged PRs	Объединённые PR
-	Name (A–Z)	Имя (А–Я)
-	Real name	Настоящее имя
 	Select All Project Items	Выделить все элементы проекта
-	Username	Имя пользователя
 	Vertical Type Tool	Вертикальный текст
 	Go to previous keyframe	Перейти к предыдущему ключевому кадру
 	Go to next keyframe	Перейти к следующему ключевому кадру

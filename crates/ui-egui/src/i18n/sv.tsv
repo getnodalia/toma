@@ -3445,18 +3445,6 @@
 	no Korean font is installed on this system; the interface stays in English	inget koreanskt typsnitt är installerat på systemet; gränssnittet förblir på engelska
 	no Japanese font is installed on this system; the interface stays in English	inget japanskt typsnitt är installerat på systemet; gränssnittet förblir på engelska
 	Show	Visa
-	Sort	Sortera
-	Reverse the order	Vänd på ordningen
-	Grab bag	Blandat
-	Table	Tabell
-	No contributor data was built into this copy.	Inga uppgifter om bidragsgivare finns inbyggda i den här kopian.
-	No model credits were built into this copy.	Inga modellkrediteringar finns inbyggda i den här kopian.
-	Company	Företag
-	Model	Modell
-	Version	Version
-	Commits	Commits
-	% of all commits	% av alla commits
-	Lines +/−	Rader +/−
 	Clip Speed / Duration	Klipphastighet/längd
 	Speed:	Hastighet:
 	Reverse Speed	Omvänd hastighet
@@ -3483,21 +3471,9 @@
 	 · {time} left	 · {time} kvar
 	Discard take	Släng tagning
 	Voice-over take discarded	Voiceover-tagning slängd
-	Binary assets added	Binära resurser tillagda
-	Binary assets removed	Binära resurser borttagna
 	Deselect All Project Items	Avmarkera alla projektobjekt
-	Display name	Visningsnamn
-	First commit	Första commit
 	H.265 (HEVC)	H.265 (HEVC)
-	Last commit	Senaste commit
-	Line delta	Raddifferens
-	Lines added	Tillagda rader
-	Lines deleted	Borttagna rader
-	Merged PRs	Sammanslagna PR:er
-	Name (A–Z)	Namn (A–Ö)
-	Real name	Riktigt namn
 	Select All Project Items	Markera alla projektobjekt
-	Username	Användarnamn
 	Vertical Type Tool	Vertikalt textverktyg
 	Go to previous keyframe	Gå till föregående nyckelbildruta
 	Go to next keyframe	Gå till nästa nyckelbildruta

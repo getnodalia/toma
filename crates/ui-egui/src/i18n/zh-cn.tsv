@@ -3443,18 +3443,6 @@
 	no Korean font is installed on this system; the interface stays in English	此系统未安装韩文字体；界面保持英文
 	no Japanese font is installed on this system; the interface stays in English	此系统未安装日语字体；界面保持英文
 	Show	显示
-	Sort	排序
-	Reverse the order	反转顺序
-	Grab bag	杂项
-	Table	表格
-	No contributor data was built into this copy.	此版本未内置贡献者数据。
-	No model credits were built into this copy.	此版本未内置模型署名。
-	Company	公司
-	Model	模型
-	Version	版本
-	Commits	提交
-	% of all commits	占全部提交的比例
-	Lines +/−	代码行 +/−
 	Audio output failed: playing without sound (check Settings > Audio Hardware)	音频输出失败：无声播放（请检查设置 > 音频硬件）
 	Audio output is not responding: playing without sound (check Settings > Audio Hardware)	音频输出无响应：无声播放（请检查设置 > 音频硬件）
 	Clip Speed / Duration	剪辑速度 / 时长
@@ -3483,21 +3471,9 @@
 	 · {time} left	· 剩余 {time}
 	Discard take	放弃片段
 	Voice-over take discarded	画外音片段已放弃
-	Binary assets added	已添加二进制资源
-	Binary assets removed	已移除二进制资源
 	Deselect All Project Items	取消选择所有项目项
-	Display name	显示名称
-	First commit	首次提交
 	H.265 (HEVC)	H.265（HEVC）
-	Last commit	最近提交
-	Line delta	代码行增减
-	Lines added	新增行
-	Lines deleted	删除行
-	Merged PRs	已合并的 PR
-	Name (A–Z)	名称（A–Z）
-	Real name	真实姓名
 	Select All Project Items	选择所有项目项
-	Username	用户名
 	Vertical Type Tool	直排文字工具
 	Go to previous keyframe	转到上一个关键帧
 	Go to next keyframe	转到下一个关键帧
