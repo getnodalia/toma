@@ -772,8 +772,8 @@ fn japanese_needs_an_installed_font() {
     let ctx = egui::Context::default();
     crate::theme::install(&ctx, &crate::theme::Tokens::for_kind(crate::theme::ThemeKind::default()));
     let r = crate::menus::invoke(&mut app, &ctx, "app.language.japanese", serde_json::json!({}));
-    let craft = nodalia_japanese_font();
-    if !craft && system_japanese_font().is_none() {
+    let nodalia = nodalia_japanese_font();
+    if !nodalia && system_japanese_font().is_none() {
         // no nodalia-fonts and no system font: refused, and the interface stays English
         assert!(r.is_err(), "{r:?}");
         assert_eq!(app.ui.language, Language::En);
@@ -790,8 +790,8 @@ fn japanese_needs_an_installed_font() {
             let mut stack = fonts.definitions().families.get(&family).cloned().unwrap_or_default();
             stack.retain(|n| !crate::rtl::is_system_face(n));
             stack.retain(|n| n != crate::cjk::KOREAN_FACE && n != "system-chinese");
-            if craft {
-                assert!(stack.last().is_some_and(|n| n.starts_with("craft:")), "{family:?}: {stack:?}");
+            if nodalia {
+                assert!(stack.last().is_some_and(|n| n.starts_with("nodalia:")), "{family:?}: {stack:?}");
                 assert!(!stack.iter().any(|n| n == JAPANESE_FONT), "{family:?}: {stack:?}");
             } else {
                 assert_eq!(stack.last().map(String::as_str), Some(JAPANESE_FONT), "{family:?}: {stack:?}");

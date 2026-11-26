@@ -792,16 +792,16 @@ mod tests {
         ctx.fonts_mut(|fonts| {
             let defs = fonts.definitions().clone();
             for (family, stack) in &defs.families {
-                // installed faces come after the craft run: right-to-left ones (Hebrew is not in
+                // installed faces come after the nodalia run: right-to-left ones (Hebrew is not in
                 // nodalia-fonts) and the Hangul face (none is in nodalia-fonts)
                 let stack: Vec<&String> = stack
                     .iter()
                     .filter(|n| !crate::rtl::is_system_face(n) && n.as_str() != crate::cjk::KOREAN_FACE && n.as_str() != crate::cjk::THAI_FACE)
                     .collect();
-                let first = stack.iter().position(|n| n.starts_with("craft:")).unwrap_or(stack.len());
-                assert!(first > 0 && stack[first..].iter().all(|n| n.starts_with("craft:")), "{family:?}: {stack:?}");
-                let first_japanese = stack.iter().find(|n| n.starts_with("craft:BIZ") || n.starts_with("craft:Shippori"));
-                assert!(first_japanese.is_some_and(|n| n.starts_with("craft:BIZ UDPGothic")), "{family:?}: {stack:?}");
+                let first = stack.iter().position(|n| n.starts_with("nodalia:")).unwrap_or(stack.len());
+                assert!(first > 0 && stack[first..].iter().all(|n| n.starts_with("nodalia:")), "{family:?}: {stack:?}");
+                let first_japanese = stack.iter().find(|n| n.starts_with("nodalia:BIZ") || n.starts_with("nodalia:Shippori"));
+                assert!(first_japanese.is_some_and(|n| n.starts_with("nodalia:BIZ UDPGothic")), "{family:?}: {stack:?}");
             }
             for family in [FontFamily::Proportional, FontFamily::Monospace] {
                 let font = FontId::new(13.0, family);
@@ -827,12 +827,12 @@ mod tests {
             + crate::cjk::thai_nodalia_fonts().count();
         ctx.fonts_mut(|fonts| {
             let defs = fonts.definitions().clone();
-            assert_eq!(defs.font_data.keys().filter(|k| k.starts_with("craft:")).count(), n);
+            assert_eq!(defs.font_data.keys().filter(|k| k.starts_with("nodalia:")).count(), n);
             assert_eq!(defs.families[&FontFamily::Proportional].first().map(String::as_str), Some("inter"));
             assert_eq!(defs.families[&FontFamily::Monospace].first().map(String::as_str), Some("jbmono"));
             assert!(fonts.has_glyph(&FontId::new(13.0, FontFamily::Proportional), 'A'));
             if n == 0 {
-                assert!(defs.families.values().flatten().all(|name| !name.starts_with("craft:")));
+                assert!(defs.families.values().flatten().all(|name| !name.starts_with("nodalia:")));
             }
         });
     }

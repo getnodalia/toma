@@ -175,7 +175,7 @@ mod font_blob_tests {
         let mut fonts = FontDefinitions::default();
         install(&mut fonts);
         for (family, stack) in &fonts.families {
-            let thai = stack.iter().filter(|n| n.starts_with("craft:Noto Sans Thai") || n.as_str() == THAI_FACE).count();
+            let thai = stack.iter().filter(|n| n.starts_with("nodalia:Noto Sans Thai") || n.as_str() == THAI_FACE).count();
             assert_eq!(thai, 1, "{family:?}: {stack:?}");
         }
     }
