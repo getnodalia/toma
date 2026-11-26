@@ -1,8 +1,8 @@
-//! Bit-level reading and writing: a re-export of [`craft_media::bitstream`] from craft-libs.
+//! Bit-level reading and writing: a re-export of [`nodalia_media::bitstream`] from nodalia-libs.
 
 #![cfg_attr(not(test), deny(clippy::unwrap_used, clippy::expect_used, clippy::panic, clippy::unimplemented, clippy::todo, clippy::unreachable))]
 
-pub use craft_media::bitstream::*;
+pub use nodalia_media::bitstream::*;
 
 #[cfg(test)]
 mod tests {

@@ -1,12 +1,12 @@
-//! Toma's panels and workspaces. craft-ui's docking owns the frame tree, the tab strips,
+//! Toma's panels and workspaces. nodalia-ui's docking owns the frame tree, the tab strips,
 //! floating windows and gestures (`dock_ui.rs` draws it); this module names the
 //! panels, builds the built-in workspaces and draws the Timeline's sequence tabs.
 
 use egui::{Align2, Rect, Sense, Stroke, StrokeKind, pos2, vec2};
 use serde::{Deserialize, Serialize};
 
-use craft_ui::docking::{Action, Floating, Node};
-use craft_ui::layout::{SplitAxis, SplitSize};
+use nodalia_ui::docking::{Action, Floating, Node};
+use nodalia_ui::layout::{SplitAxis, SplitSize};
 
 use crate::icons::{self, Icon};
 use crate::theme::Tokens;
@@ -136,10 +136,10 @@ impl PanelKind {
     }
 }
 
-/// A Toma panel arrangement: craft-ui's frame tree and floating windows.
-pub type Layout = craft_ui::docking::Layout<PanelKind>;
+/// A Toma panel arrangement: nodalia-ui's frame tree and floating windows.
+pub type Layout = nodalia_ui::docking::Layout<PanelKind>;
 /// What a saved workspace stores: its layout, closed panels and lock.
-pub type Workspace = craft_ui::docking::Workspace<PanelKind>;
+pub type Workspace = nodalia_ui::docking::Workspace<PanelKind>;
 
 fn tabs(p: &[PanelKind], active: usize) -> Node<PanelKind> {
     Node::Tabs { panels: p.to_vec(), active }
@@ -166,9 +166,9 @@ pub struct WorkspacePrefs {
     pub current: String,
 }
 
-/// A named workspace. `workspace` is a craft-ui [`Workspace`] kept as JSON, so one unreadable
+/// A named workspace. `workspace` is a nodalia-ui [`Workspace`] kept as JSON, so one unreadable
 /// entry (a panel a newer version added) doesn't lose the others. Files written before
-/// Toma used craft-ui workspaces hold a frame tree in `layout` and floating groups in
+/// Toma used nodalia-ui workspaces hold a frame tree in `layout` and floating groups in
 /// `floating` instead; [`saved_workspace`] reads them. [`SavedWorkspace::new`] writes
 /// `workspace`, and also `layout` and `floating` while every floating window is one tab
 /// group, so that earlier versions still open the workspace.
@@ -265,7 +265,7 @@ pub fn saved_docking(prefs: &WorkspacePrefs, name: &str) -> Layout {
     saved_workspace(prefs, name).layout
 }
 
-/// The frame tree and floating groups Toma wrote before its workspaces were craft-ui
+/// The frame tree and floating groups Toma wrote before its workspaces were nodalia-ui
 /// [`Workspace`]s.
 mod legacy {
     use super::{Floating, Layout, Node, PanelKind, SplitAxis, SplitSize};
@@ -522,7 +522,7 @@ fn workspace_root(name: &str) -> Node<PanelKind> {
     }
 }
 
-/// Toma's queries and changes on a [`Layout`] beyond craft-ui's actions.
+/// Toma's queries and changes on a [`Layout`] beyond nodalia-ui's actions.
 pub trait LayoutExt {
     /// Whether `panel` is the shown tab of its frame or floating window.
     fn is_visible(&self, panel: PanelKind) -> bool;
@@ -539,7 +539,7 @@ pub trait LayoutExt {
 
 impl LayoutExt for Layout {
     fn is_visible(&self, panel: PanelKind) -> bool {
-        self.panel_state(&panel) == craft_ui::docking::PanelState::Front
+        self.panel_state(&panel) == nodalia_ui::docking::PanelState::Front
     }
 
     fn is_docked(&self, panel: PanelKind) -> bool {
@@ -906,7 +906,7 @@ mod tests {
         assert_eq!(d.root, Some(hsplit(SplitSize::Ratio(0.5), tabs(&[PanelKind::Effects, PanelKind::Info], 1), tabs(&[PanelKind::Markers], 0))));
     }
 
-    /// A workspace file written before Toma saved craft-ui workspaces still opens, and a
+    /// A workspace file written before Toma saved nodalia-ui workspaces still opens, and a
     /// saved workspace reads back as written.
     #[test]
     fn saved_workspaces_read_earlier_files_and_round_trip() {

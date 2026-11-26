@@ -1,7 +1,7 @@
 //! `window.toma`: the control channel / agent API for the page.
 //!
-//! `request`, `execute`, `commands`, `uiInspect` and `screenshot` come from `craft-web-api`
-//! (storytold/craft-libs#413), the same in every Craft app; Toma adds its own functions on the
+//! `request`, `execute`, `commands`, `uiInspect` and `screenshot` come from `nodalia-web-api`
+//!, the same in every Nodalia app; Toma adds its own functions on the
 //! same object. The same JSON methods as the desktop control channel (`docs/control-protocol.md`)
 //! and the same engine commands as MCP, as promises:
 //!
@@ -24,8 +24,8 @@ use std::pin::Pin;
 use std::rc::Rc;
 use std::sync::mpsc::{Receiver, Sender, TryRecvError};
 
-use craft_web_api::methods::Methods;
-use craft_web_api::page::{PageApi, Request};
+use nodalia_web_api::methods::Methods;
+use nodalia_web_api::page::{PageApi, Request};
 use serde_json::{Value, json};
 use toma_ui_egui::ControlRequest;
 use wasm_bindgen::JsCast;

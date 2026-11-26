@@ -32,7 +32,7 @@ jobs:
     uses: getnodalia/foundation/.github/workflows/freebsd.yml@976581262c95c0d95c0184149c0e1ba55485ccb3 # foundation main
     with:
       fonts-repository: getnodalia/foundation
-      fonts-ref: b076417b5880bd4154bd22f00695b1d28c6bea83
+      fonts-ref: 7a66e2c6c6d60ac6417caef3e339e186d003b5b8
       # Build every target, then the release package and its tarball; no tests (see above).
       command: >-
         cargo build --workspace --all-targets --locked &&

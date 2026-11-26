@@ -7,9 +7,9 @@
 //! file in memory.
 
 use crate::SampleFormat;
-pub use craft_audio::pcm_export::PcmContainer;
+pub use nodalia_audio::pcm_export::PcmContainer;
 #[cfg(test)]
-use craft_audio::pcm_export::extended;
+use nodalia_audio::pcm_export::extended;
 #[cfg(test)]
 const SUBTYPE_TAIL: [u8; 14] = [0, 0, 0, 0, 0x10, 0, 0x80, 0, 0, 0xAA, 0, 0x38, 0x9B, 0x71];
 #[cfg(test)]
@@ -19,23 +19,23 @@ const FL32_NAME: &[u8] = b"\x1532-bit floating point";
 
 /// Header for the selected PCM container.
 pub fn header(container: PcmContainer, channels: u16, rate: u32, format: SampleFormat, frames: u64) -> Result<Vec<u8>, String> {
-    craft_audio::pcm_export::header(container, channels, rate, format.shared(), frames)
+    nodalia_audio::pcm_export::header(container, channels, rate, format.shared(), frames)
 }
 /// Append a block of interleaved samples.
 pub fn encode(container: PcmContainer, samples: &[f32], format: SampleFormat, out: &mut Vec<u8>) {
-    craft_audio::pcm_export::encode(container, samples, format.shared(), out)
+    nodalia_audio::pcm_export::encode(container, samples, format.shared(), out)
 }
 /// Chunk alignment padding for the selected format.
 pub fn pad(frames: u64, channels: u16, format: SampleFormat) -> &'static [u8] {
-    craft_audio::pcm_export::pad(frames, channels, format.shared())
+    nodalia_audio::pcm_export::pad(frames, channels, format.shared())
 }
 /// Encode a complete WAV file.
 pub fn write_wav(samples: &[f32], channels: u16, rate: u32, format: SampleFormat) -> Result<Vec<u8>, String> {
-    craft_audio::pcm_export::write_wav(samples, channels, rate, format.shared())
+    nodalia_audio::pcm_export::write_wav(samples, channels, rate, format.shared())
 }
 /// Encode a complete AIFF file.
 pub fn write_aiff(samples: &[f32], channels: u16, rate: u32, format: SampleFormat) -> Result<Vec<u8>, String> {
-    craft_audio::pcm_export::write_aiff(samples, channels, rate, format.shared())
+    nodalia_audio::pcm_export::write_aiff(samples, channels, rate, format.shared())
 }
 
 /// File name of frame `index` of an image sequence of `count` frames exported to `path`:

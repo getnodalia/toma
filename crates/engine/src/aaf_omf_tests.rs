@@ -163,10 +163,10 @@ fn aaf_separate_aiff_breakout_and_linked() {
     assert_eq!(files.len(), 4);
     for f in &files {
         let b = std::fs::read(f).unwrap();
-        let m = craft_media::mxf::open(&b).unwrap();
+        let m = nodalia_media::mxf::open(&b).unwrap();
         assert_eq!(m.operational_pattern.name(), "OP-Atom");
         assert_eq!((m.product_name.as_deref(), m.company_name.as_deref()), (Some("Toma"), Some("Toma")));
-        let t = m.track_of_kind(craft_media::mxf::TrackKind::Sound).unwrap();
+        let t = m.track_of_kind(nodalia_media::mxf::TrackKind::Sound).unwrap();
         assert_eq!(m.tracks[t].stored_sample_frames(), 48_000);
     }
     let r = s.execute("file.importAaf", json!({"path": path})).unwrap();

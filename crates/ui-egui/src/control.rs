@@ -508,7 +508,7 @@ pub fn handle(app: &mut TomaApp, ctx: &egui::Context, req: &ControlRequest) -> O
         "ui.menu.list" => ok(serde_json::to_value(crate::menus::menu_items_with_focus(app, ctx)).unwrap_or_default()),
         "ui.inspect" => ok(inspect(app, ctx)),
         "ui.docking" => {
-            let hits = craft_ui::docking::DockArea::<PanelKind>::hit_rects(ctx, crate::dock_ui::area_id());
+            let hits = nodalia_ui::docking::DockArea::<PanelKind>::hit_rects(ctx, crate::dock_ui::area_id());
             let hits: Vec<Value> = hits.iter().map(|(hit, r)| json!({"hit": hit, "rect": [r.left(), r.top(), r.width(), r.height()]})).collect();
             ok(json!({"layout": app.ui.dock, "focused": app.ui.focused, "maximized": app.ui.keys.maximized, "hitRects": hits}))
         }
@@ -527,7 +527,7 @@ pub fn handle(app: &mut TomaApp, ctx: &egui::Context, req: &ControlRequest) -> O
             if req.method == "ui.panel.show" {
                 app.show_panel(panel);
             } else {
-                if let Err(error) = app.apply_dock(craft_ui::docking::Action::Close { panel }) {
+                if let Err(error) = app.apply_dock(nodalia_ui::docking::Action::Close { panel }) {
                     return err(&error);
                 }
             }

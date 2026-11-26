@@ -258,11 +258,11 @@ pub fn invoke_command(app: &mut TomaApp, ctx: &egui::Context, id: &str, mut para
             | "app.language.swedish"
             | "app.language.turkish"
     ) {
-        // Japanese needs the craft-fonts (built with CRAFT_FONTS_DIR) or a font installed on the system
+        // Japanese needs the nodalia-fonts (built with NODALIA_FONTS_DIR) or a font installed on the system
         if id == "app.language.japanese" && !crate::i18n::install_japanese_font(ctx) {
             return Err("no Japanese font is installed on this system (for example Noto Sans CJK JP); the interface stays in English".into());
         }
-        // Chinese needs the Chinese fallback theme::install adds (craft-fonts or a system face)
+        // Chinese needs the Chinese fallback theme::install adds (nodalia-fonts or a system face)
         if id == "app.language.chinese" && !crate::i18n::chinese_font_available() {
             return Err("no Chinese font is installed on this system (for example Noto Sans CJK SC or Microsoft YaHei); the interface stays in English".into());
         }
@@ -729,7 +729,7 @@ pub fn activate_native(app: &mut TomaApp, ctx: &egui::Context, id: &str) -> Resu
             app.synthetic.extend(events);
             ctx.request_repaint();
         }
-        TextCommand::Events(events) => craft_ui::docking::send_keys(ctx, window, events),
+        TextCommand::Events(events) => nodalia_ui::docking::send_keys(ctx, window, events),
     }
     Ok(Value::Null)
 }
@@ -746,7 +746,7 @@ fn select_all_in_text_field(ctx: &egui::Context) -> bool {
 /// The window whose text field has the keyboard: a floating panel's own OS window, or the main
 /// window.
 pub fn text_field_window(ctx: &egui::Context) -> Option<egui::ViewportId> {
-    craft_ui::docking::typing_window(ctx).or_else(|| ctx.text_edit_focused().then_some(egui::ViewportId::ROOT))
+    nodalia_ui::docking::typing_window(ctx).or_else(|| ctx.text_edit_focused().then_some(egui::ViewportId::ROOT))
 }
 
 /// Whether a focused text field takes the menu command `id` ([`activate_native`]): the native

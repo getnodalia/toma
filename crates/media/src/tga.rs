@@ -1,13 +1,13 @@
-//! Targa decoding through shared craft-tga; Film retains the media error/raster adapter.
+//! Targa decoding through shared nodalia-tga; Film retains the media error/raster adapter.
 use crate::{MediaError, Result, still::Raster};
 
 pub fn sniff(name: &str, bytes: &[u8]) -> bool {
-    craft_tga::sniff(name, bytes)
+    nodalia_tga::sniff(name, bytes)
 }
 
 pub fn decode(name: &str, bytes: &[u8]) -> Result<Raster> {
-    let image = craft_tga::decode(bytes, &limits()).map_err(|e| match e {
-        craft_tga::Error::Unsupported(kind) => MediaError::Unsupported(format!("{name}: Targa image type {kind}")),
+    let image = nodalia_tga::decode(bytes, &limits()).map_err(|e| match e {
+        nodalia_tga::Error::Unsupported(kind) => MediaError::Unsupported(format!("{name}: Targa image type {kind}")),
         other => MediaError::Decode(format!("{name}: {other}")),
     })?;
     Ok(Raster { width: image.width, height: image.height, rgba: image.rgba, has_alpha: image.has_alpha })
@@ -16,8 +16,8 @@ pub fn decode(name: &str, bytes: &[u8]) -> Result<Raster> {
 /// Film's Targa ceiling is the 2^28-pixel limit alone, as with its previous decoder: the shared
 /// default 256 MiB byte budget would refuse pictures from about 38 million 24-bit pixels. The
 /// budget covers four stored bytes and four RGBA bytes per pixel plus the largest colour map.
-fn limits() -> craft_tga::Limits {
-    let mut limits = craft_tga::Limits::default();
+fn limits() -> nodalia_tga::Limits {
+    let mut limits = nodalia_tga::Limits::default();
     let pixels = usize::try_from(limits.max_pixels).unwrap_or(usize::MAX);
     limits.max_decoded_bytes = pixels.saturating_mul(8).saturating_add(usize::from(u16::MAX) * 4);
     limits
@@ -41,10 +41,10 @@ mod tests {
     #[test]
     fn pixel_count_not_the_byte_budget_bounds_a_picture() {
         let limits = limits();
-        assert_eq!(limits.max_pixels, craft_tga::Limits::default().max_pixels);
+        assert_eq!(limits.max_pixels, nodalia_tga::Limits::default().max_pixels);
         // An 8000×6000 24-bit picture stores 3 bytes and decodes to 4 bytes per pixel (336 MB).
         assert!(limits.max_decoded_bytes >= 8000 * 6000 * (3 + 4));
-        assert!(craft_tga::Limits::default().max_decoded_bytes < 8000 * 6000 * (3 + 4));
+        assert!(nodalia_tga::Limits::default().max_decoded_bytes < 8000 * 6000 * (3 + 4));
     }
 
     #[test]

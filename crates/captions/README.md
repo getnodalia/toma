@@ -1,7 +1,7 @@
 # toma-captions
 
 Caption files and caption burn-in for Toma (layer L2: depends on `toma-time`,
-`toma-color`, `toma-project`, `toma-text` and craft-libs' `craft-captions`).
+`toma-color`, `toma-project`, `toma-text` and nodalia-libs' `nodalia-captions`).
 
 The caption *model* (caption tracks in a sequence, captions, track style) lives in
 `toma-project` (`caption.rs`) because it is part of the `.fcproj` document. This crate
@@ -10,8 +10,8 @@ converts caption files to and from caption tracks, and draws captions.
 ## Formats
 
 SubRip, WebVTT, Scenarist SCC, MacCaption MCC, EBU STL and TTML / DFXP are read and written by
-[`craft-captions`](https://github.com/storytold/craft-libs/tree/main/crates/captions) in
-craft-libs. This crate re-exports it. The formats, the SCC and MCC encoders, the TTML timing and
+[`nodalia-captions`](https://github.com/getnodalia/foundation/tree/nodalia/libs/crates/captions) in
+nodalia-libs. This crate re-exports it. The formats, the SCC and MCC encoders, the TTML timing and
 speaker rules, and their tests are documented there, and format fixes go there.
 
 What stays here:
@@ -43,4 +43,4 @@ implementation's code was consulted.
 ## Tests
 
 `cargo test -p toma-captions`: the track mapping, the program name in written files, and
-burn-in. The format tests are in craft-captions.
+burn-in. The format tests are in nodalia-captions.

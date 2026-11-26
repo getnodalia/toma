@@ -1,5 +1,5 @@
 //! Panels floated into their own OS windows, with a stand-in for the OS: each native viewport
-//! runs its own frame at the desktop place craft-ui asks for, with the main window's content at
+//! runs its own frame at the desktop place nodalia-ui asks for, with the main window's content at
 //! the desktop origin.
 
 use std::sync::mpsc::{Sender, channel};
@@ -77,7 +77,7 @@ impl Driver {
         });
         let mut d = Driver { harness, tx };
         d.harness.ctx.set_embed_viewports(false);
-        // A main window that reports its desktop place, as under X11: craft-ui otherwise keeps
+        // A main window that reports its desktop place, as under X11: nodalia-ui otherwise keeps
         // floating windows in-window.
         let main = egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(1600.0, 980.0));
         let info = d.harness.input_mut().viewports.entry(egui::ViewportId::ROOT).or_default();

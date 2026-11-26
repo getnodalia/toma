@@ -527,8 +527,8 @@ pub fn font_families() -> Vec<FontFamily> {
     vec![FontFamily::Proportional, FontFamily::Monospace, FontFamily::Name("semibold".into()), FontFamily::Name("medium".into())]
 }
 
-/// Install the Latin UI fonts, Chinese fallback (craft-fonts or an installed face), Japanese
-/// craft-fonts, Arabic and Hebrew fallbacks (craft-fonts or installed faces, `crate::rtl`) and
+/// Install the Latin UI fonts, Chinese fallback (nodalia-fonts or an installed face), Japanese
+/// nodalia-fonts, Arabic and Hebrew fallbacks (nodalia-fonts or installed faces, `crate::rtl`) and
 /// egui visuals. Document names keep their glyphs in every interface language.
 pub fn install(ctx: &egui::Context, t: &Tokens) {
     let mut fonts = FontDefinitions::default();
@@ -542,31 +542,31 @@ pub fn install(ctx: &egui::Context, t: &Tokens) {
     fonts.families.insert(FontFamily::Name("medium".into()), vec!["inter-medium".into(), "inter".into()]);
     // Japanese before Chinese: the two share code points, and Japanese text must keep Japanese
     // glyph forms; Chinese faces still cover the hanzi Japanese fonts lack
-    add_craft_fonts(&mut fonts);
+    add_nodalia_fonts(&mut fonts);
     crate::cjk::install(&mut fonts);
     crate::rtl::install(&mut fonts);
     ctx.set_fonts(fonts);
     apply_visuals(ctx, t);
 }
 
-/// Name of the egui font for a craft-fonts entry.
-fn craft_font_name(f: &toma_text::fonts::CraftFont) -> String {
-    format!("craft:{} {}", f.family, f.style)
+/// Name of the egui font for a nodalia-fonts entry.
+fn nodalia_font_name(f: &toma_text::fonts::NodaliaFont) -> String {
+    format!("nodalia:{} {}", f.family, f.style)
 }
 
-/// Append the Japanese craft-fonts (empty unless built with `CRAFT_FONTS_DIR`) as the last fallbacks
+/// Append the Japanese nodalia-fonts (empty unless built with `NODALIA_FONTS_DIR`) as the last fallbacks
 /// of every font family, after the app's own fonts: BIZ UDPGothic first (bold before regular in
 /// the "semibold" and "medium" families), then the other Japanese faces.
-fn add_craft_fonts(fonts: &mut FontDefinitions) {
-    let jpan: Vec<_> = toma_text::fonts::craft_japanese().collect();
+fn add_nodalia_fonts(fonts: &mut FontDefinitions) {
+    let jpan: Vec<_> = toma_text::fonts::nodalia_japanese().collect();
     for f in &jpan {
-        fonts.font_data.insert(craft_font_name(f), Arc::new(FontData::from_static(f.bytes)));
+        fonts.font_data.insert(nodalia_font_name(f), Arc::new(FontData::from_static(f.bytes)));
     }
     for (family, stack) in fonts.families.iter_mut() {
         let heavy = matches!(family, FontFamily::Name(n) if matches!(n.as_ref(), "semibold" | "medium"));
         let mut order = jpan.clone();
         order.sort_by_key(|f| (!f.family.contains("Gothic"), (f.style == "Bold") != heavy));
-        stack.extend(order.iter().map(|f| craft_font_name(f)));
+        stack.extend(order.iter().map(|f| nodalia_font_name(f)));
     }
 }
 
@@ -725,9 +725,9 @@ mod tests {
         const CHINESE: &str = "中文旁白音乐声轨测试简体汉语繁體漢語车";
         toma_text::fonts::scan_system();
         let available =
-            toma_text::fonts::all_faces().iter().any(|f| matches!(f.info.origin, "system" | toma_text::fonts::CRAFT_ORIGIN) && f.covers_text(CHINESE));
+            toma_text::fonts::all_faces().iter().any(|f| matches!(f.info.origin, "system" | toma_text::fonts::NODALIA_ORIGIN) && f.covers_text(CHINESE));
         if !available {
-            eprintln!("SKIPPED: no craft-fonts or installed Chinese font");
+            eprintln!("SKIPPED: no nodalia-fonts or installed Chinese font");
             return;
         }
         let ctx = egui::Context::default();
@@ -780,12 +780,12 @@ mod tests {
         ctx.run_ui(egui::RawInput::default(), |_| {}).textures_delta.clear();
     }
 
-    /// Built with craft-fonts: every font family ends with the Japanese faces (BIZ UDPGothic
+    /// Built with nodalia-fonts: every font family ends with the Japanese faces (BIZ UDPGothic
     /// first), and Japanese text gets real glyphs, not the replacement box.
     #[test]
-    fn japanese_renders_with_craft_fonts() {
-        if toma_text::fonts::craft_japanese().next().is_none() {
-            eprintln!("SKIPPED: built without craft-fonts (set CRAFT_FONTS_DIR to run)");
+    fn japanese_renders_with_nodalia_fonts() {
+        if toma_text::fonts::nodalia_japanese().next().is_none() {
+            eprintln!("SKIPPED: built without nodalia-fonts (set NODALIA_FONTS_DIR to run)");
             return;
         }
         let ctx = installed();
@@ -793,7 +793,7 @@ mod tests {
             let defs = fonts.definitions().clone();
             for (family, stack) in &defs.families {
                 // installed faces come after the craft run: right-to-left ones (Hebrew is not in
-                // craft-fonts) and the Hangul face (none is in craft-fonts)
+                // nodalia-fonts) and the Hangul face (none is in nodalia-fonts)
                 let stack: Vec<&String> = stack
                     .iter()
                     .filter(|n| !crate::rtl::is_system_face(n) && n.as_str() != crate::cjk::KOREAN_FACE && n.as_str() != crate::cjk::THAI_FACE)
@@ -817,14 +817,14 @@ mod tests {
         assert!(galley.size().x > 13.0 * 4.0, "{:?}", galley.size());
     }
 
-    /// Latin text keeps its UI faces, with or without craft-fonts and system Chinese fonts.
+    /// Latin text keeps its UI faces, with or without nodalia-fonts and system Chinese fonts.
     #[test]
-    fn works_without_craft_fonts() {
+    fn works_without_nodalia_fonts() {
         let ctx = installed();
-        let n = toma_text::fonts::craft_japanese().count()
-            + crate::cjk::craft_fonts().count()
-            + crate::rtl::craft_fonts().count()
-            + crate::cjk::thai_craft_fonts().count();
+        let n = toma_text::fonts::nodalia_japanese().count()
+            + crate::cjk::nodalia_fonts().count()
+            + crate::rtl::nodalia_fonts().count()
+            + crate::cjk::thai_nodalia_fonts().count();
         ctx.fonts_mut(|fonts| {
             let defs = fonts.definitions().clone();
             assert_eq!(defs.font_data.keys().filter(|k| k.starts_with("craft:")).count(), n);

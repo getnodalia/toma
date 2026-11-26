@@ -694,7 +694,7 @@ fn style_strip(app: &mut TomaApp, ui: &mut egui::Ui, r: Rect, track_idx: usize, 
     let mut child = ui.new_child(egui::UiBuilder::new().max_rect(r).id_salt("caption-style"));
     child.horizontal_wrapped(|ui| {
         ui.spacing_mut().item_spacing = egui::vec2(6.0, 4.0);
-        let r = craft_ui::ComboBox::from_id_salt(("caption-font", tr.id.0)).selected_text(&st.font).width(130.0).height(400.0).show_ui(ui, |ui| {
+        let r = nodalia_ui::ComboBox::from_id_salt(("caption-font", tr.id.0)).selected_text(&st.font).width(130.0).height(400.0).show_ui(ui, |ui| {
             if !toma_text::fonts::system_scanned() {
                 toma_text::fonts::scan_system();
             }
@@ -714,7 +714,7 @@ fn style_strip(app: &mut TomaApp, ui: &mut egui::Ui, r: Rect, track_idx: usize, 
         app.auto.add("text.captions.style.font", r.response.rect, "Caption font");
         // the styles of the track's family, next to the font
         let styles = toma_text::families().into_iter().find(|(f, _)| f.eq_ignore_ascii_case(&st.font)).map(|(_, v)| v).unwrap_or_default();
-        let r = craft_ui::ComboBox::from_id_salt(("caption-font-style", tr.id.0)).selected_text(&st.font_style).width(100.0).height(300.0).show_ui(ui, |ui| {
+        let r = nodalia_ui::ComboBox::from_id_salt(("caption-font-style", tr.id.0)).selected_text(&st.font_style).width(100.0).height(300.0).show_ui(ui, |ui| {
             for name in &styles {
                 let resp = ui.selectable_label(name.eq_ignore_ascii_case(&st.font_style), name);
                 let visible = resp.rect.intersect(ui.clip_rect());
@@ -795,7 +795,7 @@ mod tests {
     fn tab_widths_follow_the_drawn_label() {
         let ctx = egui::Context::default();
         crate::theme::install(&ctx, &Tokens::for_kind(crate::theme::ThemeKind::default()));
-        // Japanese needs a craft-fonts build or an installed font; without one there is nothing wide to measure
+        // Japanese needs a nodalia-fonts build or an installed font; without one there is nothing wide to measure
         if !crate::i18n::install_japanese_font(&ctx) {
             return;
         }

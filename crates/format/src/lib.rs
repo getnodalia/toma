@@ -53,7 +53,7 @@ use toma_project::{Project, ProjectView};
 
 pub use atomic::{atomic_write, atomic_write_new};
 
-pub use craft_fcproj_format::{FORMAT_ID, MIGRATIONS, Migration, OLDEST_SCHEMA, SCHEMA_VERSION};
+pub use nodalia_fcproj_format::{FORMAT_ID, MIGRATIONS, Migration, OLDEST_SCHEMA, SCHEMA_VERSION};
 
 /// Why a project file could not be read. The shared envelope crate names the app it came from;
 /// a person opening a file sees Toma.
@@ -83,9 +83,9 @@ impl std::fmt::Display for FormatError {
 
 impl std::error::Error for FormatError {}
 
-impl From<craft_fcproj_format::FormatError> for FormatError {
-    fn from(e: craft_fcproj_format::FormatError) -> Self {
-        use craft_fcproj_format::FormatError as Shared;
+impl From<nodalia_fcproj_format::FormatError> for FormatError {
+    fn from(e: nodalia_fcproj_format::FormatError) -> Self {
+        use nodalia_fcproj_format::FormatError as Shared;
         match e {
             Shared::NotAProject(why) => Self::NotAProject(why),
             Shared::TooNew { found, supported } => Self::TooNew { found, supported },
@@ -98,12 +98,12 @@ impl From<craft_fcproj_format::FormatError> for FormatError {
 
 /// The schema version a project document declares.
 pub fn detect_version(doc: &serde_json::Value) -> Result<u32, FormatError> {
-    Ok(craft_fcproj_format::detect_version(doc)?)
+    Ok(nodalia_fcproj_format::detect_version(doc)?)
 }
 
 /// Upgrade `doc` from schema `from` through `table`.
 pub fn migrate_with(table: &[Migration], doc: serde_json::Value, from: u32) -> Result<serde_json::Value, FormatError> {
-    Ok(craft_fcproj_format::migrate_with(table, doc, from)?)
+    Ok(nodalia_fcproj_format::migrate_with(table, doc, from)?)
 }
 
 /// Largest project file this build will read (256 MiB). Project JSON is read whole, so
@@ -135,7 +135,7 @@ pub fn generator() -> String {
     format!("Toma {}", env!("CARGO_PKG_VERSION"))
 }
 
-fn loaded(env: craft_fcproj_format::EnvelopeIn<Project>, schema_version: u32) -> Loaded {
+fn loaded(env: nodalia_fcproj_format::EnvelopeIn<Project>, schema_version: u32) -> Loaded {
     let view = env.view.and_then(|v| serde_json::from_value(v).ok());
     Loaded { project: env.project, schema_version, generator: env.generator, view }
 }
@@ -150,7 +150,7 @@ pub fn encode(project: &Project, pretty: bool) -> Vec<u8> {
 /// outside the schema's promises: builds that do not know it ignore it, and it is dropped rather
 /// than migrated when it cannot be read.
 pub fn encode_with_view(project: &Project, view: Option<&ProjectView>, pretty: bool) -> Vec<u8> {
-    craft_fcproj_format::encode(project, view, generator(), pretty)
+    nodalia_fcproj_format::encode(project, view, generator(), pretty)
 }
 
 /// Read a project file (any supported schema).
@@ -158,7 +158,7 @@ pub fn decode(bytes: &[u8]) -> Result<Loaded, FormatError> {
     if bytes.len() as u64 > MAX_PROJECT_BYTES {
         return Err(FormatError::Corrupt(format!("project file is {} bytes, over the {MAX_PROJECT_BYTES} byte limit", bytes.len())));
     }
-    let (env, found) = craft_fcproj_format::decode::<Project>(bytes)?;
+    let (env, found) = nodalia_fcproj_format::decode::<Project>(bytes)?;
     validate_loaded(loaded(env, found))
 }
 

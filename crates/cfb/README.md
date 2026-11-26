@@ -1,8 +1,8 @@
 # toma-cfb
 
-Compatibility facade for [craft-cfb](https://github.com/storytold/craft-libs/tree/7f3fdc0dfebd03f33a241f91f916e9a78d3e5c93/crates/cfb),
+Compatibility facade for [nodalia-cfb](https://github.com/getnodalia/foundation/tree/nodalia/libs/crates/cfb),
 the shared Compound File Binary reader/writer used for AAF. All format implementation now lives
-in craft-libs; this crate retains the `toma_cfb` import path for consumers. AAF object mapping
+in nodalia-libs; this crate retains the `toma_cfb` import path for consumers. AAF object mapping
 remains in `toma-interchange`. The public round-trip/hostile-input and writer-scale tests
 remain here and now exercise the shared implementation. The private sector-span arithmetic test
 is upstream with the implementation.

@@ -1,12 +1,12 @@
-//! Toma's panels in craft-ui's shared docking. craft-ui draws the frames, tab strips,
+//! Toma's panels in nodalia-ui's shared docking. nodalia-ui draws the frames, tab strips,
 //! floating windows and drag previews and owns the gestures; Toma draws the panel
 //! bodies, the ≡ panel menu, the panel items of each tab's context menu and the Timeline's
 //! sequence tabs, and maps its control commands onto
-//! craft-ui's `DockCommand`.
+//! nodalia-ui's `DockCommand`.
 
 use std::collections::HashMap;
 
-use craft_ui::docking::{
+use nodalia_ui::docking::{
     Action, Divider, DockArea, DockCommand, DockContent, DockEvent, DockStyle, FloatSpace, Hit, Layout, Node, ResizeEdge, WindowKind, Workspace,
 };
 use egui::{Rect, Sense, Stroke, StrokeKind, vec2};
@@ -54,7 +54,7 @@ pub(crate) fn route(app: &mut TomaApp, ctx: &egui::Context, id: &str, params: &V
     None
 }
 
-/// Toma's own docking commands, as craft-ui `window.panel.*` commands. `panel` defaults to
+/// Toma's own docking commands, as nodalia-ui `window.panel.*` commands. `panel` defaults to
 /// the focused panel.
 fn alias(app: &mut TomaApp, ctx: &egui::Context, id: &str, params: &Value) -> Result<Value, String> {
     let panel = match params.get("panel") {
@@ -116,7 +116,7 @@ impl TomaApp {
         crate::menus::invoke(self, ctx, "window.dockAction", json!({"action": value})).map(|_| ())
     }
 
-    /// Run a craft-ui docking command on the current layout, all or nothing. Workspaces are
+    /// Run a nodalia-ui docking command on the current layout, all or nothing. Workspaces are
     /// Toma's own (Window ▸ Workspaces).
     pub(crate) fn run_dock_command(&mut self, ctx: &egui::Context, command: DockCommand<PanelKind>) -> Result<(), String> {
         if command.is_app_owned() {
@@ -130,7 +130,7 @@ impl TomaApp {
             self.show_panel(*panel);
             return Ok(());
         }
-        let space = craft_ui::docking::float_space(ctx, area_id()).unwrap_or_else(|| FloatSpace::new(self.float_bounds(ctx)));
+        let space = nodalia_ui::docking::float_space(ctx, area_id()).unwrap_or_else(|| FloatSpace::new(self.float_bounds(ctx)));
         let actions = command.to_actions(&Workspace::new(self.ui.dock.clone()), false, &space).map_err(|error| error.to_string())?;
         self.apply_dock_all(actions)
     }
@@ -379,7 +379,7 @@ impl TomaApp {
         closed.into_iter().filter(|panel| *panel != PanelKind::Timeline).map(|panel| Action::Close { panel }).collect()
     }
 
-    /// Automation ids for craft-ui's gesture sources: `panel.tab.<Panel>`, `panel.drag.<Panel>`
+    /// Automation ids for nodalia-ui's gesture sources: `panel.tab.<Panel>`, `panel.drag.<Panel>`
     /// (the group's drag bar), `panel.tabs.more.<Panel>`, `panel.float.<n>.move` and `.resize`,
     /// `dock.gutter.<path>` (`a`/`b` per split level), `dock.corner.<outer path>.<inner path>`
     /// where two dividers meet, the same inside floating window `n` as `panel.float.<n>.gutter.…`
@@ -506,10 +506,10 @@ impl DockContent<PanelKind> for FilmContent<'_> {
         let mut child = ui.new_child(egui::UiBuilder::new().max_rect(rect).id_salt(("panel", panel.id())));
         child.set_clip_rect(rect.intersect(ui.clip_rect()));
         panels::show(self.app, &mut child, *panel, rect);
-        // Toma's drag payload lives in context data, not egui's drag-and-drop, so craft-ui
+        // Toma's drag payload lives in context data, not egui's drag-and-drop, so nodalia-ui
         // routes it to the native window under the pointer only when asked, each frame.
         if panels::dragging(ui.ctx()) {
-            craft_ui::docking::route_app_drag(ui.ctx(), area_id());
+            nodalia_ui::docking::route_app_drag(ui.ctx(), area_id());
         }
         self.app.auto.viewport = egui::ViewportId::ROOT;
         // The body fills its frame; allocating it lets a floated panel take its full size.
@@ -550,7 +550,7 @@ impl DockContent<PanelKind> for FilmContent<'_> {
         if *panel == PanelKind::Timeline && self.seqs.open.is_empty() { self.seqs.label().into() } else { logical.into() }
     }
 
-    /// Toma's own panel items head a tab's context menu, as in its ≡ menu; craft-ui adds
+    /// Toma's own panel items head a tab's context menu, as in its ≡ menu; nodalia-ui adds
     /// Undock, Move, Close and the group items after them.
     fn panel_menu(&mut self, ui: &mut egui::Ui, panel: &PanelKind) {
         let app = &mut *self.app;
@@ -633,8 +633,8 @@ fn tab_group(layout: &Layout<PanelKind>, panel: PanelKind) -> Option<Vec<PanelKi
 
 #[cfg(test)]
 mod tests {
-    use craft_ui::docking::{Column, Group, Node, Side, StackEntry};
-    use craft_ui::layout::{SplitAxis, SplitSize};
+    use nodalia_ui::docking::{Column, Group, Node, Side, StackEntry};
+    use nodalia_ui::layout::{SplitAxis, SplitSize};
 
     use super::tab_group;
     use crate::dock::{Layout, PanelKind};

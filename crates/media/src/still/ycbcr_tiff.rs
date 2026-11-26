@@ -1,10 +1,10 @@
-//! YCbCr TIFF still adapter. Codec/colour conversion lives in craft-tiff; Toma
+//! YCbCr TIFF still adapter. Codec/colour conversion lives in nodalia-tiff; Toma
 //! retains its classic-TIFF compatibility and upright-image policy.
 use super::Raster;
 use crate::{MediaError, Result};
-use craft_tiff::classic::{Tiff, Type, tags};
-use craft_tiff::{Entry, Ifd, Value};
-use craft_tiff_ycbcr as craft_tiff;
+use nodalia_tiff::classic::{Tiff, Type, tags};
+use nodalia_tiff::{Entry, Ifd, Value};
+use nodalia_tiff_ycbcr as nodalia_tiff;
 use image::metadata::Orientation;
 
 const MAX_PIXELS: u64 = 1 << 28;
@@ -17,7 +17,7 @@ const FLOAT_TAGS: [u16; 2] = [529, 532];
 /// Read only the first unsigned value, while retaining validation of the full field.
 /// The parsed entry already records its inline/out-of-line address; reducing its
 /// count does not reinterpret an out-of-line value as inline storage.
-fn first_uint(t: &Tiff<'_>, e: &craft_tiff::classic::Entry) -> Option<u64> {
+fn first_uint(t: &Tiff<'_>, e: &nodalia_tiff::classic::Entry) -> Option<u64> {
     t.value_bytes(e).ok()?;
     let mut first = *e;
     first.count = first.count.min(1);
@@ -60,9 +60,9 @@ pub fn decode(name: &str, bytes: &[u8]) -> Result<Raster> {
     image.entries.sort_by_key(|e| e.tag);
     let width = image.u32(tags::IMAGE_WIDTH).ok_or_else(|| bad("no ImageWidth"))?;
     let height = image.u32(tags::IMAGE_LENGTH).ok_or_else(|| bad("no ImageLength"))?;
-    let rgba = craft_tiff::ycbcr::decode_rgba8(bytes, &image, MAX_PIXELS, craft_tiff::ycbcr::ColorPolicy::TiffEquation).map_err(|e| match e {
-        craft_tiff::TiffError::Limit("pixel count") => MediaError::Unsupported(format!("{name}: YCbCr TIFF with more than 268 million pixels")),
-        craft_tiff::TiffError::Invalid(ref why) if why.starts_with("unsupported YCbCr image with ") => {
+    let rgba = nodalia_tiff::ycbcr::decode_rgba8(bytes, &image, MAX_PIXELS, nodalia_tiff::ycbcr::ColorPolicy::TiffEquation).map_err(|e| match e {
+        nodalia_tiff::TiffError::Limit("pixel count") => MediaError::Unsupported(format!("{name}: YCbCr TIFF with more than 268 million pixels")),
+        nodalia_tiff::TiffError::Invalid(ref why) if why.starts_with("unsupported YCbCr image with ") => {
             let detail = why.strip_prefix("unsupported YCbCr image with ").unwrap_or(why);
             MediaError::Unsupported(format!("{name}: YCbCr TIFF with {detail}"))
         }

@@ -1,4 +1,4 @@
-//! MXF media source (`craft_media::mxf` demux, GOP-aware video via [`crate::gop`]).
+//! MXF media source (`nodalia_media::mxf` demux, GOP-aware video via [`crate::gop`]).
 //!
 //! - Video: H.264 / AVC-Intra (Annex B byte stream, our decoder), MPEG-2 (D-10 / IMX, XDCAM HD /
 //!   HD422; our decoder), VC-3 (DNxHD/DNxHR) and ProRes through the decoder factories. Other
@@ -12,7 +12,7 @@
 
 use std::sync::Arc;
 
-use craft_media::mxf::{Codec, MxfFile, Timecode, TrackKind};
+use nodalia_media::mxf::{Codec, MxfFile, Timecode, TrackKind};
 use toma_frame::{AudioBuffer, VideoFrame};
 use toma_isobmff::{FourCc, SampleEntry};
 use toma_media::{AudioStreamInfo, FrameRequest, MediaError, MediaInfo, MediaKind, MediaSource, SharedSource, VideoStreamInfo};
@@ -23,7 +23,7 @@ use crate::video::VideoDecoder;
 use crate::{CodecError, make_video_decoder};
 
 pub fn sniff(head: &[u8]) -> bool {
-    craft_media::mxf::sniff(head)
+    nodalia_media::mxf::sniff(head)
 }
 
 pub struct MxfSource {
@@ -56,8 +56,8 @@ pub struct MxfSource {
 ///
 /// `heads` is consumed one access unit at a time, so a long stream need not hold every head at once.
 pub fn avc_presentation_order<H: AsRef<[u8]>>(heads: impl IntoIterator<Item = H>) -> Option<Vec<i64>> {
-    use craft_video::h264::decode::params::{Pps, Sps};
-    use craft_video::h264::decode::slice::{NalHeader, SliceHeader};
+    use nodalia_video::h264::decode::params::{Pps, Sps};
+    use nodalia_video::h264::decode::slice::{NalHeader, SliceHeader};
     use toma_bitstream::{annexb_nals, unescape_rbsp};
     let mut spss: Vec<Option<Sps>> = vec![None; 32];
     let mut ppss: Vec<Option<Pps>> = vec![None; 256];
@@ -83,11 +83,11 @@ pub fn avc_presentation_order<H: AsRef<[u8]>>(heads: impl IntoIterator<Item = H>
                 1 | 5 => {
                     let mut sps_of = None;
                     let (sh, _, _) = SliceHeader::parse(&rbsp, hdr, |id| {
-                        let pps = ppss.get(id as usize).and_then(Option::as_ref).ok_or(craft_video::h264::decode::Error::MissingParameterSet("PPS".into()))?;
+                        let pps = ppss.get(id as usize).and_then(Option::as_ref).ok_or(nodalia_video::h264::decode::Error::MissingParameterSet("PPS".into()))?;
                         let sps = spss
                             .get(pps.sps_id as usize)
                             .and_then(Option::as_ref)
-                            .ok_or(craft_video::h264::decode::Error::MissingParameterSet("SPS".into()))?;
+                            .ok_or(nodalia_video::h264::decode::Error::MissingParameterSet("SPS".into()))?;
                         sps_of = Some(sps);
                         Ok((pps, sps))
                     })
@@ -189,7 +189,7 @@ fn start_frames(tc: &Timecode, rate: FrameRate) -> i64 {
 
 /// [`avc_presentation_order`] over the first `cap` bytes of every picture, read lazily one at a
 /// time. A failed read is an error; `Ok(None)` means only that a slice header was unreadable.
-fn avc_order_from_samples(r: &dyn toma_media::ByteReader, samples: &[craft_media::mxf::Sample], cap: usize) -> crate::Result<Option<Vec<i64>>> {
+fn avc_order_from_samples(r: &dyn toma_media::ByteReader, samples: &[nodalia_media::mxf::Sample], cap: usize) -> crate::Result<Option<Vec<i64>>> {
     let mut failed = None;
     let heads = samples.iter().map_while(|s| match toma_media::reader::read_range(r, s.offset, (s.size as usize).min(cap)) {
         Ok(h) => Some(h),
@@ -219,8 +219,8 @@ impl MxfSource {
     /// Open from a random-access reader: only the KLV headers, metadata and index are read now.
     pub fn open_reader(name: &str, reader: toma_media::SharedReader) -> crate::Result<Self> {
         let bytes = crate::Src(reader);
-        let file = craft_media::mxf::open(&bytes).map_err(|e| match e {
-            craft_media::mxf::Error::Unsupported(s) => CodecError::Unsupported(format!("MXF: {s}")),
+        let file = nodalia_media::mxf::open(&bytes).map_err(|e| match e {
+            nodalia_media::mxf::Error::Unsupported(s) => CodecError::Unsupported(format!("MXF: {s}")),
             other => CodecError::Container(other.to_string()),
         })?;
         for w in &file.warnings {
@@ -231,7 +231,7 @@ impl MxfSource {
             .tracks
             .iter()
             .enumerate()
-            .filter(|(_, t)| t.kind == TrackKind::Sound && !t.chunks.is_empty() && t.sound_format != craft_media::mxf::SoundFormat::Other)
+            .filter(|(_, t)| t.kind == TrackKind::Sound && !t.chunks.is_empty() && t.sound_format != nodalia_media::mxf::SoundFormat::Other)
             .map(|(i, _)| i)
             .collect();
         if vtrack.is_none() && atracks.is_empty() {
@@ -276,7 +276,7 @@ impl MxfSource {
             let mpeg = (t.codec == Codec::Mpeg2)
                 .then(|| file.read_sample(&bytes, vi, 0).ok())
                 .flatten()
-                .and_then(|s| Some((craft_video::mpeg2::probe(&s)?, craft_video::mpeg2::scan_access_unit(&s), crate::video::mpeg2_sequence_header(&s)?)));
+                .and_then(|s| Some((nodalia_video::mpeg2::probe(&s)?, nodalia_video::mpeg2::scan_access_unit(&s), crate::video::mpeg2_sequence_header(&s)?)));
             let (w, h) = match &mpeg {
                 Some((info, _, _)) => (info.width, info.height),
                 None => (p.frame_width(), p.frame_height()),
@@ -293,8 +293,8 @@ impl MxfSource {
                 Codec::Vc3 => file
                     .read_sample(&bytes, vi, 0)
                     .ok()
-                    .and_then(|f| craft_video::dnx::probe(&f).ok())
-                    .map(|h| craft_video::dnx::cid_name(h.cid))
+                    .and_then(|f| nodalia_video::dnx::probe(&f).ok())
+                    .map(|h| nodalia_video::dnx::cid_name(h.cid))
                     .unwrap_or_else(|| "DNxHD/DNxHR".into()),
                 Codec::ProRes { profile } => prores_name(profile).into(),
                 c @ Codec::Avc { .. } => c.name().into(),
@@ -317,9 +317,9 @@ impl MxfSource {
                     let pce = pce.as_ref()?;
                     let _ = ph;
                     (!pce.progressive_frame).then_some(if pce.picture_structure == 2 || (pce.picture_structure == 3 && !pce.top_field_first) {
-                        craft_video::mpeg2::FieldOrder::BottomFirst
+                        nodalia_video::mpeg2::FieldOrder::BottomFirst
                     } else {
-                        craft_video::mpeg2::FieldOrder::TopFirst
+                        nodalia_video::mpeg2::FieldOrder::TopFirst
                     })
                 });
                 pixel_format = crate::video::mpeg2_pixel_format(info, fo);
@@ -573,7 +573,7 @@ mod tests {
 
     #[test]
     fn failed_picture_head_read_is_an_error() {
-        let samples = [craft_media::mxf::Sample { offset: 0, size: 100, pts: 0, key: true, b_picture: false }];
+        let samples = [nodalia_media::mxf::Sample { offset: 0, size: 100, pts: 0, key: true, b_picture: false }];
         let e = avc_order_from_samples(&Failing, &samples, AVC_ORDER_HEAD).unwrap_err();
         assert!(matches!(e, CodecError::Container(ref m) if m.contains("disk gone")), "{e}");
     }
@@ -588,15 +588,15 @@ mod cut_tests {
     #[test]
     fn resampled_audio_does_not_depend_on_the_read_cuts() {
         let samples: Vec<i32> = toma_testkit::cuts::signs(toma_testkit::cuts::SOURCE_SAMPLES, 4).into_iter().map(|v| (v * 8_000_000.0) as i32).collect();
-        let opts = craft_media::mxf::OpAtomPcm {
+        let opts = nodalia_media::mxf::OpAtomPcm {
             sample_rate: 48_000,
             bits: 24,
             channels: 1,
             edit_rate: None,
-            ids: craft_media::mxf::PackageIds::from_seed("cuts", "cuts"),
+            ids: nodalia_media::mxf::PackageIds::from_seed("cuts", "cuts"),
             timecode: None,
         };
-        let bytes = craft_media::mxf::write_opatom_pcm(&opts, &samples).unwrap();
+        let bytes = nodalia_media::mxf::write_opatom_pcm(&opts, &samples).unwrap();
         let src = MxfSource::open("cuts.mxf", bytes.into()).unwrap();
         toma_testkit::cuts::assert_cut_independent("MXF 24-bit 48 kHz at 1999 Hz", 1_000, toma_testkit::cuts::FRAMES, |s, n| {
             src.audio(s, n, toma_testkit::cuts::RATE).unwrap().channels

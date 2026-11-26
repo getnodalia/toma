@@ -47,7 +47,7 @@ impl TomaApp {
 
     /// Key, text and clipboard events that a floating panel in its own OS window left over
     /// (`DockOutput::forwarded_events`): they run the main window's bindings in the frame they
-    /// arrive, so shortcuts work while a floating window has focus. craft-ui forwards nothing
+    /// arrive, so shortcuts work while a floating window has focus. nodalia-ui forwards nothing
     /// while that window's text field has focus.
     pub(crate) fn handle_forwarded_keys(&mut self, ctx: &egui::Context, events: Vec<egui::Event>) {
         if events.is_empty() || self.dialog == Some(Dialog::Shortcuts) {
@@ -71,7 +71,7 @@ impl TomaApp {
             .floating
             .iter()
             .filter(|window| window.native.is_some())
-            .map(|window| craft_ui::docking::DockArea::<PanelKind>::window_viewport(dock_ui::area_id(), window.id))
+            .map(|window| nodalia_ui::docking::DockArea::<PanelKind>::window_viewport(dock_ui::area_id(), window.id))
             .find_map(|viewport| ctx.input_for(viewport, |i| (i.viewport().focused == Some(true)).then_some(i.modifiers)))
             .unwrap_or_default()
     }

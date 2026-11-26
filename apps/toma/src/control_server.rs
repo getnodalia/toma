@@ -16,7 +16,7 @@ use std::sync::mpsc::{Receiver, Sender, channel};
 use std::time::Duration;
 
 #[cfg(test)]
-use craft_control_protocol::read_bounded_line;
+use nodalia_control_protocol::read_bounded_line;
 use serde_json::{Value, json};
 use toma_ui_egui::ControlRequest;
 
@@ -73,7 +73,7 @@ fn start_with_token(port: u16, ctx: egui::Context, token: Option<String>) -> (Re
     let (tx, rx) = channel::<ControlRequest>();
     // An inherited environment variable shares the credential with the owner's bridge process
     // without exposing it in command-line arguments, logs, or a shared discovery file.
-    let Some(token) = token.filter(|t| craft_control_protocol::valid_token(t)) else {
+    let Some(token) = token.filter(|t| nodalia_control_protocol::valid_token(t)) else {
         // The reason goes to the log (a desktop launch has no stderr to read; #3436) and back to
         // the app, which shows it in the status bar.
         log::warn!("control server disabled: {}", DisabledWhy::Token.reason());
@@ -165,7 +165,7 @@ fn serve_with_timeout(
 
 /// Serve the shared wire protocol with Toma's request size limit.
 fn serve_lines<R: Read, W: Write>(read: R, out: W, token: &str, handle: impl FnMut(String, Value) -> Option<Value>) {
-    craft_control_protocol::serve_lines(read, out, token, MAX_LINE, handle);
+    nodalia_control_protocol::serve_lines(read, out, token, MAX_LINE, handle);
 }
 
 #[cfg(test)]

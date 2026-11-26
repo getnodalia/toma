@@ -39,7 +39,7 @@ pub(crate) fn mjpeg_factory(format: Format, w: u32, h: u32, rate: FrameRate, s: 
 
 /// AAC-LC (our encoder), 320 kbps stereo by default.
 struct AacEncoder {
-    enc: craft_audio::aac::Encoder,
+    enc: nodalia_audio::aac::Encoder,
     rate: u32,
     channels: u32,
 }
@@ -70,7 +70,7 @@ impl AudioEncoder for AacEncoder {
 
 /// FLAC (our encoder) in MP4 / QuickTime: one frame of 4096 samples per access unit.
 pub(crate) struct FlacAudio {
-    enc: craft_audio::flac::Encoder,
+    enc: nodalia_audio::flac::Encoder,
     format: SampleFormat,
     /// Samples of the frame `flush` returns (shorter than a full block).
     tail: u32,
@@ -80,9 +80,9 @@ impl FlacAudio {
     pub(crate) fn new(sample_rate: u32, channels: u32, s: &ExportSettings) -> Result<Self> {
         let format = s.audio.sample_format();
         let ch = u8::try_from(channels).map_err(|_| ExportError::Unsupported("FLAC: too many audio channels".into()))?;
-        let mut cfg = craft_audio::flac::EncoderConfig::new(sample_rate, ch, format.bits() as u8);
+        let mut cfg = nodalia_audio::flac::EncoderConfig::new(sample_rate, ch, format.bits() as u8);
         cfg.level = s.audio.flac_level.min(8);
-        let enc = craft_audio::flac::Encoder::new(cfg).map_err(|e| ExportError::Unsupported(format!("FLAC: {e}")))?;
+        let enc = nodalia_audio::flac::Encoder::new(cfg).map_err(|e| ExportError::Unsupported(format!("FLAC: {e}")))?;
         Ok(FlacAudio { enc, format, tail: 0 })
     }
 }
@@ -121,7 +121,7 @@ pub(crate) fn aac_factory(_format: Format, sample_rate: u32, channels: u32, s: &
     let max = (6 * sample_rate as u64 * channels.max(1) as u64).min(u32::MAX as u64) as u32;
     let bps = (s.audio.bitrate_kbps.clamp(32, 512) * 1000).min(max);
     Some(
-        craft_audio::aac::Encoder::new(craft_audio::aac::EncoderConfig::cbr(sample_rate, channels as usize, bps))
+        nodalia_audio::aac::Encoder::new(nodalia_audio::aac::EncoderConfig::cbr(sample_rate, channels as usize, bps))
             .map(|enc| Box::new(AacEncoder { enc, rate: sample_rate, channels }) as Box<dyn AudioEncoder>)
             .map_err(|e| ExportError::Encode(e.to_string())),
     )
@@ -129,8 +129,8 @@ pub(crate) fn aac_factory(_format: Format, sample_rate: u32, channels: u32, s: &
 
 /// ProRes 422 encoder (HQ unless the settings pick another flavour): sRGB/709 RGBA8 → 10-bit limited-range BT.709 4:2:2.
 struct ProResEncoder {
-    enc: craft_video::prores::Encoder,
-    profile: craft_video::prores::Profile,
+    enc: nodalia_video::prores::Encoder,
+    profile: nodalia_video::prores::Profile,
     /// Code the frames' alpha channel (4444 profiles with Include Alpha Channel).
     alpha: bool,
     w: u32,
@@ -150,10 +150,10 @@ impl VideoEncoder for ProResEncoder {
     }
     fn encode(&mut self, f: &EncoderFrame) -> Result<Vec<EncodedPacket>> {
         let chroma = self.profile.chroma();
-        let mut fr = craft_video::prores::Frame::new(f.width, f.height, chroma, 10, self.alpha).map_err(|e| ExportError::Encode(e.to_string()))?;
+        let mut fr = nodalia_video::prores::Frame::new(f.width, f.height, chroma, 10, self.alpha).map_err(|e| ExportError::Encode(e.to_string()))?;
         let (w, h) = (f.width as usize, f.height as usize);
         timed(Stage::Convert, || match (chroma, f.hdr) {
-            (craft_video::prores::ChromaFormat::Yuv444, hdr) => {
+            (nodalia_video::prores::ChromaFormat::Yuv444, hdr) => {
                 let (kr, kb) = if hdr.is_some() { self.signal.kr_kb() } else { (0.2126, 0.0722) };
                 to_yuv444_10(f.rgba, hdr, w, h, Matrix::new(kr, kb), Planes444 { y: &mut fr.y, cb: &mut fr.cb, cr: &mut fr.cr, alpha: fr.alpha.as_deref_mut() })
             }
@@ -172,8 +172,8 @@ impl VideoEncoder for ProResEncoder {
 }
 
 /// The ProRes profile named by [`ExportSettings::prores_profile`].
-pub fn prores_profile(name: &str) -> craft_video::prores::Profile {
-    use craft_video::prores::Profile;
+pub fn prores_profile(name: &str) -> nodalia_video::prores::Profile {
+    use nodalia_video::prores::Profile;
     match name.to_ascii_lowercase().as_str() {
         "proxy" => Profile::Proxy,
         "lt" => Profile::Lt,
@@ -187,20 +187,20 @@ pub fn prores_profile(name: &str) -> craft_video::prores::Profile {
 pub(crate) fn prores_factory(format: Format, w: u32, h: u32, rate: FrameRate, s: &ExportSettings) -> Option<Result<Box<dyn VideoEncoder>>> {
     (format == Format::ProRes).then(|| {
         let profile = prores_profile(&s.prores_profile);
-        let mut cfg = craft_video::prores::EncoderConfig::new(profile, w, h);
+        let mut cfg = nodalia_video::prores::EncoderConfig::new(profile, w, h);
         if s.signal.is_hdr() {
-            cfg.color = craft_video::prores::ColorInfo { primaries: s.signal.primaries, transfer: s.signal.transfer, matrix: s.signal.matrix };
+            cfg.color = nodalia_video::prores::ColorInfo { primaries: s.signal.primaries, transfer: s.signal.transfer, matrix: s.signal.matrix };
         }
         let alpha = s.keeps_alpha();
         cfg.encode_alpha = alpha;
-        let enc = craft_video::prores::Encoder::with_config(cfg);
+        let enc = nodalia_video::prores::Encoder::with_config(cfg);
         Ok(Box::new(ProResEncoder { enc, profile, alpha, w, h, rate, signal: s.signal }) as Box<dyn VideoEncoder>)
     })
 }
 
 /// The DNxHR profile named by [`ExportSettings::dnx_profile`].
-pub fn dnx_profile(name: &str) -> craft_video::dnx::Profile {
-    use craft_video::dnx::Profile;
+pub fn dnx_profile(name: &str) -> nodalia_video::dnx::Profile {
+    use nodalia_video::dnx::Profile;
     match name.to_ascii_lowercase().as_str() {
         "lb" => Profile::Lb,
         "sq" => Profile::Sq,
@@ -212,7 +212,7 @@ pub fn dnx_profile(name: &str) -> craft_video::dnx::Profile {
 /// DNxHR encoder (RGBA8 or HDR floats → BT.709 / BT.2020 limited-range 4:2:2; 8-bit for
 /// LB/SQ/HQ, 10-bit for HQX).
 struct DnxEncoder {
-    enc: craft_video::dnx::Encoder,
+    enc: nodalia_video::dnx::Encoder,
     w: u32,
     h: u32,
     rate: FrameRate,
@@ -229,7 +229,7 @@ impl VideoEncoder for DnxEncoder {
         self.rate.num as u32
     }
     fn encode(&mut self, f: &EncoderFrame) -> Result<Vec<EncodedPacket>> {
-        let mut fr = craft_video::dnx::Frame::new(f.width, f.height, craft_video::dnx::ChromaFormat::Yuv422, 10, false);
+        let mut fr = nodalia_video::dnx::Frame::new(f.width, f.height, nodalia_video::dnx::ChromaFormat::Yuv422, 10, false);
         match f.hdr {
             Some(rgb) => {
                 let (kr, kb) = self.signal.kr_kb();
@@ -248,18 +248,18 @@ impl VideoEncoder for DnxEncoder {
 
 pub(crate) fn dnx_factory(format: Format, w: u32, h: u32, rate: FrameRate, s: &ExportSettings) -> Option<Result<Box<dyn VideoEncoder>>> {
     (format == Format::DnxHr).then(|| {
-        let mut cfg = craft_video::dnx::EncoderConfig::new(dnx_profile(&s.dnx_profile), w, h);
+        let mut cfg = nodalia_video::dnx::EncoderConfig::new(dnx_profile(&s.dnx_profile), w, h);
         if s.signal.primaries == 9 {
-            cfg.color_volume = craft_video::dnx::ColorVolume::Bt2020Ncl;
+            cfg.color_volume = nodalia_video::dnx::ColorVolume::Bt2020Ncl;
         }
-        let enc = craft_video::dnx::Encoder::with_config(cfg).map_err(|e| ExportError::Encode(e.to_string()))?;
+        let enc = nodalia_video::dnx::Encoder::with_config(cfg).map_err(|e| ExportError::Encode(e.to_string()))?;
         Ok(Box::new(DnxEncoder { enc, w, h, rate, signal: s.signal }) as Box<dyn VideoEncoder>)
     })
 }
 
 /// The APV profile named by [`ExportSettings::apv_profile`].
-pub fn apv_profile(name: &str) -> craft_video::apv::Profile {
-    use craft_video::apv::Profile;
+pub fn apv_profile(name: &str) -> nodalia_video::apv::Profile {
+    use nodalia_video::apv::Profile;
     match name.to_ascii_lowercase().replace([' ', '_'], "-").trim_start_matches("apv-").trim_start_matches("apv") {
         "422-12" | "42212" => Profile::P422_12,
         "444-10" | "44410" => Profile::P444_10,
@@ -273,8 +273,8 @@ pub fn apv_profile(name: &str) -> craft_video::apv::Profile {
 
 /// APV encoder (RFC 9924: 10/12-bit 4:2:2 or 4:4:4 intra).
 struct ApvEncoder {
-    enc: craft_video::apv::Encoder,
-    chroma: craft_video::apv::ChromaFormat,
+    enc: nodalia_video::apv::Encoder,
+    chroma: nodalia_video::apv::ChromaFormat,
     w: u32,
     h: u32,
     rate: FrameRate,
@@ -298,7 +298,7 @@ impl VideoEncoder for ApvEncoder {
     /// luma only), BT.709 for SDR and the signal's matrix for HDR, and codes one access unit.
     /// A picture buffer shorter than `width` x `height` is an error.
     fn encode(&mut self, f: &EncoderFrame) -> Result<Vec<EncodedPacket>> {
-        use craft_video::apv::ChromaFormat as Cf;
+        use nodalia_video::apv::ChromaFormat as Cf;
         let (w, h) = (f.width as usize, f.height as usize);
         let short = |what: &str, got: usize| ExportError::Encode(format!("a {w}x{h} picture needs {what}, got {got}"));
         match f.hdr {
@@ -306,7 +306,7 @@ impl VideoEncoder for ApvEncoder {
             None if !covers(f.rgba.len(), w, h, 4) => return Err(short("w*h*4 bytes", f.rgba.len())),
             _ => {}
         }
-        let mut fr = craft_video::apv::Frame::new(f.width, f.height, self.chroma, 10, self.chroma == Cf::Yuv4444);
+        let mut fr = nodalia_video::apv::Frame::new(f.width, f.height, self.chroma, 10, self.chroma == Cf::Yuv4444);
         let (kr, kb) = if f.hdr.is_some() { self.signal.kr_kb() } else { (0.2126, 0.0722) };
         let chroma = self.chroma;
         let (cb422, cr422) = (&mut self.cb422, &mut self.cr422);
@@ -345,12 +345,12 @@ impl VideoEncoder for ApvEncoder {
 pub(crate) fn apv_factory(format: Format, w: u32, h: u32, rate: FrameRate, s: &ExportSettings) -> Option<Result<Box<dyn VideoEncoder>>> {
     (format == Format::Apv).then(|| {
         let profile = apv_profile(&s.apv_profile);
-        let mut cfg = craft_video::apv::EncoderConfig::new(profile, w, h);
+        let mut cfg = nodalia_video::apv::EncoderConfig::new(profile, w, h);
         if s.signal.is_hdr() {
-            cfg.color = craft_video::apv::ColorInfo { primaries: s.signal.primaries, transfer: s.signal.transfer, matrix: s.signal.matrix, full_range: false };
+            cfg.color = nodalia_video::apv::ColorInfo { primaries: s.signal.primaries, transfer: s.signal.transfer, matrix: s.signal.matrix, full_range: false };
         }
         let chroma = cfg.chroma;
-        let enc = craft_video::apv::Encoder::with_config(cfg).map_err(|e| ExportError::Encode(e.to_string()))?;
+        let enc = nodalia_video::apv::Encoder::with_config(cfg).map_err(|e| ExportError::Encode(e.to_string()))?;
         Ok(Box::new(ApvEncoder { enc, chroma, w, h, rate, signal: s.signal, cb422: Vec::new(), cr422: Vec::new() }) as Box<dyn VideoEncoder>)
     })
 }
@@ -358,7 +358,7 @@ pub(crate) fn apv_factory(format: Format, w: u32, h: u32, rate: FrameRate, s: &E
 /// H.264 (shared encoder): sRGB/709 RGBA8 → limited-range BT.709 4:2:0, 8-bit, or 10-bit for High 10
 /// (HDR frames from their float pixels), length-prefixed samples with the `avcC` in the sample entry.
 struct H264Encoder {
-    enc: craft_video::h264::Encoder,
+    enc: nodalia_video::h264::Encoder,
     w: u32,
     h: u32,
     rate: FrameRate,
@@ -407,15 +407,15 @@ impl H264Encoder {
     }
 
     /// Encode `f` at 10 bits (High 10), converting it on the encoder's threads.
-    fn encode10(&mut self, f: &EncoderFrame) -> Result<Vec<craft_video::h264::Packet>> {
+    fn encode10(&mut self, f: &EncoderFrame) -> Result<Vec<nodalia_video::h264::Packet>> {
         let (enc, y, u, v, signal) = (&self.enc, &mut self.y16, &mut self.u16, &mut self.v16, self.signal);
         timed(Stage::Convert, || enc.install(|| h264_input10(f, signal, y, u, v)))?;
         let cw = (f.width as usize).div_ceil(2);
-        let frame = craft_video::h264::YuvFrame16 { y: &self.y16, u: &self.u16, v: &self.v16, y_stride: f.width as usize, uv_stride: cw };
+        let frame = nodalia_video::h264::YuvFrame16 { y: &self.y16, u: &self.u16, v: &self.v16, y_stride: f.width as usize, uv_stride: cw };
         self.enc.encode16(&frame, f.index as i64 * self.rate.den).map_err(|e| ExportError::Encode(e.to_string()))
     }
 
-    fn packets(&self, ps: Vec<craft_video::h264::Packet>) -> Vec<EncodedPacket> {
+    fn packets(&self, ps: Vec<nodalia_video::h264::Packet>) -> Vec<EncodedPacket> {
         ps.into_iter()
             .map(|p| EncodedPacket { data: p.data, key: p.keyframe, duration: self.rate.den as u32, composition_offset: (p.pts - p.dts) as i32 })
             .collect()
@@ -458,7 +458,7 @@ impl VideoEncoder for H264Encoder {
             }
         }
         let cw = (f.width as usize).div_ceil(2);
-        let frame = craft_video::h264::YuvFrame { y: &self.y, u: &self.u, v: &self.v, y_stride: f.width as usize, uv_stride: cw };
+        let frame = nodalia_video::h264::YuvFrame { y: &self.y, u: &self.u, v: &self.v, y_stride: f.width as usize, uv_stride: cw };
         let ps = self.enc.try_encode(&frame, f.index as i64 * self.rate.den).map_err(|e| ExportError::Encode(e.to_string()))?;
         Ok(self.packets(ps))
     }
@@ -470,7 +470,7 @@ impl VideoEncoder for H264Encoder {
         // With B-frames the first DTS is one frame before the first PTS.
         (self.enc.delay() > 0).then_some(self.rate.den)
     }
-    fn pass_stats(&self) -> Option<craft_video::h264::PassStats> {
+    fn pass_stats(&self) -> Option<nodalia_video::h264::PassStats> {
         self.enc.pass_stats()
     }
     fn prepare_ahead(&self) -> Option<PrepareAhead> {
@@ -498,32 +498,32 @@ pub(crate) fn h264_factory(format: Format, w: u32, h: u32, rate: FrameRate, s: &
     if format != Format::H264 {
         return None;
     }
-    let mut cfg = craft_video::h264::EncoderConfig::new(w, h, rate.num as u32, rate.den as u32);
+    let mut cfg = nodalia_video::h264::EncoderConfig::new(w, h, rate.num as u32, rate.den as u32);
     // Keep the existing Toma identification SEI string instead of the shared crate default.
     cfg.writer = format!("toma-h264enc {}", env!("CARGO_PKG_VERSION"));
     // MXF carries the Annex B byte stream (ST 381-3) with in-band parameter sets
-    cfg.format = if s.format.is_mxf() { craft_video::h264::PacketFormat::AnnexB } else { craft_video::h264::PacketFormat::LengthPrefixed };
+    cfg.format = if s.format.is_mxf() { nodalia_video::h264::PacketFormat::AnnexB } else { nodalia_video::h264::PacketFormat::LengthPrefixed };
     cfg.aud = s.format.is_mxf();
     cfg.keyint = s.keyframe_distance.filter(|k| *k > 0).unwrap_or_else(|| (rate.num as f64 / rate.den as f64 * 2.0).round().max(1.0) as u32);
     cfg.slices = h264_slices(h);
     let kbps = s.bitrate_kbps.max(100);
     let max = s.max_bitrate_kbps.filter(|m| *m >= kbps).unwrap_or_else(|| (u64::from(kbps) * 3 / 2).min(u64::from(u32::MAX)) as u32);
     cfg.rate = match s.bitrate_mode {
-        BitrateMode::Cbr => craft_video::h264::RateControl::Cbr { kbps },
+        BitrateMode::Cbr => nodalia_video::h264::RateControl::Cbr { kbps },
         // the encoder clamps to 0..=51; a NaN from a hand-edited preset becomes the default
-        BitrateMode::Crf => craft_video::h264::RateControl::Crf(if s.crf.is_finite() { s.crf } else { DEFAULT_CRF }),
-        _ => craft_video::h264::RateControl::Vbr { target_kbps: kbps, max_kbps: max },
+        BitrateMode::Crf => nodalia_video::h264::RateControl::Crf(if s.crf.is_finite() { s.crf } else { DEFAULT_CRF }),
+        _ => nodalia_video::h264::RateControl::Vbr { target_kbps: kbps, max_kbps: max },
     };
     cfg.pass = match &s.h264_pass {
-        H264Pass::Single => craft_video::h264::Pass::Single,
-        H264Pass::First => craft_video::h264::Pass::First,
-        H264Pass::Second(st) => craft_video::h264::Pass::Second(st.clone()),
+        H264Pass::Single => nodalia_video::h264::Pass::Single,
+        H264Pass::First => nodalia_video::h264::Pass::First,
+        H264Pass::Second(st) => nodalia_video::h264::Pass::Second(st.clone()),
     };
     cfg.profile = match s.h264_profile {
-        H264Profile::Baseline => craft_video::h264::Profile::Baseline,
-        H264Profile::Main => craft_video::h264::Profile::Main,
-        H264Profile::High => craft_video::h264::Profile::High,
-        H264Profile::High10 => craft_video::h264::Profile::High10,
+        H264Profile::Baseline => nodalia_video::h264::Profile::Baseline,
+        H264Profile::Main => nodalia_video::h264::Profile::Main,
+        H264Profile::High => nodalia_video::h264::Profile::High,
+        H264Profile::High10 => nodalia_video::h264::Profile::High10,
     };
     cfg.bit_depth = s.h264_profile.bit_depth();
     cfg.intra_only = s.h264_intra_only;
@@ -532,7 +532,7 @@ pub(crate) fn h264_factory(format: Format, w: u32, h: u32, rate: FrameRate, s: &
         cfg.sar = (n.clamp(1, 65535) as u16, d.clamp(1, 65535) as u16);
     }
     if s.signal.is_hdr() {
-        cfg.color = craft_video::h264::ColorConfig { primaries: s.signal.primaries, transfer: s.signal.transfer, matrix: s.signal.matrix, full_range: false };
+        cfg.color = nodalia_video::h264::ColorConfig { primaries: s.signal.primaries, transfer: s.signal.transfer, matrix: s.signal.matrix, full_range: false };
         if let Some((md, cll)) = s.signal.static_metadata() {
             let mut b = [0u8; 24];
             b.copy_from_slice(&md.to_bytes());
@@ -541,7 +541,7 @@ pub(crate) fn h264_factory(format: Format, w: u32, h: u32, rate: FrameRate, s: &
         }
     }
     Some(
-        craft_video::h264::Encoder::new_with_motion_search_starts(cfg, craft_video::h264::MotionSearchStarts::SeedAndNeighbour)
+        nodalia_video::h264::Encoder::new_with_motion_search_starts(cfg, nodalia_video::h264::MotionSearchStarts::SeedAndNeighbour)
             .map(|enc| {
                 let (y, u, v, y16, u16, v16) = Default::default();
                 Box::new(H264Encoder { enc, w, h, rate, y, u, v, y16, u16, v16, signal: s.signal, ready: Default::default() }) as Box<dyn VideoEncoder>

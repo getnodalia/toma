@@ -527,7 +527,7 @@ fn language_commands_switch_and_persist_without_a_document() {
     let mut app = App::new(toma_engine::Session::default());
     let ctx = egui::Context::default();
     // Japanese needs an installed font (see `japanese_needs_an_installed_font`); skip that step without one
-    if craft_japanese_font() || system_japanese_font().is_some() {
+    if nodalia_japanese_font() || system_japanese_font().is_some() {
         switch(&mut app, &ctx, "app.language.japanese");
         assert_eq!(app.ui.language, Language::Ja);
         assert_ui_persists(&app, Language::Ja, "ja");
@@ -772,9 +772,9 @@ fn japanese_needs_an_installed_font() {
     let ctx = egui::Context::default();
     crate::theme::install(&ctx, &crate::theme::Tokens::for_kind(crate::theme::ThemeKind::default()));
     let r = crate::menus::invoke(&mut app, &ctx, "app.language.japanese", serde_json::json!({}));
-    let craft = craft_japanese_font();
+    let craft = nodalia_japanese_font();
     if !craft && system_japanese_font().is_none() {
-        // no craft-fonts and no system font: refused, and the interface stays English
+        // no nodalia-fonts and no system font: refused, and the interface stays English
         assert!(r.is_err(), "{r:?}");
         assert_eq!(app.ui.language, Language::En);
         return;
@@ -783,7 +783,7 @@ fn japanese_needs_an_installed_font() {
     let mut output = ctx.run_ui(egui::RawInput::default(), |_| {});
     output.textures_delta.clear();
     ctx.fonts_mut(|fonts| {
-        // every theme family falls back to the craft-fonts (when built with them; no system
+        // every theme family falls back to the nodalia-fonts (when built with them; no system
         // font is added then) or to the system Japanese font. Installed right-to-left faces
         // (`rtl::install`) come after every other fallback by design, so they are left out.
         for family in crate::theme::font_families() {

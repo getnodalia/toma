@@ -1,8 +1,8 @@
 //! MXF output of the stepped exporter: OP1a (one file, frame-wrapped picture + one PCM track) or
 //! OP-Atom (Avid style: the picture in `path`, one mono PCM file per audio channel next to it,
-//! `<stem>_A1.mxf`, `<stem>_A2.mxf`, …), written with [`craft_media::mxf::MxfWriter`].
+//! `<stem>_A1.mxf`, `<stem>_A2.mxf`, …), written with [`nodalia_media::mxf::MxfWriter`].
 
-use craft_media::mxf::{
+use nodalia_media::mxf::{
     CodedKind, ColorSpace, FrameInfo, MxfWriter, PackageIds, Pattern, PictureCoding, PictureDesc, Rational, SoundDesc, StartTimecode, Timestamp, WriterConfig,
 };
 use toma_time::FrameRate;
@@ -39,7 +39,7 @@ fn io(e: std::io::Error) -> ExportError {
 fn picture(settings: &ExportSettings, w: u32, h: u32) -> PictureDesc {
     let coding = match settings.video_format() {
         Format::ProRes => {
-            use craft_video::prores::Profile;
+            use nodalia_video::prores::Profile;
             PictureCoding::ProRes {
                 profile: match crate::prores_profile(&settings.prores_profile) {
                     Profile::Proxy => 1,
@@ -138,7 +138,7 @@ impl MxfMux {
                     rate,
                     PackageIds {
                         material: ids.material,
-                        file: craft_media::mxf::Umid::from_seed(format!("file:{seed}:A{}", k + 1).as_bytes()),
+                        file: nodalia_media::mxf::Umid::from_seed(format!("file:{seed}:A{}", k + 1).as_bytes()),
                         material_name: ids.material_name.clone(),
                         file_name: format!("{} A{}", s.name, k + 1),
                     },
@@ -199,12 +199,12 @@ impl MxfMux {
         if self.atom {
             for (k, (_, w)) in self.audio.iter_mut().enumerate() {
                 if let Some(c) = planar.get(k) {
-                    w.push_sound(0, &craft_media::mxf::encode_pcm(std::slice::from_ref(c), self.bits)).map_err(io)?;
+                    w.push_sound(0, &nodalia_media::mxf::encode_pcm(std::slice::from_ref(c), self.bits)).map_err(io)?;
                 }
             }
             Ok(())
         } else {
-            self.video.push_sound(0, &craft_media::mxf::encode_pcm(planar, self.bits)).map_err(io)
+            self.video.push_sound(0, &nodalia_media::mxf::encode_pcm(planar, self.bits)).map_err(io)
         }
     }
 

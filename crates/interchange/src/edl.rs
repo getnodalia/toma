@@ -35,15 +35,15 @@ pub(crate) fn looks_like_edl(text: &str) -> bool {
 // Parsing
 // ---------------------------------------------------------------------------------------------
 
-use craft_timeline::edl::{self as shared_edl, Channel as Ch, Edl as Parsed, Event, Line, Timecode as Tc, Transition as Trans};
+use nodalia_timeline::edl::{self as shared_edl, Channel as Ch, Edl as Parsed, Event, Line, Timecode as Tc, Transition as Trans};
 
 fn parse(text: &str, report: &mut Report) -> Parsed {
-    let mut shared_report = craft_timeline::Report::default();
+    let mut shared_report = nodalia_timeline::Report::default();
     let parsed = shared_edl::parse_with_report_limit(text, &mut shared_report, Some(crate::MAX_REPORT_ENTRIES));
     for entry in shared_report.entries {
         let level = match entry.level {
-            craft_timeline::Level::Info => crate::Level::Info,
-            craft_timeline::Level::Warning => crate::Level::Warning,
+            nodalia_timeline::Level::Info => crate::Level::Info,
+            nodalia_timeline::Level::Warning => crate::Level::Warning,
         };
         for _ in 0..entry.count {
             report.push(level, entry.message.clone());
@@ -829,7 +829,7 @@ pub(crate) fn export(p: &Project, seq_id: ItemId, opts: &ExportOptions, report: 
         let lines: Vec<_> = ev
             .lines
             .iter()
-            .map(|l| craft_timeline::edl::OutLine {
+            .map(|l| nodalia_timeline::edl::OutLine {
                 reel: l.reel.clone(),
                 chan: l.chan.clone(),
                 trans: l.trans.clone(),
@@ -847,9 +847,9 @@ pub(crate) fn export(p: &Project, seq_id: ItemId, opts: &ExportOptions, report: 
             locators.push((x.rec_frames(m.start), color_word(m.color).to_string(), m.name.clone()));
             mi += 1;
         }
-        shared_events.push(craft_timeline::edl::OutEvent { lines, m2, comments: ev.comments.clone(), locators });
+        shared_events.push(nodalia_timeline::edl::OutEvent { lines, m2, comments: ev.comments.clone(), locators });
     }
-    Ok(shared_edl::write(&craft_timeline::edl::OutHeader { title, rate, drop_frame: df, reel_len: opts.edl.reel_len }, &shared_events))
+    Ok(shared_edl::write(&nodalia_timeline::edl::OutHeader { title, rate, drop_frame: df, reel_len: opts.edl.reel_len }, &shared_events))
 }
 
 /// Source frame for a line position (BL lines are plain frame counts from 0).

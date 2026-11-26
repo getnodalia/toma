@@ -154,7 +154,7 @@ mod native_window_input_tests {
     use std::sync::Arc;
 
     use crate::{PanelKind, TomaApp};
-    use craft_ui::docking::WindowFiles;
+    use nodalia_ui::docking::WindowFiles;
     use egui_kittest::Harness;
     use toma_engine::Session;
 

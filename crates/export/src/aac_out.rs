@@ -56,13 +56,13 @@ impl Sink {
 
 /// Validated ADTS configuration for the encoder's AudioSpecificConfig.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub(crate) struct AdtsHeader(craft_audio::aac::AdtsConfig);
+pub(crate) struct AdtsHeader(nodalia_audio::aac::AdtsConfig);
 
 impl AdtsHeader {
     pub(crate) fn from_asc(asc: &[u8]) -> Result<Self> {
-        craft_audio::aac::AdtsConfig::from_asc_prefix(asc).map(Self).map_err(|e| match e {
-            craft_audio::aac::AdtsConfigError::Short => ExportError::Encode("AAC: the encoder gave no AudioSpecificConfig".into()),
-            craft_audio::aac::AdtsConfigError::Unsupported { object_type, sf_index, channel_config } => ExportError::Unsupported(format!(
+        nodalia_audio::aac::AdtsConfig::from_asc_prefix(asc).map(Self).map_err(|e| match e {
+            nodalia_audio::aac::AdtsConfigError::Short => ExportError::Encode("AAC: the encoder gave no AudioSpecificConfig".into()),
+            nodalia_audio::aac::AdtsConfigError::Unsupported { object_type, sf_index, channel_config } => ExportError::Unsupported(format!(
                 "an ADTS .aac stream cannot carry this AAC configuration (object type {object_type}, rate index {sf_index}, channels {channel_config}): export .m4a instead"
             )),
         })

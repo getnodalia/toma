@@ -1,8 +1,8 @@
-//! Ogg audio source (`craft_media::ogg` demux): Ogg Opus with our Opus decoder and Ogg Vorbis with the
+//! Ogg audio source (`nodalia_media::ogg` demux): Ogg Opus with our Opus decoder and Ogg Vorbis with the
 //! bootstrap Vorbis decoder.
 //!
 //! Opus (RFC 7845): packet positions come from granule positions and TOC durations
-//! ([`craft_media::ogg::OpusTiming`]); the pre-skip samples land before 0 and are never returned, the
+//! ([`nodalia_media::ogg::OpusTiming`]); the pre-skip samples land before 0 and are never returned, the
 //! final page's end trimming is applied, and random access decodes [`crate::audio::OPUS_PRE_ROLL`]
 //! of preceding packets first (so a seek gives the same samples as continuous playback).
 //!
@@ -13,7 +13,7 @@
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 
-use craft_media::ogg::{Codec, OggFile, OpusTiming};
+use nodalia_media::ogg::{Codec, OggFile, OpusTiming};
 use toma_frame::{AudioBuffer, VideoFrame};
 use toma_media::{AudioStreamInfo, FrameRequest, MediaError, MediaInfo, MediaKind, MediaSource, SharedSource};
 use toma_time::Tick;
@@ -22,7 +22,7 @@ use crate::CodecError;
 use crate::audio::{OPUS_PRE_ROLL, OPUS_RATE, PacketDecoder, check_decoded_budget, read_resampled};
 
 pub fn sniff(head: &[u8]) -> bool {
-    craft_media::ogg::sniff(head)
+    nodalia_media::ogg::sniff(head)
 }
 
 struct OpusState {
@@ -34,7 +34,7 @@ struct OpusState {
 
 enum Kind {
     Opus {
-        head: Box<craft_audio::opus::OpusHead>,
+        head: Box<nodalia_audio::opus::OpusHead>,
         timing: OpusTiming,
         state: Mutex<OpusState>,
     },
@@ -60,7 +60,7 @@ impl OggSource {
 
     pub fn open_reader(name: &str, reader: toma_media::SharedReader) -> crate::Result<Self> {
         let bytes = crate::Src(reader);
-        let file = craft_media::ogg::open(&bytes).map_err(|e| CodecError::Container(e.to_string()))?;
+        let file = nodalia_media::ogg::open(&bytes).map_err(|e| CodecError::Container(e.to_string()))?;
         for w in &file.warnings {
             log::warn!("{name}: {w}");
         }
@@ -74,7 +74,7 @@ impl OggSource {
             Codec::Opus => {
                 // an oversized first packet is filed as data, leaving an Opus stream without its header
                 let first = st.headers.first().ok_or_else(|| CodecError::Decode("Opus: missing header packet".into()))?;
-                let head = craft_audio::opus::OpusHead::parse(first).map_err(|e| CodecError::Unsupported(format!("Opus: {e}")))?;
+                let head = nodalia_audio::opus::OpusHead::parse(first).map_err(|e| CodecError::Unsupported(format!("Opus: {e}")))?;
                 let timing = OpusTiming::of(st, head.pre_skip as u32);
                 let channels = head.channels as u32;
                 (
@@ -116,7 +116,7 @@ impl OggSource {
         &self.file
     }
 
-    fn opus_packet(&self, st: &mut OpusState, head: &craft_audio::opus::OpusHead, timing: &OpusTiming, i: usize) -> crate::Result<Arc<Vec<Vec<f32>>>> {
+    fn opus_packet(&self, st: &mut OpusState, head: &nodalia_audio::opus::OpusHead, timing: &OpusTiming, i: usize) -> crate::Result<Arc<Vec<Vec<f32>>>> {
         if let Some(p) = st.packets.get(&i) {
             return Ok(p.clone());
         }
@@ -156,7 +156,7 @@ fn decode_vorbis(file: &OggFile, bytes: &crate::Src, s: usize) -> crate::Result<
     if st.headers.len() < 3 {
         return Err(CodecError::Decode("Vorbis: missing header packets".into()));
     }
-    let vi = craft_media::ogg::VorbisInfo::parse(&st.headers[0]).ok_or_else(|| CodecError::Decode("Vorbis: bad identification header".into()))?;
+    let vi = nodalia_media::ogg::VorbisInfo::parse(&st.headers[0]).ok_or_else(|| CodecError::Decode("Vorbis: bad identification header".into()))?;
     let mut extra = st.headers[0].clone();
     extra.extend_from_slice(&st.headers[2]);
     let mut dec = PacketDecoder::new(CODEC_TYPE_VORBIS, vi.sample_rate, Some(extra))?;

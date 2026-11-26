@@ -43,7 +43,7 @@ mod otio;
 mod common;
 mod comp;
 mod timeline_model;
-pub use craft_audio::essence_pcm as wav;
+pub use nodalia_audio::essence_pcm as wav;
 #[cfg(test)]
 mod xml;
 

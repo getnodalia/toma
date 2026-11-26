@@ -183,8 +183,8 @@ pub struct MjpegDecoder;
 
 /// Convert decoded 8-bit Motion JPEG samples to RGBA, reporting a component count Toma cannot show.
 fn mjpeg_rgba(samples: &[u8], components: u8) -> Result<Vec<u8>> {
-    craft_jpeg::to_rgba8(samples, components)
-        .map_err(|craft_jpeg::UnsupportedComponents(n)| CodecError::Decode(format!("unsupported JPEG component count {n}")))
+    nodalia_jpeg::to_rgba8(samples, components)
+        .map_err(|nodalia_jpeg::UnsupportedComponents(n)| CodecError::Decode(format!("unsupported JPEG component count {n}")))
 }
 
 #[cfg(test)]
@@ -200,17 +200,17 @@ mod mjpeg_rgba_tests {
 
 impl VideoDecoder for MjpegDecoder {
     fn decode(&mut self, sample: &[u8], pts: i64) -> Result<Vec<DecodedFrame>> {
-        let sample = craft_jpeg::with_avi1_default_huffman(sample);
+        let sample = nodalia_jpeg::with_avi1_default_huffman(sample);
         // mjpa samples may contain two fields; decode the first image (field-merging lands with interlace support).
-        let adobe = craft_jpeg::adobe_transform(&sample);
+        let adobe = nodalia_jpeg::adobe_transform(&sample);
         // `image::load_from_memory` previously used image::Limits::default(), which caps decoder
         // allocations at 512 MiB and has no pixel-count limit. Keep that memory ceiling and avoid
-        // adding a separate pixel limit when routing through craft-jpeg.
-        let mut limits = craft_jpeg::Limits::default();
+        // adding a separate pixel limit when routing through nodalia-jpeg.
+        let mut limits = nodalia_jpeg::Limits::default();
         limits.max_pixels = u64::MAX;
         limits.max_alloc = 512 << 20;
-        let decoded = craft_jpeg::decode(&sample, &limits, adobe).map_err(|e| CodecError::Decode(e.to_string()))?;
-        let craft_jpeg::Samples::U8(samples) = decoded.samples else {
+        let decoded = nodalia_jpeg::decode(&sample, &limits, adobe).map_err(|e| CodecError::Decode(e.to_string()))?;
+        let nodalia_jpeg::Samples::U8(samples) = decoded.samples else {
             return Err(CodecError::Decode("12-bit Motion JPEG is not supported by Toma frames".into()));
         };
         let rgba = mjpeg_rgba(&samples, decoded.components)?;
@@ -235,7 +235,7 @@ pub fn mjpeg_factory(e: &SampleEntry) -> Option<Result<Box<dyn VideoDecoder>>> {
 /// Our pure-Rust H.264 decoder (frame-threaded).
 pub struct H264Decoder {
     avcc: Vec<u8>,
-    dec: craft_video::h264::decode::Decoder,
+    dec: nodalia_video::h264::decode::Decoder,
     length_size: usize,
     draft: bool,
     /// Worker threads (a background decoder gets fewer).
@@ -248,8 +248,8 @@ impl H264Decoder {
         if toma_media::cancel::background() { BACKGROUND_H264_THREADS.min(h264_threads()) } else { h264_threads() }
     }
 
-    fn make_inner(avcc: &[u8], threads: usize) -> Result<craft_video::h264::decode::Decoder> {
-        let mut dec = craft_video::h264::decode::Decoder::with_threads(threads);
+    fn make_inner(avcc: &[u8], threads: usize) -> Result<nodalia_video::h264::decode::Decoder> {
+        let mut dec = nodalia_video::h264::decode::Decoder::with_threads(threads);
         if !avcc.is_empty() {
             dec.configure_avcc(avcc).map_err(h264_error)?;
         }
@@ -267,9 +267,9 @@ impl H264Decoder {
     pub fn annexb() -> Self {
         recycle_h264_planes();
         let threads = Self::threads_now();
-        Self { avcc: Vec::new(), dec: craft_video::h264::decode::Decoder::with_threads(threads), length_size: 0, draft: false, threads }
+        Self { avcc: Vec::new(), dec: nodalia_video::h264::decode::Decoder::with_threads(threads), length_size: 0, draft: false, threads }
     }
-    fn convert(p: craft_video::h264::decode::Picture) -> DecodedFrame {
+    fn convert(p: nodalia_video::h264::decode::Picture) -> DecodedFrame {
         use std::sync::Arc;
         let draft = p.draft;
         let (w, h) = (p.width as usize, p.height as usize);
@@ -294,9 +294,9 @@ impl H264Decoder {
 /// An H.264 decoder error as a [`CodecError`]: a feature the decoder does not implement (High
 /// 4:2:2, field pictures...) is [`CodecError::Unsupported`], so the media pool shows the
 /// unreadable slate instead of a black picture (#626); anything else is a decode error.
-fn h264_error(e: craft_video::h264::decode::Error) -> CodecError {
+fn h264_error(e: nodalia_video::h264::decode::Error) -> CodecError {
     match e {
-        craft_video::h264::decode::Error::Unsupported(what) => CodecError::Unsupported(format!("H.264: {what}")),
+        nodalia_video::h264::decode::Error::Unsupported(what) => CodecError::Unsupported(format!("H.264: {what}")),
         e => CodecError::Decode(e.to_string()),
     }
 }
@@ -338,7 +338,7 @@ impl VideoDecoder for H264Decoder {
         (self.length_size == 0).then(|| {
             toma_bitstream::annexb_nals(sample).iter().any(|n| match n.first().map(|h| h & 0x1f) {
                 Some(5) => true,
-                Some(6) => craft_media::mpegts::sei_has_recovery_point(n),
+                Some(6) => nodalia_media::mpegts::sei_has_recovery_point(n),
                 _ => false,
             })
         })
@@ -348,12 +348,12 @@ impl VideoDecoder for H264Decoder {
 /// The H.264 decoder's output planes come from the frames the caches evicted
 /// (`toma_frame::pool`) instead of the allocator.
 fn recycle_h264_planes() {
-    craft_video::h264::decode::set_plane_allocator(toma_frame::pool::take_u8);
+    nodalia_video::h264::decode::set_plane_allocator(toma_frame::pool::take_u8);
 }
 
 /// Worker threads each H.264 decoder uses (frame threading; 1 on wasm).
 pub fn h264_threads() -> usize {
-    craft_video::h264::decode::default_threads()
+    nodalia_video::h264::decode::default_threads()
 }
 
 pub fn h264_factory(e: &SampleEntry) -> Option<Result<Box<dyn VideoDecoder>>> {
@@ -366,23 +366,23 @@ pub fn h264_factory(e: &SampleEntry) -> Option<Result<Box<dyn VideoDecoder>>> {
 /// Our pure-Rust HEVC decoder (Main / Main 10 and 4:2:2, frame-threaded).
 pub struct HevcDecoder {
     hvcc: Vec<u8>,
-    dec: craft_video::hevc::decode::Decoder,
+    dec: nodalia_video::hevc::decode::Decoder,
     length_size: usize,
     highest_tid: Option<u8>,
 }
 
 impl HevcDecoder {
     pub fn new(hvcc: Vec<u8>) -> Result<Self> {
-        let dec = craft_video::hevc::decode::Decoder::from_hvcc(&hvcc).map_err(hevc_error)?;
+        let dec = nodalia_video::hevc::decode::Decoder::from_hvcc(&hvcc).map_err(hevc_error)?;
         let (length_size, highest_tid) = hvcc_length_size_and_tid(&hvcc);
         Ok(Self { hvcc, dec, length_size, highest_tid })
     }
     /// A decoder for Annex B byte-stream samples (start codes, in-band parameter sets: TS).
     pub fn annexb() -> Self {
-        Self { hvcc: Vec::new(), dec: craft_video::hevc::decode::Decoder::new(), length_size: 0, highest_tid: None }
+        Self { hvcc: Vec::new(), dec: nodalia_video::hevc::decode::Decoder::new(), length_size: 0, highest_tid: None }
     }
-    fn convert(p: craft_video::hevc::decode::Picture) -> DecodedFrame {
-        use craft_video::hevc::decode::{ChromaFormat, Plane};
+    fn convert(p: nodalia_video::hevc::decode::Picture) -> DecodedFrame {
+        use nodalia_video::hevc::decode::{ChromaFormat, Plane};
         use std::sync::Arc;
         let (w, h) = (p.width as usize, p.height as usize);
         let (cw, ch) = (p.chroma_width as usize, p.chroma_height as usize);
@@ -418,9 +418,9 @@ impl HevcDecoder {
 }
 
 /// An HEVC decoder error as a [`CodecError`] (see [`h264_error`]).
-fn hevc_error(e: craft_video::hevc::decode::Error) -> CodecError {
+fn hevc_error(e: nodalia_video::hevc::decode::Error) -> CodecError {
     match e {
-        craft_video::hevc::decode::Error::Unsupported(what) => CodecError::Unsupported(format!("HEVC: {what}")),
+        nodalia_video::hevc::decode::Error::Unsupported(what) => CodecError::Unsupported(format!("HEVC: {what}")),
         e => CodecError::Decode(e.to_string()),
     }
 }
@@ -435,8 +435,8 @@ impl VideoDecoder for HevcDecoder {
     }
     fn reset(&mut self) {
         if self.hvcc.is_empty() {
-            self.dec = craft_video::hevc::decode::Decoder::new();
-        } else if let Ok(d) = craft_video::hevc::decode::Decoder::from_hvcc(&self.hvcc) {
+            self.dec = nodalia_video::hevc::decode::Decoder::new();
+        } else if let Ok(d) = nodalia_video::hevc::decode::Decoder::from_hvcc(&self.hvcc) {
             self.dec = d;
         }
     }
@@ -466,7 +466,7 @@ pub fn hevc_factory(e: &SampleEntry) -> Option<Result<Box<dyn VideoDecoder>>> {
 /// Our pure-Rust VP9 decoder (profiles 0-3, 8/10/12-bit; tile columns and loop filter decode in
 /// parallel).
 pub struct Vp9Decoder {
-    dec: craft_video::vp9::decode::Decoder,
+    dec: nodalia_video::vp9::decode::Decoder,
     /// Container colour (vpcC / Matroska `Colour`): transfer and primaries are not in the VP9
     /// bitstream.
     transfer: Option<toma_color::Transfer>,
@@ -489,15 +489,15 @@ pub(crate) fn primaries_from_code(c: u8) -> Option<toma_color::Primaries> {
 impl Vp9Decoder {
     pub fn new(cfg: Option<&toma_isobmff::VpcConfig>) -> Self {
         Self {
-            dec: craft_video::vp9::decode::Decoder::new(),
+            dec: nodalia_video::vp9::decode::Decoder::new(),
             transfer: cfg.and_then(|c| toma_color::Transfer::from_code(c.transfer_characteristics)),
             primaries: cfg.and_then(|c| primaries_from_code(c.colour_primaries)),
         }
     }
 
     /// `None` for a picture whose planes mix sample types (never produced by the decoder).
-    fn convert(&self, p: craft_video::vp9::decode::Picture) -> Option<DecodedFrame> {
-        use craft_video::vp9::decode::Plane;
+    fn convert(&self, p: nodalia_video::vp9::decode::Picture) -> Option<DecodedFrame> {
+        use nodalia_video::vp9::decode::Plane;
         use std::sync::Arc;
         use toma_color::Range;
         use toma_frame::{Chroma, PixelData};
@@ -574,7 +574,7 @@ impl VideoDecoder for Vp9Decoder {
         self.dec.set_draft(on);
     }
     fn is_random_access(&self, sample: &[u8]) -> Option<bool> {
-        Some(craft_video::vp9::decode::is_keyframe(sample))
+        Some(nodalia_video::vp9::decode::is_keyframe(sample))
     }
 }
 
@@ -586,9 +586,9 @@ pub fn vp9_factory(e: &SampleEntry) -> Option<Result<Box<dyn VideoDecoder>>> {
 }
 
 /// VP8 container adapter (RFC 6386): WebM / Matroska `V_VP8` and MP4 `vp08`.
-/// The bitstream decoder is provided by craft-video; this adapter maps its pictures into Toma frames.
+/// The bitstream decoder is provided by nodalia-video; this adapter maps its pictures into Toma frames.
 pub struct Vp8Decoder {
-    dec: craft_video::vp8::Decoder,
+    dec: nodalia_video::vp8::Decoder,
 }
 
 impl Default for Vp8Decoder {
@@ -600,10 +600,10 @@ impl Default for Vp8Decoder {
 impl Vp8Decoder {
     pub fn new() -> Self {
         // Preserve the 2^26 padded-luma-sample limit of the app-owned decoder.
-        Self { dec: craft_video::vp8::Decoder::with_max_luma_samples(1 << 26) }
+        Self { dec: nodalia_video::vp8::Decoder::with_max_luma_samples(1 << 26) }
     }
 
-    fn convert(p: craft_video::vp8::Picture) -> DecodedFrame {
+    fn convert(p: nodalia_video::vp8::Picture) -> DecodedFrame {
         use std::sync::Arc;
         use toma_frame::{Chroma, PixelData};
         // color_space 0 is BT.601 YUV (RFC 6386 9.2), studio swing; a container's Colour wins
@@ -630,7 +630,7 @@ impl VideoDecoder for Vp8Decoder {
         "Toma VP8"
     }
     fn is_random_access(&self, sample: &[u8]) -> Option<bool> {
-        Some(craft_video::vp8::is_keyframe(sample))
+        Some(nodalia_video::vp8::is_keyframe(sample))
     }
     fn is_disposable(&self, sample: &[u8]) -> bool {
         self.dec.is_disposable(sample)
@@ -644,17 +644,17 @@ pub fn vp8_factory(e: &SampleEntry) -> Option<Result<Box<dyn VideoDecoder>>> {
 /// Our AV1 decoder. The `av1C` configuration OBUs (sequence header) are fed before the first
 /// sample and again after every reset.
 pub struct Av1Decoder {
-    dec: craft_video::av1::decode::Decoder,
+    dec: nodalia_video::av1::decode::Decoder,
     config_obus: Vec<u8>,
     primed: bool,
 }
 
 impl Av1Decoder {
     pub fn new(config_obus: Vec<u8>) -> Av1Decoder {
-        Av1Decoder { dec: craft_video::av1::decode::Decoder::new(), config_obus, primed: false }
+        Av1Decoder { dec: nodalia_video::av1::decode::Decoder::new(), config_obus, primed: false }
     }
 
-    fn convert(p: craft_video::av1::decode::Picture, pts: i64) -> DecodedFrame {
+    fn convert(p: nodalia_video::av1::decode::Picture, pts: i64) -> DecodedFrame {
         use std::sync::Arc;
         let draft = p.draft;
         let w = p.width as usize;
@@ -712,7 +712,7 @@ impl VideoDecoder for Av1Decoder {
             .collect()
     }
     fn reset(&mut self) {
-        self.dec = craft_video::av1::decode::Decoder::new();
+        self.dec = nodalia_video::av1::decode::Decoder::new();
         self.primed = false;
     }
     fn name(&self) -> &str {
@@ -722,7 +722,7 @@ impl VideoDecoder for Av1Decoder {
         self.dec.set_draft(on);
     }
     fn is_random_access(&self, sample: &[u8]) -> Option<bool> {
-        Some(craft_video::av1::decode::is_key_frame_unit(sample))
+        Some(nodalia_video::av1::decode::is_key_frame_unit(sample))
     }
 }
 
@@ -741,8 +741,8 @@ impl VideoDecoder for ProResDecoder {
         use std::sync::Arc;
         let f = decode_prores_frame(sample).map_err(|e| CodecError::Decode(e.to_string()))?;
         let chroma = match f.chroma {
-            craft_video::prores::ChromaFormat::Yuv422 => toma_frame::Chroma::C422,
-            craft_video::prores::ChromaFormat::Yuv444 => toma_frame::Chroma::C444,
+            nodalia_video::prores::ChromaFormat::Yuv422 => toma_frame::Chroma::C422,
+            nodalia_video::prores::ChromaFormat::Yuv444 => toma_frame::Chroma::C444,
         };
         let mut color = toma_color::ColorInfo::REC709;
         if let Some(m) = toma_color::Matrix::from_code(f.color.matrix) {
@@ -787,11 +787,11 @@ pub fn prores_factory(e: &SampleEntry) -> Option<Result<Box<dyn VideoDecoder>>> 
 pub struct ApvDecoder;
 
 /// Convert a decoded APV frame to a [`VideoFrame`].
-pub fn apv_to_video_frame(f: craft_video::apv::Frame) -> VideoFrame {
+pub fn apv_to_video_frame(f: nodalia_video::apv::Frame) -> VideoFrame {
     use std::sync::Arc;
     let chroma = match f.chroma {
-        craft_video::apv::ChromaFormat::Yuv422 => toma_frame::Chroma::C422,
-        craft_video::apv::ChromaFormat::Monochrome | craft_video::apv::ChromaFormat::Yuv444 | craft_video::apv::ChromaFormat::Yuv4444 => {
+        nodalia_video::apv::ChromaFormat::Yuv422 => toma_frame::Chroma::C422,
+        nodalia_video::apv::ChromaFormat::Monochrome | nodalia_video::apv::ChromaFormat::Yuv444 | nodalia_video::apv::ChromaFormat::Yuv4444 => {
             toma_frame::Chroma::C444
         }
     };
@@ -809,7 +809,7 @@ pub fn apv_to_video_frame(f: craft_video::apv::Frame) -> VideoFrame {
         color.range = toma_color::Range::Full;
     }
     let neutral = 1u16 << f.bit_depth.saturating_sub(1);
-    let (cb, cr) = if f.chroma == craft_video::apv::ChromaFormat::Monochrome {
+    let (cb, cr) = if f.chroma == nodalia_video::apv::ChromaFormat::Monochrome {
         let u = vec![neutral; (f.width as usize) * (f.height as usize)];
         (u.clone(), u)
     } else {
@@ -826,7 +826,7 @@ pub fn apv_to_video_frame(f: craft_video::apv::Frame) -> VideoFrame {
 
 impl VideoDecoder for ApvDecoder {
     fn decode(&mut self, sample: &[u8], pts: i64) -> Result<Vec<DecodedFrame>> {
-        let f = craft_video::apv::decode_frame(sample).map_err(|e| CodecError::Decode(e.to_string()))?;
+        let f = nodalia_video::apv::decode_frame(sample).map_err(|e| CodecError::Decode(e.to_string()))?;
         Ok(vec![DecodedFrame { pts, frame: apv_to_video_frame(f), draft: false }])
     }
     fn flush(&mut self) -> Vec<DecodedFrame> {
@@ -850,15 +850,15 @@ pub struct DnxDecoder;
 
 /// Convert a decoded VC-3 frame to a [`VideoFrame`]. RGB (4:4:4) frames are converted to
 /// BT.709 video-range Y'CbCr 4:4:4 at the coded depth.
-pub fn dnx_to_video_frame(f: craft_video::dnx::Frame) -> VideoFrame {
+pub fn dnx_to_video_frame(f: nodalia_video::dnx::Frame) -> VideoFrame {
     use std::sync::Arc;
     let chroma = match f.chroma {
-        craft_video::dnx::ChromaFormat::Yuv420 => toma_frame::Chroma::C420,
-        craft_video::dnx::ChromaFormat::Yuv422 => toma_frame::Chroma::C422,
-        craft_video::dnx::ChromaFormat::Yuv444 => toma_frame::Chroma::C444,
+        nodalia_video::dnx::ChromaFormat::Yuv420 => toma_frame::Chroma::C420,
+        nodalia_video::dnx::ChromaFormat::Yuv422 => toma_frame::Chroma::C422,
+        nodalia_video::dnx::ChromaFormat::Yuv444 => toma_frame::Chroma::C444,
     };
     let mut color = toma_color::ColorInfo::REC709;
-    if matches!(f.color_volume, craft_video::dnx::ColorVolume::Bt2020Ncl | craft_video::dnx::ColorVolume::Bt2020Cl) {
+    if matches!(f.color_volume, nodalia_video::dnx::ColorVolume::Bt2020Ncl | nodalia_video::dnx::ColorVolume::Bt2020Cl) {
         color.matrix = toma_color::Matrix::Bt2020Ncl;
         color.primaries = toma_color::Primaries::Bt2020;
     }
@@ -919,7 +919,7 @@ pub fn dnx_factory(e: &SampleEntry) -> Option<Result<Box<dyn VideoDecoder>>> {
 
 /// Our MPEG-1 / MPEG-2 video decoder (Main / 4:2:2 profile, field and frame pictures).
 pub struct Mpeg2Decoder {
-    dec: craft_video::mpeg2::Decoder,
+    dec: nodalia_video::mpeg2::Decoder,
     /// Sequence header (and extensions) fed after a reset, so a random-access point without its
     /// own sequence header decodes (MKV `CodecPrivate`, or the stream's first header).
     header: Vec<u8>,
@@ -927,7 +927,7 @@ pub struct Mpeg2Decoder {
 
 impl Mpeg2Decoder {
     pub fn new(header: Vec<u8>) -> Self {
-        let mut d = Self { dec: craft_video::mpeg2::Decoder::new(), header };
+        let mut d = Self { dec: nodalia_video::mpeg2::Decoder::new(), header };
         d.prime();
         d
     }
@@ -941,7 +941,7 @@ impl Mpeg2Decoder {
 /// The sequence header with its extensions at the start of an MPEG video sample (up to the first
 /// GOP or picture start code).
 pub fn mpeg2_sequence_header(sample: &[u8]) -> Option<Vec<u8>> {
-    let codes = craft_video::mpeg2::start_codes(sample);
+    let codes = nodalia_video::mpeg2::start_codes(sample);
     let (start, _) = *codes.iter().find(|c| c.1 == 0xB3)?;
     let end = codes.iter().find(|c| c.0 > start && matches!(c.1, 0x00 | 0xB8 | 0x01..=0xAF)).map_or(sample.len(), |c| c.0);
     Some(sample[start..end].to_vec())
@@ -949,7 +949,7 @@ pub fn mpeg2_sequence_header(sample: &[u8]) -> Option<Vec<u8>> {
 
 /// Convert a decoded MPEG-1/2 picture. Colour comes from the sequence display extension
 /// (defaults: BT.601 for SD, BT.709 for HD); the pixel aspect from the aspect ratio code.
-pub fn mpeg2_to_video_frame(p: craft_video::mpeg2::Picture) -> VideoFrame {
+pub fn mpeg2_to_video_frame(p: nodalia_video::mpeg2::Picture) -> VideoFrame {
     use std::sync::Arc;
     let info = &p.info;
     let mut color = toma_color::ColorInfo { matrix: toma_frame::default_matrix(p.width, p.height), ..toma_color::ColorInfo::REC709 };
@@ -968,9 +968,9 @@ pub fn mpeg2_to_video_frame(p: craft_video::mpeg2::Picture) -> VideoFrame {
         }
     }
     let chroma = match p.chroma {
-        craft_video::mpeg2::ChromaFormat::Yuv420 => toma_frame::Chroma::C420,
-        craft_video::mpeg2::ChromaFormat::Yuv422 => toma_frame::Chroma::C422,
-        craft_video::mpeg2::ChromaFormat::Yuv444 => toma_frame::Chroma::C444,
+        nodalia_video::mpeg2::ChromaFormat::Yuv420 => toma_frame::Chroma::C420,
+        nodalia_video::mpeg2::ChromaFormat::Yuv422 => toma_frame::Chroma::C422,
+        nodalia_video::mpeg2::ChromaFormat::Yuv444 => toma_frame::Chroma::C444,
     };
     let par = info.sar;
     VideoFrame {
@@ -984,15 +984,15 @@ pub fn mpeg2_to_video_frame(p: craft_video::mpeg2::Picture) -> VideoFrame {
 }
 
 /// "YUV 4:2:2 8-bit, interlaced (upper field first)" for the media info.
-pub fn mpeg2_pixel_format(info: &craft_video::mpeg2::SequenceInfo, field_order: Option<craft_video::mpeg2::FieldOrder>) -> String {
+pub fn mpeg2_pixel_format(info: &nodalia_video::mpeg2::SequenceInfo, field_order: Option<nodalia_video::mpeg2::FieldOrder>) -> String {
     let sub = match info.chroma {
-        craft_video::mpeg2::ChromaFormat::Yuv420 => "4:2:0",
-        craft_video::mpeg2::ChromaFormat::Yuv422 => "4:2:2",
-        craft_video::mpeg2::ChromaFormat::Yuv444 => "4:4:4",
+        nodalia_video::mpeg2::ChromaFormat::Yuv420 => "4:2:0",
+        nodalia_video::mpeg2::ChromaFormat::Yuv422 => "4:2:2",
+        nodalia_video::mpeg2::ChromaFormat::Yuv444 => "4:4:4",
     };
     let scan = match field_order {
-        Some(craft_video::mpeg2::FieldOrder::TopFirst) => ", interlaced (upper field first)",
-        Some(craft_video::mpeg2::FieldOrder::BottomFirst) => ", interlaced (lower field first)",
+        Some(nodalia_video::mpeg2::FieldOrder::TopFirst) => ", interlaced (upper field first)",
+        Some(nodalia_video::mpeg2::FieldOrder::BottomFirst) => ", interlaced (lower field first)",
         None => ", progressive",
     };
     format!("YUV {sub} 8-bit{scan}")
@@ -1014,10 +1014,10 @@ impl VideoDecoder for Mpeg2Decoder {
         "Toma MPEG-2"
     }
     fn is_random_access(&self, sample: &[u8]) -> Option<bool> {
-        Some(craft_video::mpeg2::scan_access_unit(sample).is_intra())
+        Some(nodalia_video::mpeg2::scan_access_unit(sample).is_intra())
     }
     fn is_disposable(&self, sample: &[u8]) -> bool {
-        craft_video::mpeg2::scan_access_unit(sample).is_disposable()
+        nodalia_video::mpeg2::scan_access_unit(sample).is_disposable()
     }
 }
 
@@ -1097,7 +1097,7 @@ mod disposable_tests {
 #[cfg(test)]
 mod hevc_convert_tests {
     use super::HevcDecoder;
-    use craft_video::hevc::decode::{ChromaFormat, ColorInfo, Picture, Plane};
+    use nodalia_video::hevc::decode::{ChromaFormat, ColorInfo, Picture, Plane};
     use toma_frame::{Chroma, PixelData};
 
     /// A 4x2 picture whose chroma planes are 2 samples wide and `chroma_height` rows high.
@@ -1145,7 +1145,7 @@ mod hevc_convert_tests {
 }
 
 /// Uncompressed AVI and QuickTime pixel layouts from the shared video library.
-pub use craft_video::raw_video::RawFormat;
+pub use nodalia_video::raw_video::RawFormat;
 
 /// Uncompressed frame decoder retaining Toma timing and color presentation.
 pub struct RawVideoDecoder {
@@ -1162,16 +1162,16 @@ impl RawVideoDecoder {
         Ok(Self { format, width, height, bottom_up })
     }
     fn picture(&self, sample: &[u8]) -> Result<VideoFrame> {
-        let pixels = craft_video::raw_video::decode(self.format, self.width, self.height, self.bottom_up, sample).map_err(|e| match e {
-            craft_video::raw_video::Error::UnsupportedDimensions => CodecError::Unsupported(format!("{}x{} uncompressed video", self.width, self.height)),
-            craft_video::raw_video::Error::Truncated => {
+        let pixels = nodalia_video::raw_video::decode(self.format, self.width, self.height, self.bottom_up, sample).map_err(|e| match e {
+            nodalia_video::raw_video::Error::UnsupportedDimensions => CodecError::Unsupported(format!("{}x{} uncompressed video", self.width, self.height)),
+            nodalia_video::raw_video::Error::Truncated => {
                 CodecError::Decode(format!("{} frame of {} bytes is too short for {}x{}", self.format.label(), sample.len(), self.width, self.height))
             }
         })?;
         match pixels {
-            craft_video::raw_video::RawPixels::Rgba(rgba) => Ok(VideoFrame::rgba8(self.width, self.height, rgba)),
-            craft_video::raw_video::RawPixels::Yuv420(planes) => Ok(self.yuv(planes, toma_frame::Chroma::C420)),
-            craft_video::raw_video::RawPixels::Yuv422(planes) => Ok(self.yuv(planes, toma_frame::Chroma::C422)),
+            nodalia_video::raw_video::RawPixels::Rgba(rgba) => Ok(VideoFrame::rgba8(self.width, self.height, rgba)),
+            nodalia_video::raw_video::RawPixels::Yuv420(planes) => Ok(self.yuv(planes, toma_frame::Chroma::C420)),
+            nodalia_video::raw_video::RawPixels::Yuv422(planes) => Ok(self.yuv(planes, toma_frame::Chroma::C422)),
         }
     }
     fn yuv(&self, planes: [Vec<u8>; 3], chroma: toma_frame::Chroma) -> VideoFrame {
@@ -1237,15 +1237,15 @@ mod raw_video_tests {
 }
 
 /// Decode with Toma's historical 1 GiB ProRes output-plane ceiling.
-fn decode_prores_frame(sample: &[u8]) -> std::result::Result<craft_video::prores::Frame, craft_video::prores::Error> {
-    let limits = craft_video::prores::DecodeLimits { max_pixels: u64::MAX, max_frame_bytes: 1 << 30 };
-    craft_video::prores::decode_frame_with_limits(sample, &craft_video::prores::DecodeOptions::default(), &limits)
+fn decode_prores_frame(sample: &[u8]) -> std::result::Result<nodalia_video::prores::Frame, nodalia_video::prores::Error> {
+    let limits = nodalia_video::prores::DecodeLimits { max_pixels: u64::MAX, max_frame_bytes: 1 << 30 };
+    nodalia_video::prores::decode_frame_with_limits(sample, &nodalia_video::prores::DecodeOptions::default(), &limits)
 }
 
 #[cfg(test)]
 mod prores_resource_tests {
     use super::*;
-    use craft_video::prores::{AlphaType, ChromaFormat, ColorInfo, FrameHeader, Interlace};
+    use nodalia_video::prores::{AlphaType, ChromaFormat, ColorInfo, FrameHeader, Interlace};
 
     fn header(width: u16, height: u16) -> Vec<u8> {
         let h = FrameHeader {
@@ -1277,43 +1277,43 @@ mod prores_resource_tests {
     #[test]
     fn prores_decoder_preserves_the_one_gibibyte_plane_limit() {
         // 4:4:4 + 16-bit alpha: four u16 planes. This is 960,000,000 output bytes,
-        // above craft-video's default 300 MiB but below Toma's prior 1 GiB ceiling.
+        // above nodalia-video's default 300 MiB but below Toma's prior 1 GiB ceiling.
         let data = header(12_000, 10_000);
-        assert!(matches!(decode_prores_frame(&data), Err(craft_video::prores::Error::Truncated)));
+        assert!(matches!(decode_prores_frame(&data), Err(nodalia_video::prores::Error::Truncated)));
         assert!(matches!(
-            craft_video::prores::decode_frame(&data),
-            Err(craft_video::prores::Error::Invalid("frame dimensions exceed the decoder memory limit"))
+            nodalia_video::prores::decode_frame(&data),
+            Err(nodalia_video::prores::Error::Invalid("frame dimensions exceed the decoder memory limit"))
         ));
 
         // 1,120,000,000 bytes is beyond the old ceiling and must fail before allocation.
         let too_large = header(14_000, 10_000);
-        assert!(matches!(decode_prores_frame(&too_large), Err(craft_video::prores::Error::Invalid("frame dimensions exceed the decoder memory limit"))));
+        assert!(matches!(decode_prores_frame(&too_large), Err(nodalia_video::prores::Error::Invalid("frame dimensions exceed the decoder memory limit"))));
     }
 }
 
 /// Toma's historical DNx ceiling: the decoded storage of a whole frame (the coded planes of
 /// every coding unit plus the output picture) stays within 1 GiB. That covers 8K DNxHR 444 with
-/// alpha (about 570 MB of 16-bit samples), which craft-video's default 256 MiB per-unit plane
+/// alpha (about 570 MB of 16-bit samples), which nodalia-video's default 256 MiB per-unit plane
 /// budget would refuse.
 const DNX_MAX_FRAME_BYTES: usize = 1 << 30;
 
-/// Decode one DNx frame with craft-video, keeping Toma's 1 GiB whole-frame limit.
-fn decode_dnx_frame(sample: &[u8]) -> craft_video::dnx::Result<craft_video::dnx::Frame> {
-    let h = craft_video::dnx::probe(sample)?;
+/// Decode one DNx frame with nodalia-video, keeping Toma's 1 GiB whole-frame limit.
+fn decode_dnx_frame(sample: &[u8]) -> nodalia_video::dnx::Result<nodalia_video::dnx::Frame> {
+    let h = nodalia_video::dnx::probe(sample)?;
     check_dnx_frame_budget(&h)?;
-    craft_video::dnx::decode_frame_with(sample, &dnx_decode_options())
+    nodalia_video::dnx::decode_frame_with(sample, &dnx_decode_options())
 }
 
-/// craft-video decode options with the per-unit plane budget raised to Toma's frame ceiling
+/// nodalia-video decode options with the per-unit plane budget raised to Toma's frame ceiling
 /// (the whole-frame check above is the binding limit).
-fn dnx_decode_options() -> craft_video::dnx::DecodeOptions {
-    craft_video::dnx::DecodeOptions { max_decoded_plane_bytes: DNX_MAX_FRAME_BYTES, ..Default::default() }
+fn dnx_decode_options() -> nodalia_video::dnx::DecodeOptions {
+    nodalia_video::dnx::DecodeOptions { max_decoded_plane_bytes: DNX_MAX_FRAME_BYTES, ..Default::default() }
 }
 
 /// Reject a frame whose decoded storage would exceed [`DNX_MAX_FRAME_BYTES`] before anything is
 /// allocated (the check the Toma-local decoder ran on the first coding-unit header).
-fn check_dnx_frame_budget(h: &craft_video::dnx::FrameHeader) -> craft_video::dnx::Result<()> {
-    use craft_video::dnx::{ChromaFormat, Error};
+fn check_dnx_frame_budget(h: &nodalia_video::dnx::FrameHeader) -> nodalia_video::dnx::Result<()> {
+    use nodalia_video::dnx::{ChromaFormat, Error};
     const TOO_BIG: Error = Error::Invalid("frame dimensions exceed the decoder memory limit");
     let field_coded = h.interlaced && !h.frame_encoding;
     let nw = h.mb_width() as usize;
@@ -1346,13 +1346,13 @@ fn check_dnx_frame_budget(h: &craft_video::dnx::FrameHeader) -> craft_video::dnx
 #[cfg(test)]
 mod dnx_resource_tests {
     use super::*;
-    use craft_video::dnx::{ChromaFormat, Encoder, Frame, FrameHeader, Profile, header};
+    use nodalia_video::dnx::{ChromaFormat, Encoder, Frame, FrameHeader, Profile, header};
 
     /// A header-only frame (scan-line offsets increasing, no payload) claiming the given raster.
     fn header_only(width: u32, lines: u32, alpha: bool) -> (FrameHeader, Vec<u8>) {
         let mut enc = Encoder::new(Profile::R444, 64, 64).unwrap();
         let d = enc.encode(&Frame::new(64, 64, ChromaFormat::Yuv444, 10, false)).unwrap();
-        let mut h = craft_video::dnx::probe(&d).unwrap();
+        let mut h = nodalia_video::dnx::probe(&d).unwrap();
         h.width = width;
         h.lines = lines;
         h.mb_rows = lines.div_ceil(16);
@@ -1373,7 +1373,7 @@ mod dnx_resource_tests {
         // Port of the Toma-local `rejects_frames_over_the_memory_limit`: a 16384x16384 4:4:4
         // header with alpha is refused before any plane is allocated.
         let (_, big) = header_only(16384, 16384, true);
-        assert!(craft_video::dnx::probe(&big).is_ok());
+        assert!(nodalia_video::dnx::probe(&big).is_ok());
         let err = decode_dnx_frame(&big).unwrap_err().to_string();
         assert!(err.contains("memory limit"), "{err}");
     }
@@ -1382,11 +1382,11 @@ mod dnx_resource_tests {
     fn dnx_budget_admits_8k_444_with_alpha() {
         // 8K DNxHR 444 with alpha is about 566 MB of decoded storage (one coding unit of four
         // 16-bit planes is about 283 MB): inside Toma's 1 GiB ceiling, but above
-        // craft-video's default per-unit budget, so the app must keep raising the shared limit.
+        // nodalia-video's default per-unit budget, so the app must keep raising the shared limit.
         let (h, _) = header_only(8192, 4320, true);
         assert!(check_dnx_frame_budget(&h).is_ok());
         let unit_bytes = 8192 * 4320 * 4 * std::mem::size_of::<u16>();
-        assert!(craft_video::dnx::DecodeOptions::default().max_decoded_plane_bytes < unit_bytes);
+        assert!(nodalia_video::dnx::DecodeOptions::default().max_decoded_plane_bytes < unit_bytes);
         assert!(dnx_decode_options().max_decoded_plane_bytes >= unit_bytes);
     }
 }

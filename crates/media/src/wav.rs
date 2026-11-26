@@ -1,4 +1,4 @@
-//! Range-backed WAV source. RIFF parsing and PCM conversion use `craft_audio::wav_range`;
+//! Range-backed WAV source. RIFF parsing and PCM conversion use `nodalia_audio::wav_range`;
 //! Toma maps its metadata and resamples the requested audio into the project timeline.
 
 use std::sync::Arc;
@@ -9,13 +9,13 @@ use toma_time::Tick;
 use crate::reader::{MemReader, SharedReader};
 use crate::{AudioStreamInfo, FrameRequest, MediaError, MediaInfo, MediaKind, MediaSource, Result};
 
-pub use craft_audio::wav_range::{sniff, write_wav16};
+pub use nodalia_audio::wav_range::{sniff, write_wav16};
 
 const BLOCK_FRAMES: usize = 4096;
-const MAX_SPAN_BYTES: u64 = craft_audio::wav_range::MAX_RANGE_BYTES;
+const MAX_SPAN_BYTES: u64 = nodalia_audio::wav_range::MAX_RANGE_BYTES;
 
 struct Reader(SharedReader);
-impl craft_media::ByteSource for Reader {
+impl nodalia_media::ByteSource for Reader {
     fn len(&self) -> u64 {
         self.0.len()
     }
@@ -27,7 +27,7 @@ impl craft_media::ByteSource for Reader {
 /// A WAV file read in place, with sample ranges decoded on demand.
 pub struct WavSource {
     info: MediaInfo,
-    wav: craft_audio::wav_range::WavRange<Reader>,
+    wav: nodalia_audio::wav_range::WavRange<Reader>,
 }
 
 impl WavSource {
@@ -40,7 +40,7 @@ impl WavSource {
     pub fn open(name: &str, reader: SharedReader) -> Result<Self> {
         let len = reader.len();
         let wav =
-            craft_audio::wav_range::WavRange::open(Reader(reader), crate::MAX_AUDIO_CHANNELS, crate::MAX_AUDIO_SAMPLE_RATE).map_err(|e| wav_error(name, e))?;
+            nodalia_audio::wav_range::WavRange::open(Reader(reader), crate::MAX_AUDIO_CHANNELS, crate::MAX_AUDIO_SAMPLE_RATE).map_err(|e| wav_error(name, e))?;
         let mut info = MediaInfo {
             name: name.into(),
             kind: MediaKind::AudioOnly,
@@ -71,10 +71,10 @@ impl WavSource {
     }
 }
 
-fn wav_error(name: &str, error: craft_audio::AudioError) -> MediaError {
+fn wav_error(name: &str, error: nodalia_audio::AudioError) -> MediaError {
     match error {
-        craft_audio::AudioError::Io(e) => MediaError::Io(format!("{name}: {e}")),
-        craft_audio::AudioError::Unsupported(e) => MediaError::Unsupported(format!("{name}: {e}")),
+        nodalia_audio::AudioError::Io(e) => MediaError::Io(format!("{name}: {e}")),
+        nodalia_audio::AudioError::Unsupported(e) => MediaError::Unsupported(format!("{name}: {e}")),
         e => MediaError::Decode(format!("{name}: {e}")),
     }
 }

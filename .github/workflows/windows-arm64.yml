@@ -1,7 +1,7 @@
-# Windows on ARM: package the ARM64 release the way the release-*.yml workflows does (cross-compiled on an x64
-# runner, unsigned here), then install that MSI on a Windows 11 ARM64 runner, check the installed
-# binaries are ARM64, run the CLI natively, and uninstall. (A native ARM64 `cargo test` job is left
-# out for now: PdfCraft saw an intermittent access violation in egui UI tests there.)
+# Windows on ARM: package the ARM64 release the way the release-*.yml workflows do (cross-compiled on an x64
+# runner, unsigned here), then install that MSI on a Windows 11 ARM64 runner, run the CLI natively, and
+# uninstall. Foundation's reusable workflow does the work. (A native ARM64 `cargo test` job is left out for
+# now: Papel saw an intermittent access violation in egui UI tests there.)
 name: Windows ARM64
 
 # The package build takes about 15 minutes, so it runs nightly on main and on pushes to `release`
@@ -27,10 +27,9 @@ permissions:
 
 jobs:
   windows-arm64:
-    # Intentionally tracked at @main (not SHA-pinned) so org-wide CI improvements, security fixes, and build optimizations propagate without PR churn across all craftapp repos.
-    uses: storytold/craft-common-actions/.github/workflows/windows-arm64.yml@main
+    uses: getnodalia/foundation/.github/workflows/windows-arm64.yml@c37ef19e6bc213e3ebf3a281f1bf0f3fd7c5d495 # foundation main
     with:
       app-name: toma
-      app-dir: Toma
-      install-relative-path: Programs/Nodalia/Toma
-      install-scope: perUser
+      cli-name: toma-cli
+      fonts-repository: getnodalia/foundation
+      fonts-ref: 7a66e2c6c6d60ac6417caef3e339e186d003b5b8 # nodalia/fonts

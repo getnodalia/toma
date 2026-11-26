@@ -1,7 +1,7 @@
 //! Shared docking preserves Toma document state and legacy workspace files.
 
-use craft_ui::docking::{Action, DockArea, Hit, Node, Placement, ResizeEdge, Zone};
-use craft_ui::layout::{SplitAxis, SplitSize};
+use nodalia_ui::docking::{Action, DockArea, Hit, Node, Placement, ResizeEdge, Zone};
+use nodalia_ui::layout::{SplitAxis, SplitSize};
 use egui::{Event, Modifiers, PointerButton, Rect, pos2, vec2};
 use egui_kittest::Harness;
 use egui_kittest::kittest::{NodeT, Queryable};
@@ -128,7 +128,7 @@ fn legacy_effects_workspace_drops_only_the_known_inactive_duplicate() {
     assert_eq!(dock::saved_docking(&prefs, "Historical Effects"), expected);
 }
 
-/// The frame tree as Toma wrote it before its workspaces were craft-ui workspaces.
+/// The frame tree as Toma wrote it before its workspaces were nodalia-ui workspaces.
 fn legacy(node: &Node<PanelKind>) -> serde_json::Value {
     match node {
         Node::Tabs { panels, active } => json!({"Tabs": {"panels": panels, "active": active}}),
@@ -232,7 +232,7 @@ fn real_panel_drag_merges_splits_floats_and_redocks_without_editing_documents() 
     let mut session = Session::default();
     session.execute("file.openDemoProject", json!({})).unwrap();
     let app = TomaApp::new(session);
-    let snapshots = std::env::var_os("CRAFT_UI_DOCKING_SNAPSHOT_DIR").map(std::path::PathBuf::from);
+    let snapshots = std::env::var_os("NODALIA_UI_DOCKING_SNAPSHOT_DIR").map(std::path::PathBuf::from);
     let mut builder = Harness::builder().with_size(vec2(1200.0, 760.0));
     if snapshots.is_some() {
         builder = builder.wgpu();
@@ -440,7 +440,7 @@ fn catalog_docking_action_supports_resize_reorder_and_floating_geometry() {
     app.ui.dock = root(split(false, SplitSize::FixedFirst(300.0), tabs(&[PanelKind::Project, PanelKind::Info], 1), tabs(&[PanelKind::Program], 0)));
     let ctx = egui::Context::default();
     for action in [
-        Action::ResizeSplit { path: vec![], size: craft_ui::layout::SplitSize::FixedFirst(360.0) },
+        Action::ResizeSplit { path: vec![], size: nodalia_ui::layout::SplitSize::FixedFirst(360.0) },
         Action::Move { panel: PanelKind::Info, anchor: PanelKind::Project, placement: Placement::Tab { before: Some(PanelKind::Project) } },
         Action::Float { panel: PanelKind::Info, rect: [20.0, 40.0, 300.0, 200.0] },
         Action::MoveFloating { panel: PanelKind::Info, rect: [45.0, 65.0, 330.0, 240.0] },
@@ -672,7 +672,7 @@ fn a_panel_closed_while_floating_reopens_floating_where_it_was() {
     assert!(app.ui.closed_floating.iter().any(|(p, r)| *p == PanelKind::Info && *r == rect), "{:?}", app.ui.closed_floating);
 }
 
-/// craft-ui's `window.panel.*` commands and Toma's own docking commands share one path.
+/// nodalia-ui's `window.panel.*` commands and Toma's own docking commands share one path.
 #[test]
 fn shared_dock_commands_and_toma_names_move_panels() {
     let mut app = TomaApp::new(Session::default());
@@ -795,7 +795,7 @@ fn the_last_docked_group_cannot_float_away() {
     app.ui.dock = root(tabs(&[PanelKind::Project, PanelKind::Info], 0));
     let ctx = egui::Context::default();
     let before = app.ui.dock.clone();
-    let float = craft_ui::docking::Target::Float { rect: Some([20.0, 20.0, 300.0, 200.0]) };
+    let float = nodalia_ui::docking::Target::Float { rect: Some([20.0, 20.0, 300.0, 200.0]) };
     for action in [Action::MoveGroup { panel: PanelKind::Project, to: float.clone() }, Action::MoveColumn { panel: PanelKind::Project, to: float.clone() }] {
         let _ = menus::invoke(&mut app, &ctx, "window.dockAction", json!({ "action": action }));
         assert_eq!(app.ui.dock, before);

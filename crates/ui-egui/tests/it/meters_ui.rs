@@ -6,8 +6,8 @@ use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::mpsc::{Sender, channel};
 use std::sync::{Arc, Mutex};
 
-use craft_ui::docking::Node;
-use craft_ui::layout::SplitSize;
+use nodalia_ui::docking::Node;
+use nodalia_ui::layout::SplitSize;
 use egui_kittest::Harness;
 use serde_json::{Value, json};
 use toma_engine::Session;

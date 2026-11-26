@@ -27,7 +27,7 @@ toma-gpu = { workspace = true }
 toma-media = { workspace = true }
 toma-codecs = { workspace = true }
 toma-platform = { workspace = true }
-craft-media = { workspace = true, features = ["mpegts", "mxf", "ogg"] }
+nodalia-media = { workspace = true, features = ["mpegts", "mxf", "ogg"] }
 toma-automation = { workspace = true }
 serde_json = { workspace = true }
 tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
