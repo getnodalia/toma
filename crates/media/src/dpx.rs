@@ -1,9 +1,9 @@
-//! DPX (`.dpx`) stills: craft-dpx (SMPTE ST 268) reads the header and the code values; Toma
+//! DPX (`.dpx`) stills: nodalia-dpx (SMPTE ST 268) reads the header and the code values; Toma
 //! turns them into RGBA8 for the still pipeline.
 //!
 //! The first image element is decoded: luma, RGB, RGBA, ABGR, or Y'CbCr (CbYCrY 4:2:2, CbYACrYA
 //! 4:2:2:4, CbYCr 4:4:4, CbYCrA 4:4:4:4), 8, 10, 12 or 16 bits per component, big-endian (`SDPX`) or
-//! little-endian (`XPDS`) files, every packing craft-dpx reads. Orientations 0–3 (either scan
+//! little-endian (`XPDS`) files, every packing nodalia-dpx reads. Orientations 0–3 (either scan
 //! direction, either line order) are honoured. RGB and luma code values map linearly onto 8 bits
 //! (full range); a logarithmic (printing density) transfer is shown as stored, without a film-log
 //! conversion. Y'CbCr is converted with the matrix the colorimetric field names (BT.709, or BT.601
@@ -14,7 +14,7 @@
 //! Not decoded (an "unsupported" error): run-length encoded elements, signed, 1-bit and
 //! floating-point components, transposed orientations. Cineon files are not routed here.
 
-use craft_dpx::{Error, Layout, Limits};
+use nodalia_dpx::{Error, Layout, Limits};
 use toma_color::{Matrix, Range, normalize_c, normalize_y, ycbcr_to_rgb};
 
 use crate::{MediaError, Result, still::Raster};
@@ -39,7 +39,7 @@ fn map_error(name: &str, e: Error) -> MediaError {
 
 /// Whether `bytes` starts with the DPX magic number in either byte order.
 pub fn sniff(bytes: &[u8]) -> bool {
-    craft_dpx::sniff(bytes) == Some(craft_dpx::Kind::Dpx)
+    nodalia_dpx::sniff(bytes) == Some(nodalia_dpx::Kind::Dpx)
 }
 
 /// What the stored components of a pixel are.
@@ -95,7 +95,7 @@ pub fn decode(name: &str, bytes: &[u8]) -> Result<Raster> {
     if !sniff(bytes) {
         return Err(err(name, "not a DPX file"));
     }
-    let frame = craft_dpx::decode(bytes, &Limits::default()).map_err(|e| map_error(name, e))?;
+    let frame = nodalia_dpx::decode(bytes, &Limits::default()).map_err(|e| map_error(name, e))?;
     let info = &frame.info;
     let (w, h) = (info.width as usize, info.height as usize);
     let (flip_x, flip_y) = info.flips().ok_or_else(|| unsupported(name, format!("orientation {}", info.orientation)))?;
@@ -111,7 +111,7 @@ pub fn decode(name: &str, bytes: &[u8]) -> Result<Raster> {
     let components = match info.layout {
         Layout::Luma => Components::Rgb { n: 1, map: [Some(0), Some(0), Some(0), None] },
         Layout::Rgb => Components::Rgb { n: 3, map: [Some(0), Some(1), Some(2), None] },
-        // craft-dpx returns ABGR (descriptor 52) reordered to RGBA
+        // nodalia-dpx returns ABGR (descriptor 52) reordered to RGBA
         Layout::Rgba => Components::Rgb { n: 4, map: [Some(0), Some(1), Some(2), Some(3)] },
         Layout::CbYCrY422 => ycbcr(2, true, false),
         Layout::CbYACrYA4224 => ycbcr(3, true, true),

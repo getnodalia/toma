@@ -307,7 +307,7 @@ have no identity, so relinking them skips the fingerprint check.
 - **Stored paths.** Media and proxy paths read from a document (the project file, a project
   template, an interchange file) are opened only when they name a file on this computer or on
   the network share the document itself is on (`crates/engine/src/doc_path.rs`, built on
-  `craft-docpath`); a relative path is taken from the document's folder. Other paths (another
+  `nodalia-docpath`); a relative path is taken from the document's folder. Other paths (another
   computer, a device) count as missing: the item shows the offline slate, the open says why, and
   the Link Media dialog lists it. A file imported or linked in this session is opened as given.
 

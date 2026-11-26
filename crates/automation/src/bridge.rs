@@ -88,7 +88,7 @@ impl BridgeClient {
                 None => self.connect().await?,
             };
             let id = self.next_id.fetch_add(1, Ordering::Relaxed);
-            let line = craft_control_protocol::request_line(id, self.token.as_deref(), method, &params);
+            let line = nodalia_control_protocol::request_line(id, self.token.as_deref(), method, &params);
             let res: Result<Value, AutomationError> = async {
                 conn.1.write_all(line.as_bytes()).await.map_err(|e| AutomationError::Bridge(e.to_string()))?;
                 let mut buf = String::new();
@@ -106,7 +106,7 @@ impl BridgeClient {
                         idle.push(conn);
                     }
                     drop(idle);
-                    return craft_control_protocol::reply_result(&v).map_err(AutomationError::App);
+                    return nodalia_control_protocol::reply_result(&v).map_err(AutomationError::App);
                 }
                 Err(_) if attempt == 0 => {}
                 Err(e) => return Err(e),

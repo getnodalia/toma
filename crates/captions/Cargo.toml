@@ -14,4 +14,4 @@ toma-time = { workspace = true }
 toma-color = { workspace = true }
 toma-project = { workspace = true }
 toma-text = { workspace = true }
-craft-captions = { workspace = true }
+nodalia-captions = { workspace = true }

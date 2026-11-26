@@ -95,7 +95,7 @@ impl TomaApp {
 
     /// Whether keyboard focus is on any dock divider or floating-window resize grip, as drawn last pass.
     pub(super) fn divider_focused(&self, ctx: &egui::Context) -> bool {
-        use craft_ui::docking::{DockArea, Hit};
+        use nodalia_ui::docking::{DockArea, Hit};
         let Some(focused) = ctx.memory(|m| m.focused()) else { return false };
         let area = dock_ui::area_id();
         DockArea::<PanelKind>::hit_rects(ctx, area)

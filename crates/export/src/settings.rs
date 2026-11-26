@@ -282,12 +282,12 @@ pub enum SampleFormat {
 }
 
 impl SampleFormat {
-    pub(crate) fn shared(self) -> craft_audio::pcm_export::SampleFormat {
+    pub(crate) fn shared(self) -> nodalia_audio::pcm_export::SampleFormat {
         match self {
-            Self::Int16 => craft_audio::pcm_export::SampleFormat::Int16,
-            Self::Int24 => craft_audio::pcm_export::SampleFormat::Int24,
-            Self::Int32 => craft_audio::pcm_export::SampleFormat::Int32,
-            Self::Float32 => craft_audio::pcm_export::SampleFormat::Float32,
+            Self::Int16 => nodalia_audio::pcm_export::SampleFormat::Int16,
+            Self::Int24 => nodalia_audio::pcm_export::SampleFormat::Int24,
+            Self::Int32 => nodalia_audio::pcm_export::SampleFormat::Int32,
+            Self::Float32 => nodalia_audio::pcm_export::SampleFormat::Float32,
         }
     }
 
@@ -329,7 +329,7 @@ impl SampleFormat {
     /// One mix sample as stored by [`SampleFormat::Float32`]: as it is, NaN as silence and
     /// infinities as the largest finite values.
     pub fn float(s: f32) -> f32 {
-        craft_audio::pcm_export::SampleFormat::float(s)
+        nodalia_audio::pcm_export::SampleFormat::float(s)
     }
 }
 
@@ -526,7 +526,7 @@ impl ExportSettings {
     pub fn supports_alpha(&self) -> bool {
         match self.format {
             Format::PngSequence | Format::TiffSequence | Format::TgaSequence | Format::ExrSequence | Format::Gif => true,
-            Format::ProRes => crate::prores_profile(&self.prores_profile).chroma() == craft_video::prores::ChromaFormat::Yuv444,
+            Format::ProRes => crate::prores_profile(&self.prores_profile).chroma() == nodalia_video::prores::ChromaFormat::Yuv444,
             _ => false,
         }
     }
@@ -576,9 +576,9 @@ impl ExportSettings {
     /// nearest one above, 48 kHz above 48 kHz), mono or stereo (5.1 is folded to stereo), and the
     /// Layer III bit rate nearest at or below the setting.
     pub fn mp3_stream(&self, seq_sr: u32) -> (u32, u32, u32) {
-        let rate = craft_audio::mp3::nearest_sample_rate(self.audio.sample_rate.unwrap_or(seq_sr));
+        let rate = nodalia_audio::mp3::nearest_sample_rate(self.audio.sample_rate.unwrap_or(seq_sr));
         let channels = if self.audio.channels <= 1 { 1 } else { 2 };
-        let kbps = craft_audio::mp3::nearest_bitrate(rate, self.audio.bitrate_kbps).unwrap_or(128);
+        let kbps = nodalia_audio::mp3::nearest_bitrate(rate, self.audio.bitrate_kbps).unwrap_or(128);
         (rate, channels, kbps)
     }
 
@@ -645,9 +645,9 @@ impl ExportSettings {
             }
             Format::Apv => {
                 let bpp = match crate::apv_profile(&self.apv_profile) {
-                    craft_video::apv::Profile::P422_12 => 3.6,
-                    craft_video::apv::Profile::P444_10 => 4.2,
-                    craft_video::apv::Profile::P444_12 | craft_video::apv::Profile::P4444_10 | craft_video::apv::Profile::P4444_12 => 5.0,
+                    nodalia_video::apv::Profile::P422_12 => 3.6,
+                    nodalia_video::apv::Profile::P444_10 => 4.2,
+                    nodalia_video::apv::Profile::P444_12 | nodalia_video::apv::Profile::P4444_10 | nodalia_video::apv::Profile::P4444_12 => 5.0,
                     _ => 3.0,
                 };
                 px * fps * bpp
@@ -739,7 +739,7 @@ impl ExportSettings {
                     v += &format!(", keyframe every {} frames", r.keyint);
                 }
                 Format::ProRes => {
-                    use craft_video::prores::Profile;
+                    use nodalia_video::prores::Profile;
                     v += match crate::prores_profile(&self.prores_profile) {
                         Profile::Proxy => ", ProRes 422 Proxy",
                         Profile::Lt => ", ProRes 422 LT",

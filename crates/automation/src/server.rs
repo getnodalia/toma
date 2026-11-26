@@ -223,8 +223,8 @@ impl TomaMcp {
         // A full-size 268M-pixel RGBA PNG encoded as base64 can exceed 1 GiB.
         // Bound both directions without imposing the internal duplex pipe's 1 MiB capacity.
         const MAX_MCP_LINE: usize = 2 * 1024 * 1024 * 1024;
-        let craft_jsonrpc::async_lines::Adapter { service_in, service_out, tasks } =
-            craft_jsonrpc::async_lines::spawn(input, output, MAX_MCP_LINE, MAX_MCP_LINE);
+        let nodalia_jsonrpc::async_lines::Adapter { service_in, service_out, tasks } =
+            nodalia_jsonrpc::async_lines::spawn(input, output, MAX_MCP_LINE, MAX_MCP_LINE);
         let running = self.serve((service_in, service_out)).await.map_err(|e| AutomationError::Other(format!("MCP init: {e}")))?;
         let r = running.waiting().await.map_err(|e| AutomationError::Other(e.to_string()));
         tasks.finish().await;

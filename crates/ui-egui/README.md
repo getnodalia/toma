@@ -57,7 +57,7 @@ preferred languages that the interface has (the host supplies them through
 `HostHooks::system_languages`: `sys-locale` on the desktop, `navigator.languages` on the web),
 otherwise English.
 The `app.language.*` UI commands and `prefs.set` reach it through the control channel.
-Japanese requires a craft-fonts build or a suitable installed font.
+Japanese requires a nodalia-fonts build or a suitable installed font.
 
 English source strings are lookup keys in `src/i18n/<code>.tsv`. `tl!` translates literals, `tlf!`
 fills translated templates, and `i18n::t` translates names from registries. Placeholder values
@@ -100,10 +100,10 @@ keeps Source navigation, markers and marked-range playback separate from Program
 
 ## Pane layout controls
 
-The panels use `craft-ui::docking` with its split-tree settings: craft-ui draws the frames, tab
+The panels use `nodalia-ui::docking` with its split-tree settings: nodalia-ui draws the frames, tab
 strips, floating windows and drag previews and owns the gestures; `dock_ui.rs` draws the panel
 bodies, the ≡ panel menu and the Timeline's sequence tabs. Bounded split geometry and
-keyboard-accessible resize handles use `craft-ui::layout`. Panel tabs or their group's drag bar
+keyboard-accessible resize handles use `nodalia-ui::layout`. Panel tabs or their group's drag bar
 move between tab groups, split at a group's or the window's edge, reorder, or float when released
 with Cmd/Ctrl; a release over no target cancels. Tools and the Audio Meters keep their widths
 as the window resizes (fixed split sizes, which a divider drag keeps fixed); the other groups
@@ -136,7 +136,7 @@ separately. Focus and input-ownership regressions cover document/playhead preser
 
 Compact monitor layouts separate the current and duration timecodes from zoom, resolution and
 settings. Source video/audio drag choices retain their existing placement behavior. Transport
-buttons use `craft-ui::layout::fit_toolbar`; commands beyond the available width remain available
+buttons use `nodalia-ui::layout::fit_toolbar`; commands beyond the available width remain available
 through More, including their selected state and Source/Program routing. A scrolling fallback
 retains all commands if even More cannot fit. `monitor_geometry` checks the painted readouts,
 control bounds, overflow actions and Source drag payloads across monitor widths and themes.

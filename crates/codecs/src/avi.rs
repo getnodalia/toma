@@ -7,12 +7,12 @@
 //!
 //! Audio: PCM (integer and float) straight from the chunks; MPEG audio (MP3, MP2) and AC-3 frames,
 //! which AVI chunks need not follow, are found again across chunk boundaries
-//! ([`craft_media::mpegts::frame_bytes`]) and decoded as packets.
+//! ([`nodalia_media::mpegts::frame_bytes`]) and decoded as packets.
 
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 
-use craft_media::avi::{AviFile, BitmapInfo, StreamKind, WaveFormat};
+use nodalia_media::avi::{AviFile, BitmapInfo, StreamKind, WaveFormat};
 use toma_frame::{AudioBuffer, VideoFrame};
 use toma_isobmff::{PcmConfig, SampleEntry};
 use toma_media::{AudioStreamInfo, FrameRequest, MediaError, MediaInfo, MediaKind, MediaSource, SharedSource, VideoStreamInfo};
@@ -24,7 +24,7 @@ use crate::video::{RawFormat, RawVideoDecoder, VideoDecoder};
 use crate::{CodecError, make_video_decoder};
 
 pub fn sniff(b: &[u8]) -> bool {
-    craft_media::avi::sniff(b)
+    nodalia_media::avi::sniff(b)
 }
 
 #[derive(Clone, Debug, PartialEq)]
@@ -77,7 +77,7 @@ enum ACodec {
     Pcm(PcmConfig),
     /// MPEG audio (layer 1-3) or AC-3 frames, found again across chunks.
     Framed {
-        ts: craft_media::mpegts::Codec,
+        ts: nodalia_media::mpegts::Codec,
         layer: u8,
     },
     Unsupported(String),
@@ -92,9 +92,9 @@ fn audio_codec(w: &WaveFormat) -> (ACodec, String) {
     match w.format_tag {
         1 if matches!(w.bits_per_sample, 8 | 16 | 24 | 32) => pcm(false),
         3 if matches!(w.bits_per_sample, 32 | 64) => pcm(true),
-        0x55 => (ACodec::Framed { ts: craft_media::mpegts::Codec::MpegAudio, layer: 3 }, "MP3".into()),
-        0x50 => (ACodec::Framed { ts: craft_media::mpegts::Codec::MpegAudio, layer: 2 }, "MPEG Audio".into()),
-        0x2000 => (ACodec::Framed { ts: craft_media::mpegts::Codec::Ac3, layer: 0 }, "AC-3".into()),
+        0x55 => (ACodec::Framed { ts: nodalia_media::mpegts::Codec::MpegAudio, layer: 3 }, "MP3".into()),
+        0x50 => (ACodec::Framed { ts: nodalia_media::mpegts::Codec::MpegAudio, layer: 2 }, "MPEG Audio".into()),
+        0x2000 => (ACodec::Framed { ts: nodalia_media::mpegts::Codec::Ac3, layer: 0 }, "AC-3".into()),
         tag => {
             let name = format!("audio format 0x{tag:04X}");
             (ACodec::Unsupported(name.clone()), name)
@@ -162,8 +162,8 @@ fn split_frames(
     file: &AviFile,
     bytes: &crate::Src,
     s: usize,
-    ts: &craft_media::mpegts::Codec,
-) -> (Vec<Piece>, Vec<usize>, Vec<u32>, Option<craft_media::mpegts::FrameInfo>) {
+    ts: &nodalia_media::mpegts::Codec,
+) -> (Vec<Piece>, Vec<usize>, Vec<u32>, Option<nodalia_media::mpegts::FrameInfo>) {
     let Some(st) = file.streams.get(s) else { return Default::default() };
     // AVI indexes can reference the same physical chunk repeatedly. Keep header scanning bounded
     // by both the source itself and a practical absolute limit before issuing those repeated reads.
@@ -194,9 +194,9 @@ fn split_frames(
             next += 1;
         }
         let Some(here) = win.get(pos - base..) else { break };
-        match craft_media::mpegts::frame_bytes(ts, here) {
+        match nodalia_media::mpegts::frame_bytes(ts, here) {
             Some(n) if pos + n <= total => {
-                let fi = craft_media::mpegts::frame_info(ts, here);
+                let fi = nodalia_media::mpegts::frame_info(ts, here);
                 if info.is_none() {
                     info = fi;
                 }
@@ -237,11 +237,11 @@ impl AviSource {
     /// Open from a random-access reader: the index now, frames and audio on demand.
     pub fn open_reader(name: &str, reader: toma_media::SharedReader) -> crate::Result<Self> {
         let bytes = crate::Src(reader);
-        let file = craft_media::avi::open(&bytes).map_err(|e| CodecError::Container(e.to_string()))?;
+        let file = nodalia_media::avi::open(&bytes).map_err(|e| CodecError::Container(e.to_string()))?;
         // A video stream that declares frames but whose chunks a damaged file lost is still the
         // file's video when no other has pictures: its frames say so, rather than the file passing
         // for audio only.
-        let video = |has: fn(&craft_media::avi::Stream) -> bool| file.streams.iter().position(|s| s.kind == StreamKind::Video && s.video.is_some() && has(s));
+        let video = |has: fn(&nodalia_media::avi::Stream) -> bool| file.streams.iter().position(|s| s.kind == StreamKind::Video && s.video.is_some() && has(s));
         let vstream = video(|s| !s.chunks.is_empty()).or_else(|| video(|s| s.length > 0));
         let pictures = vstream.and_then(|i| file.streams.get(i)).is_some_and(|s| !s.chunks.is_empty());
         let astreams: Vec<usize> = file
@@ -455,7 +455,7 @@ impl AviSource {
             ACodec::Framed { ts, layer } => {
                 if st.decoder.is_none() {
                     st.decoder = Some(match ts {
-                        craft_media::mpegts::Codec::Ac3 => PacketDecoder::ac3()?,
+                        nodalia_media::mpegts::Codec::Ac3 => PacketDecoder::ac3()?,
                         _ => PacketDecoder::mpeg_audio(*layer, ainfo.sample_rate)?,
                     });
                 }

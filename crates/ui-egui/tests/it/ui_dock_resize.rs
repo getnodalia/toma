@@ -50,7 +50,7 @@ fn focused_dock_resize_owns_arrows_and_keeps_pointer_dragging() {
     session.execute("file.openDemoProject", json!({})).unwrap();
     let app = TomaApp::new(session);
     // Opt in to GPU snapshots while the ordinary test remains headless and renderer-independent.
-    let directory = std::env::var_os("CRAFT_UI_PANES_SNAPSHOT_DIR").map(std::path::PathBuf::from);
+    let directory = std::env::var_os("NODALIA_UI_PANES_SNAPSHOT_DIR").map(std::path::PathBuf::from);
     let mut builder = Harness::builder().with_size(vec2(1400.0, 900.0)).with_max_steps(10_000);
     if directory.is_some() {
         builder = builder.wgpu();
@@ -59,21 +59,21 @@ fn focused_dock_resize_owns_arrows_and_keeps_pointer_dragging() {
     frames(&mut h, 4);
     snapshots(&mut h, directory.as_deref(), "workspace");
     h.state_mut().ui.focused = PanelKind::Timeline;
-    h.state_mut().ui.dock = craft_ui::docking::Layout {
-        root: Some(craft_ui::docking::Node::Split {
-            axis: craft_ui::layout::SplitAxis::Horizontal,
-            size: craft_ui::layout::SplitSize::FixedFirst(400.0),
-            first: Box::new(craft_ui::docking::Node::Tabs { panels: vec![PanelKind::Project], active: 0 }),
-            second: Box::new(craft_ui::docking::Node::Tabs { panels: vec![PanelKind::Timeline], active: 0 }),
+    h.state_mut().ui.dock = nodalia_ui::docking::Layout {
+        root: Some(nodalia_ui::docking::Node::Split {
+            axis: nodalia_ui::layout::SplitAxis::Horizontal,
+            size: nodalia_ui::layout::SplitSize::FixedFirst(400.0),
+            first: Box::new(nodalia_ui::docking::Node::Tabs { panels: vec![PanelKind::Project], active: 0 }),
+            second: Box::new(nodalia_ui::docking::Node::Tabs { panels: vec![PanelKind::Timeline], active: 0 }),
         }),
         floating: vec![],
     };
     frames(&mut h, 3);
     let before_project = h.state().session.project.clone();
     let before_playheads = h.state().session.state.playheads.clone();
-    let id = craft_ui::docking::DockArea::<PanelKind>::hit_id(
+    let id = nodalia_ui::docking::DockArea::<PanelKind>::hit_id(
         toma_ui_egui::dock_area_id(),
-        &craft_ui::docking::Hit::Divider(craft_ui::docking::Divider::Split(vec![])),
+        &nodalia_ui::docking::Hit::Divider(nodalia_ui::docking::Divider::Split(vec![])),
     );
     h.ctx.memory_mut(|memory| memory.request_focus(id));
     frames(&mut h, 2);
@@ -120,12 +120,12 @@ fn space_plays_after_a_pane_is_resized_with_the_pointer() {
     let mut h = Harness::builder().with_size(vec2(1400.0, 900.0)).build_eframe(move |_| app);
     frames(&mut h, 4);
     h.state_mut().ui.focused = PanelKind::Timeline;
-    h.state_mut().ui.dock = craft_ui::docking::Layout {
-        root: Some(craft_ui::docking::Node::Split {
-            axis: craft_ui::layout::SplitAxis::Horizontal,
-            size: craft_ui::layout::SplitSize::FixedFirst(400.0),
-            first: Box::new(craft_ui::docking::Node::Tabs { panels: vec![PanelKind::Project], active: 0 }),
-            second: Box::new(craft_ui::docking::Node::Tabs { panels: vec![PanelKind::Timeline], active: 0 }),
+    h.state_mut().ui.dock = nodalia_ui::docking::Layout {
+        root: Some(nodalia_ui::docking::Node::Split {
+            axis: nodalia_ui::layout::SplitAxis::Horizontal,
+            size: nodalia_ui::layout::SplitSize::FixedFirst(400.0),
+            first: Box::new(nodalia_ui::docking::Node::Tabs { panels: vec![PanelKind::Project], active: 0 }),
+            second: Box::new(nodalia_ui::docking::Node::Tabs { panels: vec![PanelKind::Timeline], active: 0 }),
         }),
         floating: vec![],
     };
@@ -146,9 +146,9 @@ fn space_plays_after_a_pane_is_resized_with_the_pointer() {
     // A pointer drag leaves no keyboard focus on the divider, so the editor keeps its shortcuts.
     assert_ne!(
         h.ctx.memory(|memory| memory.focused()),
-        Some(craft_ui::docking::DockArea::<PanelKind>::hit_id(
+        Some(nodalia_ui::docking::DockArea::<PanelKind>::hit_id(
             toma_ui_egui::dock_area_id(),
-            &craft_ui::docking::Hit::Divider(craft_ui::docking::Divider::Split(vec![]))
+            &nodalia_ui::docking::Hit::Divider(nodalia_ui::docking::Divider::Split(vec![]))
         ))
     );
     press(&mut h, Key::Space);
@@ -169,7 +169,7 @@ fn space_plays_while_any_floating_resize_edge_has_focus() {
     let ctx = h.ctx.clone();
     toma_ui_egui::menus::invoke(h.state_mut(), &ctx, "window.floatPanel", json!({"panel": "Info", "rect": [300, 200, 400, 300]})).unwrap();
     frames(&mut h, 3);
-    use craft_ui::docking::{DockArea, Hit, ResizeEdge};
+    use nodalia_ui::docking::{DockArea, Hit, ResizeEdge};
     for edge in [ResizeEdge::Top, ResizeEdge::Left, ResizeEdge::BottomRight] {
         let grip = DockArea::<PanelKind>::hit_id(toma_ui_egui::dock_area_id(), &Hit::Resize(PanelKind::Info, edge));
         h.ctx.memory_mut(|memory| memory.request_focus(grip));
@@ -195,7 +195,7 @@ fn space_plays_while_a_floating_group_divider_has_focus() {
     toma_ui_egui::menus::invoke(h.state_mut(), &ctx, "window.floatPanel", json!({"panel": "Info", "rect": [300, 200, 400, 400]})).unwrap();
     toma_ui_egui::menus::invoke(h.state_mut(), &ctx, "window.dockPanel", json!({"panel": "Project", "anchor": "Info", "zone": "bottom"})).unwrap();
     frames(&mut h, 3);
-    use craft_ui::docking::{Divider, DockArea, Hit};
+    use nodalia_ui::docking::{Divider, DockArea, Hit};
     let area = toma_ui_egui::dock_area_id();
     let hit = Hit::Divider(Divider::WindowSplit(PanelKind::Info, vec![]));
     assert!(DockArea::<PanelKind>::hit_rects(&h.ctx, area).iter().any(|(drawn, _)| *drawn == hit), "no window divider drawn");
@@ -217,12 +217,12 @@ fn the_divider_beside_tools_moves_both_ways() {
     let app = TomaApp::new(Session::default());
     let mut h = Harness::builder().with_size(vec2(1400.0, 900.0)).build_eframe(move |_| app);
     frames(&mut h, 4);
-    h.state_mut().ui.dock = craft_ui::docking::Layout {
-        root: Some(craft_ui::docking::Node::Split {
-            axis: craft_ui::layout::SplitAxis::Horizontal,
-            size: craft_ui::layout::SplitSize::Ratio(0.06),
-            first: Box::new(craft_ui::docking::Node::Tabs { panels: vec![PanelKind::Tools], active: 0 }),
-            second: Box::new(craft_ui::docking::Node::Tabs { panels: vec![PanelKind::Timeline], active: 0 }),
+    h.state_mut().ui.dock = nodalia_ui::docking::Layout {
+        root: Some(nodalia_ui::docking::Node::Split {
+            axis: nodalia_ui::layout::SplitAxis::Horizontal,
+            size: nodalia_ui::layout::SplitSize::Ratio(0.06),
+            first: Box::new(nodalia_ui::docking::Node::Tabs { panels: vec![PanelKind::Tools], active: 0 }),
+            second: Box::new(nodalia_ui::docking::Node::Tabs { panels: vec![PanelKind::Timeline], active: 0 }),
         }),
         floating: vec![],
     };

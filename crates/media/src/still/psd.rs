@@ -109,7 +109,7 @@ fn merged_alpha(s: &[u8]) -> bool {
 
 /// Expand one strict PackBits row into the already bounded image row without allocating.
 fn unpack(name: &str, src: &[u8], out: &mut [u8]) -> Result<()> {
-    craft_psd::compression::packbits::decode_to_slice(src, out).map_err(|e| err(name, &e.to_string()))
+    nodalia_psd::compression::packbits::decode_to_slice(src, out).map_err(|e| err(name, &e.to_string()))
 }
 
 /// Decode the composite image of a Photoshop document to straight-alpha RGBA8.

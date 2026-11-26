@@ -28,7 +28,7 @@ jobs:
     permissions:
       contents: write
     env:
-      CRAFT_FONTS_DIR: ${{ github.workspace }}/craft-fonts
+      NODALIA_FONTS_DIR: ${{ github.workspace }}/nodalia-fonts
       DIST: ${{ github.workspace }}/dist
       # Releases ship one DMG for both architectures; everything else builds Apple Silicon only.
       ARCH: ${{ inputs.tag && 'universal' || 'aarch64' }}
@@ -37,13 +37,13 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Check out craft-fonts
+      - name: Check out nodalia-fonts
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          repository: getnodalia/foundation # kept at vendor/craft-fonts/main
+          repository: getnodalia/foundation # kept at nodalia/fonts
           # Same commit as ci.yml and the other release-*.yml workflows.
-          ref: b076417b5880bd4154bd22f00695b1d28c6bea83
-          path: craft-fonts
+          ref: 7a66e2c6c6d60ac6417caef3e339e186d003b5b8
+          path: nodalia-fonts
           persist-credentials: false
 
       - name: Link against the macOS 26 SDK

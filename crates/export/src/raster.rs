@@ -28,36 +28,36 @@ pub(crate) fn rgb(rgba: &[u8], w: u32, h: u32) -> Result<Vec<u8>> {
 
 /// An uncompressed Targa file in bottom-up order.
 pub(crate) fn tga(rgba: &[u8], w: u32, h: u32, alpha: bool) -> Result<Vec<u8>> {
-    craft_tga::rgba8_raw::encode_rgba8_raw(rgba, w, h, alpha).map_err(|e| match e {
-        craft_tga::rgba8_raw::Rgba8EncodeError::FrameSize => ExportError::Encode("frame size".into()),
-        craft_tga::rgba8_raw::Rgba8EncodeError::Dimensions => ExportError::Unsupported(format!("Targa frames are at most 65535×65535 (got {w}×{h})")),
-        craft_tga::rgba8_raw::Rgba8EncodeError::OutOfMemory => ExportError::Encode(format!("out of memory for a {w}×{h} Targa frame")),
+    nodalia_tga::rgba8_raw::encode_rgba8_raw(rgba, w, h, alpha).map_err(|e| match e {
+        nodalia_tga::rgba8_raw::Rgba8EncodeError::FrameSize => ExportError::Encode("frame size".into()),
+        nodalia_tga::rgba8_raw::Rgba8EncodeError::Dimensions => ExportError::Unsupported(format!("Targa frames are at most 65535×65535 (got {w}×{h})")),
+        nodalia_tga::rgba8_raw::Rgba8EncodeError::OutOfMemory => ExportError::Encode(format!("out of memory for a {w}×{h} Targa frame")),
     })
 }
 
 /// A 10-bit RGB DPX file.
 pub(crate) fn dpx(rgba: &[u8], w: u32, h: u32) -> Result<Vec<u8>> {
-    craft_dpx::rgba8_dpx10::encode_rgba8_dpx10(rgba, w, h, "Toma").map_err(|e| match e {
-        craft_dpx::rgba8_dpx10::Rgba8EncodeError::FrameSize => ExportError::Encode("frame size".into()),
-        craft_dpx::rgba8_dpx10::Rgba8EncodeError::TooLarge => ExportError::Unsupported(format!("a {w}×{h} DPX frame exceeds 4 GB")),
-        craft_dpx::rgba8_dpx10::Rgba8EncodeError::OutOfMemory => ExportError::Encode(format!("out of memory for a {w}×{h} DPX frame")),
+    nodalia_dpx::rgba8_dpx10::encode_rgba8_dpx10(rgba, w, h, "Toma").map_err(|e| match e {
+        nodalia_dpx::rgba8_dpx10::Rgba8EncodeError::FrameSize => ExportError::Encode("frame size".into()),
+        nodalia_dpx::rgba8_dpx10::Rgba8EncodeError::TooLarge => ExportError::Unsupported(format!("a {w}×{h} DPX frame exceeds 4 GB")),
+        nodalia_dpx::rgba8_dpx10::Rgba8EncodeError::OutOfMemory => ExportError::Encode(format!("out of memory for a {w}×{h} DPX frame")),
     })
 }
 
 #[cfg(test)]
-use craft_exr::rgba8::{half, rle};
+use nodalia_exr::rgba8::{half, rle};
 
 /// Write a scanline OpenEXR using Toma's color conversion table.
 pub(crate) fn exr(rgba: &[u8], w: u32, h: u32, alpha: bool, compression: ExrCompression) -> Result<Vec<u8>> {
     let compression = match compression {
-        ExrCompression::None => craft_exr::rgba8::Compression::None,
-        ExrCompression::Rle => craft_exr::rgba8::Compression::Rle,
-        ExrCompression::Zips => craft_exr::rgba8::Compression::Zips,
-        ExrCompression::Zip => craft_exr::rgba8::Compression::Zip,
+        ExrCompression::None => nodalia_exr::rgba8::Compression::None,
+        ExrCompression::Rle => nodalia_exr::rgba8::Compression::Rle,
+        ExrCompression::Zips => nodalia_exr::rgba8::Compression::Zips,
+        ExrCompression::Zip => nodalia_exr::rgba8::Compression::Zip,
     };
-    craft_exr::rgba8::write_rgba8(rgba, w, h, alpha, compression, toma_color::srgb_u8_to_linear_table()).map_err(|e| match e {
-        craft_exr::rgba8::Error::FrameSize => ExportError::Encode("frame size".into()),
-        craft_exr::rgba8::Error::TooLarge => ExportError::Unsupported(format!("an OpenEXR frame of {w}×{h} is too large")),
+    nodalia_exr::rgba8::write_rgba8(rgba, w, h, alpha, compression, toma_color::srgb_u8_to_linear_table()).map_err(|e| match e {
+        nodalia_exr::rgba8::Error::FrameSize => ExportError::Encode("frame size".into()),
+        nodalia_exr::rgba8::Error::TooLarge => ExportError::Unsupported(format!("an OpenEXR frame of {w}×{h} is too large")),
     })
 }
 

@@ -1,6 +1,6 @@
 //! Right-to-left scripts (Arabic, Hebrew) in the interface: fallback fonts and reading order.
 //!
-//! Fonts: like [`crate::cjk`], the craft-fonts faces for these scripts (`Arab`, `Hebr`) become the
+//! Fonts: like [`crate::cjk`], the nodalia-fonts faces for these scripts (`Arab`, `Hebr`) become the
 //! last fallbacks of every UI font family. A build without them looks up one installed face per
 //! script once (Noto Sans Arabic, SF Arabic, Segoe UI…) and reuses it across theme changes.
 //!
@@ -14,10 +14,10 @@ use std::sync::{Arc, OnceLock};
 
 use egui::epaint::text::{LayoutJob, TextDirection, TextFormat};
 use egui::{Align, Color32, FontData, FontDefinitions, FontId, Galley, Painter, Rect, Vec2, pos2};
-use toma_text::fonts::{CraftFont, Face};
+use toma_text::fonts::{Face, NodaliaFont};
 use unicode_bidi::{BidiClass, BidiInfo, bidi_class};
 
-/// A right-to-left script: its ISO 15924 code (as in the craft-fonts manifest), letters a face
+/// A right-to-left script: its ISO 15924 code (as in the nodalia-fonts manifest), letters a face
 /// must cover, and installed families to prefer, best first.
 struct Script {
     code: &'static str,
@@ -49,12 +49,12 @@ const SCRIPTS: &[Script] = &[
     },
 ];
 
-/// The craft-fonts faces for right-to-left scripts (empty unless built with `CRAFT_FONTS_DIR`).
-pub(crate) fn craft_fonts() -> impl Iterator<Item = &'static CraftFont> {
-    toma_text::fonts::CRAFT_FONTS.iter().filter(|f| f.scripts.iter().any(|s| SCRIPTS.iter().any(|x| x.code == *s)))
+/// The nodalia-fonts faces for right-to-left scripts (empty unless built with `NODALIA_FONTS_DIR`).
+pub(crate) fn nodalia_fonts() -> impl Iterator<Item = &'static NodaliaFont> {
+    toma_text::fonts::NODALIA_FONTS.iter().filter(|f| f.scripts.iter().any(|s| SCRIPTS.iter().any(|x| x.code == *s)))
 }
 
-/// Installed faces for the scripts craft-fonts does not cover, looked up once per process (native
+/// Installed faces for the scripts nodalia-fonts does not cover, looked up once per process (native
 /// builds only). A face that covers several scripts (Segoe UI) is added once.
 fn system_fonts() -> &'static [(String, Arc<FontData>)] {
     static FONTS: OnceLock<Vec<(String, Arc<FontData>)>> = OnceLock::new();
@@ -62,7 +62,7 @@ fn system_fonts() -> &'static [(String, Arc<FontData>)] {
         if cfg!(target_arch = "wasm32") {
             return Vec::new();
         }
-        let missing: Vec<&Script> = SCRIPTS.iter().filter(|s| !craft_fonts().any(|f| f.scripts.contains(&s.code))).collect();
+        let missing: Vec<&Script> = SCRIPTS.iter().filter(|s| !nodalia_fonts().any(|f| f.scripts.contains(&s.code))).collect();
         if missing.is_empty() {
             return Vec::new();
         }
@@ -92,15 +92,15 @@ fn system_fonts() -> &'static [(String, Arc<FontData>)] {
     })
 }
 
-/// Append the right-to-left faces (craft-fonts, else installed ones) after the other fallbacks of
+/// Append the right-to-left faces (nodalia-fonts, else installed ones) after the other fallbacks of
 /// every font family. Their letters are in no other UI font, so their place among the fallbacks
 /// does not matter, and Latin text keeps the interface fonts. Installed faces come last, after
-/// the craft-fonts faces: one may be a broad face (DejaVu Sans, Segoe UI) that should not take
-/// symbols the craft-fonts faces draw.
+/// the nodalia-fonts faces: one may be a broad face (DejaVu Sans, Segoe UI) that should not take
+/// symbols the nodalia-fonts faces draw.
 pub(crate) fn install(fonts: &mut FontDefinitions) {
     let mut names = Vec::new();
-    for f in craft_fonts() {
-        let name = format!("craft:{} {}", f.family, f.style);
+    for f in nodalia_fonts() {
+        let name = format!("nodalia:{} {}", f.family, f.style);
         fonts.font_data.insert(name.clone(), Arc::new(FontData::from_static(f.bytes)));
         names.push(name);
     }
@@ -229,8 +229,8 @@ mod tests {
         let ctx = egui::Context::default();
         let mut fonts = FontDefinitions::default();
         install(&mut fonts);
-        if !craft_fonts().any(|f| f.scripts.contains(&"Arab")) && !system_fonts().iter().any(|(name, _)| name == "system-arab") {
-            eprintln!("SKIPPED: no craft-fonts or installed Arabic font");
+        if !nodalia_fonts().any(|f| f.scripts.contains(&"Arab")) && !system_fonts().iter().any(|(name, _)| name == "system-arab") {
+            eprintln!("SKIPPED: no nodalia-fonts or installed Arabic font");
             return;
         }
         ctx.set_fonts(fonts);

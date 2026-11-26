@@ -10,7 +10,7 @@ rust-version.workspace = true
 workspace = true
 
 [dependencies]
-craft-media = { workspace = true, features = ["isobmff"] }
+nodalia-media = { workspace = true, features = ["isobmff"] }
 
 [dev-dependencies]
 toma-testkit = { workspace = true }

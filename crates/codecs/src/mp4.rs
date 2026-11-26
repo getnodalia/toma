@@ -328,12 +328,12 @@ impl Mp4Source {
             if matches!(entry.codec, CodecConfig::Dnx { .. }) {
                 // the sample entry doesn't say which VC-3 compression ID it is: read the first frame header
                 let s0 = &t.samples[0];
-                if let Some(h) = toma_media::reader::read_range(&*bytes.0, s0.offset, s0.size as usize).ok().and_then(|d| craft_video::dnx::probe(&d).ok()) {
-                    info.codec = craft_video::dnx::cid_name(h.cid);
+                if let Some(h) = toma_media::reader::read_range(&*bytes.0, s0.offset, s0.size as usize).ok().and_then(|d| nodalia_video::dnx::probe(&d).ok()) {
+                    info.codec = nodalia_video::dnx::cid_name(h.cid);
                     let sub = match h.chroma {
-                        craft_video::dnx::ChromaFormat::Yuv420 => "YUV 4:2:0",
-                        craft_video::dnx::ChromaFormat::Yuv422 => "YUV 4:2:2",
-                        craft_video::dnx::ChromaFormat::Yuv444 => "4:4:4",
+                        nodalia_video::dnx::ChromaFormat::Yuv420 => "YUV 4:2:0",
+                        nodalia_video::dnx::ChromaFormat::Yuv422 => "YUV 4:2:2",
+                        nodalia_video::dnx::ChromaFormat::Yuv444 => "4:4:4",
                     };
                     info.pixel_format = format!("{sub} {}-bit", h.bit_depth);
                     info.has_alpha = h.alpha;
@@ -342,11 +342,12 @@ impl Mp4Source {
             if matches!(entry.codec, CodecConfig::ProRes { .. }) {
                 // a 4444 fourcc doesn't mean the frames carry alpha (alpha_channel_type does): read the first frame header
                 let s0 = &t.samples[0];
-                if let Some(h) = toma_media::reader::read_range(&*bytes.0, s0.offset, s0.size as usize).ok().and_then(|d| craft_video::prores::probe(&d).ok()) {
-                    info.has_alpha = h.alpha != craft_video::prores::AlphaType::None;
+                if let Some(h) = toma_media::reader::read_range(&*bytes.0, s0.offset, s0.size as usize).ok().and_then(|d| nodalia_video::prores::probe(&d).ok())
+                {
+                    info.has_alpha = h.alpha != nodalia_video::prores::AlphaType::None;
                     let sub = match h.chroma {
-                        craft_video::prores::ChromaFormat::Yuv422 => "4:2:2 10-bit",
-                        craft_video::prores::ChromaFormat::Yuv444 => "4:4:4 12-bit",
+                        nodalia_video::prores::ChromaFormat::Yuv422 => "4:2:2 10-bit",
+                        nodalia_video::prores::ChromaFormat::Yuv444 => "4:4:4 12-bit",
                     };
                     info.pixel_format = format!("{} {sub}", if info.has_alpha { "YUVA" } else { "YUV" });
                 }
@@ -598,7 +599,7 @@ fn ac3_stream_info(t: &toma_isobmff::Track, bytes: &crate::Src) -> Option<(u32, 
         return Some((rate, channels));
     }
     let data = t.samples.first().and_then(|s| toma_media::reader::read_range(&*bytes.0, s.offset, s.size as usize).ok());
-    let h = craft_audio::ac3::parse_header(data.as_deref()?).ok()?;
+    let h = nodalia_audio::ac3::parse_header(data.as_deref()?).ok()?;
     // A dependent E-AC-3 substream doesn't describe the full program; report only if the first
     // packet is the primary independent substream.
     let is_primary = if let CodecConfig::Eac3 { .. } = &entry.codec { h.is_primary() } else { true };
@@ -691,7 +692,7 @@ pub(crate) fn codec_label(c: &CodecConfig) -> String {
         // the editing codec of iMovie and Final Cut; no decoder here reads it (#3646)
         CodecConfig::Unknown { fourcc, .. } if fourcc.0 == *b"icod" => "Apple Intermediate Codec".into(),
         CodecConfig::Av1(c) => format!("AV1 ({} Profile)", ["Main", "High", "Professional"].get(c.seq_profile as usize).unwrap_or(&"Main")),
-        CodecConfig::Apv(a) => match craft_video::apv::Profile::from_idc(a.profile_idc) {
+        CodecConfig::Apv(a) => match nodalia_video::apv::Profile::from_idc(a.profile_idc) {
             Some(p) => p.name().into(),
             None => "APV".into(),
         },
@@ -737,7 +738,7 @@ fn yuv_label(chroma_format_idc: u32, bits: u32) -> String {
 /// 4:2:2 is 8 or 10-bit, High 10 can be 8-bit).
 fn avc_format(a: &toma_isobmff::AvcConfig) -> Option<(u32, u32)> {
     let from_sps =
-        a.sps.first().and_then(|n| n.get(1..)).and_then(|rbsp| craft_video::h264::decode::params::Sps::parse(&toma_bitstream::unescape_rbsp(rbsp)).ok());
+        a.sps.first().and_then(|n| n.get(1..)).and_then(|rbsp| nodalia_video::h264::decode::params::Sps::parse(&toma_bitstream::unescape_rbsp(rbsp)).ok());
     if let Some(sps) = from_sps {
         return Some((sps.chroma_format_idc, sps.bit_depth_luma));
     }
@@ -756,7 +757,7 @@ fn avc_format(a: &toma_isobmff::AvcConfig) -> Option<(u32, u32)> {
 /// decoder decodes, else the `hvcC` record's own fields (which a muxer may leave at 0, i.e. "4:0:0").
 fn hevc_format(h: &toma_isobmff::HevcConfig) -> (u32, u32) {
     let from_sps =
-        h.sps().first().and_then(|n| n.get(2..)).and_then(|rbsp| craft_video::hevc::decode::params::Sps::parse(&toma_bitstream::unescape_rbsp(rbsp)).ok());
+        h.sps().first().and_then(|n| n.get(2..)).and_then(|rbsp| nodalia_video::hevc::decode::params::Sps::parse(&toma_bitstream::unescape_rbsp(rbsp)).ok());
     match from_sps {
         Some(sps) => (sps.chroma_format_idc, sps.bit_depth_luma),
         None => (h.chroma_format_idc as u32, h.bit_depth_luma as u32),
@@ -779,7 +780,7 @@ fn pixfmt_label(c: &CodecConfig) -> String {
             format!("YUV {sub} {}-bit", c.bit_depth.max(8))
         }
         CodecConfig::Apv(a) => {
-            let chroma = craft_video::apv::ChromaFormat::from_idc(a.chroma_format_idc).unwrap_or(craft_video::apv::ChromaFormat::Yuv422);
+            let chroma = nodalia_video::apv::ChromaFormat::from_idc(a.chroma_format_idc).unwrap_or(nodalia_video::apv::ChromaFormat::Yuv422);
             crate::apv::apv_pixfmt_label(chroma, a.bit_depth_minus8.saturating_add(8))
         }
         // 4444 until the first frame header says whether it codes alpha (`open_reader`)
@@ -995,7 +996,7 @@ mod he_aac_tests {
         let core = 22_050u32;
         let n = core as usize * 2;
         let tone: Vec<f32> = (0..n).map(|i| 0.25 * (2.0 * std::f32::consts::PI * 1000.0 * i as f32 / core as f32).sin()).collect();
-        let mut enc = craft_audio::aac::Encoder::new(craft_audio::aac::EncoderConfig::cbr(core, 2, 64_000)).unwrap();
+        let mut enc = nodalia_audio::aac::Encoder::new(nodalia_audio::aac::EncoderConfig::cbr(core, 2, 64_000)).unwrap();
         let mut aus = enc.encode(&[&tone, &tone]);
         aus.extend(enc.flush());
         // AOT 5, core 22.05 kHz, stereo, extension 44.1 kHz, core AOT 2
@@ -1024,7 +1025,7 @@ mod he_aac_tests {
         use toma_isobmff::Edit;
         let rate = 32_000u32;
         let tone: Vec<f32> = (0..rate as usize / 2).map(|i| 0.25 * (i as f32 * 0.05).sin()).collect();
-        let mut enc = craft_audio::aac::Encoder::new(craft_audio::aac::EncoderConfig::cbr(rate, 1, 64_000)).unwrap();
+        let mut enc = nodalia_audio::aac::Encoder::new(nodalia_audio::aac::EncoderConfig::cbr(rate, 1, 64_000)).unwrap();
         let mut aus = enc.encode(&[&tone]);
         aus.extend(enc.flush());
         // AOT 2 (AAC-LC), 32 kHz (index 5), mono
@@ -1096,7 +1097,7 @@ mod corrupt_audio_tests {
     fn failed_aac_packet_silences_overlap_independent_of_request_boundary() {
         let rate = 48_000u32;
         let tone: Vec<f32> = (0..8192).map(|i| 0.3 * (i as f32 * 0.13).sin()).collect();
-        let mut encoder = craft_audio::aac::Encoder::new(craft_audio::aac::EncoderConfig::cbr(rate, 1, 64_000)).unwrap();
+        let mut encoder = nodalia_audio::aac::Encoder::new(nodalia_audio::aac::EncoderConfig::cbr(rate, 1, 64_000)).unwrap();
         let mut units = encoder.encode(&[&tone]);
         units.extend(encoder.flush());
         assert!(units.len() >= 2);

@@ -10,7 +10,7 @@ rust-version.workspace = true
 workspace = true
 
 [dependencies]
-craft-ui = { workspace = true }
+nodalia-ui = { workspace = true }
 toma-time = { workspace = true }
 toma-geom = { workspace = true }
 toma-color = { workspace = true }

@@ -1,5 +1,5 @@
 //! Pixel parity with the decoder this crate had before its TIFF reader, lossless JPEG decoder, raw
-//! strip / tile decoder and opcode envelopes moved to craft-libs (craft-libs #778): every fixture
+//! strip / tile decoder and opcode envelopes moved to nodalia-libs (nodalia-libs #778): every fixture
 //! below is developed five ways and hashed, and the hashes were recorded from the local readers on
 //! `main` (1ec744c2). A different hash means a developed f32 differs in at least one bit, or the
 //! picture size, the raw image's size, the as-shot temperature / tint or the `Info` changed. Run

@@ -9,7 +9,7 @@ pub(super) fn encode(rgba: &[u8], width: u32, height: u32, quality: u8) -> Resul
         return Err("MJPEG frame dimensions do not match its pixel buffer".into());
     }
     let rgb: Vec<u8> = rgba.as_chunks::<4>().0.iter().flat_map(|p| [p[0], p[1], p[2]]).collect();
-    craft_jpeg::encode_baseline_low_memory(&rgb, width as usize, height as usize, 3, quality, craft_jpeg::ChromaSubsampling::S444, &[])
+    nodalia_jpeg::encode_baseline_low_memory(&rgb, width as usize, height as usize, 3, quality, nodalia_jpeg::ChromaSubsampling::S444, &[])
         .map_err(|e| e.to_string())
 }
 
@@ -106,7 +106,7 @@ mod tests {
             })
             .collect();
         let rgb: Vec<u8> = rgba.as_chunks::<4>().0.iter().flat_map(|p| [p[0], p[1], p[2]]).collect();
-        let expected = craft_jpeg::encode_baseline(&rgb, width as usize, height as usize, 3, 100, craft_jpeg::ChromaSubsampling::S444, &[]).unwrap();
+        let expected = nodalia_jpeg::encode_baseline(&rgb, width as usize, height as usize, 3, 100, nodalia_jpeg::ChromaSubsampling::S444, &[]).unwrap();
         assert_eq!(encode(&rgba, width, height, 100).unwrap(), expected);
     }
 }

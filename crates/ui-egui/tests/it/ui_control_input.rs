@@ -95,21 +95,21 @@ fn ordinary_control_input_also_resizes_a_background_divider() {
 
 fn background_divider(isolated: bool) {
     let mut d = Driver::new(isolated);
-    d.h.state_mut().ui.dock = craft_ui::docking::Layout {
-        root: Some(craft_ui::docking::Node::Split {
-            axis: craft_ui::layout::SplitAxis::Horizontal,
-            size: craft_ui::layout::SplitSize::FixedFirst(400.0),
-            first: Box::new(craft_ui::docking::Node::Tabs { panels: vec![PanelKind::Project], active: 0 }),
-            second: Box::new(craft_ui::docking::Node::Tabs { panels: vec![PanelKind::Timeline], active: 0 }),
+    d.h.state_mut().ui.dock = nodalia_ui::docking::Layout {
+        root: Some(nodalia_ui::docking::Node::Split {
+            axis: nodalia_ui::layout::SplitAxis::Horizontal,
+            size: nodalia_ui::layout::SplitSize::FixedFirst(400.0),
+            first: Box::new(nodalia_ui::docking::Node::Tabs { panels: vec![PanelKind::Project], active: 0 }),
+            second: Box::new(nodalia_ui::docking::Node::Tabs { panels: vec![PanelKind::Timeline], active: 0 }),
         }),
         floating: vec![],
     };
     d.frames(3, true);
     let before_project = d.h.state().session.project.clone();
     let before_playheads = d.h.state().session.state.playheads.clone();
-    let divider = craft_ui::docking::DockArea::<PanelKind>::hit_id(
+    let divider = nodalia_ui::docking::DockArea::<PanelKind>::hit_id(
         toma_ui_egui::dock_area_id(),
-        &craft_ui::docking::Hit::Divider(craft_ui::docking::Divider::Split(vec![])),
+        &nodalia_ui::docking::Hit::Divider(nodalia_ui::docking::Divider::Split(vec![])),
     );
     d.h.ctx.memory_mut(|memory| memory.request_focus(divider));
     d.frames(2, true);

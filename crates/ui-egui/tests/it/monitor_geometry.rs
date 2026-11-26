@@ -68,7 +68,7 @@ fn monitor_readouts_and_dropdowns_do_not_overlap() {
             for width in [720.0, 500.0, 300.0, 250.0] {
                 for scale in [1.0, 2.0] {
                     let mut h = harness_at_scale(width, kind, which, scale);
-                    if let Ok(directory) = std::env::var("CRAFT_UI_VISUAL_DIR") {
+                    if let Ok(directory) = std::env::var("NODALIA_UI_VISUAL_DIR") {
                         std::fs::create_dir_all(&directory).unwrap();
                         h.render().unwrap().save(format!("{directory}/film-{prefix}-{kind:?}-{width}-{scale}x.png")).unwrap();
                     }
@@ -154,7 +154,7 @@ fn transport_editor_keeps_its_own_space_and_customizes_compact_controls() {
         let id = "program.transport.editor.playback.toggle";
         let target = element(&h, id);
         if width == 90.0
-            && let Ok(directory) = std::env::var("CRAFT_UI_VISUAL_DIR")
+            && let Ok(directory) = std::env::var("NODALIA_UI_VISUAL_DIR")
         {
             std::fs::create_dir_all(&directory).unwrap();
             h.render().unwrap().save(format!("{directory}/film-program-editor-90.png")).unwrap();

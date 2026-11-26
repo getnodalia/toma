@@ -111,7 +111,7 @@ eframe creates a WebGPU device when the browser has one, else WebGL2. Toma's GPU
 The control channel of the desktop app (`docs/control-protocol.md`) as promises. Results resolve
 with the method's `result`, errors reject.
 
-`request`, `execute`, `commands`, `uiInspect` and `screenshot` come from [`craft-web-api`](https://github.com/storytold/craft-libs/tree/main/crates/web-api) (storytold/craft-libs#413), the same shape in every Nodalia app; a call the app does not answer within 30 seconds rejects. The rest are Toma's own.
+`request`, `execute`, `commands`, `uiInspect` and `screenshot` come from [`nodalia-web-api`](https://github.com/getnodalia/foundation/tree/nodalia/libs/crates/web-api) (storytold/craft-libs#413), the same shape in every Nodalia app; a call the app does not answer within 30 seconds rejects. The rest are Toma's own.
 
 | Call | |
 |---|---|

@@ -31,7 +31,7 @@ const KNOWN_VERSION: u32 = 0x0107_0100;
 /// Most opcodes in one list (each may touch the whole picture).
 pub const MAX_OPCODES: usize = 256;
 
-pub use craft_raw::opcode_raw::Opcode;
+pub use nodalia_raw::opcode_raw::Opcode;
 
 /// The opcode lists of a raw IFD.
 #[derive(Clone, Debug, Default, PartialEq)]
@@ -43,7 +43,7 @@ pub struct Lists {
 
 /// Parse an opcode list (big-endian).
 pub fn parse(b: &[u8]) -> Result<Vec<Opcode>> {
-    craft_raw::opcode_raw::parse(b, MAX_OPCODES).map_err(|_| Error::Malformed("opcode list"))
+    nodalia_raw::opcode_raw::parse(b, MAX_OPCODES).map_err(|_| Error::Malformed("opcode list"))
 }
 
 /// The picture an opcode list works on: `planes` interleaved samples per pixel.
@@ -113,9 +113,9 @@ pub fn apply(list: &[Opcode], img: &mut Image, preview: bool) -> Result<()> {
 }
 
 fn run(op: &Opcode, img: &mut Image) -> Result<()> {
-    use craft_raw::opcode_params::{Context, Params as P, ParseError};
+    use nodalia_raw::opcode_params::{Context, Params as P, ParseError};
     let context = Context { width: img.width, height: img.height, planes: img.planes, mosaic: img.mosaic, allow_trim: img.allow_trim };
-    let params = craft_raw::opcode_params::parse(op.id, &op.params, context).map_err(|e| match e {
+    let params = nodalia_raw::opcode_params::parse(op.id, &op.params, context).map_err(|e| match e {
         ParseError::Malformed(s) => Error::Malformed(s),
         ParseError::Unsupported(s) => Error::Unsupported(s.into()),
     })?;
@@ -179,7 +179,7 @@ struct Area {
 }
 
 impl Area {
-    fn from_shared(a: craft_raw::opcode_params::Area) -> Area {
+    fn from_shared(a: nodalia_raw::opcode_params::Area) -> Area {
         Area { top: a.top, left: a.left, bottom: a.bottom, right: a.right, plane: a.plane, planes: a.planes, row_pitch: a.row_pitch, col_pitch: a.col_pitch }
     }
 
@@ -208,8 +208,8 @@ impl Area {
     }
 }
 
-fn area_op(params: craft_raw::opcode_params::Params<'_>, img: &mut Image) -> Result<()> {
-    use craft_raw::opcode_params::Params as P;
+fn area_op(params: nodalia_raw::opcode_params::Params<'_>, img: &mut Image) -> Result<()> {
+    use nodalia_raw::opcode_params::Params as P;
     let scale = img.max;
     match params {
         P::MapTable { area, table } => {
@@ -493,7 +493,7 @@ pub fn encode(list: &[(u32, u32, Vec<u8>)]) -> Result<Vec<u8>> {
         copy.extend_from_slice(params);
         records.push(Opcode { id: *id, version: if *id == 14 { 0x0106_0000 } else { 0x0103_0000 }, flags: *flags, params: copy });
     }
-    craft_raw::opcode_raw::encode(&records).map_err(|_| Error::Malformed("opcode list cannot be encoded"))
+    nodalia_raw::opcode_raw::encode(&records).map_err(|_| Error::Malformed("opcode list cannot be encoded"))
 }
 
 #[cfg(test)]

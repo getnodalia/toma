@@ -437,7 +437,7 @@ fn combo(app: &mut TomaApp, ui: &mut Ui, key: &str, label: &str, current: &str, 
     let mut chosen = None;
     let mut items: Vec<(String, Rect, String)> = Vec::new();
     // the current choice is cut to the box's width (the open list shows it whole)
-    let r = craft_ui::ComboBox::from_id_salt(("settings", key))
+    let r = nodalia_ui::ComboBox::from_id_salt(("settings", key))
         .selected_text(RichText::new(crate::i18n::t(&shown)).size(12.5))
         .width(width.min(ui.available_width()))
         .truncate()

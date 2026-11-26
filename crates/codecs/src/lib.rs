@@ -179,7 +179,7 @@ pub fn register_reader_opener(f: toma_media::ReaderOpener) {
 }
 
 /// A media reader as the demuxers' byte source. The ISO BMFF and Matroska demuxers share one
-/// `ByteSource` trait (craft-media), so one impl serves both.
+/// `ByteSource` trait (nodalia-media), so one impl serves both.
 #[derive(Clone)]
 pub(crate) struct Src(pub toma_media::SharedReader);
 

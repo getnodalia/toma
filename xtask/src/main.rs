@@ -97,7 +97,7 @@ const SAME_LAYER: &[(&str, &str)] = &[
 ];
 
 /// Crates that must not appear below L5 (UI toolkits, windowing, OS audio/menus).
-const UI_ONLY: &[&str] = &["craft-ui", "egui", "eframe", "egui-wgpu", "winit", "rfd", "cpal", "muda"];
+const UI_ONLY: &[&str] = &["nodalia-ui", "egui", "eframe", "egui-wgpu", "winit", "rfd", "cpal", "muda"];
 
 fn short(name: &str) -> &str {
     name.strip_prefix("toma-").unwrap_or(name)

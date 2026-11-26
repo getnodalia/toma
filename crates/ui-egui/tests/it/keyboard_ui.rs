@@ -231,7 +231,7 @@ fn maximize_under_cursor_ignores_native_window_rects() {
         ctx.run_ui(input, |ui| (viewport.viewport_ui_cb)(ui)).textures_delta.clear();
     });
     d.harness.ctx.set_embed_viewports(false);
-    // The main window reports its outer rect, as under X11: without a display variable craft-ui
+    // The main window reports its outer rect, as under X11: without a display variable nodalia-ui
     // otherwise takes the session for Wayland and keeps floating windows in-window.
     d.harness.input_mut().viewports.entry(egui::ViewportId::ROOT).or_default().outer_rect =
         Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(1600.0, 1000.0)));

@@ -12,12 +12,12 @@
 //! - [`tr_ctx`]: when one English word needs different translations (the Edit menu, the Edit button).
 //! - [`fmt`]: fill `{name}` placeholders after translating a template; translators may reorder them.
 //!
-//! Japanese text uses the Japanese craft-fonts when Toma was built with them (`CRAFT_FONTS_DIR`;
-//! `theme::install` already puts them in every font family, see [`craft_japanese_font`]), otherwise
+//! Japanese text uses the Japanese nodalia-fonts when Toma was built with them (`NODALIA_FONTS_DIR`;
+//! `theme::install` already puts them in every font family, see [`nodalia_japanese_font`]), otherwise
 //! a font already installed on the system ([`system_japanese_font`]); with neither, switching to
 //! Japanese is refused with a message.
 //!
-//! Simplified Chinese uses the Chinese fallback `theme::install` always adds (craft-fonts Hans/Hant
+//! Simplified Chinese uses the Chinese fallback `theme::install` always adds (nodalia-fonts Hans/Hant
 //! faces, otherwise one installed system face, see `cjk.rs`); without one, switching to Chinese is
 //! refused the same way ([`chinese_font_available`]).
 
@@ -446,20 +446,20 @@ pub fn system_japanese_font() -> Option<Arc<egui::FontData>> {
     .clone()
 }
 
-/// Whether the craft-fonts build input (empty unless built with `CRAFT_FONTS_DIR`) supplies a
-/// Japanese interface font: some craft-fonts face covers `JAPANESE_SAMPLE`. `theme::install` adds
+/// Whether the nodalia-fonts build input (empty unless built with `NODALIA_FONTS_DIR`) supplies a
+/// Japanese interface font: some nodalia-fonts face covers `JAPANESE_SAMPLE`. `theme::install` adds
 /// these faces to every font family, so nothing else needs installing (and no system scan runs).
-pub fn craft_japanese_font() -> bool {
-    toma_text::fonts::craft_japanese().next().is_some()
-        && toma_text::fonts::all_faces().iter().any(|f| f.info.origin == toma_text::fonts::CRAFT_ORIGIN && JAPANESE_SAMPLE.chars().all(|c| f.has_char(c)))
+pub fn nodalia_japanese_font() -> bool {
+    toma_text::fonts::nodalia_japanese().next().is_some()
+        && toma_text::fonts::all_faces().iter().any(|f| f.info.origin == toma_text::fonts::NODALIA_ORIGIN && JAPANESE_SAMPLE.chars().all(|c| f.has_char(c)))
 }
 
-/// Japanese for the interface: true when built with the craft-fonts (already installed by
+/// Japanese for the interface: true when built with the nodalia-fonts (already installed by
 /// `theme::install`). Otherwise add the system's Japanese font as the last fallback of every theme font family, from the next
 /// pass on. Returns false (and changes nothing) when no Japanese font is installed. Call it again
 /// after `theme::install`, which replaces the font definitions.
 pub fn install_japanese_font(ctx: &egui::Context) -> bool {
-    if craft_japanese_font() {
+    if nodalia_japanese_font() {
         return true;
     }
     let Some(font) = system_japanese_font() else { return false };
@@ -473,7 +473,7 @@ pub fn install_japanese_font(ctx: &egui::Context) -> bool {
 }
 
 /// Whether the interface can show Simplified Chinese: `theme::install` always adds a Chinese
-/// fallback face when there is one (craft-fonts Hans/Hant faces, otherwise an installed system
+/// fallback face when there is one (nodalia-fonts Hans/Hant faces, otherwise an installed system
 /// face, see `cjk.rs`), so nothing needs installing here. False on systems without either.
 pub fn chinese_font_available() -> bool {
     crate::cjk::available()

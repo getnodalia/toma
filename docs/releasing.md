@@ -73,9 +73,9 @@ signing jobs are refused, and the draft-release job, which needs them, is skippe
 
 `toma --version` and `toma-cli --version` print the version from `Cargo.toml`.
 
-**Fonts.** Every build job checks out [craft-fonts](https://github.com/storytold/craft-fonts) at a
-pinned commit (`craft-fonts-ref` in `.github/workflows/release.yml` and `freebsd.yml`) and builds
-with `CRAFT_FONTS_DIR` and `CRAFT_FONTS_REQUIRED=1`, so releases embed its fonts and fail
+**Fonts.** Every build job checks out [nodalia-fonts](https://github.com/getnodalia/foundation) at a
+pinned commit (`nodalia-fonts-ref` in `.github/workflows/release.yml` and `freebsd.yml`) and builds
+with `NODALIA_FONTS_DIR` and `NODALIA_FONTS_REQUIRED=1`, so releases embed its fonts and fail
 rather than ship without them (the web build embeds only the UI font, to stay small). The packages
 carry each embedded font's licence (`copy_font_licences` in `packaging/env.sh`). Bump the pins
 deliberately, in every job at once.
@@ -142,7 +142,7 @@ After packaging, the job prints the `.deb`'s metadata and contents, runs `ldd` o
 runs each AppImage with `--version`.
 
 **AppImage updates.** Each AppImage embeds update information,
-`gh-releases-zsync|storytold|toma|latest|toma-*-linux-<arch>.AppImage.zsync`, and
+`gh-releases-zsync|getnodalia|toma|latest|toma-*-linux-<arch>.AppImage.zsync`, and
 `appimagetool` writes the matching `.zsync` beside it (the job installs `zsync` for
 `zsyncmake`). [AppImageUpdate](https://github.com/AppImageCommunity/AppImageUpdate) and
 AppImageLauncher then fetch only the changed blocks from the newest published (non-pre-release)

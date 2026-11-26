@@ -58,4 +58,4 @@ jobs:
           PY
 
   nix:
-    uses: getnodalia/foundation/.github/workflows/nix.yml@976581262c95c0d95c0184149c0e1ba55485ccb3 # foundation main
+    uses: getnodalia/foundation/.github/workflows/nix.yml@c37ef19e6bc213e3ebf3a281f1bf0f3fd7c5d495 # foundation main

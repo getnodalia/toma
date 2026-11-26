@@ -4,7 +4,7 @@
 
 use std::sync::Arc;
 
-use craft_audio::aac::{Encoder, EncoderConfig};
+use nodalia_audio::aac::{Encoder, EncoderConfig};
 
 const RATE: u32 = 48_000;
 

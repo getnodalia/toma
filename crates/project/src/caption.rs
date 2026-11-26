@@ -74,7 +74,7 @@ pub enum CaptionAnchor {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(default)]
 pub struct CaptionStyle {
-    /// Font family name (bundled, craft-fonts or system); unknown or empty names fall back to Inter.
+    /// Font family name (bundled, nodalia-fonts or system); unknown or empty names fall back to Inter.
     pub font: String,
     /// Font size in pixels for a 1080-line frame (scaled with the frame height).
     pub size: f32,
