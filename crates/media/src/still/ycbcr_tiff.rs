@@ -2,10 +2,10 @@
 //! retains its classic-TIFF compatibility and upright-image policy.
 use super::Raster;
 use crate::{MediaError, Result};
+use image::metadata::Orientation;
 use nodalia_tiff::classic::{Tiff, Type, tags};
 use nodalia_tiff::{Entry, Ifd, Value};
 use nodalia_tiff_ycbcr as nodalia_tiff;
-use image::metadata::Orientation;
 
 const MAX_PIXELS: u64 = 1 << 28;
 // Typed metadata expands every integer/float to eight bytes, independently of the

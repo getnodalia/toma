@@ -278,9 +278,10 @@ pub(super) fn settings_column(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) 
             });
             // Preset: favourites, then every preset by category, then More presets…
             row(ui, &t, tl!("Preset"), |ui| {
-                let r = nodalia_ui::ComboBox::from_id_salt("export.preset").selected_text(crate::i18n::t(&ex.preset)).width(ui.available_width() - 4.0).show_ui(
-                    ui,
-                    |ui| {
+                let r = nodalia_ui::ComboBox::from_id_salt("export.preset")
+                    .selected_text(crate::i18n::t(&ex.preset))
+                    .width(ui.available_width() - 4.0)
+                    .show_ui(ui, |ui| {
                         if !favs.is_empty() {
                             ui.label(egui::RichText::new(tl!("Favorites")).color(t.text_dim).size(11.0));
                             for f in &favs {
@@ -304,8 +305,7 @@ pub(super) fn settings_column(app: &mut TomaApp, ui: &mut egui::Ui, rect: Rect) 
                         if ui.button(tl!("More presets…")).clicked() {
                             open_manager = true;
                         }
-                    },
-                );
+                    });
                 reg.add("export.preset", r.response.rect, ex.preset.clone());
             });
             ui.horizontal(|ui| {

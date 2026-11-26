@@ -39,8 +39,8 @@ impl WavSource {
     /// Open a WAV file through a random-access reader.
     pub fn open(name: &str, reader: SharedReader) -> Result<Self> {
         let len = reader.len();
-        let wav =
-            nodalia_audio::wav_range::WavRange::open(Reader(reader), crate::MAX_AUDIO_CHANNELS, crate::MAX_AUDIO_SAMPLE_RATE).map_err(|e| wav_error(name, e))?;
+        let wav = nodalia_audio::wav_range::WavRange::open(Reader(reader), crate::MAX_AUDIO_CHANNELS, crate::MAX_AUDIO_SAMPLE_RATE)
+            .map_err(|e| wav_error(name, e))?;
         let mut info = MediaInfo {
             name: name.into(),
             kind: MediaKind::AudioOnly,

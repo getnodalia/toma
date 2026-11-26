@@ -14,7 +14,7 @@ use std::sync::{Arc, OnceLock};
 
 use egui::epaint::text::{LayoutJob, TextDirection, TextFormat};
 use egui::{Align, Color32, FontData, FontDefinitions, FontId, Galley, Painter, Rect, Vec2, pos2};
-use toma_text::fonts::{NodaliaFont, Face};
+use toma_text::fonts::{Face, NodaliaFont};
 use unicode_bidi::{BidiClass, BidiInfo, bidi_class};
 
 /// A right-to-left script: its ISO 15924 code (as in the nodalia-fonts manifest), letters a face

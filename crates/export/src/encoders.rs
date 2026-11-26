@@ -347,7 +347,8 @@ pub(crate) fn apv_factory(format: Format, w: u32, h: u32, rate: FrameRate, s: &E
         let profile = apv_profile(&s.apv_profile);
         let mut cfg = nodalia_video::apv::EncoderConfig::new(profile, w, h);
         if s.signal.is_hdr() {
-            cfg.color = nodalia_video::apv::ColorInfo { primaries: s.signal.primaries, transfer: s.signal.transfer, matrix: s.signal.matrix, full_range: false };
+            cfg.color =
+                nodalia_video::apv::ColorInfo { primaries: s.signal.primaries, transfer: s.signal.transfer, matrix: s.signal.matrix, full_range: false };
         }
         let chroma = cfg.chroma;
         let enc = nodalia_video::apv::Encoder::with_config(cfg).map_err(|e| ExportError::Encode(e.to_string()))?;

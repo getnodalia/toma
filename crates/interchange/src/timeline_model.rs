@@ -772,7 +772,8 @@ pub(crate) fn export_otio(project: &film::Project, seq: film::ItemId, opts: &cra
 }
 
 /// A shared timeline reader's signature (FCPXML, FCP7 XML).
-type SharedImport = fn(&str, &nodalia_timeline::ImportOptions, &mut nodalia_timeline::Report, Option<usize>) -> nodalia_timeline::Result<nodalia_timeline::Imported>;
+type SharedImport =
+    fn(&str, &nodalia_timeline::ImportOptions, &mut nodalia_timeline::Report, Option<usize>) -> nodalia_timeline::Result<nodalia_timeline::Imported>;
 /// A shared timeline writer's signature (FCPXML, FCP7 XML).
 type SharedExport =
     fn(&shared::Project, shared::ItemId, &nodalia_timeline::ExportOptions, &mut nodalia_timeline::Report, Option<usize>) -> nodalia_timeline::Result<String>;

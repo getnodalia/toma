@@ -1,10 +1,10 @@
 //! Shared docking preserves Toma document state and legacy workspace files.
 
-use nodalia_ui::docking::{Action, DockArea, Hit, Node, Placement, ResizeEdge, Zone};
-use nodalia_ui::layout::{SplitAxis, SplitSize};
 use egui::{Event, Modifiers, PointerButton, Rect, pos2, vec2};
 use egui_kittest::Harness;
 use egui_kittest::kittest::{NodeT, Queryable};
+use nodalia_ui::docking::{Action, DockArea, Hit, Node, Placement, ResizeEdge, Zone};
+use nodalia_ui::layout::{SplitAxis, SplitSize};
 use serde_json::json;
 use toma_engine::Session;
 use toma_ui_egui::{

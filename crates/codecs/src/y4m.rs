@@ -52,12 +52,13 @@ impl Y4mSource {
 
     pub fn open_reader(name: &str, reader: toma_media::SharedReader) -> crate::Result<Self> {
         let len = reader.len();
-        let stream =
-            nodalia_y4m::Stream::open(len, |at, n| toma_media::reader::read_range(&*reader, at, n).ok(), &nodalia_y4m::Limits::default()).map_err(|e| match e {
+        let stream = nodalia_y4m::Stream::open(len, |at, n| toma_media::reader::read_range(&*reader, at, n).ok(), &nodalia_y4m::Limits::default()).map_err(
+            |e| match e {
                 nodalia_y4m::Error::UnsupportedColourSpace(c) => CodecError::Unsupported(format!("{name}: Y4M colour space {c}")),
                 nodalia_y4m::Error::LimitExceeded(_) => CodecError::Unsupported(format!("{name}: Y4M frames larger than 268 million pixels")),
                 nodalia_y4m::Error::Malformed(m) => CodecError::Container(format!("{name}: Y4M: {m}")),
-            })?;
+            },
+        )?;
         let hinfo = &stream.header;
         let (w, h) = (hinfo.width, hinfo.height);
         let rate = hinfo.frame_rate.map(|(n, d)| FrameRate::new(n, d)).unwrap_or(FrameRate::FPS_25);

@@ -6,10 +6,10 @@
 
 use std::collections::HashMap;
 
+use egui::{Rect, Sense, Stroke, StrokeKind, vec2};
 use nodalia_ui::docking::{
     Action, Divider, DockArea, DockCommand, DockContent, DockEvent, DockStyle, FloatSpace, Hit, Layout, Node, ResizeEdge, WindowKind, Workspace,
 };
-use egui::{Rect, Sense, Stroke, StrokeKind, vec2};
 use serde_json::{Value, json};
 
 use crate::dock::{self, LayoutExt as _, PanelKind, SeqAction, SeqTabs};

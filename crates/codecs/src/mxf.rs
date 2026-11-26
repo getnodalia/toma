@@ -83,7 +83,8 @@ pub fn avc_presentation_order<H: AsRef<[u8]>>(heads: impl IntoIterator<Item = H>
                 1 | 5 => {
                     let mut sps_of = None;
                     let (sh, _, _) = SliceHeader::parse(&rbsp, hdr, |id| {
-                        let pps = ppss.get(id as usize).and_then(Option::as_ref).ok_or(nodalia_video::h264::decode::Error::MissingParameterSet("PPS".into()))?;
+                        let pps =
+                            ppss.get(id as usize).and_then(Option::as_ref).ok_or(nodalia_video::h264::decode::Error::MissingParameterSet("PPS".into()))?;
                         let sps = spss
                             .get(pps.sps_id as usize)
                             .and_then(Option::as_ref)

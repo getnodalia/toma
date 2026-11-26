@@ -14,8 +14,8 @@
 use std::sync::Arc;
 use std::sync::mpsc::Sender;
 
-use nodalia_ui::capture::{CaptureError, CaptureSlot};
 use egui::{ColorImage, ViewportCommand};
+use nodalia_ui::capture::{CaptureError, CaptureSlot};
 use serde_json::{Value, json};
 use web_time::{Duration, Instant};
 
