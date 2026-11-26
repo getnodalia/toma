@@ -3465,18 +3465,6 @@
 	no Korean font is installed on this system; the interface stays in English	No hay ninguna fuente coreana instalada en este sistema; la interfaz sigue en inglés
 	no Japanese font is installed on this system; the interface stays in English	no hay ninguna fuente japonesa instalada en este sistema; la interfaz sigue en inglés
 	Show	Mostrar
-	Sort	Ordenar
-	Reverse the order	Invertir el orden
-	Grab bag	Miscelánea
-	Table	Tabla
-	No contributor data was built into this copy.	Esta copia no incluye datos de colaboradores.
-	No model credits were built into this copy.	Esta copia no incluye créditos de modelos.
-	Company	Empresa
-	Model	Modelo
-	Version	Versión
-	Commits	Commits
-	% of all commits	% de todos los commits
-	Lines +/−	Líneas +/−
 	Audio output failed: playing without sound (check Settings > Audio Hardware)	La salida de audio ha fallado: se reproduce sin sonido (revisa Ajustes > Hardware de audio)
 	Audio output is not responding: playing without sound (check Settings > Audio Hardware)	La salida de audio no responde: se reproduce sin sonido (revisa Ajustes > Hardware de audio)
 	Clip Speed / Duration	Velocidad/duración del clip
@@ -3505,21 +3493,9 @@
 	 · {time} left	 · quedan {time}
 	Discard take	Descartar toma
 	Voice-over take discarded	Toma de voz en off descartada
-	Binary assets added	Recursos binarios añadidos
-	Binary assets removed	Recursos binarios eliminados
 	Deselect All Project Items	Deseleccionar todos los elementos del proyecto
-	Display name	Nombre visible
-	First commit	Primer commit
 	H.265 (HEVC)	H.265 (HEVC)
-	Last commit	Último commit
-	Line delta	Diferencia de líneas
-	Lines added	Líneas añadidas
-	Lines deleted	Líneas eliminadas
-	Merged PRs	PR fusionados
-	Name (A–Z)	Nombre (A–Z)
-	Real name	Nombre real
 	Select All Project Items	Seleccionar todos los elementos del proyecto
-	Username	Nombre de usuario
 	Vertical Type Tool	Herramienta Texto vertical
 	Go to previous keyframe	Ir al fotograma clave anterior
 	Go to next keyframe	Ir al fotograma clave siguiente
@@ -3887,3 +3863,6 @@
 	{bits} Bit	{bits} bits
 	{kind} — {width} × {height}	{kind} — {width} × {height}
 	{name} (download)	{name} (descarga)
+	Includes work by other open-source authors (see NOTICE).	Incluye trabajo de otros autores de código abierto (véase NOTICE).
+	MIT OR Apache-2.0. Open source, no telemetry.	MIT OR Apache-2.0. Código abierto, sin telemetría.
+	Part of the Nodalia suite of open creative tools.	Parte de la suite de herramientas creativas abiertas de Nodalia.

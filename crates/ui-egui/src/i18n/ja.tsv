@@ -3457,18 +3457,6 @@
 	no Korean font is installed on this system; the interface stays in English	このシステムには韓国語フォントがインストールされていないため、表示は英語のままです
 	no Japanese font is installed on this system; the interface stays in English	このシステムには日本語フォントがインストールされていないため、表示は英語のままです
 	Show	表示
-	Sort	並べ替え
-	Reverse the order	順序を反転
-	Grab bag	一覧
-	Table	表
-	No contributor data was built into this copy.	このビルドにはコントリビューターのデータが含まれていません。
-	No model credits were built into this copy.	このビルドにはモデルのクレジットが含まれていません。
-	Company	会社
-	Model	モデル
-	Version	バージョン
-	Commits	コミット
-	% of all commits	全コミットに占める割合 (%)
-	Lines +/−	行数 +/−
 	Audio output failed: playing without sound (check Settings > Audio Hardware)	オーディオ出力に失敗したため、無音で再生しています (「環境設定 > オーディオハードウェア」を確認してください)
 	Audio output is not responding: playing without sound (check Settings > Audio Hardware)	オーディオ出力が応答しないため、無音で再生しています (「環境設定 > オーディオハードウェア」を確認してください)
 	Clip Speed / Duration	クリップの速度 / 長さ
@@ -3497,21 +3485,9 @@
 	 · {time} left	 · 残り {time}
 	Discard take	テイクを破棄
 	Voice-over take discarded	ナレーションのテイクを破棄しました
-	Binary assets added	追加したバイナリアセット
-	Binary assets removed	削除したバイナリアセット
 	Deselect All Project Items	すべてのプロジェクト項目の選択を解除
-	Display name	表示名
-	First commit	最初のコミット
 	H.265 (HEVC)	H.265 (HEVC)
-	Last commit	最後のコミット
-	Line delta	行数の増減
-	Lines added	追加した行数
-	Lines deleted	削除した行数
-	Merged PRs	マージされた PR
-	Name (A–Z)	名前 (A–Z)
-	Real name	本名
 	Select All Project Items	すべてのプロジェクト項目を選択
-	Username	ユーザー名
 	Vertical Type Tool	縦書き文字ツール
 
 # System appearance modes and theme cards.

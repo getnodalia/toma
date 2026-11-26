@@ -41,7 +41,6 @@ pub mod capture;
 mod cjk;
 pub mod control;
 pub mod crash;
-pub mod credits;
 pub mod dock;
 mod dock_ui;
 pub use dock_ui::area_id as dock_area_id;

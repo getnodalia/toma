@@ -99,7 +99,7 @@ eframe = { version = "0.37", default-features = false }
 egui_kittest = "0.37"
 # In-app updates from this app's GitHub releases, with the update windows for egui.
 nodalia-update = { git = "https://github.com/getnodalia/nodalia-design", rev = "114848a2ff1a7c29c9a5432fb12e955fbe0aeef2", features = ["egui"] }
-nodalia-theme = { git = "https://github.com/getnodalia/nodalia-design", rev = "44bfd0a37e6bd2837c473b4e5607b70e8d169e61" }
+nodalia-theme = { git = "https://github.com/getnodalia/nodalia-design", rev = "a44fa27219fe36cbc58228858084b6ad4007f6ef" }
 rfd = "0.17"
 
 [workspace.lints.rust]

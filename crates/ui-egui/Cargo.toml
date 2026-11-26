@@ -63,9 +63,6 @@ egui_kittest = { workspace = true, features = ["eframe", "wgpu"] }
 tempfile = "3"
 
 # build.rs bakes contributors/contributors.json into the binary (About ▸ Contributors).
-[build-dependencies]
-serde_json = { workspace = true }
-toml = "1"
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 nodalia-update = { workspace = true }

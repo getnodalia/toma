@@ -3442,18 +3442,6 @@
 	no Chinese font is installed on this system; the interface stays in English	nessun font cinese è installato su questo sistema; l'interfaccia resta in inglese
 	no Japanese font is installed on this system; the interface stays in English	nessun font giapponese è installato su questo sistema; l'interfaccia resta in inglese
 	Show	Mostra
-	Sort	Ordina
-	Reverse the order	Inverti l'ordine
-	Grab bag	Assortimento
-	Table	Tabella
-	No contributor data was built into this copy.	In questa copia non sono inclusi dati sui contributori.
-	No model credits were built into this copy.	In questa copia non sono inclusi crediti dei modelli.
-	Company	Azienda
-	Model	Modello
-	Version	Versione
-	Commits	Commit
-	% of all commits	% di tutti i commit
-	Lines +/−	Righe +/−
 	Audio output failed: playing without sound (check Settings > Audio Hardware)	Uscita audio non riuscita: riproduzione senza audio (controlla Impostazioni > Hardware audio)
 	Audio output is not responding: playing without sound (check Settings > Audio Hardware)	L'uscita audio non risponde: riproduzione senza audio (controlla Impostazioni > Hardware audio)
 	Clip Speed / Duration	Velocità / durata clip
@@ -3482,21 +3470,9 @@
 	 · {time} left	 · {time} rimanenti
 	Discard take	Scarta ripresa
 	Voice-over take discarded	Ripresa voce fuori campo scartata
-	Binary assets added	Risorse binarie aggiunte
-	Binary assets removed	Risorse binarie rimosse
 	Deselect All Project Items	Deseleziona tutti gli elementi del progetto
-	Display name	Nome visualizzato
-	First commit	Primo commit
 	H.265 (HEVC)	H.265 (HEVC)
-	Last commit	Ultimo commit
-	Line delta	Variazione righe
-	Lines added	Righe aggiunte
-	Lines deleted	Righe eliminate
-	Merged PRs	PR unite
-	Name (A–Z)	Nome (A–Z)
-	Real name	Nome reale
 	Select All Project Items	Seleziona tutti gli elementi del progetto
-	Username	Nome utente
 	Vertical Type Tool	Strumento Testo verticale
 	Go to previous keyframe	Vai al fotogramma chiave precedente
 	Go to next keyframe	Vai al fotogramma chiave successivo

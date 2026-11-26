@@ -3428,18 +3428,6 @@
 	no Chinese font is installed on this system; the interface stays in English	v systému není nainstalováno čínské písmo; rozhraní zůstává v angličtině
 	no Japanese font is installed on this system; the interface stays in English	v systému není nainstalováno japonské písmo; rozhraní zůstává v angličtině
 	Show	Zobrazit
-	Sort	Seřadit
-	Reverse the order	Obrátit pořadí
-	Grab bag	Náhodný výběr
-	Table	Tabulka
-	No contributor data was built into this copy.	Toto sestavení neobsahuje údaje o přispěvatelích.
-	No model credits were built into this copy.	Toto sestavení neobsahuje přehled zásluh modelů.
-	Company	Společnost
-	Model	Model
-	Version	Verze
-	Commits	Commity
-	% of all commits	% všech commitů
-	Lines +/−	Řádky +/−
 	Audio output failed: playing without sound (check Settings ▸ Audio Hardware)	Zvukový výstup selhal: přehrávání bez zvuku (zkontrolujte Nastavení ▸ Zvukový hardware)
 	Audio output is not responding: playing without sound (check Settings ▸ Audio Hardware)	Zvukový výstup neodpovídá: přehrávání bez zvuku (zkontrolujte Nastavení ▸ Zvukový hardware)
 	Clip Speed / Duration	Rychlost / doba trvání klipu
@@ -3468,21 +3456,9 @@
 	 · {time} left	 · zbývá {time}
 	Discard take	Zahodit záznam
 	Voice-over take discarded	Záznam hlasového komentáře byl zahozen
-	Binary assets added	Přidané binární prostředky
-	Binary assets removed	Odebrané binární prostředky
 	Deselect All Project Items	Zrušit výběr všech položek projektu
-	Display name	Zobrazovaný název
-	First commit	První commit
 	H.265 (HEVC)	H.265 (HEVC)
-	Last commit	Poslední commit
-	Line delta	Změna počtu řádků
-	Lines added	Přidané řádky
-	Lines deleted	Odstraněné řádky
-	Merged PRs	Sloučené PR
-	Name (A–Z)	Název (A–Z)
-	Real name	Skutečné jméno
 	Select All Project Items	Vybrat všechny položky projektu
-	Username	Uživatelské jméno
 	Vertical Type Tool	Nástroj Svislý text
 	Go to previous keyframe	Přejít na předchozí klíčový snímek
 	Go to next keyframe	Přejít na další klíčový snímek

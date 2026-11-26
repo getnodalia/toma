@@ -452,89 +452,43 @@ fn delete_tracks(app: &mut TomaApp, ctx: &egui::Context) -> bool {
     keep
 }
 
-/// Help ▸ About Toma, in three tabs: About (version and the project links), Contributors and
-/// Models (the credits compiled in from `contributors/contributors.json`, see `crate::credits` and
-/// docs/contributors.md).
-///
-/// Automation ids: `about.tab.about`, `about.tab.contributors`, `about.tab.models`; the About tab's
-/// links and the credits controls are listed on [`about_tab`] and [`crate::credits::contributors_ui`].
-fn about(app: &mut TomaApp, ui: &mut egui::Ui) {
-    let tab_id = egui::Id::unique("about_tab");
-    let mut tab = ui.data_mut(|d| d.get_temp::<u8>(tab_id)).unwrap_or(0);
-    let look = app.tokens.creator();
-    ui.horizontal(|ui| {
-        ui.spacing_mut().item_spacing.x = 2.0;
-        for (i, (id, label)) in [("about", tl!("About")), ("contributors", tl!("Contributors")), ("models", tl!("Models"))].into_iter().enumerate() {
-            let i = i as u8;
-            let r = nodalia_theme::creator::tab(ui, &look, label, tab == i);
-            app.auto.add(&format!("about.tab.{id}"), r.rect, label);
-            if r.clicked() {
-                tab = i;
-            }
-        }
-    });
-    ui.data_mut(|d| d.insert_temp(tab_id, tab));
-    ui.add_space(6.0);
-    let t = app.tokens;
-    match tab {
-        1 => {
-            ui.set_width(820.0);
-            crate::credits::contributors_ui(ui, &t, &mut app.auto);
-        }
-        2 => {
-            ui.set_width(820.0);
-            crate::credits::models_ui(ui);
-        }
-        _ => about_tab(app, ui),
-    }
-}
-
-/// About ▸ About: the app's icon, name and version, then its links in one row and the licence.
+/// Help ▸ About Toma, the page every Nodalia app shares (`nodalia_theme::about`): the icon, name and
+/// version, what the app is, the suite it belongs to and the project links. There are no
+/// Contributors or Models tabs; the authors of the code this app began from are credited in
+/// `NOTICE`.
 ///
 /// Automation ids: `about.website`, `about.appPage`, `about.github`, `about.reportIssue`.
-fn about_tab(app: &mut TomaApp, ui: &mut egui::Ui) {
+fn about(app: &mut TomaApp, ui: &mut egui::Ui) {
     use crate::links;
+    use nodalia_theme::about as ndl;
     let t = app.tokens;
-    ui.set_width(420.0);
+    let look = t.creator();
+    ui.set_width(ndl::measures::WIDTH);
+    let version = tlf!("Version {version}", version = env!("CARGO_PKG_VERSION"));
+    let entries = [
+        ("website", tl!("Nodalia Website"), links::WEBSITE),
+        ("appPage", tl!("Toma on getnodalia.com"), links::APP_PAGE),
+        ("github", tl!("Source code on GitHub"), links::GITHUB),
+        ("reportIssue", tl!("Report an issue"), links::ISSUES),
+    ];
+    let shared: Vec<ndl::Link> = entries.iter().map(|(_, label, url)| ndl::Link { label, url }).collect();
+    let info = ndl::Info {
+        name: "Toma",
+        version: &version,
+        tagline: tl!("Open-source video editing in pure Rust."),
+        suite: tl!("Part of the Nodalia suite of open creative tools."),
+        links: &shared,
+        footer: tl!("MIT OR Apache-2.0. Open source, no telemetry."),
+    };
+    let page = ndl::page(ui, &look, &info, |ui, rect| crate::brand::paint_mark(ui.painter(), rect));
+    for ((id, label, _), rect) in entries.iter().zip(&page.links) {
+        app.auto.add(&format!("about.{id}"), *rect, label);
+    }
+    if let Some((_, _, url)) = page.picked.and_then(|i| entries.get(i)) {
+        links::open(app, ui.ctx(), url);
+    }
+    ui.add_space(4.0);
     ui.vertical_centered(|ui| {
-        ui.add_space(8.0);
-        let (r, _) = ui.allocate_exact_size(egui::vec2(96.0, 96.0), egui::Sense::hover());
-        crate::brand::paint_mark(ui.painter(), r);
-        ui.add_space(10.0);
-        ui.label(egui::RichText::new("Toma").font(crate::theme::Tokens::semibold(26.0)).color(t.text));
-        ui.add_space(2.0);
-        ui.label(egui::RichText::new(tlf!("Version {version}", version = env!("CARGO_PKG_VERSION"))).color(t.text_dim));
-        ui.label(egui::RichText::new(tl!("Open-source video editing in pure Rust.")).color(t.text_dim));
-        ui.add_space(14.0);
-        let entries = [
-            ("website", tl!("Nodalia Website"), links::WEBSITE),
-            ("appPage", tl!("Toma on getnodalia.com"), links::APP_PAGE),
-            ("github", tl!("Source code on GitHub"), links::GITHUB),
-            ("reportIssue", tl!("Report an issue"), links::ISSUES),
-        ];
-        ui.horizontal_wrapped(|ui| {
-            ui.spacing_mut().item_spacing.x = 14.0;
-            let total: f32 = entries
-                .iter()
-                .map(|(_, l, _)| ui.painter().layout_no_wrap((*l).to_string(), egui::FontId::proportional(13.0), t.accent).size().x + 14.0)
-                .sum::<f32>()
-                - 14.0;
-            ui.add_space(((ui.available_width() - total) / 2.0).max(0.0));
-            for (id, label, url) in entries {
-                let r = ui.add(egui::Button::new(egui::RichText::new(label).color(t.hot_text).size(13.0)).frame(false));
-                app.auto.add(&format!("about.{id}"), r.rect, label);
-                if r.on_hover_text(url).on_hover_cursor(egui::CursorIcon::PointingHand).clicked() {
-                    links::open(app, ui.ctx(), url);
-                }
-            }
-        });
-        ui.add_space(14.0);
-        ui.label(
-            egui::RichText::new(tl!(
-                "Part of Nodalia. MIT OR Apache-2.0. Fonts: Inter, Noto Serif and JetBrains Mono (SIL OFL 1.1). Icons: Nodalia Design (MIT)."
-            ))
-            .size(11.0)
-            .color(t.text_dim),
-        );
+        ui.label(egui::RichText::new(tl!("Includes work by other open-source authors (see NOTICE).")).small().color(t.text_dim));
     });
 }

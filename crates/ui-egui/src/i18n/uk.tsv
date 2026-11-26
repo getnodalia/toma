@@ -469,7 +469,6 @@
 	 frames	 кадрів
 	 seconds	 секунд
 	 · {time} left	 · залишилося {time}
-	% of all commits	 % усіх комітів
 	(Custom)	(Власний)
 	(Default)	(Типовий)
 	(RGB) Gamma	(RGB) Гамма
@@ -777,8 +776,6 @@
 	Bevel join	Скошене з'єднання
 	Bezier	Безьє
 	Bin: {name}	Тека: {name}
-	Binary assets added	Двійкові ресурси додано
-	Binary assets removed	Двійкові ресурси вилучено
 	Binauralizer - Ambisonics	Бінауралізатор — амбісоніка
 	Bins	Теки
 	Bitrate Encoding	Кодування бітрейту
@@ -1044,8 +1041,6 @@
 	Commands:	Команди:
 	Comment	Коментар
 	Comments:	Коментарі:
-	Commits	Коміти
-	Company	Компанія
 	Comparison	Порівняння
 	Complexity	Складність
 	Composite	Композиція
@@ -1272,7 +1267,6 @@
 	Display Color Management	Керування кольором дисплея
 	Display Color Settings	Параметри кольору дисплея
 	Display Format:	Формат відображення:
-	Display name	Відображувана назва
 	Display out of sync indicators for unlinked clips	Показувати індикатори розсинхронізації для від'єднаних кліпів
 	Dissolve	Розчинення
 	Dissolve Blocks	Розчинення блоками
@@ -1506,7 +1500,6 @@
 	Find Edges	Знайти краї
 	Find in:	Шукати в:
 	Find:	Знайти:
-	First commit	Перший коміт
 	Flanger	Фленджер
 	Flare	Відблиск
 	Flare Brightness	Яскравість відблиску
@@ -1628,7 +1621,6 @@
 	Golden Dusk	Золоті сутінки
 	Golden Hour	Золота година
 	Good	Добре
-	Grab bag	Всяка всячина
 	Gradient	Градієнт
 	Gradient Angle	Кут градієнта
 	Gradient End	Кінець градієнта
@@ -1900,7 +1892,6 @@
 	Larger	Більший
 	Last auto-save {a}	Останнє автозбереження {a}
 	Last auto-save {a} · last recovery copy {j}	Останнє автозбереження {a} · остання копія відновлення {j}
-	Last commit	Останній коміт
 	Last recovery copy {j}	Остання копія відновлення {j}
 	Latch	Фіксація
 	Layer Name	Назва шару
@@ -1955,7 +1946,6 @@
 	Limiter Release	Відпускання лімітера
 	Limiter Threshold	Поріг лімітера
 	Line Thickness	Товщина лінії
-	Line delta	Різниця рядків
 	Linear	Лінійний
 	Linear Burn	Лінійне затемнення
 	Linear Dodge (Add)	Лінійне освітлення (додавання)
@@ -1966,9 +1956,6 @@
 	Linear Wipe (Legacy)	Лінійна шторка (застаріла)
 	Linear keyframe thinning	Лінійне проріджування ключових кадрів
 	Linear to Log	Лінійний у log
-	Lines +/−	Рядки +/−
-	Lines added	Додано рядків
-	Lines deleted	Видалено рядків
 	Link Channels	Зв'язати канали
 	Link Media	Зв'язати медіа
 	Link to Media	Зв'язати з медіа
@@ -2134,7 +2121,6 @@
 	Merge Captions	Об'єднати субтитри
 	Merge Clips	Об'єднати кліпи
 	Merge selected captions	Об'єднати вибрані субтитри
-	Merged PRs	Об'єднані PR
 	Merged clip created	Об'єднаний кліп створено
 	Metadata & Timecode Burn-in	Вбудовування метаданих і таймкоду
 	Metadata Display	Відображення метаданих
@@ -2172,7 +2158,6 @@
 	Mixed Crystals	Змішані кристали
 	Mixer	Мікшер
 	Mode	Режим
-	Model	Модель
 	Models	Моделі
 	Modern High Gain	Сучасне високе підсилення
 	Modifier held / selected	Модифікатор утримано / вибрано
@@ -2239,7 +2224,6 @@
 	Mute input during timeline recording	Вимикати вхід під час запису на часову шкалу
 	My Shortcuts	Мої сполучення
 	My Templates	Мої шаблони
-	Name (A–Z)	Назва (А–Я)
 	Name Color	Колір імені
 	Name Overlay	Накладення імені
 	Name Size	Розмір імені
@@ -2290,14 +2274,12 @@
 	No background jobs.	Немає фонових завдань.
 	No candidates yet — Search a folder or Locate the file.	Ще немає кандидатів — шукайте в теці або знайдіть файл.
 	No captions on this track. Press + to add one at the playhead.	На цій доріжці немає субтитрів. Натисніть +, щоб додати один у позиції відтворення.
-	No contributor data was built into this copy.	У цю копію не вбудовано даних про учасників.
 	No effects	Без ефектів
 	No events.	Немає подій.
 	No export preset named `{name}`	Немає набору параметрів експорту з назвою `{name}`
 	No matching captions.	Немає відповідних субтитрів.
 	No matching commands	Немає відповідних команд
 	No matching text.	Немає відповідного тексту.
-	No model credits were built into this copy.	У цю копію не вбудовано подяк моделям.
 	No multi-camera clip at the playhead	У позиції відтворення немає багатокамерного кліпу
 	No plugins are installed. Changes will take effect the next time you start Toma.	Плагіни не встановлено. Зміни наберуть чинності під час наступного запуску Toma.
 	No presets folder: the app has no data directory	Немає теки наборів параметрів: у застосунку немає теки даних
@@ -2651,7 +2633,6 @@
 	Razor Tool	Інструмент «Лезо»
 	Read	Читання
 	Ready	Готово
-	Real name	Справжнє ім'я
 	Rec. 2100	Rec. 2100
 	Rec. 601	Rec. 601
 	Rec. 709	Rec. 709
@@ -2770,7 +2751,6 @@
 	Reverse	Зворотний
 	Reverse Field Dominance	Змінити домінування полів
 	Reverse Speed	Зворотна швидкість
-	Reverse the order	Змінити порядок
 	Revert to the preset's colors and names	Повернути кольори й назви набору параметрів
 	Right - Left	Правий — лівий
 	Right - Right	Правий — правий
@@ -3087,7 +3067,6 @@
 	Solo	Соло
 	Solo safe	Захист соло
 	Something went wrong while drawing the window. Your project is still open; save it to be safe.	Під час малювання вікна щось пішло не так. Проєкт усе ще відкритий; збережіть його про всяк випадок.
-	Sort	Сортувати
 	Sort Icons	Упорядкувати значки
 	Sort Order	Порядок сортування
 	Source In/Out	Вхід/вихід джерела
@@ -3251,7 +3230,6 @@
 	TIFF	TIFF
 	TIFF Sequence	Послідовність TIFF
 	TV Power	Живлення ТВ
-	Table	Таблиця
 	Tag Color	Колір мітки
 	Tape	Стрічка
 	Tape Name	Назва стрічки
@@ -3477,7 +3455,6 @@
 	Use the file's timecode	Використовувати таймкод файлу
 	User	Користувач
 	User Order	Порядок користувача
-	Username	Ім'я користувача
 	Utility	Службові
 	VBR, 1 pass	VBR, 1 прохід
 	VBR, 2 pass	VBR, 2 проходи
@@ -3511,7 +3488,6 @@
 	Vectorscope YUV	Вектороскоп YUV
 	Velocity	Швидкість
 	Venetian Blinds	Жалюзі
-	Version	Версія
 	Version {version}	Версія {version}
 	Vertical	Вертикально
 	Vertical 4:5	Вертикальний 4:5

@@ -3457,18 +3457,6 @@
 	no Korean font is installed on this system; the interface stays in English	Auf diesem System ist keine koreanische Schrift installiert; die Oberfläche bleibt auf Englisch
 	no Japanese font is installed on this system; the interface stays in English	auf diesem System ist keine japanische Schrift installiert; die Oberfläche bleibt auf Englisch
 	Show	Anzeigen
-	Sort	Sortieren
-	Reverse the order	Reihenfolge umkehren
-	Grab bag	Allerlei
-	Table	Tabelle
-	No contributor data was built into this copy.	In diese Kopie wurden keine Daten zu Mitwirkenden eingebaut.
-	No model credits were built into this copy.	In diese Kopie wurden keine Modell-Credits eingebaut.
-	Company	Firma
-	Model	Modell
-	Version	Version
-	Commits	Commits
-	% of all commits	% aller Commits
-	Lines +/−	Zeilen +/−
 	Audio output failed: playing without sound (check Settings > Audio Hardware)	Audioausgabe fehlgeschlagen: Wiedergabe ohne Ton (prüfe Voreinstellungen > Audiohardware)
 	Audio output is not responding: playing without sound (check Settings > Audio Hardware)	Audioausgabe reagiert nicht: Wiedergabe ohne Ton (prüfe Voreinstellungen > Audiohardware)
 	Clip Speed / Duration	Clipgeschwindigkeit/-dauer
@@ -3497,21 +3485,9 @@
 	 · {time} left	 · noch {time}
 	Discard take	Take verwerfen
 	Voice-over take discarded	Voice-over-Take verworfen
-	Binary assets added	Hinzugefügte Binärdateien
-	Binary assets removed	Entfernte Binärdateien
 	Deselect All Project Items	Auswahl aller Projektelemente aufheben
-	Display name	Anzeigename
-	First commit	Erster Commit
 	H.265 (HEVC)	H.265 (HEVC)
-	Last commit	Letzter Commit
-	Line delta	Zeilendifferenz
-	Lines added	Hinzugefügte Zeilen
-	Lines deleted	Gelöschte Zeilen
-	Merged PRs	Gemergte PRs
-	Name (A–Z)	Name (A–Z)
-	Real name	Echter Name
 	Select All Project Items	Alle Projektelemente auswählen
-	Username	Benutzername
 	Vertical Type Tool	Vertikales Textwerkzeug
 	Go to previous keyframe	Zum vorherigen Keyframe gehen
 	Go to next keyframe	Zum nächsten Keyframe gehen

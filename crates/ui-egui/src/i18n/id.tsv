@@ -3449,18 +3449,6 @@
 	no Korean font is installed on this system; the interface stays in English	tidak ada font Korea yang terpasang di sistem ini; antarmuka tetap dalam bahasa Inggris
 	no Japanese font is installed on this system; the interface stays in English	tidak ada font Jepang yang terpasang di sistem ini; antarmuka tetap dalam bahasa Inggris
 	Show	Tampilkan
-	Sort	Urutkan
-	Reverse the order	Balik urutan
-	Grab bag	Campur aduk
-	Table	Tabel
-	No contributor data was built into this copy.	Tidak ada data kontributor yang disertakan dalam salinan ini.
-	No model credits were built into this copy.	Tidak ada kredit model yang disertakan dalam salinan ini.
-	Company	Perusahaan
-	Model	Model
-	Version	Versi
-	Commits	Commit
-	% of all commits	% dari semua commit
-	Lines +/−	Baris +/−
 	Audio output failed: playing without sound (check Settings > Audio Hardware)	Output audio gagal: memutar tanpa suara (periksa Pengaturan > Perangkat Keras Audio)
 	Audio output is not responding: playing without sound (check Settings > Audio Hardware)	Output audio tidak merespons: memutar tanpa suara (periksa Pengaturan > Perangkat Keras Audio)
 	Clip Speed / Duration	Kecepatan / Durasi Klip
@@ -3489,21 +3477,9 @@
 	 · {time} left	 · sisa {time}
 	Discard take	Buang take
 	Voice-over take discarded	Take sulih suara dibuang
-	Binary assets added	Aset biner ditambahkan
-	Binary assets removed	Aset biner dihapus
 	Deselect All Project Items	Batalkan Pilihan Semua Item Proyek
-	Display name	Nama tampilan
-	First commit	Commit pertama
 	H.265 (HEVC)	H.265 (HEVC)
-	Last commit	Commit terakhir
-	Line delta	Delta baris
-	Lines added	Baris ditambahkan
-	Lines deleted	Baris dihapus
-	Merged PRs	PR yang digabung
-	Name (A–Z)	Nama (A–Z)
-	Real name	Nama asli
 	Select All Project Items	Pilih Semua Item Proyek
-	Username	Nama pengguna
 	Vertical Type Tool	Alat Teks Vertikal
 	Go to previous keyframe	Ke bingkai kunci sebelumnya
 	Go to next keyframe	Ke bingkai kunci berikutnya

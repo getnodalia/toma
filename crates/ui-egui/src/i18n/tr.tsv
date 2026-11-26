@@ -3442,18 +3442,6 @@
 	no Korean font is installed on this system; the interface stays in English	bu sistemde Korece yazı tipi yüklü değil; arayüz İngilizce kalacak
 	no Japanese font is installed on this system; the interface stays in English	bu sistemde Japonca yazı tipi yüklü değil; arayüz İngilizce kalacak
 	Show	Göster
-	Sort	Sırala
-	Reverse the order	Sırayı tersine çevir
-	Grab bag	Karma
-	Table	Tablo
-	No contributor data was built into this copy.	Bu kopyaya katkıda bulunan verisi dahil edilmedi.
-	No model credits were built into this copy.	Bu kopyaya model katkı bilgisi dahil edilmedi.
-	Company	Şirket
-	Model	Model
-	Version	Sürüm
-	Commits	Commit'ler
-	% of all commits	Tüm commit'lerin %'si
-	Lines +/−	Satırlar +/−
 	Audio output failed: playing without sound (check Settings ▸ Audio Hardware)	Ses çıkışı başarısız oldu: sessiz oynatılıyor (Ayarlar ▸ Ses Donanımı bölümünü kontrol edin)
 	Audio output is not responding: playing without sound (check Settings ▸ Audio Hardware)	Ses çıkışı yanıt vermiyor: sessiz oynatılıyor (Ayarlar ▸ Ses Donanımı bölümünü kontrol edin)
 	Clip Speed / Duration	Klip Hızı / Süresi
@@ -3482,21 +3470,9 @@
 	 · {time} left	 · {time} kaldı
 	Discard take	Çekimi at
 	Voice-over take discarded	Dış ses çekimi atıldı
-	Binary assets added	İkili varlıklar eklendi
-	Binary assets removed	İkili varlıklar kaldırıldı
 	Deselect All Project Items	Tüm Proje Ögelerinin Seçimini Kaldır
-	Display name	Görünen ad
-	First commit	İlk commit
 	H.265 (HEVC)	H.265 (HEVC)
-	Last commit	Son commit
-	Line delta	Satır farkı
-	Lines added	Eklenen satırlar
-	Lines deleted	Silinen satırlar
-	Merged PRs	Birleştirilen PR'lar
-	Name (A–Z)	Ad (A–Z)
-	Real name	Gerçek ad
 	Select All Project Items	Tüm Proje Ögelerini Seç
-	Username	Kullanıcı adı
 	Vertical Type Tool	Dikey Yazı Aracı
 	Go to previous keyframe	Önceki anahtar kareye git
 	Go to next keyframe	Sonraki anahtar kareye git

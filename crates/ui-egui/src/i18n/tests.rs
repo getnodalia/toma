@@ -391,8 +391,6 @@ fn dynamic_names() -> Vec<String> {
     [sc::Targets::Percent75, sc::Targets::Percent100].iter().for_each(|k| push(&mut out, k.label()));
     crate::state::PlaybackRes::ALL.iter().for_each(|r| push(&mut out, r.label()));
     crate::state::Tool::ALL.iter().for_each(|t| push(&mut out, t.label()));
-    crate::credits::NameMode::ALL.iter().for_each(|m| push(&mut out, m.label()));
-    crate::credits::SortKey::ALL.iter().for_each(|k| push(&mut out, k.label().0));
     toma_project::TimeInterpolation::ALL.iter().for_each(|m| push(&mut out, m.label()));
     toma_project::CaptionFormat::ALL.iter().for_each(|f| push(&mut out, f.label()));
     toma_project::MaskMode::ALL.iter().for_each(|m| push(&mut out, m.label()));

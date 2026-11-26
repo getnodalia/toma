@@ -3440,18 +3440,6 @@
 	no Korean font is installed on this system; the interface stays in English	na ovom sistemu nije instaliran korejski font; interfejs ostaje na engleskom
 	no Japanese font is installed on this system; the interface stays in English	na ovom sistemu nije instaliran japanski font; interfejs ostaje na engleskom
 	Show	Prikaži
-	Sort	Sortiraj
-	Reverse the order	Obrni redoslijed
-	Grab bag	Svaštara
-	Table	Tabela
-	No contributor data was built into this copy.	U ovu kopiju nisu ugrađeni podaci o saradnicima.
-	No model credits were built into this copy.	U ovu kopiju nisu ugrađene zasluge za modele.
-	Company	Firma
-	Model	Model
-	Version	Verzija
-	Commits	Commitovi
-	% of all commits	% svih commitova
-	Lines +/−	Linije +/−
 	Audio output failed: playing without sound (check Settings > Audio Hardware)	Audio izlaz nije uspio: reprodukcija bez zvuka (provjerite Postavke > Audio hardver)
 	Audio output is not responding: playing without sound (check Settings > Audio Hardware)	Audio izlaz ne odgovara: reprodukcija bez zvuka (provjerite Postavke > Audio hardver)
 	Clip Speed / Duration	Brzina / trajanje klipa
@@ -3480,21 +3468,9 @@
 	 · {time} left	 · preostalo {time}
 	Discard take	Odbaci snimak
 	Voice-over take discarded	Snimak naracije odbačen
-	Binary assets added	Dodani binarni resursi
-	Binary assets removed	Uklonjeni binarni resursi
 	Deselect All Project Items	Poništi odabir svih stavki projekta
-	Display name	Ime za prikaz
-	First commit	Prvi commit
 	H.265 (HEVC)	H.265 (HEVC)
-	Last commit	Posljednji commit
-	Line delta	Razlika u linijama
-	Lines added	Dodane linije
-	Lines deleted	Izbrisane linije
-	Merged PRs	Spojeni PR-ovi
-	Name (A–Z)	Naziv (A–Z)
-	Real name	Pravo ime
 	Select All Project Items	Odaberi sve stavke projekta
-	Username	Korisničko ime
 	Vertical Type Tool	Alat za okomiti tekst
 	Go to previous keyframe	Idi na prethodnu ključnu sličicu
 	Go to next keyframe	Idi na sljedeću ključnu sličicu
