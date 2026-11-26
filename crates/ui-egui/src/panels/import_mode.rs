@@ -48,7 +48,7 @@ fn source_cards() -> [(&'static str, &'static str, &'static str, crate::icons::I
     [
         (tl!("Browse files…"), "file.import", tl!("Movies, audio and stills from disk"), Icon::Folder),
         (tl!("Demo footage"), "file.importDemoFootage", tl!("Six procedural 1080p clips with sound"), Icon::Film),
-        (tl!("Demo project"), "file.openDemoProject", tl!("A cut sequence with transitions, effects and music"), Icon::Sequence),
+        (tl!("Sample film"), "file.openFilmProject", tl!("A Trip to the Moon (1902), edited with cuts, grades, titles and music"), Icon::Sequence),
         (tl!("Bars and Tone"), "file.newBarsAndTone", tl!("SMPTE HD bars with 1 kHz reference tone"), Icon::Grid),
     ]
 }
