@@ -1627,6 +1627,26 @@ fn build() -> Vec<CommandSpec> {
             s.events.push(crate::Event::OpenSequence(seq));
             Ok(json!({"sequence": seq.0}))
         }),
+        cmd!("file.openFilmProject", "Sample Film Project", ["File", "New"], None, "{}", always, |s, _| {
+            let (p, seq) = crate::demo_film::film_project(&s.media).ok_or_else(|| EngineError::Other("the sample film could not be opened".into()))?;
+            s.project = std::sync::Arc::new(p);
+            s.project_instance = std::sync::Arc::new(());
+            s.document_epoch = s.document_epoch.wrapping_add(1);
+            s.history = Default::default();
+            s.history.limit = 200;
+            s.state = crate::Session::default().state;
+            s.state.active_sequence = Some(seq);
+            s.state.open_sequences = vec![seq];
+            s.state.playheads.insert(seq, FrameRate::FPS_24.tick_of(33 * 24));
+            if s.path.take().is_some() {
+                s.previews.reset_temp();
+            }
+            s.revision += 1;
+            s.saved_revision = s.revision;
+            s.events.push(crate::Event::ProjectChanged { revision: s.revision });
+            s.events.push(crate::Event::OpenSequence(seq));
+            Ok(json!({"sequence": seq.0}))
+        }),
         cmd!(
             "file.newSequence",
             "Sequence…",

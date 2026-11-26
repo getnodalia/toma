@@ -1,0 +1,9 @@
+asset:        silent-cinema-galop.ogg
+title:        Silent-cinema galop: an original piece for the sample film
+author:       Toma contributors (composed and synthesised by Claude, agent, for Daniel Miguel Tejedor)
+source:       original work (scripts/make-silent-cinema-galop.py synthesises it from additive piano-like notes, no samples)
+license:      MIT OR Apache-2.0
+license-file:
+added:        2026-11-25 by Claude (agent) for Daniel Miguel Tejedor
+notes:        116 s, mono, 32 kHz, Vorbis q2. Procedurally composed in a 1900s galop style (A minor and C major sections,
+              oom-pah bass, eighth-note melody). No third-party melody, sample or recording is used.

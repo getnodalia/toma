@@ -365,12 +365,12 @@ fn app_creator(launch: Launch, graphics: graphics::GraphicsStart, created: Arc<A
                     }
                 }
                 None => {
-                    let _ = session.execute("file.openDemoProject", json!({}));
+                    let _ = session.execute("file.openFilmProject", json!({}));
                 }
             }
         } else if !startup_flag && session.prefs.general.at_startup == "emptyProject" {
         } else if demo {
-            let _ = session.execute("file.openDemoProject", json!({}));
+            let _ = session.execute("file.openFilmProject", json!({}));
         }
         if !media.is_empty() {
             let _ = session.execute("file.import", json!({"paths": media}));

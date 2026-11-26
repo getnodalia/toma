@@ -1,0 +1,11 @@
+asset:        voyage-dans-la-lune-scenes.mp4
+title:        Le Voyage dans la Lune (A Trip to the Moon), 1902: twelve scenes of the hand-coloured print, re-encoded small
+author:       Georges Méliès (film, 1902); Star Film Company
+source:       https://commons.wikimedia.org/wiki/File:Le_Voyage_dans_la_Lune_(1902,_color).webm (restored hand-coloured print of the 1902 film)
+license:      Public domain (film first published in 1902; Méliès died in 1938; public domain worldwide)
+license-file:
+added:        2026-11-25 by Claude (agent) for Daniel Miguel Tejedor
+notes:        Twelve scenes cut from the full print, scaled to 512x384 at 24 fps and re-encoded as H.264 (crf 33, hqdn3d denoise)
+              with ffmpeg, used only as a fixture generator; the soundtrack is dropped. About 109 s, 4.6 MB. It is the picture of the
+              sample project "A Trip to the Moon" (crates/engine/src/demo_film.rs), edited into 16 cuts with grades, punch-ins,
+              dissolves, titles and a music bed. Contains no Adobe artwork.

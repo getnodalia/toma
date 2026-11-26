@@ -31,6 +31,8 @@ iconography, images or other Adobe assets; open licences only; every asset attri
 | `assets/fonts/Inter-Italic.ttf` | The Inter Project Authors | https://github.com/rsms/inter | OFL-1.1 (`assets/fonts/OFL-Inter.txt`) |
 | `assets/fonts/NotoSerif-Regular.ttf` | The Noto Project Authors | https://github.com/notofonts/latin-greek-cyrillic | OFL-1.1 (`assets/fonts/OFL-NotoSerif.txt`) |
 | `assets/fonts/JetBrainsMono-Regular.ttf` | The JetBrains Mono Project Authors | https://github.com/JetBrains/JetBrainsMono | OFL-1.1 (`assets/fonts/OFL-JetBrainsMono.txt`) |
+| `assets/demo/voyage-dans-la-lune-scenes.mp4` | Georges Méliès (1902) | Twelve scenes of the hand-coloured print of *Le Voyage dans la Lune*, from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Le_Voyage_dans_la_Lune_(1902,_color).webm), re-encoded at 512x384 | Public domain |
+| `assets/demo/silent-cinema-galop.ogg` | Toma contributors | Original work: music synthesised by `scripts/make-silent-cinema-galop.py` | MIT OR Apache-2.0 |
 | `docs/images/toma-hero.png` | FilmCraft contributors | Original work: Toma screenshot; NASA Apollo 11 film and TV footage (images.nasa.gov; US Government work, public domain; NASA does not endorse this project), subtitles from the NASA Apollo 11 air-to-ground transcript (public domain), CC0 Chopin (Musopen) | MIT OR Apache-2.0; footage and transcript public domain |
 | `docs/images/toma-color.png` | FilmCraft contributors | Original work: Toma screenshot; frames from Charade (1963, public domain) | MIT OR Apache-2.0; film frames public domain |
 | `docs/images/toma-keyframes.png` | FilmCraft contributors | Original work: Toma screenshot; frames from Night of the Living Dead (1968, public domain) | MIT OR Apache-2.0; film frames public domain |
