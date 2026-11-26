@@ -22,8 +22,7 @@ interface follows Foundation's [NDL standard](https://github.com/getnodalia/foun
 
 ## Technical debt
 
-- None from the name: every name is Toma's, internal ones included (`scripts/rebrand.py`,
-  `docs/upstream.md`). Only file signatures keep their old names, so older files keep opening.
+- None from the name: every name is Toma's, internal ones included. Only file signatures keep their old names, so older files keep opening.
 
 ## Reusable Nodalia components
 

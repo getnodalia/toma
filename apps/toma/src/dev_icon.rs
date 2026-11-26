@@ -15,8 +15,8 @@
 //! Opt-in only: nothing is written unless `TOMA_DEV_DESKTOP_ENTRY=1` is set, so ordinary
 //! `cargo run`s (agents, worktrees, CI) never touch the user's profile. Packaged runs are
 //! excluded even then — AppImage (`APPIMAGE`) mounts at a fresh `/tmp/.mount_*` each launch,
-//! so its `Exec` path changes every time and it ships its own entry, and a Flatpak
-//! (`FLATPAK_ID`) installs its entry through the manifest. `packaging/linux/install.sh` writes the packaged
+//! so its `Exec` path changes every time and it ships its own entry.
+//! `packaging/linux/install.sh` writes the packaged
 //! `Exec=` the same two-layer way as here; keep the two in sync.
 //!
 //! Every failure is logged and skipped — a missing dev icon must never stop the app
@@ -24,10 +24,9 @@
 
 /// Install the user-level desktop entry and icons for a source-tree run (Linux).
 pub fn ensure_dev_desktop_entry() {
-    // Packaged and sandboxed runs never write into the user's profile: an AppImage mounts at a
-    // fresh /tmp/.mount_* every launch (the Exec path changes each time) and a Flatpak installs
-    // its own entry.
-    if std::env::var_os("APPIMAGE").is_some() || std::env::var_os("FLATPAK_ID").is_some() {
+    // Packaged runs never write into the user's profile: an AppImage mounts at a fresh
+    // /tmp/.mount_* every launch (the Exec path changes each time).
+    if std::env::var_os("APPIMAGE").is_some() {
         return;
     }
     // Opt-in only: a plain `cargo run` (agents, worktrees, other checkouts) must not write into

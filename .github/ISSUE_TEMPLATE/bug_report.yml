@@ -58,7 +58,6 @@ body:
     options:
     - Official installer
     - Portable archive or AppImage
-    - Flatpak
     - Web app
     - Built from source
     - Other or unknown
