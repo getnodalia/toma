@@ -95,6 +95,7 @@ mod transcript_ui;
 mod transform_handles_ui;
 mod transition_drop_ui;
 mod transitions_ui;
+mod translated_interface;
 mod tts_ui;
 mod ui_control_input;
 mod ui_dock_resize;
