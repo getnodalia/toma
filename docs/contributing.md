@@ -124,7 +124,7 @@ Every commit must pass all of these:
 | wasm | `cargo xtask wasm` (checks every L0–L4 crate, `toma-ui-egui` and `toma-web` for `wasm32-unknown-unknown`) |
 | All of the above | `cargo xtask ci` |
 
-Run them with `NODALIA_FONTS_DIR` set too when you change font code ([nodalia-fonts](#building-with-craft-fonts)).
+Run them with `NODALIA_FONTS_DIR` set too when you change font code ([nodalia-fonts](#building-with-nodalia-fonts)).
 
 `cargo xtask` is an alias in `.cargo/config.toml` for `cargo run -p xtask --`.
 
@@ -279,7 +279,7 @@ In short:
 - **Fonts live in [getnodalia/foundation (nodalia/fonts)](https://github.com/getnodalia/foundation), not here.**
   Don't commit new font files to this repo (the Latin UI fonts already in `assets/fonts/` stay): add
   the font to nodalia-fonts (file, licence, manifest line, `ATTRIBUTION.md` row) and use it through
-  `toma_text::fonts::NODALIA_FONTS`. See [Building with nodalia-fonts](#building-with-craft-fonts).
+  `toma_text::fonts::NODALIA_FONTS`. See [Building with nodalia-fonts](#building-with-nodalia-fonts).
 
 For each asset file `X`, commit a sidecar `X.attribution`. This is the real one for
 `assets/fonts/Inter-Regular.ttf`:

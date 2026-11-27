@@ -11,14 +11,13 @@ workflows pinned by commit. SonarCloud was removed; CodeQL and Scorecard remain.
 
 ## Desired state
 
-No workflow, dependency or document depends on storytold; Toma has its own release workflow; the
+No workflow, dependency or document depends on a repository outside Nodalia; Toma has its own release workflow; the
 interface follows Foundation's [NDL standard](https://github.com/getnodalia/foundation/blob/main/standards/ndl.md).
 
 ## Inherited dependencies still pending
 
-| Dependency | Where | Replacement | Blocked on |
-|---|---|---|---|
-| `storytold/craft-libs`, `storytold/vectorcraft` (links) | `packaging/web/README.md`, `packaging/macos/dmg/README.md` | prose only; the code is `nodalia-*` from getnodalia/foundation | rewording |
+None.
+
 
 ## Technical debt
 

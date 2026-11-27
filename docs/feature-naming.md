@@ -31,7 +31,7 @@ them, and their old/new-name aliases are gone because the label is the name agai
 
 ## Integration and attribution
 
-[PR #1880](https://github.com/storytold/filmcraft/pull/1880), for [issue #1868](https://github.com/storytold/filmcraft/issues/1868), is the single integration PR. Its original author's commits are preserved unchanged in history. The complementary work from [draft #4545](https://github.com/storytold/filmcraft/pull/4545) is integrated here rather than maintained as a competing PR. The interim Color Grade wording is replaced by the selected suite-wide Color Grading name.
+PR #1880, for issue #1868, is the single integration PR. Its original author's commits are preserved unchanged in history. The complementary work from draft #4545 is integrated here rather than maintained as a competing PR. The interim Color Grade wording is replaced by the selected suite-wide Color Grading name.
 
 ## Compatibility and localization
 

@@ -4,7 +4,7 @@ Use a **Cross Dissolve** transition to fade a picture in or out. Use **Volume** 
 to make a clip's sound gradually louder or quieter.
 
 These instructions follow Toma's current `main` branch, checked on 24 October 2026
-([source revision](https://github.com/storytold/filmcraft/commit/552f008d2757e307194256b3e672c9c1de4fa9b2)).
+(source revision).
 An older installed release may differ. The [planned fade handles](#whats-coming-timeline-fade-handles)
 are separate from the operations available now.
 
@@ -160,7 +160,7 @@ point. Turning it off removes the parameter's keyframes and keeps its value at t
 ## What's coming: timeline fade handles
 
 **Planned / pending, not available on current main:**
-[PR #1635](https://github.com/storytold/filmcraft/pull/1635) is open and **has not been merged**
+PR #1635 is open and **has not been merged**
 as of 24 October 2026. It proposes small handles in eligible clips' top corners: click to apply
 the default video or audio transition, or drag to preview and set its length. The result would
 be an ordinary transition that can be resized or removed. These handles would not replace

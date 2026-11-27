@@ -48,8 +48,8 @@ Containment rules:
 ## Current implementation (source audit, 2026-10-24)
 
 Checked against `main` at
-[`552f008d2757e307194256b3e672c9c1de4fa9b2`](https://github.com/storytold/filmcraft/commit/552f008d2757e307194256b3e672c9c1de4fa9b2)
-for [#2814](https://github.com/storytold/filmcraft/issues/2814). This section records source
+`552f008d2757e307194256b3e672c9c1de4fa9b2`
+for #2814. This section records source
 facts, not new architecture approvals or evidence that builds, hardware tests or a complete
 soundness review passed. The accepted decision, its approval date and the containment rules above
 remain in effect; implementation differences are not exceptions to those rules.
@@ -107,7 +107,7 @@ An `extern "C-unwind"` signature does not relax the requirement that no panic re
   when the windowing layer supplies no pointer position. It is outside the media-only decision
   above, even though its Rust API is safe and read-only. Its presence is not approval to add other
   OS integration. Removing/replacing it or granting a separate scope exception needs maintainer
-  resolution; [#2725](https://github.com/storytold/filmcraft/pull/2725) contains a proposed
+  resolution; #2725 contains a proposed
   window-system ADR and is still open and unmerged at this audit revision.
 - **Public FFI surface:** rule 3 is not fully satisfied. `vaapi` publicly exports `ffi`, Linux
   `va`, and the `Accel` trait. `vaapi::va::Session::new` takes `&[ffi::VAProfile]`, and
@@ -115,11 +115,11 @@ An `extern "C-unwind"` signature does not relax the requirement that no panic re
   `nvdec` publicly exports `ffi` and `cuvid`; for example, `ffi::CUVIDPICPARAMS` exposes the raw
   `pBitstreamData` and `pSliceDataOffsets` fields, and `nvdec::ffi` callback types contain raw pointers.
   There is no production `pub unsafe fn`, but that alone does not meet the no-public-FFI-types
-  rule. [#2800](https://github.com/storytold/filmcraft/issues/2800) tracks the VA-API visibility
+  rule. #2800 tracks the VA-API visibility
   and driver-input validation problem: `Session::decode_into` forwards supplied parameter
   structures and slice data to libva. Restoring encapsulation and checking caller-controlled
   driver inputs are code follow-ups; this document does not waive rule 3 or fix #2800.
-- **Separate FFI hardening:** [#2812](https://github.com/storytold/filmcraft/issues/2812) remains
+- **Separate FFI hardening:** #2812 remains
   open. Callback guards are not a resolution of its lifetime, COM-apartment or cleanup concerns.
   For example, `media_foundation::mft::Mft` still has a `Send` implementation based on a
   free-threaded assumption, `gpu::init_com` accepts `RPC_E_CHANGED_MODE`, and
