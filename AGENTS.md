@@ -152,10 +152,7 @@ linked partners; explicit move requests with repeated identities are still rejec
 - `cargo run -p toma -- --control 9876` opens the desktop app (`docs/control-protocol.md`). For UI work, look at `ui.screenshot`. Generate fixtures with ffmpeg into `target/fixtures/` and do not commit media (`docs/testing.md`).
 - `plan/` is an optional gitignored notebook (`plan/premiere/` may hold local screenshots). Do not ask for it and do not stop when it is absent. Public work lists are [`ROADMAP.md`](ROADMAP.md), [`docs/gaps.md`](docs/gaps.md) and [`docs/agents.md`](docs/agents.md).
 
-Shared real-file test corpora (Photoshop-authored PSDs, etc.) live in
-[`storytold/photocraft-corpus`](https://github.com/storytold/photocraft-corpus).
-Never commit large binary fixtures to this repo; fetch them pinned by commit and sha256-verified,
-as Lienzo does with `cargo xtask corpus`.
+Shared real-file test oracles live in [`getnodalia/nodalia-corpus`](https://github.com/getnodalia/nodalia-corpus), each with its provenance and licence. Never commit large binary fixtures to this repo; fetch them pinned by commit and sha256-verified, as Lienzo does with `cargo xtask corpus`.
 
 ## See also
 
